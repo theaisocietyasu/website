@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   keywords:
     "AI, artificial intelligence, ASU, Arizona State University, student club, machine learning, deep learning, AI education",
   authors: [{ name: "The AI Society at ASU" }],
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
