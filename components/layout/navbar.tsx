@@ -31,6 +31,79 @@ export function Navbar({ navItems, className }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  // Function to render nav links with proper handling for external links
+  const renderNavLink = (item: NavItem, index: number, isMobile = false) => {
+    const isActive =
+      pathname === item.link ||
+      (pathname.startsWith("/projects") && item.link === "/projects") ||
+      (pathname.startsWith("/ml_lab") && item.link === "/projects") ||
+      (pathname.startsWith("/nlp_lab") && item.link === "/projects")
+
+    // Check if this is an external link (starts with http or https)
+    const isExternal = item.link.startsWith("http")
+
+    // Special case for "Events" - always open in new tab
+    const isEvents = item.name.toLowerCase() === "events"
+    const shouldOpenNewTab = isExternal || isEvents
+
+    const className = cn(
+      isMobile
+        ? "px-4 py-3 rounded-md text-lg font-medium transition-colors flex items-center justify-center"
+        : "px-4 py-2 rounded-md text-sm font-medium transition-colors relative",
+      isActive
+        ? isMobile
+          ? "bg-dark-800/80 text-white"
+          : "text-white"
+        : "text-dark-200 hover:text-white hover:bg-dark-800/50",
+    )
+
+    const handleClick = isMobile ? () => setIsMobileMenuOpen(false) : undefined
+
+    // For external links or events, use an anchor tag
+    if (shouldOpenNewTab) {
+      return (
+        <a
+          key={`nav-${isMobile ? "mobile-" : ""}${index}`}
+          href={item.link}
+          className={className}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleClick}
+        >
+          {item.icon && isMobile && <span className="mr-3">{item.icon}</span>}
+          <span className="relative z-10">{item.name}</span>
+          {isActive && !isMobile && (
+            <motion.span
+              layoutId="navbar-active-indicator"
+              className="absolute inset-0 rounded-md bg-dark-800/80 -z-0"
+              transition={{ type: "spring", duration: 0.5 }}
+            />
+          )}
+        </a>
+      )
+    }
+
+    // For internal links, use Next.js Link
+    return (
+      <Link
+        key={`nav-${isMobile ? "mobile-" : ""}${index}`}
+        href={item.link}
+        className={className}
+        onClick={handleClick}
+      >
+        {item.icon && isMobile && <span className="mr-3">{item.icon}</span>}
+        <span className="relative z-10">{item.name}</span>
+        {isActive && !isMobile && (
+          <motion.span
+            layoutId="navbar-active-indicator"
+            className="absolute inset-0 rounded-md bg-dark-800/80 -z-0"
+            transition={{ type: "spring", duration: 0.5 }}
+          />
+        )}
+      </Link>
+    )
+  }
+
   return (
     <>
       <header
@@ -52,33 +125,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">
-              {navItems.map((item, index) => {
-                const isActive =
-                  pathname === item.link ||
-                  (pathname.startsWith("/projects") && item.link === "/projects") ||
-                  (pathname.startsWith("/ml_lab") && item.link === "/projects") ||
-                  (pathname.startsWith("/nlp_lab") && item.link === "/projects")
-
-                return (
-                  <Link
-                    key={`nav-${index}`}
-                    href={item.link}
-                    className={cn(
-                      "px-4 py-2 rounded-md text-sm font-medium transition-colors relative",
-                      isActive ? "text-white" : "text-dark-200 hover:text-white hover:bg-dark-800/50",
-                    )}
-                  >
-                    <span className="relative z-10">{item.name}</span>
-                    {isActive && (
-                      <motion.span
-                        layoutId="navbar-active-indicator"
-                        className="absolute inset-0 rounded-md bg-dark-800/80 -z-0"
-                        transition={{ type: "spring", duration: 0.5 }}
-                      />
-                    )}
-                  </Link>
-                )
-              })}
+              {navItems.map((item, index) => renderNavLink(item, index))}
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
@@ -114,28 +161,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
             className="fixed inset-0 z-40 pt-20 bg-dark-950/95 backdrop-blur-md md:hidden"
           >
             <nav className="container mx-auto px-4 py-8 flex flex-col gap-4 items-center text-center">
-              {navItems.map((item, index) => {
-                const isActive =
-                  pathname === item.link ||
-                  (pathname.startsWith("/projects") && item.link === "/projects") ||
-                  (pathname.startsWith("/ml_lab") && item.link === "/projects") ||
-                  (pathname.startsWith("/nlp_lab") && item.link === "/projects")
-
-                return (
-                  <Link
-                    key={`mobile-nav-${index}`}
-                    href={item.link}
-                    className={cn(
-                      "px-4 py-3 rounded-md text-lg font-medium transition-colors flex items-center justify-center",
-                      isActive ? "bg-dark-800/80 text-white" : "text-dark-200 hover:text-white hover:bg-dark-800/50",
-                    )}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.icon && <span className="mr-3">{item.icon}</span>}
-                    {item.name}
-                  </Link>
-                )
-              })}
+              {navItems.map((item, index) => renderNavLink(item, index, true))}
 
               {/* Custom Discord button without AnimatedGradientBorder */}
               <div className="mt-4">
