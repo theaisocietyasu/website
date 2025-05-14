@@ -86,22 +86,8 @@ export const ML_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-ml-workshops-f24/blob/main/Week%201/cleaned_group_seperate.xlsx",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          ML discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our ML discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
   {
     id: 2,
@@ -117,22 +103,8 @@ export const ML_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-ml-workshops-f24/blob/main/Week%202/Week_2_DataPreprocessingCode.ipynb",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          ML discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our ML discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
   {
     id: 3,
@@ -152,22 +124,8 @@ export const ML_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-ml-workshops-f24/blob/main/Week%203/Week3_data.csv",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          ML discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our ML discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
   {
     id: 4,
@@ -191,22 +149,8 @@ export const ML_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-ml-workshops-f24/blob/main/Week%204/tfidf_week4.csv",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          ML discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our ML discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
 ]
 
@@ -230,22 +174,8 @@ export const NLP_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-nlp-workshops-f24/blob/main/Week%201/archive.zip",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          NLP discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our NLP discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
   {
     id: 2,
@@ -265,22 +195,8 @@ export const NLP_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-nlp-workshops-f24/blob/main/Week%202/Phase_2_N_grams_and_TF_IDF.ipynb",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          NLP discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our NLP discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
   {
     id: 3,
@@ -296,22 +212,8 @@ export const NLP_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-nlp-workshops-f24/blob/main/Week%203/Phase3.ipynb",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          NLP discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our NLP discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
   {
     id: 4,
@@ -327,22 +229,8 @@ export const NLP_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-nlp-workshops-f24/blob/main/Week%204/Phase_4_RNNs_and_Attention_Mechanisms.ipynb",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          NLP discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our NLP discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
   {
     id: 5,
@@ -358,22 +246,8 @@ export const NLP_WORKSHOPS: Workshop[] = [
         link: "https://github.com/theaisocietyasu/technical-nlp-workshops-f24/blob/main/Week%205/Transformers.ipynb",
       },
     ],
-    procedures: (
-      <>
-        Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can
-        practice it using the notebook. If you have any Questions, hit us up on our{" "}
-        <a
-          href="https://discord.gg/dCWm6xBGtM"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-yellow-500 hover:underline"
-        >
-          NLP discord channel
-        </a>
-        . Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next
-        workshop!
-      </>
-    ),
+    procedures:
+      "Go over the theory in the slide deck. Detailed Explanations are Implementations are shown in the video. You can practice it using the notebook. If you have any Questions, hit us up on our NLP discord channel (https://discord.gg/dCWm6xBGtM). Practice Questions can be found at the end of the slide deck by scanning the QR code. See ya at our next workshop!",
   },
 ]
 

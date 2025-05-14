@@ -53,33 +53,39 @@ export default function ProjectsPage() {
             subtitle="Explore our workshops and learning resources from past semesters. These materials are designed to help you develop your AI skills."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <ProjectCard
-              title="Machine Learning Lab - Fall 2024"
-              description="Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques."
-              imageSrc="/wobble3.png"
-              imageAlt="Machine Learning Lab - Holographic AI Society Package"
-              href="/ml_lab"
-              bgColor="linear-gradient(to bottom right, rgba(12, 141, 224, 0.1), rgba(1, 90, 156, 0.05))"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto h-full">
+            <div className="h-full">
+              <ProjectCard
+                title="Machine Learning Lab - Fall 2024"
+                description="Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques."
+                imageSrc="/wobble3.png"
+                imageAlt="Machine Learning Lab - Holographic AI Society Package"
+                href="/ml_lab"
+                bgColor="linear-gradient(to bottom right, rgba(12, 141, 224, 0.1), rgba(1, 90, 156, 0.05))"
+              />
+            </div>
 
-            <ProjectCard
-              title="Computer Vision & NLP Lab - Fall 2024"
-              description="Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations."
-              imageSrc="/wobble4.png"
-              imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
-              href="/nlp_lab"
-              bgColor="linear-gradient(to bottom right, rgba(121, 56, 238, 0.1), rgba(73, 30, 140, 0.05))"
-            />
+            <div className="h-full">
+              <ProjectCard
+                title="Computer Vision & NLP Lab - Fall 2024"
+                description="Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations."
+                imageSrc="/wobble4.png"
+                imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
+                href="/nlp_lab"
+                bgColor="linear-gradient(to bottom right, rgba(121, 56, 238, 0.1), rgba(73, 30, 140, 0.05))"
+              />
+            </div>
 
-            <ProjectCard
-              title="AI Makerspace - Spring 2025"
-              description="Explore innovative student projects from our AI Makerspace program, showcasing creative applications of artificial intelligence across various domains."
-              imageSrc="/ai.png"
-              imageAlt="AI Makerspace - Laptop with code editor"
-              href="/ai_makerspace"
-              bgColor="linear-gradient(to bottom right, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05))"
-            />
+            <div className="h-full">
+              <ProjectCard
+                title="AI Makerspace - Spring 2025"
+                description="Explore innovative student projects from our AI Makerspace program, showcasing creative applications of artificial intelligence across various domains."
+                imageSrc="/ai.png"
+                imageAlt="AI Makerspace - Laptop with code editor"
+                href="/ai_makerspace"
+                bgColor="linear-gradient(to bottom right, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05))"
+              />
+            </div>
           </div>
         </div>
       </section>

@@ -5,7 +5,6 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { Sparkles, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Spotlight } from "@/components/ui/spotlight"
 import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 
 export function HeroSection() {
@@ -85,9 +84,8 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="w-full flex items-center justify-center lg:w-5/12 lg:justify-end lg:pr-4"
           >
-            <Spotlight className="w-full h-full flex items-center justify-center" size={500} opacity={0.2}>
+            <div className="w-full h-full flex items-center justify-center">
               <div className="relative flex items-center justify-center mx-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[480px]">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-secondary-600 opacity-10 blur-2xl animate-pulse-slow"></div>
                 <div className="relative p-4 sm:p-6 flex items-center justify-center">
                   <Image
                     src="/logo.png"
@@ -99,7 +97,7 @@ export function HeroSection() {
                   />
                 </div>
               </div>
-            </Spotlight>
+            </div>
           </motion.div>
         </div>
       </div>

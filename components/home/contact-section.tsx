@@ -6,8 +6,8 @@ import { MessageSquare, Mail, ChevronRight, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
-import { ThreeDCard } from "@/components/ui/3d-card"
 import { Card } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 
 export function ContactSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -82,46 +82,66 @@ export function ContactSection() {
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               className="w-full"
             >
-              <ThreeDCard
-                depth={10}
-                rotationIntensity={5}
-                glareIntensity={0.1}
-                hoverScale={1.02}
-                backgroundGradient={item.gradient}
-                className="w-full"
-              >
+              {/* Simplified card structure while maintaining visual appearance */}
+              <div className="relative w-full rounded-xl overflow-hidden" style={{ perspective: "1000px" }}>
+                {/* Background gradient */}
+                <div
+                  className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
+                  style={{ background: item.gradient }}
+                />
+
                 <Card
                   variant="glass"
                   className="border-0 bg-transparent backdrop-blur-none hover:shadow-glow transition-shadow duration-300"
                 >
                   <div className="p-6 flex flex-col items-center text-center h-[220px] sm:h-[240px] md:h-[260px] relative group">
-                    {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24">
-                      <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-${item.accent}-500/20 to-transparent"></div>
+                    {/* Decorative corner accent - with pointer-events-none */}
+                    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
+                      <div
+                        className={cn(
+                          "absolute top-0 right-0 w-full h-full bg-gradient-to-bl",
+                          `from-${item.accent}-500/20 to-transparent`,
+                        )}
+                      ></div>
                       <div className="absolute top-4 right-4">{item.cornerIcon}</div>
                     </div>
 
                     <h3 className="text-xl font-bold mb-2 text-white">{item.title}</h3>
-                    <div className="w-12 h-0.5 bg-gradient-to-r from-${item.accent}-500/50 to-dark-500/30 rounded-full mx-auto mb-3"></div>
+                    <div
+                      className={cn(
+                        "w-12 h-0.5 bg-gradient-to-r rounded-full mx-auto mb-3 pointer-events-none",
+                        `from-${item.accent}-500/50 to-dark-500/30`,
+                      )}
+                    ></div>
                     <p className="text-dark-300 mb-4 flex-grow">{item.description}</p>
-                    <Button
-                      variant="outline"
-                      className="w-full group flex items-center justify-center"
-                      onClick={() => window.open(item.buttonLink, "_blank")}
-                    >
-                      <span>{item.buttonText}</span>
-                      <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                    </Button>
 
-                    {/* Subtle corner decoration */}
-                    <div className="absolute bottom-3 right-3 opacity-10 group-hover:opacity-30 transition-opacity duration-300">
+                    {/* Direct link with extremely high z-index */}
+                    <a
+                      href={item.buttonLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full block relative z-[9999]"
+                      style={{ isolation: "isolate" }}
+                      onClick={(e) => {
+                        // Prevent any potential event capturing
+                        e.stopPropagation()
+                      }}
+                    >
+                      <Button variant="outline" className="w-full group flex items-center justify-center">
+                        <span>{item.buttonText}</span>
+                        <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Button>
+                    </a>
+
+                    {/* Subtle corner decoration - with pointer-events-none */}
+                    <div className="absolute bottom-3 right-3 opacity-10 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                       </svg>
                     </div>
                   </div>
                 </Card>
-              </ThreeDCard>
+              </div>
             </motion.div>
           ))}
         </div>

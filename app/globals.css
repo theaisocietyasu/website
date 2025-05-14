@@ -104,15 +104,15 @@
 
   /* Glassmorphism */
   .glass {
-    @apply backdrop-blur-md bg-dark-900/60 border border-dark-800/50;
+    @apply backdrop-blur-md bg-dark-900 bg-opacity-60 border border-dark-800 border-opacity-50;
   }
 
   .glass-card {
-    @apply backdrop-blur-md bg-dark-900/40 border border-dark-800/50 shadow-lg;
+    @apply backdrop-blur-md bg-dark-900 bg-opacity-40 border border-dark-800 border-opacity-50 shadow-lg;
   }
 
   .glass-light {
-    @apply backdrop-blur-md bg-white/10 border border-white/20;
+    @apply backdrop-blur-md bg-white bg-opacity-10 border border-white border-opacity-20;
   }
 }
 
@@ -556,6 +556,18 @@
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 20px 20px;
+  }
+
+  /* Add this to the @layer utilities section */
+  .equal-height-cards {
+    display: grid;
+    grid-auto-rows: 1fr;
+  }
+
+  .card-equal-height {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 }
 
