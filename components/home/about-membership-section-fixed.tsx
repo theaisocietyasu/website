@@ -15,6 +15,10 @@ export function AboutMembershipSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 })
   const membershipCardsRef = useRef<HTMLDivElement>(null)
 
+  const handleDiscordClick = () => {
+    window.open("https://discord.gg/dCWm6xBGtM", "_blank")
+  }
+
   return (
     <section
       ref={ref}
@@ -43,7 +47,10 @@ export function AboutMembershipSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-8 h-full"
+            className="md:col-span-8 h-full cursor-pointer"
+            onClick={handleDiscordClick}
+            role="link"
+            aria-label="Join our Discord community"
           >
             <ThreeDCard
               depth={15}
@@ -79,34 +86,23 @@ export function AboutMembershipSection() {
                       glowIntensity={0.5}
                       className="w-full sm:max-w-[180px]"
                     >
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="bg-dark-900/80 hover:bg-dark-800/80 border-0 w-full group text-xs"
-                        onClick={() =>
-                          window.open("https://asu.campuslabs.com/engage/organization/the-ai-society", "_blank")
-                        }
+                      <a
+                        href="https://asu.campuslabs.com/engage/organization/the-ai-society"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full no-underline"
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        <Zap className="mr-1 h-3 w-3" />
-                        <span className="whitespace-nowrap">Join Community</span>
-                        <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Button>
-                    </AnimatedGradientBorder>
-                    <AnimatedGradientBorder
-                      borderRadius="0.5rem"
-                      borderWidth={1}
-                      glowIntensity={0.3}
-                      className="w-full sm:max-w-[150px]"
-                    >
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="bg-dark-900/80 hover:bg-dark-800/80 border-0 w-full group text-xs"
-                        onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
-                      >
-                        <span className="whitespace-nowrap">Join Discord</span>
-                        <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="bg-dark-900/80 hover:bg-dark-800/80 border-0 w-full group text-xs"
+                        >
+                          <Zap className="mr-1 h-3 w-3" />
+                          <span className="whitespace-nowrap">Join Community</span>
+                          <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
+                        </Button>
+                      </a>
                     </AnimatedGradientBorder>
                   </div>
                 </div>
