@@ -590,3 +590,57 @@
     height: 100px;
   }
 }
+
+/* Safari-specific fixes - Only adding the requested fixes */
+@supports (-webkit-touch-callout: none) {
+  /* 1. 3D Transform Prefixes */
+  .card-3d {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: perspective(1000px);
+  }
+
+  .card-3d-content {
+    -webkit-transform: translateZ(20px);
+    -webkit-transform-style: preserve-3d;
+  }
+
+  /* 2. Backdrop Filter Prefixes */
+  .glass,
+  .glass-card,
+  .glass-light {
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* 3. Grid Layout Fixes */
+  @media (min-width: 768px) {
+    .md\:grid-cols-12 {
+      -webkit-grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    .md\:grid-cols-3 {
+      -webkit-grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .md\:col-span-8 {
+      -webkit-grid-column: span 8 / span 8;
+    }
+
+    .md\:col-span-4 {
+      -webkit-grid-column: span 4 / span 4;
+    }
+
+    .md\:col-span-12 {
+      -webkit-grid-column: span 12 / span 12;
+    }
+  }
+
+  @media (min-width: 640px) {
+    .sm\:grid-cols-2 {
+      -webkit-grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .sm\:col-span-2 {
+      -webkit-grid-column: span 2 / span 2;
+    }
+  }
+}
