@@ -16,13 +16,6 @@ const nextConfig = {
       },
     ],
   },
-  // Use Next.js built-in compiler options
-  compiler: {
-    // This will disable the JSX namespace error
-    reactRemoveProperties: process.env.NODE_ENV === 'production',
-  },
-  // Add a simple JSX transform configuration
-  reactStrictMode: true,
 };
 
 export default nextConfig;
