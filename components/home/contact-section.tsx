@@ -39,7 +39,7 @@ export function ContactSection() {
     },
     {
       icon: <Globe className="h-6 w-6 text-accent-400" />,
-      title: "Sun Devil Sync",
+      title: "Sun Devil Central",
       description: "Join our organization on ASU's platform.",
       buttonText: "Visit Page",
       buttonLink: "https://asu.campuslabs.com/engage/organization/the-ai-society",

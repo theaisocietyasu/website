@@ -68,7 +68,7 @@ export function HeroSection() {
                   onClick={() => window.open("https://asu.campuslabs.com/engage/organization/the-ai-society", "_blank")}
                 >
                   <Sparkles className="mr-2 h-4 w-4 text-primary-400" />
-                  <span>Sun Devil Sync</span>
+                  <span>Sun Devil Central</span>
                 </Button>
               </AnimatedGradientBorder>
 

@@ -244,7 +244,7 @@ export function AboutMembershipSection() {
                       <div>
                         <p className="text-secondary-300 font-medium mb-1 text-sm">How:</p>
                         <p className="text-dark-100 text-xs leading-relaxed">
-                          Join through Sun Devil Sync and our Discord. Links available at the bottom of the page.
+                          Join through Sun Devil Central and our Discord. Links available at the bottom of the page.
                         </p>
                       </div>
 
