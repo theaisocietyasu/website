@@ -16,6 +16,37 @@ const nextConfig = {
       },
     ],
   },
+  // Add SWC compiler options to fix JSX namespace error
+  compiler: {
+    styledComponents: true,
+    reactRemoveProperties: process.env.NODE_ENV === 'production',
+    swcMinify: true,
+  },
+  experimental: {
+    swcPlugins: [
+      ['next-superjson-plugin', {}],
+    ],
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.(tsx|ts)$/,
+      use: [
+        {
+          loader: 'swc-loader',
+          options: {
+            jsc: {
+              transform: {
+                react: {
+                  throwIfNamespace: false
+                }
+              }
+            }
+          }
+        }
+      ]
+    });
+    return config;
+  }
 };
 
 export default nextConfig;
