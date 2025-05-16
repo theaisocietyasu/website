@@ -51,8 +51,8 @@ export function HeroSection() {
                   colors={["#6366f1", "#8b5cf6", "#ec4899", "#6366f1"]}
                 >
                   <div className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-12 px-5 text-base w-[180px] flex items-center justify-center rounded-lg text-white font-medium">
-                    <Sparkles className="mr-2 h-4 w-4 text-primary-400" />
-                    <span>Sun Devil Central</span>
+                    <Sparkles className="mr-2 h-4 w-4 text-primary-400 flex-shrink-0" />
+                    <span className="text-center">Sun Devil Central</span>
                   </div>
                 </AnimatedGradientBorder>
               </a>
