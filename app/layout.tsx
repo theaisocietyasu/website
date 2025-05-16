@@ -71,6 +71,7 @@ export default function RootLayout({
           interactive={true}
           interactiveDistance={150}
           interactiveStrength={0.3}
+          className="z-[-5]"
         />
 
         <Suspense>{children}</Suspense>

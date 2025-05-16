@@ -87,6 +87,7 @@ export function ThreeDCard({
             style={{
               background: backgroundGradient,
               transform: "translateZ(-1px)",
+              pointerEvents: "none",
             }}
           />
         )}

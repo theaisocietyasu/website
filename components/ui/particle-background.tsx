@@ -199,5 +199,5 @@ export function ParticleBackground({
     interactiveStrength,
   ])
 
-  return <canvas ref={canvasRef} className={cn("fixed inset-0 -z-10", className)} />
+  return <canvas ref={canvasRef} className={cn("fixed inset-0 -z-5", className)} />
 }
