@@ -568,6 +568,14 @@
     display: flex;
     flex-direction: column;
   }
+  /* Add this to remove borders from circles */
+  .circle-1,
+  .circle-2,
+  .circle-3 {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
 }
 
 /* Responsive adjustments */

@@ -28,7 +28,7 @@ export function HeroSection() {
         {/* Animated circles with constraints to prevent overflow */}
         <div className="circle-1 absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] rounded-full bg-primary-500/10 blur-[40px] top-[10%] left-[5%] animate-float"></div>
         <div className="circle-2 absolute w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-secondary-500/10 blur-[40px] top-[25%] right-[5%] animate-float-reverse"></div>
-        <div className="circle-3 absolute w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] rounded-full bg-accent-500/30 blur-[35px] bottom-[25%] left-[20%] animate-float-slow"></div>
+        <div className="circle-3 absolute w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] rounded-full bg-accent-500/30 blur-[35px] bottom-[25%] left-[20%] animate-float-slow border-0 outline-none"></div>
       </div>
 
       <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-16 lg:px-24">
