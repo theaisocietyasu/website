@@ -109,6 +109,8 @@ export function ThreeDCard({
           style={{
             transform: `translateZ(${depth}px)`,
             transformStyle: "preserve-3d",
+            position: "relative",
+            zIndex: 10,
           }}
         >
           {children}

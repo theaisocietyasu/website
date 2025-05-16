@@ -4,20 +4,14 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { Users, Award, Gift, Zap, ChevronRight, Sparkles, BarChart3 } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { Button } from "@/components/ui/button"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import { Card } from "@/components/ui/card"
 import { ThreeDCard } from "@/components/ui/3d-card"
-import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 
 export function AboutMembershipSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
   const membershipCardsRef = useRef<HTMLDivElement>(null)
-
-  const handleDiscordClick = () => {
-    window.open("https://discord.gg/dCWm6xBGtM", "_blank")
-  }
 
   return (
     <section
@@ -32,6 +26,8 @@ export function AboutMembershipSection() {
         connectDistance={100}
         connectOpacity={0.1}
         particleColor={["#6366f1", "#8b5cf6", "#ec4899"]}
+        interactive={true}
+        interactiveStrength={0.3}
       />
 
       <div className="container mx-auto max-w-6xl relative z-10">
@@ -47,10 +43,7 @@ export function AboutMembershipSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-8 h-full cursor-pointer"
-            onClick={handleDiscordClick}
-            role="link"
-            aria-label="Join our Discord community"
+            className="md:col-span-8 h-full"
           >
             <ThreeDCard
               depth={15}
@@ -63,7 +56,7 @@ export function AboutMembershipSection() {
               <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
                 <div className="flex flex-col h-[350px] p-4 sm:p-6 md:p-8 relative overflow-hidden">
                   {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-32 h-32">
+                  <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
                     <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/20 to-transparent"></div>
                     <div className="absolute top-4 right-4">
                       <Sparkles className="h-6 w-6 text-primary-400/70" />
@@ -80,30 +73,26 @@ export function AboutMembershipSection() {
                     Our goal is to make AI education accessible to all ASU students, regardless of background or major.
                   </p>
                   <div className="mt-auto flex flex-col sm:flex-row gap-3 md:gap-4 flex-wrap">
-                    <AnimatedGradientBorder
-                      borderRadius="0.5rem"
-                      borderWidth={1}
-                      glowIntensity={0.5}
-                      className="w-full sm:max-w-[180px]"
-                    >
+                    <div className="w-full sm:max-w-[180px] relative z-50">
                       <a
                         href="https://asu.campuslabs.com/engage/organization/the-ai-society"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full no-underline"
-                        onClick={(e) => e.stopPropagation()}
+                        className="block w-full h-full"
+                        style={{ position: "relative", zIndex: 100 }}
+                        onClick={(e) => {
+                          window.open("https://asu.campuslabs.com/engage/organization/the-ai-society", "_blank")
+                        }}
                       >
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="bg-dark-900/80 hover:bg-dark-800/80 border-0 w-full group text-xs"
-                        >
-                          <Zap className="mr-1 h-3 w-3" />
-                          <span className="whitespace-nowrap">Join Community</span>
-                          <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
-                        </Button>
+                        <div className="bg-gradient-to-r from-primary-500/50 to-secondary-500/50 rounded-lg p-[1px]">
+                          <div className="bg-dark-900/80 hover:bg-dark-800/80 rounded-lg px-4 py-2 flex items-center justify-center group">
+                            <Zap className="mr-1 h-3 w-3" />
+                            <span className="whitespace-nowrap text-xs">Join Community</span>
+                            <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
+                          </div>
+                        </div>
                       </a>
-                    </AnimatedGradientBorder>
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -128,7 +117,7 @@ export function AboutMembershipSection() {
               <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
                 <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
                   {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-24 h-24">
+                  <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                     <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-secondary-500/20 to-transparent"></div>
                     <div className="absolute top-4 right-4">
                       <BarChart3 className="h-6 w-6 text-secondary-400/70" />
@@ -183,7 +172,7 @@ export function AboutMembershipSection() {
                 <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
                   <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
                     {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24">
+                    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/20 to-transparent"></div>
                       <div className="absolute top-4 right-4">
                         <Award className="h-6 w-6 text-primary-400/70" />
@@ -211,7 +200,7 @@ export function AboutMembershipSection() {
                     </div>
 
                     {/* Subtle corner decoration */}
-                    <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300">
+                    <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300 pointer-events-none">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                       </svg>
@@ -239,7 +228,7 @@ export function AboutMembershipSection() {
                 <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
                   <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
                     {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24">
+                    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-secondary-500/20 to-transparent"></div>
                       <div className="absolute top-4 right-4">
                         <Users className="h-6 w-6 text-secondary-400/70" />
@@ -254,25 +243,7 @@ export function AboutMembershipSection() {
                       <div>
                         <p className="text-secondary-300 font-medium mb-1 text-sm">How:</p>
                         <p className="text-dark-100 text-xs leading-relaxed">
-                          Join through{" "}
-                          <a
-                            href="https://asu.campuslabs.com/engage/organization/the-ai-society"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-secondary-400 hover:text-secondary-300 underline"
-                          >
-                            Sun Devil Sync
-                          </a>{" "}
-                          and our{" "}
-                          <a
-                            href="https://discord.gg/dCWm6xBGtM"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-secondary-400 hover:text-secondary-300 underline"
-                          >
-                            Discord
-                          </a>
-                          .
+                          Join through Sun Devil Sync and our Discord. Links available at the bottom of the page.
                         </p>
                       </div>
 
@@ -285,7 +256,7 @@ export function AboutMembershipSection() {
                     </div>
 
                     {/* Subtle corner decoration */}
-                    <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300">
+                    <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300 pointer-events-none">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                       </svg>
@@ -313,7 +284,7 @@ export function AboutMembershipSection() {
                 <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
                   <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
                     {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24">
+                    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-accent-500/20 to-transparent"></div>
                       <div className="absolute top-4 right-4">
                         <Gift className="h-6 w-6 text-accent-400/70" />
@@ -328,15 +299,8 @@ export function AboutMembershipSection() {
                       <div>
                         <p className="text-accent-300 font-medium mb-1 text-sm">How:</p>
                         <p className="text-dark-100 text-xs leading-relaxed">
-                          Partner with us by contacting{" "}
-                          <a
-                            href="mailto:theaisociety.asu@gmail.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-accent-400 hover:text-accent-300 underline"
-                          >
-                            theaisociety.asu@gmail.com
-                          </a>
+                          Partner with us by contacting us via email. Contact information available at the bottom of the
+                          page.
                         </p>
                       </div>
 
@@ -350,7 +314,7 @@ export function AboutMembershipSection() {
                     </div>
 
                     {/* Subtle corner decoration */}
-                    <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300">
+                    <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300 pointer-events-none">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                       </svg>

@@ -25,6 +25,10 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgCo
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="block h-full"
+      onClick={(e) => {
+        // Ensure the link works properly
+        e.stopPropagation()
+      }}
     >
       <ThreeDCard
         depth={20}

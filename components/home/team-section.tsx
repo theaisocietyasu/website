@@ -36,7 +36,7 @@ function ExecutiveMember({ name, position, imageSrc, email }: TeamMember) {
             alt={name}
             className="w-16 h-16 rounded-full object-cover mb-2 border-2 border-dark-800"
           />
-          <h3 className="text-base font-bold text-white line-clamp-1">{name}</h3>
+          <h3 className="text-base font-bold text-white mb-1 w-full">{name}</h3>
           <div className="w-10 h-0.5 bg-gradient-to-r from-primary-500/50 to-secondary-500/50 rounded-full mx-auto my-1"></div>
           <p className="text-dark-300 text-xs line-clamp-2">{position}</p>
           <p className="text-primary-400 text-xs mt-1 opacity-70 group-hover:opacity-100 transition-opacity line-clamp-1">
@@ -59,7 +59,7 @@ export function TeamSection() {
   const [selectedTeam, setSelectedTeam] = useState("core")
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
-  const [cardHeight, setCardHeight] = useState(220)
+  const [cardHeight, setCardHeight] = useState(240)
 
   // Function to ensure all cards have the same height
   useEffect(() => {
@@ -158,7 +158,7 @@ export function TeamSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-            className="h-[220px] w-[180px] team-member-card"
+            className="h-[240px] w-[180px] team-member-card"
             style={{ height: `${cardHeight}px` }}
           >
             <ExecutiveMember

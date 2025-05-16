@@ -44,7 +44,7 @@ export function ParticleBackground({
   connectOpacity = 0.2,
   interactive = true,
   interactiveDistance = 150,
-  interactiveStrength = 10,
+  interactiveStrength = 0.5, // Reduced from 2 to 0.5
 }: ParticleBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const particlesRef = useRef<Particle[]>([])
@@ -129,10 +129,12 @@ export function ParticleBackground({
           const distance = Math.sqrt(dx * dx + dy * dy)
 
           if (distance < interactiveDistance) {
+            // Reduce these values significantly to make movement super slow
             const forceX = (dx / distance) * interactiveStrength
             const forceY = (dy / distance) * interactiveStrength
-            particle.speedX += forceX / 100
-            particle.speedY += forceY / 100
+            // Divide by a much larger number (e.g., 1000 instead of 500)
+            particle.speedX += forceX / 1000
+            particle.speedY += forceY / 1000
           }
         }
 

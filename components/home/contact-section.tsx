@@ -3,7 +3,6 @@
 import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { MessageSquare, Mail, ChevronRight, Globe } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import { Card } from "@/components/ui/card"
@@ -61,6 +60,8 @@ export function ContactSection() {
         connectDistance={150}
         connectOpacity={0.15}
         particleColor={["#0c8de0", "#7938ee", "#ff3868"]}
+        interactive={true}
+        interactiveStrength={0.3}
       />
 
       {/* Decorative elements */}
@@ -116,22 +117,27 @@ export function ContactSection() {
                     <p className="text-dark-300 mb-4 flex-grow">{item.description}</p>
 
                     {/* Direct link with extremely high z-index */}
-                    <a
-                      href={item.buttonLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full block relative z-[9999]"
-                      style={{ isolation: "isolate" }}
-                      onClick={(e) => {
-                        // Prevent any potential event capturing
-                        e.stopPropagation()
-                      }}
-                    >
-                      <Button variant="outline" className="w-full group flex items-center justify-center">
-                        <span>{item.buttonText}</span>
-                        <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                      </Button>
-                    </a>
+                    <div className="w-full relative z-[9999]" style={{ isolation: "isolate" }}>
+                      <a
+                        href={item.buttonLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full h-full"
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          window.open(item.buttonLink, "_blank")
+                        }}
+                      >
+                        <div
+                          className={`bg-gradient-to-r from-${item.accent}-500/50 to-${item.accent}-700/50 rounded-lg p-[1px]`}
+                        >
+                          <div className="bg-dark-900/80 hover:bg-dark-800/80 rounded-lg px-4 py-2 flex items-center justify-center group">
+                            <span>{item.buttonText}</span>
+                            <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                          </div>
+                        </div>
+                      </a>
+                    </div>
 
                     {/* Subtle corner decoration - with pointer-events-none */}
                     <div className="absolute bottom-3 right-3 opacity-10 group-hover:opacity-30 transition-opacity duration-300 pointer-events-none">

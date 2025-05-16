@@ -70,7 +70,7 @@ export default function RootLayout({
           connectOpacity={0.1}
           interactive={true}
           interactiveDistance={150}
-          interactiveStrength={5}
+          interactiveStrength={0.3}
         />
 
         <Suspense>{children}</Suspense>

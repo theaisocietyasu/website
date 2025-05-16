@@ -50,6 +50,7 @@ export default function AIMakerspaceProjectsPage() {
           connectWidth={0.5}
           connectOpacity={0.1}
           interactive={true}
+          interactiveStrength={0.3}
         />
 
         <div className="container mx-auto relative z-10">
