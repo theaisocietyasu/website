@@ -16,9 +16,6 @@ const nextConfig = {
       },
     ],
   },
-  // This ensures the public folder is included in the build
-  distDir: '.next',
-  output: 'standalone',
 };
 
 export default nextConfig;

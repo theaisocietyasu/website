@@ -102,16 +102,6 @@ export function Footer() {
                   Join Discord
                 </a>
               </li>
-              <li>
-                <a
-                  href="https://asu.campuslabs.com/engage/organization/the-ai-society"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark-300 hover:text-white transition-colors text-sm"
-                >
-                  Sun Devil Central
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -134,7 +124,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-dark-300 hover:text-white transition-colors"
                 >
-                  Sun Devil Central
+                  Sun Devil Sync
                 </a>
               </li>
             </ul>

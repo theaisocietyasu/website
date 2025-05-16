@@ -55,9 +55,7 @@ export default function Home() {
       <HeroSection />
 
       {/* About & Membership Section (Combined) */}
-      <div className="relative z-10 mt-[-8px]">
-        <AboutMembershipSection />
-      </div>
+      <AboutMembershipSection />
 
       {/* Team Section */}
       <TeamSection />
