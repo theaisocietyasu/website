@@ -627,3 +627,40 @@
   z-index: 9999 !important;
   pointer-events: auto !important;
 }
+
+/* Additional responsive fixes */
+@media (max-width: 768px) {
+  /* Improve card readability on mobile */
+  .card-content {
+    padding: 1rem !important;
+  }
+
+  /* Ensure text is readable on smaller screens */
+  .text-xs {
+    font-size: 0.75rem !important;
+    line-height: 1.25rem !important;
+  }
+
+  /* Ensure buttons are easily tappable on mobile */
+  button,
+  a[role="button"],
+  .button {
+    min-height: 44px !important;
+    min-width: 44px !important;
+  }
+
+  /* Improve spacing on mobile */
+  .gap-3 {
+    gap: 0.5rem !important;
+  }
+
+  /* Ensure content doesn't overflow on mobile */
+  .overflow-x-hidden {
+    overflow-x: hidden !important;
+  }
+
+  /* Ensure proper width on mobile */
+  .w-full {
+    width: 100% !important;
+  }
+}

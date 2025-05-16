@@ -14,7 +14,11 @@ export function AboutMembershipSection() {
   const membershipCardsRef = useRef<HTMLDivElement>(null)
 
   return (
-    <section ref={ref} className="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden" id="about-membership">
+    <section
+      ref={ref}
+      className="py-16 md:py-20 lg:py-32 px-4 md:px-6 relative overflow-x-hidden"
+      id="about-membership"
+    >
       <ParticleBackground
         particleCount={30}
         particleSize={[1, 2]}
@@ -30,37 +34,39 @@ export function AboutMembershipSection() {
         <SectionHeading
           title="About Us & Membership"
           subtitle="Join our community of passionate AI enthusiasts dedicated to nurturing knowledge and driving innovation in the field of Artificial Intelligence."
+          titleClassName="text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+          subtitleClassName="text-base sm:text-lg"
         />
 
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12">
+        {/* Bento Grid Layout - Adjust column spacing for mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 mb-8 md:mb-12 w-full">
           {/* Mission Statement - Spans 8 columns */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-8 h-full"
+            className="md:col-span-8 h-full w-full"
           >
             <ThreeDCard
-              depth={15}
-              rotationIntensity={5}
+              depth={10} // Reduced depth for better mobile rendering
+              rotationIntensity={3} // Reduced rotation intensity
               glareIntensity={0.15}
               hoverScale={1.02}
               backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.05))"
-              className="h-full"
+              className="h-full w-full"
             >
-              <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
-                <div className="flex flex-col h-[350px] p-4 sm:p-6 md:p-8 relative overflow-hidden">
+              <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                <div className="flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] p-3 sm:p-5 md:p-8 relative overflow-y-auto">
                   {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-32 h-32 pointer-events-none">
+                  <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                     <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/20 to-transparent"></div>
                     <div className="absolute top-4 right-4">
-                      <Sparkles className="h-6 w-6 text-primary-400/70" />
+                      <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-primary-400/70" />
                     </div>
                   </div>
 
-                  <h3 className="text-xl md:text-2xl font-bold mb-2 text-white">Our Mission</h3>
-                  <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mb-3"></div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-white">Our Mission</h3>
+                  <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mb-3"></div>
                   <p className="text-dark-100 mb-3 text-xs md:text-sm leading-relaxed">
                     We are a thriving community of lifelong learners offering a platform for students to explore AI
                     through workshops, tutorials, and hands-on projects.
@@ -80,15 +86,10 @@ export function AboutMembershipSection() {
                         zIndex: 9999,
                         isolation: "isolate",
                       }}
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        e.preventDefault()
-                        window.open("https://asu.campuslabs.com/engage/organization/the-ai-society", "_blank")
-                      }}
                     >
-                      <Zap className="mr-1 h-3 w-3" />
+                      <Zap className="mr-1 h-3 w-3 flex-shrink-0" />
                       <span className="whitespace-nowrap text-xs">Join Community</span>
-                      <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
+                      <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1 flex-shrink-0" />
                     </a>
                   </div>
                 </div>
@@ -101,45 +102,45 @@ export function AboutMembershipSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-4 h-full"
+            className="md:col-span-4 h-full w-full"
           >
             <ThreeDCard
-              depth={15}
-              rotationIntensity={5}
+              depth={10} // Reduced depth
+              rotationIntensity={3} // Reduced rotation intensity
               glareIntensity={0.15}
               hoverScale={1.02}
               backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(109, 40, 217, 0.05))"
-              className="h-full"
+              className="h-full w-full"
             >
-              <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
-                <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
+              <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                   {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
+                  <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                     <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-secondary-500/20 to-transparent"></div>
-                    <div className="absolute top-4 right-4">
-                      <BarChart3 className="h-6 w-6 text-secondary-400/70" />
+                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+                      <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-secondary-400/70" />
                     </div>
                   </div>
 
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3">By The Numbers</h3>
-                  <div className="w-16 h-1 bg-gradient-to-r from-secondary-500 to-accent-500 rounded-full mb-4"></div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">By The Numbers</h3>
+                  <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-secondary-500 to-accent-500 rounded-full mb-4"></div>
 
-                  <div className="space-y-8 mt-2">
+                  <div className="space-y-6 sm:space-y-8 mt-2">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary-900/50 flex items-center justify-center">
-                        <Users className="h-5 w-5 md:h-6 md:w-6 text-primary-400" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg bg-primary-900/50 flex items-center justify-center">
+                        <Users className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary-400" />
                       </div>
                       <div>
-                        <p className="text-xl font-bold text-white">350+</p>
+                        <p className="text-lg sm:text-xl font-bold text-white">350+</p>
                         <p className="text-dark-300 text-xs">General Members</p>
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-secondary-900/50 flex items-center justify-center">
-                        <Zap className="h-5 w-5 md:h-6 md:w-6 text-secondary-400" />
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg bg-secondary-900/50 flex items-center justify-center">
+                        <Zap className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-secondary-400" />
                       </div>
                       <div>
-                        <p className="text-xl font-bold text-white">30+</p>
+                        <p className="text-lg sm:text-xl font-bold text-white">30+</p>
                         <p className="text-dark-300 text-xs">Events Per Year</p>
                       </div>
                     </div>
@@ -149,36 +150,39 @@ export function AboutMembershipSection() {
             </ThreeDCard>
           </motion.div>
 
-          {/* Membership Cards Row */}
-          <div ref={membershipCardsRef} className="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Membership Cards Row - Adjust grid for mobile */}
+          <div
+            ref={membershipCardsRef}
+            className="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full"
+          >
             {/* Officer Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="h-full"
+              className="h-full w-full"
             >
               <ThreeDCard
-                depth={15}
-                rotationIntensity={5}
+                depth={10} // Reduced depth
+                rotationIntensity={3} // Reduced rotation
                 glareIntensity={0.15}
                 hoverScale={1.02}
                 backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.05))"
-                className="h-full"
+                className="h-full w-full"
               >
-                <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
-                  <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
+                <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
+                    <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/20 to-transparent"></div>
-                      <div className="absolute top-4 right-4">
-                        <Award className="h-6 w-6 text-primary-400/70" />
+                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+                        <Award className="h-5 w-5 sm:h-6 sm:w-6 text-primary-400/70" />
                       </div>
                     </div>
 
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">Officer</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">Officer</h3>
 
-                    <div className="w-16 h-1 bg-gradient-to-r from-primary-500 to-dark-500 rounded-full mb-4"></div>
+                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-primary-500 to-dark-500 rounded-full mb-4"></div>
 
                     <div className="space-y-4">
                       <div>
@@ -196,7 +200,7 @@ export function AboutMembershipSection() {
                       </div>
                     </div>
 
-                    {/* Subtle corner decoration */}
+                    {/* Subtle corner decoration - keeping original SVG intact */}
                     <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300 pointer-events-none">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -212,29 +216,29 @@ export function AboutMembershipSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="h-full"
+              className="h-full w-full"
             >
               <ThreeDCard
-                depth={15}
-                rotationIntensity={5}
+                depth={10} // Reduced depth
+                rotationIntensity={3} // Reduced rotation
                 glareIntensity={0.15}
                 hoverScale={1.02}
                 backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(109, 40, 217, 0.05))"
-                className="h-full"
+                className="h-full w-full"
               >
-                <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
-                  <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
+                <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
+                    <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-secondary-500/20 to-transparent"></div>
-                      <div className="absolute top-4 right-4">
-                        <Users className="h-6 w-6 text-secondary-400/70" />
+                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+                        <Users className="h-5 w-5 sm:h-6 sm:w-6 text-secondary-400/70" />
                       </div>
                     </div>
 
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">General Member</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">General Member</h3>
 
-                    <div className="w-16 h-1 bg-gradient-to-r from-secondary-500 to-dark-500 rounded-full mb-4"></div>
+                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-secondary-500 to-dark-500 rounded-full mb-4"></div>
 
                     <div className="space-y-4">
                       <div>
@@ -252,7 +256,7 @@ export function AboutMembershipSection() {
                       </div>
                     </div>
 
-                    {/* Subtle corner decoration */}
+                    {/* Subtle corner decoration - keeping original SVG intact */}
                     <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300 pointer-events-none">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -268,29 +272,29 @@ export function AboutMembershipSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="h-full"
+              className="h-full w-full"
             >
               <ThreeDCard
-                depth={15}
-                rotationIntensity={5}
+                depth={10} // Reduced depth
+                rotationIntensity={3} // Reduced rotation
                 glareIntensity={0.15}
                 hoverScale={1.02}
                 backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05))"
-                className="h-full"
+                className="h-full w-full"
               >
-                <Card variant="glass" className="h-full border-0 bg-transparent backdrop-blur-none">
-                  <div className="p-4 sm:p-6 md:p-8 flex flex-col h-[350px] relative">
+                <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     {/* Decorative corner accent */}
-                    <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
+                    <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-accent-500/20 to-transparent"></div>
-                      <div className="absolute top-4 right-4">
-                        <Gift className="h-6 w-6 text-accent-400/70" />
+                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
+                        <Gift className="h-5 w-5 sm:h-6 sm:w-6 text-accent-400/70" />
                       </div>
                     </div>
 
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-3">Sponsor</h3>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">Sponsor</h3>
 
-                    <div className="w-16 h-1 bg-gradient-to-r from-accent-500 to-dark-500 rounded-full mb-4"></div>
+                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-accent-500 to-dark-500 rounded-full mb-4"></div>
 
                     <div className="space-y-4">
                       <div>
@@ -310,7 +314,7 @@ export function AboutMembershipSection() {
                       </div>
                     </div>
 
-                    {/* Subtle corner decoration */}
+                    {/* Subtle corner decoration - keeping original SVG intact */}
                     <div className="absolute bottom-3 right-3 opacity-20 transition-opacity duration-300 pointer-events-none">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />

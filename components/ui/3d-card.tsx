@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -31,10 +31,29 @@ export function ThreeDCard({
   const [rotateY, setRotateY] = useState(0)
   const [mouseX, setMouseX] = useState(0)
   const [mouseY, setMouseY] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
+  // Check if we're on a mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    // Check on mount
+    checkMobile()
+
+    // Add resize listener
+    window.addEventListener("resize", checkMobile)
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", checkMobile)
+    }
+  }, [])
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
+    if (!cardRef.current || isMobile) return
 
     const rect = cardRef.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
@@ -59,31 +78,38 @@ export function ThreeDCard({
     setMouseY(0)
   }
 
+  // Use reduced effects on mobile
+  const actualDepth = isMobile ? Math.min(5, depth) : depth
+  const actualRotationIntensity = isMobile ? 0 : rotationIntensity // No rotation on mobile
+  const actualHoverScale = isMobile ? 1 : hoverScale // No hover scaling on mobile
+
   return (
     <motion.div
       ref={cardRef}
-      className={cn("relative perspective", containerClassName)}
+      className={cn("relative perspective w-full", containerClassName)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
         perspective: "1000px",
+        width: "100%", // Ensure full width
       }}
-      whileHover={{ scale: hoverScale }}
+      whileHover={{ scale: actualHoverScale }}
       transition={{ duration: 0.3 }}
     >
       <motion.div
-        className={cn("relative preserve-3d", className)}
+        className={cn("relative preserve-3d w-full", className)}
         style={{
           rotateX: rotateX,
           rotateY: rotateY,
           transformStyle: "preserve-3d",
+          width: "100%", // Ensure full width
         }}
         transition={{ duration: 0.1 }}
       >
         {/* Background gradient */}
         {backgroundGradient && (
           <div
-            className="absolute inset-0 rounded-xl -z-10"
+            className="absolute inset-0 rounded-xl -z-10 w-full h-full"
             style={{
               background: backgroundGradient,
               transform: "translateZ(-1px)",
@@ -92,26 +118,29 @@ export function ThreeDCard({
           />
         )}
 
-        {/* Glare effect */}
-        <div
-          className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none"
-          style={{
-            background: `radial-gradient(circle at ${mouseX + 50}% ${
-              mouseY + 50
-            }%, rgba(255, 255, 255, ${glareIntensity}), transparent 80%)`,
-            transform: `translateZ(${depth / 2}px)`,
-            opacity: Math.abs(rotateX) + Math.abs(rotateY) > 0 ? 1 : 0,
-            transition: "opacity 0.3s",
-          }}
-        />
+        {/* Glare effect - disabled on mobile */}
+        {!isMobile && (
+          <div
+            className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none"
+            style={{
+              background: `radial-gradient(circle at ${mouseX + 50}% ${
+                mouseY + 50
+              }%, rgba(255, 255, 255, ${glareIntensity}), transparent 80%)`,
+              transform: `translateZ(${actualDepth / 2}px)`,
+              opacity: Math.abs(rotateX) + Math.abs(rotateY) > 0 ? 1 : 0,
+              transition: "opacity 0.3s",
+            }}
+          />
+        )}
 
         {/* Content */}
         <div
           style={{
-            transform: `translateZ(${depth}px)`,
+            transform: `translateZ(${actualDepth}px)`,
             transformStyle: "preserve-3d",
             position: "relative",
             zIndex: 10,
+            width: "100%", // Ensure full width
           }}
         >
           {children}
