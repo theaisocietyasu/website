@@ -15,6 +15,11 @@ export function AboutMembershipSection() {
 
   return (
     <section ref={ref} className="py-20 md:py-32 px-4 md:px-6 relative overflow-hidden" id="about-membership">
+      {/* Decorative top connector */}
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-6">
+        <div className="w-20 h-1 bg-gradient-to-r from-primary-500/30 via-secondary-500/30 to-accent-500/30 rounded-full"></div>
+      </div>
+
       <ParticleBackground
         particleCount={30}
         particleSize={[1, 2]}

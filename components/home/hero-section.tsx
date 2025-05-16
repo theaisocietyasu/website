@@ -13,8 +13,24 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="hero-bg hero-about-transition min-h-screen flex items-center justify-center pt-24 pb-16 relative"
+      className="min-h-screen flex items-center justify-center pt-24 pb-32 relative overflow-hidden"
     >
+      {/* Background with contained circles */}
+      <div className="absolute inset-0 z-[-1]">
+        {/* Radial gradients for background effect */}
+        <div className="absolute inset-0 bg-dark-950">
+          <div
+            className="absolute top-0 left-0 right-0 bottom-0 
+        bg-[radial-gradient(circle_at_30%_30%,rgba(139,92,246,0.15),rgba(99,102,241,0)_50%),radial-gradient(circle_at_70%_30%,rgba(236,72,153,0.15),rgba(99,102,241,0)_50%)]"
+          ></div>
+        </div>
+
+        {/* Animated circles with constraints to prevent overflow */}
+        <div className="circle-1 absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] rounded-full bg-primary-500/10 blur-[40px] top-[10%] left-[5%] animate-float"></div>
+        <div className="circle-2 absolute w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-secondary-500/10 blur-[40px] top-[25%] right-[5%] animate-float-reverse"></div>
+        <div className="circle-3 absolute w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] rounded-full bg-accent-500/30 blur-[35px] bottom-[25%] left-[20%] animate-float-slow"></div>
+      </div>
+
       <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-16 lg:px-24">
         <div className="flex flex-col items-center justify-center text-center lg:flex-row lg:text-left lg:justify-between">
           {/* Text Content */}
@@ -102,14 +118,13 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Background circles with proper positioning and no abrupt cuts */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="circle-1 absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] rounded-full bg-primary-500/10 blur-[40px] top-[10%] left-[5%] animate-float"></div>
-        <div className="circle-2 absolute w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-secondary-500/10 blur-[40px] top-[40%] right-[5%] animate-float-reverse"></div>
-      </div>
+      {/* Smooth transition connector */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-dark-950 to-transparent pointer-events-none"></div>
 
-      {/* Smooth gradient transition instead of a hard cut */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-dark-950 via-dark-950/80 to-transparent pointer-events-none"></div>
+      {/* Decorative connector element */}
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -mb-3 z-10">
+        <div className="w-20 h-1 bg-gradient-to-r from-primary-500/30 via-secondary-500/30 to-accent-500/30 rounded-full"></div>
+      </div>
     </section>
   )
 }

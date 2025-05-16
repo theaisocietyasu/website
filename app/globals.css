@@ -142,6 +142,18 @@
     }
   }
 
+  @keyframes float-slow {
+    0% {
+      transform: translateY(0px) translateX(0px);
+    }
+    50% {
+      transform: translateY(15px) translateX(5px);
+    }
+    100% {
+      transform: translateY(0px) translateX(0px);
+    }
+  }
+
   @keyframes pulse {
     0%,
     100% {
@@ -192,6 +204,10 @@
 
   .animate-float-reverse {
     animation: float-reverse 8s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
   }
 
   /* Hover effects */
@@ -295,23 +311,6 @@
     background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0) 50%),
       radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.1), rgba(99, 102, 241, 0) 50%);
     z-index: -1;
-  }
-
-  /* Hero to About transition */
-  .hero-about-transition {
-    position: relative;
-  }
-
-  .hero-about-transition::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to top, var(--dark-950) 10%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
   }
 
   /* Grid patterns */
