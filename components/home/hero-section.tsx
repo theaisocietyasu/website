@@ -4,7 +4,6 @@ import { useRef } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Sparkles, Zap } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 
 export function HeroSection() {
@@ -15,7 +14,7 @@ export function HeroSection() {
       ref={containerRef}
       className="hero-bg hero-about-transition min-h-screen flex items-center justify-center pt-24 pb-16 relative"
     >
-      <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-16 lg:px-24">
+      <div className="w-full max-w-[1400px] mx-auto px-8 sm:px-12 md:px-16 lg:px-24 relative z-10">
         <div className="flex flex-col items-center justify-center text-center lg:flex-row lg:text-left lg:justify-between">
           {/* Text Content */}
           <motion.div
@@ -38,42 +37,44 @@ export function HeroSection() {
               nurturing knowledge and driving innovation.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-              <AnimatedGradientBorder
-                borderRadius="0.5rem"
-                borderWidth={1.5}
-                glowIntensity={0.5}
-                colors={["#6366f1", "#8b5cf6", "#ec4899", "#6366f1"]}
+            <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start relative z-20">
+              <a
+                href="https://asu.campuslabs.com/engage/organization/the-ai-society"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-20"
               >
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-12 px-5 text-base w-[180px] flex items-center justify-center"
-                  onClick={() => window.open("https://asu.campuslabs.com/engage/organization/the-ai-society", "_blank")}
+                <AnimatedGradientBorder
+                  borderRadius="0.5rem"
+                  borderWidth={1.5}
+                  glowIntensity={0.5}
+                  colors={["#6366f1", "#8b5cf6", "#ec4899", "#6366f1"]}
                 >
-                  <Sparkles className="mr-2 h-4 w-4 text-primary-400" />
-                  <span>Sun Devil Sync</span>
-                </Button>
-              </AnimatedGradientBorder>
+                  <div className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-12 px-5 text-base w-[180px] flex items-center justify-center rounded-lg text-white font-medium">
+                    <Sparkles className="mr-2 h-4 w-4 text-primary-400" />
+                    <span>Sun Devil Central</span>
+                  </div>
+                </AnimatedGradientBorder>
+              </a>
 
-              <AnimatedGradientBorder
-                borderRadius="0.5rem"
-                borderWidth={1.5}
-                glowIntensity={0.3}
-                colors={["#8b5cf6", "#ec4899", "#6366f1", "#8b5cf6"]}
+              <a
+                href="https://asu.campuslabs.com/engage/organization/the-ai-society/events"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-20"
               >
-                <Button
-                  variant="ghost"
-                  size="lg"
-                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-12 px-5 text-base w-[180px] flex items-center justify-center"
-                  onClick={() =>
-                    window.open("https://asu.campuslabs.com/engage/organization/the-ai-society/events", "_blank")
-                  }
+                <AnimatedGradientBorder
+                  borderRadius="0.5rem"
+                  borderWidth={1.5}
+                  glowIntensity={0.3}
+                  colors={["#8b5cf6", "#ec4899", "#6366f1", "#8b5cf6"]}
                 >
-                  <Zap className="mr-2 h-4 w-4 text-secondary-400" />
-                  <span>Events</span>
-                </Button>
-              </AnimatedGradientBorder>
+                  <div className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-12 px-5 text-base w-[180px] flex items-center justify-center rounded-lg text-white font-medium">
+                    <Zap className="mr-2 h-4 w-4 text-secondary-400" />
+                    <span>Events</span>
+                  </div>
+                </AnimatedGradientBorder>
+              </a>
             </div>
           </motion.div>
 
@@ -103,7 +104,7 @@ export function HeroSection() {
       </div>
 
       {/* Background circles with proper positioning and no abrupt cuts */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
         <div className="circle-1 absolute w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] rounded-full bg-primary-500/10 blur-[40px] top-[10%] left-[5%] animate-float"></div>
         <div className="circle-2 absolute w-[250px] h-[250px] sm:w-[400px] sm:h-[400px] rounded-full bg-secondary-500/10 blur-[40px] top-[40%] right-[5%] animate-float-reverse"></div>
       </div>

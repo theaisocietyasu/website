@@ -69,26 +69,27 @@ export function AboutMembershipSection() {
                     Our goal is to make AI education accessible to all ASU students, regardless of background or major.
                   </p>
                   <div className="mt-auto flex flex-col sm:flex-row gap-3 md:gap-4 flex-wrap">
-                    <div className="w-full sm:max-w-[180px] relative z-50">
-                      <a
-                        href="https://asu.campuslabs.com/engage/organization/the-ai-society"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full h-full"
-                        style={{ position: "relative", zIndex: 100 }}
-                        onClick={(e) => {
-                          window.open("https://asu.campuslabs.com/engage/organization/the-ai-society", "_blank")
-                        }}
-                      >
-                        <div className="bg-gradient-to-r from-primary-500/50 to-secondary-500/50 rounded-lg p-[1px]">
-                          <div className="bg-dark-900/80 hover:bg-dark-800/80 rounded-lg px-4 py-2 flex items-center justify-center group">
-                            <Zap className="mr-1 h-3 w-3" />
-                            <span className="whitespace-nowrap text-xs">Join Community</span>
-                            <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
-                          </div>
-                        </div>
-                      </a>
-                    </div>
+                    {/* Direct link without any wrappers to ensure clickability */}
+                    <a
+                      href="https://asu.campuslabs.com/engage/organization/the-ai-society"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:max-w-[180px] bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-4 py-2 flex items-center justify-center group"
+                      style={{
+                        position: "relative",
+                        zIndex: 9999,
+                        isolation: "isolate",
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        e.preventDefault()
+                        window.open("https://asu.campuslabs.com/engage/organization/the-ai-society", "_blank")
+                      }}
+                    >
+                      <Zap className="mr-1 h-3 w-3" />
+                      <span className="whitespace-nowrap text-xs">Join Community</span>
+                      <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
+                    </a>
                   </div>
                 </div>
               </Card>
@@ -239,7 +240,7 @@ export function AboutMembershipSection() {
                       <div>
                         <p className="text-secondary-300 font-medium mb-1 text-sm">How:</p>
                         <p className="text-dark-100 text-xs leading-relaxed">
-                          Join through Sun Devil Sync and our Discord. Links available at the bottom of the page.
+                          Join through Sun Devil Central and our Discord. Links available at the bottom of the page.
                         </p>
                       </div>
 

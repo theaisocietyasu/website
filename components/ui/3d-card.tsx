@@ -62,7 +62,7 @@ export function ThreeDCard({
   return (
     <motion.div
       ref={cardRef}
-      className={cn("relative cursor-pointer perspective", containerClassName)}
+      className={cn("relative perspective", containerClassName)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
@@ -94,7 +94,7 @@ export function ThreeDCard({
 
         {/* Glare effect */}
         <div
-          className="absolute inset-0 rounded-xl overflow-hidden"
+          className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none"
           style={{
             background: `radial-gradient(circle at ${mouseX + 50}% ${
               mouseY + 50

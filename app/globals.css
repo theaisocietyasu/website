@@ -590,3 +590,40 @@
     height: 100px;
   }
 }
+
+/* Fix for button click issues */
+.hero-section a,
+.about-membership-section a,
+.team-section button {
+  position: relative;
+  z-index: 50 !important;
+}
+
+/* Ensure decorative elements don't block clicks */
+.decorative-element {
+  pointer-events: none !important;
+}
+
+/* Fix for 3D cards */
+.threed-card-container {
+  pointer-events: auto !important;
+}
+
+.threed-card-content {
+  pointer-events: auto !important;
+}
+
+/* Fix for Join Community button */
+.about-membership-section a[href*="asu.campuslabs.com"] {
+  position: relative !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+/* Make 3D cards not block clicks on interactive elements */
+.threed-card-container a,
+.threed-card-container button {
+  position: relative !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
