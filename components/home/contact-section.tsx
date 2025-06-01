@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
 import { MessageSquare, Mail, ChevronRight, Globe } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
@@ -12,7 +12,6 @@ import { ThreeDCard } from "@/components/ui/3d-card"
 export function ContactSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
-  const animationDelay = 0.1 // 100ms delay
 
   const contactOptions = [
     {
@@ -74,13 +73,7 @@ export function ContactSection() {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {contactOptions.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 + animationDelay }} // Added delay
-              className="w-full h-full"
-            >
+            <div key={index} className="w-full h-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
@@ -141,7 +134,7 @@ export function ContactSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

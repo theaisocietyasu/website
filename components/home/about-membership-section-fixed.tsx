@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { Users, Award, Gift, Zap, ChevronRight, Sparkles, BarChart3 } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
@@ -12,7 +13,6 @@ export function AboutMembershipSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
   const membershipCardsRef = useRef<HTMLDivElement>(null)
-  const animationDelay = 0.1 // 100ms delay
 
   return (
     <section
@@ -40,12 +40,7 @@ export function AboutMembershipSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 mb-8 md:mb-12 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: animationDelay }} // Added delay
-            className="md:col-span-8 h-full w-full"
-          >
+          <div className="md:col-span-8 h-full w-full">
             <ThreeDCard
               depth={10}
               rotationIntensity={3}
@@ -91,14 +86,9 @@ export function AboutMembershipSection() {
                 </div>
               </Card>
             </ThreeDCard>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.1 + animationDelay }} // Added delay
-            className="md:col-span-4 h-full w-full"
-          >
+          <div className="md:col-span-4 h-full w-full">
             <ThreeDCard
               depth={10}
               rotationIntensity={3}
@@ -140,18 +130,13 @@ export function AboutMembershipSection() {
                 </div>
               </Card>
             </ThreeDCard>
-          </motion.div>
+          </div>
 
           <div
             ref={membershipCardsRef}
             className="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.3 + animationDelay }} // Added delay
-              className="h-full w-full"
-            >
+            <div className="h-full w-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
@@ -192,14 +177,9 @@ export function AboutMembershipSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.4 + animationDelay }} // Added delay
-              className="h-full w-full"
-            >
+            <div className="h-full w-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
@@ -240,14 +220,9 @@ export function AboutMembershipSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.5 + animationDelay }} // Added delay
-              className="h-full w-full"
-            >
+            <div className="h-full w-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
@@ -290,14 +265,14 @@ export function AboutMembershipSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
           </div>
         </div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.8 + animationDelay }} // Added delay
+          transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center max-w-3xl mx-auto"
         >
           <p className="text-primary-400 font-medium text-xs md:text-sm">
