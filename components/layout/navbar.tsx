@@ -132,12 +132,12 @@ export function Navbar({ navItems, className }: NavbarProps) {
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
-                  size="icon" // Use 'icon' size for proper padding with icon-only
-                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-8 w-8" // Override to match Apply button height
+                  size="icon"
+                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-8 w-8"
                   onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
                   aria-label="Join Discord"
                 >
-                  <Image src="/discord-logo.png" alt="Discord" width={20} height={20} />
+                  <Image src="/discord-logo.png" alt="Discord" width={26} height={26} />
                 </Button>
               </AnimatedGradientBorder>
               <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
@@ -177,7 +177,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
                   className={cn(mobileDiscordButtonClasses, "flex items-center justify-center")}
                   aria-label="Join Discord"
                 >
-                  <Image src="/discord-logo.png" alt="Discord" width={24} height={24} />
+                  <Image src="/discord-logo.png" alt="Discord" width={30} height={30} />
                 </button>
               </div>
               <a
