@@ -10,7 +10,6 @@ import { TeamSection } from "@/components/home/team-section"
 import { ContactSection } from "@/components/home/contact-section"
 import { ConfettiEffect } from "@/components/ui/confetti-effect"
 import type { NavItem } from "@/lib/types"
-import { FloatingNotification } from "@/components/ui/floating-notification"
 
 // Define navigation items
 const navItems: NavItem[] = [
@@ -65,13 +64,6 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Floating Notification */}
-      <FloatingNotification
-        message="Fall 2025 officer applications open!"
-        linkText="Apply here"
-        linkUrl="https://theaisociety.notion.site/1f28867868b481d2ad43e36d5049982b?pvs=105"
-      />
     </main>
   )
 }

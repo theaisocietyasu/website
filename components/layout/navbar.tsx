@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { Menu, X, ImageIcon as ApplyIcon } from "lucide-react" // Using ExternalLink as an example for Apply
 import { Button } from "@/components/ui/button"
 import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 import type { NavItem } from "@/lib/types"
@@ -20,6 +20,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const applyLink = "https://theaisociety.notion.site/1f28867868b481d2ad43e36d5049982b?pvs=105"
 
   // Handle scroll events
   useEffect(() => {
@@ -104,6 +105,12 @@ export function Navbar({ navItems, className }: NavbarProps) {
     )
   }
 
+  const applyButtonClasses =
+    "inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors bg-yellow-400/30 backdrop-blur-sm border border-yellow-500/50 text-dark-900 hover:bg-yellow-400/40 hover:border-yellow-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+
+  const mobileApplyButtonClasses =
+    "w-full " + applyButtonClasses.replace("text-sm", "text-lg").replace("px-4 py-2", "px-6 py-3")
+
   return (
     <>
       <header
@@ -126,6 +133,10 @@ export function Navbar({ navItems, className }: NavbarProps) {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map((item, index) => renderNavLink(item, index))}
+              <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-2")}>
+                <ApplyIcon className="h-4 w-4 mr-2" />
+                Apply
+              </a>
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
@@ -163,14 +174,25 @@ export function Navbar({ navItems, className }: NavbarProps) {
             <nav className="container mx-auto px-4 py-8 flex flex-col gap-4 items-center text-center">
               {navItems.map((item, index) => renderNavLink(item, index, true))}
 
+              <a
+                href={applyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(mobileApplyButtonClasses, "mt-4")}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <ApplyIcon className="h-5 w-5 mr-2" />
+                Apply
+              </a>
+
               {/* Custom Discord button without AnimatedGradientBorder */}
-              <div className="mt-4">
+              <div className="mt-4 w-full">
                 <button
                   onClick={() => {
                     window.open("https://discord.gg/dCWm6xBGtM", "_blank")
                     setIsMobileMenuOpen(false)
                   }}
-                  className="inline-flex items-center justify-center px-6 py-2 rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors"
+                  className="w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors text-lg"
                 >
                   Join Discord
                 </button>
