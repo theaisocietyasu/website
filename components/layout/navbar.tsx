@@ -6,8 +6,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
+// Button component is no longer needed for the Discord icon itself, but might be used elsewhere.
+// import { Button } from "@/components/ui/button";
+// AnimatedGradientBorder is no longer needed for the Discord icon.
+// import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border";
 import type { NavItem } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -106,8 +108,8 @@ export function Navbar({ navItems, className }: NavbarProps) {
   const mobileApplyButtonClasses =
     "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-400/30 backdrop-blur-sm border border-yellow-500/50 text-dark-900 hover:bg-yellow-400/40 hover:border-yellow-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
 
-  const mobileDiscordButtonClasses =
-    "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors text-lg"
+  // Classes for the mobile Discord icon link (previously a button)
+  const mobileDiscordLinkClasses = "w-full flex items-center justify-center py-3"
 
   return (
     <>
@@ -127,19 +129,19 @@ export function Navbar({ navItems, className }: NavbarProps) {
               <span className="font-heading font-bold text-xl text-white">The AI Society</span>
             </Link>
 
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-2">
+              {" "}
+              {/* Increased gap for better spacing */}
               {navItems.map((item, index) => renderNavLink(item, index))}
-              <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-8 w-8"
-                  onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
-                  aria-label="Join Discord"
-                >
-                  <Image src="/discord-logo.png" alt="Discord" width={26} height={26} />
-                </Button>
-              </AnimatedGradientBorder>
+              <a
+                href="https://discord.gg/dCWm6xBGtM"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Join Discord"
+                className="flex items-center justify-center h-8 w-8 rounded-md hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+              >
+                <Image src="/discord-logo.png" alt="Discord" width={28} height={28} />
+              </a>
               <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
                 Apply
               </a>
@@ -169,16 +171,19 @@ export function Navbar({ navItems, className }: NavbarProps) {
               {navItems.map((item, index) => renderNavLink(item, index, true))}
 
               <div className="mt-4 w-full">
-                <button
-                  onClick={() => {
-                    window.open("https://discord.gg/dCWm6xBGtM", "_blank")
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className={cn(mobileDiscordButtonClasses, "flex items-center justify-center")}
+                <a
+                  href="https://discord.gg/dCWm6xBGtM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    mobileDiscordLinkClasses,
+                    "hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-md",
+                  )}
                   aria-label="Join Discord"
                 >
-                  <Image src="/discord-logo.png" alt="Discord" width={30} height={30} />
-                </button>
+                  <Image src="/discord-logo.png" alt="Discord" width={36} height={36} />
+                </a>
               </div>
               <a
                 href={applyLink}
