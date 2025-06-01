@@ -32,7 +32,7 @@ function ExecutiveMember({ name, position, imageSrc, email }: TeamMember) {
           <img
             src={imageSrc || "/placeholder.svg?height=120&width=120&query=person"}
             alt={name}
-            className="w-16 h-16 rounded-full object-cover mb-2 border-2 border-dark-800"
+            className="w-16 h-16 rounded-full object-cover mb-2"
           />
           <h3 className="text-base font-bold text-white mb-1 w-full">{name}</h3>
           <div className="w-10 h-0.5 bg-gradient-to-r from-primary-500/50 to-secondary-500/50 rounded-full mx-auto my-1"></div>
@@ -220,13 +220,13 @@ export function TeamSection() {
           </div>
           <div className="flex justify-center gap-2 mb-8">
             <button
-              className="bg-dark-900/50 border border-dark-800/50 hover:bg-dark-800/50 group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-8 px-3 text-sm rounded-md"
+              className="bg-dark-900/50 hover:bg-dark-800/50 group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-8 px-3 text-sm rounded-md"
               onClick={downloadExcel}
             >
               <Download className="h-4 w-4 mr-2 group-hover:translate-y-0.5 transition-transform duration-300" /> Excel
             </button>
             <button
-              className="bg-dark-900/50 border border-dark-800/50 hover:bg-dark-800/50 group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-8 px-3 text-sm rounded-md"
+              className="bg-dark-900/50 hover:bg-dark-800/50 group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-8 px-3 text-sm rounded-md"
               onClick={downloadPDF}
             >
               <Download className="h-4 w-4 mr-2 group-hover:translate-y-0.5 transition-transform duration-300" /> PDF

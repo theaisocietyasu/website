@@ -114,13 +114,9 @@ export function ContactSection() {
                           window.open(item.buttonLink, "_blank")
                         }}
                       >
-                        <div
-                          className={`bg-gradient-to-r from-${item.accent}-500/50 to-${item.accent}-700/50 rounded-lg p-[1px]`}
-                        >
-                          <div className="bg-dark-900/80 hover:bg-dark-800/80 rounded-lg px-4 py-2 flex items-center justify-center group">
-                            <span>{item.buttonText}</span>
-                            <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                          </div>
+                        <div className="bg-dark-800 hover:bg-dark-700 text-white rounded-lg px-4 py-2 flex items-center justify-center group">
+                          <span>{item.buttonText}</span>
+                          <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                         </div>
                       </a>
                     </div>
