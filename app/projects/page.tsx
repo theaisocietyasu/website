@@ -26,7 +26,6 @@ export default function ProjectsPage() {
   return (
     <main className="flex flex-col min-h-screen">
       <Navbar navItems={navItems} />
-      {/* Updated section padding to match home page's membership section */}
       <section className="py-16 md:py-20 lg:py-32 px-4 md:px-6 relative">
         <ParticleBackground
           particleCount={30}
@@ -47,26 +46,8 @@ export default function ProjectsPage() {
             subtitle="Explore our workshops and learning resources from past semesters. These materials are designed to help you develop your AI skills."
           />
 
-          {/* Bento Grid Layout - already centered with max-w-6xl mx-auto */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <ProjectCard
-              title="Machine Learning Lab - Fall 2024"
-              description="Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques."
-              imageSrc="/wobble3.png"
-              imageAlt="Machine Learning Lab - Holographic AI Society Package"
-              href="/ml_lab"
-              bgColor={mlLabBgColor}
-              containerClassName="md:col-span-2"
-            />
-            <ProjectCard
-              title="Computer Vision & NLP Lab - Fall 2024"
-              description="Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations."
-              imageSrc="/wobble4.png"
-              imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
-              href="/nlp_lab"
-              bgColor={cvNlpLabBgColor}
-              containerClassName="md:col-span-1"
-            />
+            {/* AI Makerspace - Spans 2 columns on md screens, now at the top */}
             <ProjectCard
               title="AI Makerspace - Spring 2025"
               description="Explore innovative student projects from our AI Makerspace program, showcasing creative applications of artificial intelligence across various domains."
@@ -74,6 +55,28 @@ export default function ProjectsPage() {
               imageAlt="AI Makerspace - Laptop with code editor"
               href="/ai_makerspace"
               bgColor={aiMakerspaceBgColor}
+              containerClassName="md:col-span-2"
+            />
+
+            {/* Machine Learning Lab - Spans 1 column */}
+            <ProjectCard
+              title="Machine Learning Lab - Fall 2024"
+              description="Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques."
+              imageSrc="/wobble3.png"
+              imageAlt="Machine Learning Lab - Holographic AI Society Package"
+              href="/ml_lab"
+              bgColor={mlLabBgColor}
+              containerClassName="md:col-span-1"
+            />
+
+            {/* Computer Vision & NLP Lab - Spans 1 column */}
+            <ProjectCard
+              title="Computer Vision & NLP Lab - Fall 2024"
+              description="Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations."
+              imageSrc="/wobble4.png"
+              imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
+              href="/nlp_lab"
+              bgColor={cvNlpLabBgColor}
               containerClassName="md:col-span-1"
             />
           </div>
