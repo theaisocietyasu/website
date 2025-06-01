@@ -10,7 +10,6 @@ import { WorkshopContent } from "@/components/labs/workshop-content"
 import { ML_WORKSHOPS } from "@/lib/constants"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 import type { NavItem, Workshop } from "@/lib/types"
 
 // Define navigation items
@@ -55,8 +54,13 @@ export default function MlLabPage() {
           interactionRadius={150}
         />
 
-        <div className="flex items-center justify-between mb-10 md:mb-12">
-          <SectionHeading title="Machine Learning Lab" subtitle="Dive into practical ML workshops" />
+        {/* Centered Page Title and Subtitle */}
+        <div className="text-center mb-8">
+          <SectionHeading title="Machine Learning Lab" subtitle="Dive into practical ML workshops" alignment="center" />
+        </div>
+
+        {/* Back to Projects Link */}
+        <div className="flex justify-start mb-10 md:mb-12">
           <Link
             href="/projects"
             className="flex items-center text-primary-400 hover:text-primary-300 transition-colors group"
@@ -73,26 +77,25 @@ export default function MlLabPage() {
           <h3 className="text-xl font-semibold text-white mb-6 text-center">Select a Workshop</h3>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             {ML_WORKSHOPS.map((workshop) => (
-              <AnimatedGradientBorder
+              <button
                 key={workshop.id}
-                borderRadius="0.5rem"
-                borderWidth={1.5}
-                glowIntensity={selectedWorkshop.id === workshop.id ? 0.6 : 0}
-                hoverEffect={true}
-                className="transition-all duration-300"
+                onClick={() => setSelectedWorkshop(workshop)}
+                className={`px-4 py-2 md:px-5 md:py-2.5 text-sm md:text-base font-medium rounded-lg transition-all duration-300 relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950
+                  ${
+                    selectedWorkshop.id === workshop.id
+                      ? "bg-primary-600 text-white shadow-md" // Active state
+                      : "bg-dark-800/70 hover:bg-dark-700/90 text-dark-100 hover:text-white" // Inactive state
+                  }`}
               >
-                <button
-                  onClick={() => setSelectedWorkshop(workshop)}
-                  className={`w-full px-4 py-3 text-sm md:text-base font-medium rounded-md transition-all duration-300
-                    ${
-                      selectedWorkshop.id === workshop.id
-                        ? "bg-primary-600/80 text-white shadow-lg"
-                        : "bg-dark-800/70 hover:bg-dark-700/70 text-dark-100 hover:text-white backdrop-blur-sm"
-                    }`}
-                >
-                  {workshop.title}
-                </button>
-              </AnimatedGradientBorder>
+                {workshop.title}
+                {selectedWorkshop.id === workshop.id && (
+                  <motion.div
+                    layoutId="active-workshop-indicator-ml" // Unique layoutId for this page
+                    className="absolute -bottom-1.5 left-1/4 w-1/2 h-0.5 bg-primary-400 rounded-full"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
+              </button>
             ))}
           </div>
         </div>
