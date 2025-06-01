@@ -1,12 +1,14 @@
 "use client"
 
+import Image from "next/image"
+import Link from "next/link"
 import { IconHome, IconUsers, IconCalendar } from "@tabler/icons-react"
-import { Award, Users, Gift } from "lucide-react"
+import { ChevronRight } from "lucide-react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
-import { GenericContentCard } from "@/components/ui/generic-content-card"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
+import { Button } from "@/components/ui/button" // Assuming you have this
 import type { NavItem } from "@/lib/types"
 
 const navItems: NavItem[] = [
@@ -19,15 +21,83 @@ const navItems: NavItem[] = [
   },
 ]
 
-export default function ProjectsPage() {
-  const firstCardGradient = "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))"
-  const secondCardGradient = "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))"
-  const thirdCardGradient = "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))"
+interface ProjectSectionProps {
+  title: string
+  description: string
+  imageSrc: string
+  imageAlt: string
+  href: string
+  imagePosition?: "left" | "right"
+  buttonLabel?: string
+  buttonColor?: "primary" | "secondary" | "accent"
+}
 
-  const particleColors = ["#6366f1", "#8b5cf6", "#ec4899"]
+function ProjectArchiveSection({
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  href,
+  imagePosition = "left",
+  buttonLabel = "Explore Section",
+  buttonColor = "primary",
+}: ProjectSectionProps) {
+  return (
+    <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+      <div className={`relative aspect-video w-full ${imagePosition === "left" ? "md:order-first" : "md:order-last"}`}>
+        <Image
+          src={imageSrc || "/placeholder.svg"}
+          alt={imageAlt}
+          fill
+          className="object-cover rounded-xl shadow-2xl"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+      <div className={`${imagePosition === "left" ? "md:order-last" : "md:order-first"}`}>
+        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">{title}</h3>
+        <p className="text-dark-100 text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed">{description}</p>
+        <Link href={href} passHref legacyBehavior>
+          <Button variant={buttonColor} size="lg" rightIcon={<ChevronRight className="h-5 w-5" />}>
+            {buttonLabel}
+          </Button>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+export default function ProjectsPage() {
+  const particleColors = ["#6366f1", "#8b5cf6", "#ec4899"] // Consistent with home page
+
+  const projectsData: Omit<ProjectSectionProps, "imagePosition" | "buttonColor">[] = [
+    {
+      title: "AI Makerspace - Spring 2025",
+      description:
+        "Explore innovative student projects from our AI Makerspace program, showcasing creative applications of artificial intelligence across various domains.",
+      imageSrc: "/ai.png",
+      imageAlt: "AI Makerspace - Laptop with code editor",
+      href: "/ai_makerspace",
+    },
+    {
+      title: "Machine Learning Lab - Fall 2024",
+      description:
+        "Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques.",
+      imageSrc: "/wobble3.png",
+      imageAlt: "Machine Learning Lab - Holographic AI Society Package",
+      href: "/ml_lab",
+    },
+    {
+      title: "Computer Vision & NLP Lab - Fall 2024",
+      description:
+        "Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations.",
+      imageSrc: "/wobble4.png",
+      imageAlt: "Computer Vision & NLP Lab - AI Society Package with Caution Tape",
+      href: "/nlp_lab",
+    },
+  ]
 
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex flex-col min-h-screen bg-dark-950">
       <Navbar navItems={navItems} />
       <section className="py-16 md:py-20 lg:py-32 px-6 relative">
         <ParticleBackground
@@ -47,42 +117,18 @@ export default function ProjectsPage() {
           <SectionHeading
             title="Archive"
             subtitle="Explore our workshops and learning resources from past semesters. These materials are designed to help you develop your AI skills."
+            className="mb-16 md:mb-24 lg:mb-32"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <GenericContentCard
-              title="AI Makerspace - Spring 2025"
-              description="Explore innovative student projects from our AI Makerspace program, showcasing creative applications of artificial intelligence across various domains."
-              imageSrc="/ai.png"
-              imageAlt="AI Makerspace - Laptop with code editor"
-              href="/ai_makerspace"
-              backgroundGradient={firstCardGradient}
-              cornerIcon={Award}
-              cornerIconColorClass="text-primary-400/70"
-              containerClassName="md:col-span-2"
-            />
-            <GenericContentCard
-              title="Machine Learning Lab - Fall 2024"
-              description="Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques."
-              imageSrc="/wobble3.png"
-              imageAlt="Machine Learning Lab - Holographic AI Society Package"
-              href="/ml_lab"
-              backgroundGradient={secondCardGradient}
-              cornerIcon={Users}
-              cornerIconColorClass="text-secondary-400/70"
-              containerClassName="md:col-span-1"
-            />
-            <GenericContentCard
-              title="Computer Vision & NLP Lab - Fall 2024"
-              description="Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations."
-              imageSrc="/wobble4.png"
-              imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
-              href="/nlp_lab"
-              backgroundGradient={thirdCardGradient}
-              cornerIcon={Gift}
-              cornerIconColorClass="text-accent-400/70"
-              containerClassName="md:col-span-1"
-            />
+          <div className="space-y-16 md:space-y-24 lg:space-y-32 max-w-6xl mx-auto">
+            {projectsData.map((project, index) => (
+              <ProjectArchiveSection
+                key={project.title}
+                {...project}
+                imagePosition={index % 2 === 0 ? "left" : "right"}
+                buttonColor={index === 0 ? "primary" : index === 1 ? "secondary" : "accent"}
+              />
+            ))}
           </div>
         </div>
       </section>
