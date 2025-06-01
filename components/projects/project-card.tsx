@@ -13,11 +13,13 @@ interface ProjectCardProps {
   imageSrc: string
   imageAlt: string
   href: string
-  bgColor: string
+  bgColor: string // This prop will now be ignored in favor of a standardized gradient
 }
 
-export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgColor }: ProjectCardProps) {
+export function ProjectCard({ title, description, imageSrc, imageAlt, href }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+
+  const homePageCardGradient = "linear-gradient(to bottom right, var(--dark-800), var(--dark-950))"
 
   return (
     <Link
@@ -34,10 +36,9 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgCo
         rotationIntensity={10}
         glareIntensity={0.15}
         hoverScale={1.02}
-        backgroundGradient={bgColor} // This was already correct
+        backgroundGradient={homePageCardGradient} // Standardized gradient
         className="h-full"
       >
-        {/* This div below needs to become <Card variant="glass"> */}
         <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
           {/* Content Container with proper z-index */}
           <div className="relative z-10 flex flex-col h-full">
