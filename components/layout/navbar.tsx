@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, ImageIcon as ApplyIcon } from "lucide-react" // Using ExternalLink as an example for Apply
+import { Menu, X, DiscIcon as DiscordIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 import type { NavItem } from "@/lib/types"
@@ -32,7 +32,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Function to render nav links with proper handling for external links
+  // Function to render nav links
   const renderNavLink = (item: NavItem, index: number, isMobile = false) => {
     const isActive =
       pathname === item.link ||
@@ -40,14 +40,11 @@ export function Navbar({ navItems, className }: NavbarProps) {
       (pathname.startsWith("/ml_lab") && item.link === "/projects") ||
       (pathname.startsWith("/nlp_lab") && item.link === "/projects")
 
-    // Check if this is an external link (starts with http or https)
     const isExternal = item.link.startsWith("http")
-
-    // Special case for "Events" - always open in new tab
     const isEvents = item.name.toLowerCase() === "events"
     const shouldOpenNewTab = isExternal || isEvents
 
-    const className = cn(
+    const navLinkClassName = cn(
       isMobile
         ? "px-4 py-3 rounded-md text-lg font-medium transition-colors flex items-center justify-center"
         : "px-4 py-2 rounded-md text-sm font-medium transition-colors relative",
@@ -60,13 +57,12 @@ export function Navbar({ navItems, className }: NavbarProps) {
 
     const handleClick = isMobile ? () => setIsMobileMenuOpen(false) : undefined
 
-    // For external links or events, use an anchor tag
     if (shouldOpenNewTab) {
       return (
         <a
           key={`nav-${isMobile ? "mobile-" : ""}${index}`}
           href={item.link}
-          className={className}
+          className={navLinkClassName}
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleClick}
@@ -84,12 +80,11 @@ export function Navbar({ navItems, className }: NavbarProps) {
       )
     }
 
-    // For internal links, use Next.js Link
     return (
       <Link
         key={`nav-${isMobile ? "mobile-" : ""}${index}`}
         href={item.link}
-        className={className}
+        className={navLinkClassName}
         onClick={handleClick}
       >
         {item.icon && isMobile && <span className="mr-3">{item.icon}</span>}
@@ -122,7 +117,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between">
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
               <div className="relative w-10 h-10 flex items-center justify-center">
                 <Image src="/logo.png" alt="The AI Society Logo" width={40} height={40} className="object-contain" />
@@ -130,28 +124,24 @@ export function Navbar({ navItems, className }: NavbarProps) {
               <span className="font-heading font-bold text-xl text-white">The AI Society</span>
             </Link>
 
-            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map((item, index) => renderNavLink(item, index))}
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
-                  size="sm"
-                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0" // Removed ml-2
+                  size="icon"
+                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 w-8 h-8 p-0 flex items-center justify-center"
                   onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
+                  aria-label="Join Discord"
                 >
-                  Join Discord
+                  <DiscordIcon className="h-4 w-4 text-white" />
                 </Button>
               </AnimatedGradientBorder>
               <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
-                {" "}
-                {/* Added ml-1 for spacing */}
-                <ApplyIcon className="h-4 w-4 mr-2" />
                 Apply
               </a>
             </nav>
 
-            {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2 rounded-md text-dark-200 hover:text-white hover:bg-dark-800/50"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -163,7 +153,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
         </div>
       </header>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -176,26 +165,25 @@ export function Navbar({ navItems, className }: NavbarProps) {
             <nav className="container mx-auto px-4 py-8 flex flex-col gap-4 items-center text-center">
               {navItems.map((item, index) => renderNavLink(item, index, true))}
 
-              {/* Custom Discord button without AnimatedGradientBorder */}
               <div className="mt-4 w-full">
                 <button
                   onClick={() => {
                     window.open("https://discord.gg/dCWm6xBGtM", "_blank")
                     setIsMobileMenuOpen(false)
                   }}
-                  className="w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors text-lg"
+                  className="w-full h-12 inline-flex items-center justify-center rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors text-lg"
+                  aria-label="Join Discord"
                 >
-                  Join Discord
+                  <DiscordIcon className="h-6 w-6" />
                 </button>
               </div>
               <a
                 href={applyLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(mobileApplyButtonClasses, "mt-2")} // Adjusted margin
+                className={cn(mobileApplyButtonClasses, "mt-2")}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <ApplyIcon className="h-5 w-5 mr-2" />
                 Apply
               </a>
             </nav>
