@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight } from "lucide-react"
 import { ThreeDCard } from "@/components/ui/3d-card"
 
 interface ProjectCardProps {
@@ -32,13 +32,13 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgCo
       <ThreeDCard
         depth={20}
         rotationIntensity={10}
-        glareIntensity={0.15} // Matched to home page cards
+        glareIntensity={0.15}
         hoverScale={1.02}
         backgroundGradient={bgColor} // Using the bgColor prop for the outer tinted gradient
         className="h-full"
       >
-        {/* Inner content area with consistent glass styling matching home page */}
-        <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
+        {/* Inner content area with semi-transparent background for glass effect */}
+        <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900/85 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
           <div className="relative z-10 flex flex-col h-full">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h2>
