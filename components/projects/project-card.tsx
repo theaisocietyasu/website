@@ -13,11 +13,14 @@ interface ProjectCardProps {
   imageSrc: string
   imageAlt: string
   href: string
-  bgColor: string // This prop will be used for the ThreeDCard background
+  bgColor: string // This prop will no longer be used for the ThreeDCard's background gradient
 }
 
-export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgColor }: ProjectCardProps) {
+export function ProjectCard({ title, description, imageSrc, imageAlt, href }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
+
+  // Standard gradient used for home page cards
+  const homePageCardGradient = "linear-gradient(to bottom right, var(--dark-800), var(--dark-950))"
 
   return (
     <Link
@@ -34,7 +37,7 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgCo
         rotationIntensity={10}
         glareIntensity={0.15}
         hoverScale={1.02}
-        backgroundGradient={bgColor} // Using the bgColor prop for the outer gradient
+        backgroundGradient={homePageCardGradient} // Using the standardized home page gradient
         className="h-full"
       >
         {/* Inner content area with consistent glass styling */}
