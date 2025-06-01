@@ -53,8 +53,8 @@ export function AboutMembershipSection() {
               backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Alpha increased
               className="h-full w-full"
             >
-              <Card variant="glass" className="h-full w-full">
-                <div className="flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] p-3 sm:p-5 md:p-8 relative overflow-y-auto">
+              <Card variant="glass" className="h-full w-full" padding="none">
+                <div className="flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] px-2 py-3 sm:px-3 sm:py-5 md:px-4 md:py-6 relative overflow-y-auto">
                   <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                     <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/20 to-transparent"></div>
                     <div className="absolute top-4 right-4">
@@ -106,8 +106,8 @@ export function AboutMembershipSection() {
               backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))" // Alpha increased
               className="h-full w-full"
             >
-              <Card variant="glass" className="h-full w-full">
-                <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
+              <Card variant="glass" className="h-full w-full" padding="none">
+                <div className="px-2 py-3 sm:px-3 sm:py-5 md:px-4 md:py-6 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                   <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                     <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-secondary-500/20 to-transparent"></div>
                     <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
@@ -159,8 +159,8 @@ export function AboutMembershipSection() {
                 backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Alpha increased
                 className="h-full w-full"
               >
-                <Card variant="glass" className="h-full w-full">
-                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
+                <Card variant="glass" className="h-full w-full" padding="none">
+                  <div className="px-2 py-3 sm:px-3 sm:py-5 md:px-4 md:py-6 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/20 to-transparent"></div>
                       <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
@@ -207,8 +207,8 @@ export function AboutMembershipSection() {
                 backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))" // Alpha increased
                 className="h-full w-full"
               >
-                <Card variant="glass" className="h-full w-full">
-                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
+                <Card variant="glass" className="h-full w-full" padding="none">
+                  <div className="px-2 py-3 sm:px-3 sm:py-5 md:px-4 md:py-6 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-secondary-500/20 to-transparent"></div>
                       <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
@@ -255,8 +255,8 @@ export function AboutMembershipSection() {
                 backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))" // Alpha increased
                 className="h-full w-full"
               >
-                <Card variant="glass" className="h-full w-full">
-                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
+                <Card variant="glass" className="h-full w-full" padding="none">
+                  <div className="px-2 py-3 sm:px-3 sm:py-5 md:px-4 md:py-6 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-accent-500/20 to-transparent"></div>
                       <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
