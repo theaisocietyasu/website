@@ -3,7 +3,7 @@
 import { useRef } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Instagram, Linkedin, Github, ExternalLink } from "lucide-react" // Removed MessageCircle
+import { Instagram, Linkedin, Github, ExternalLink } from "lucide-react"
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -29,25 +29,7 @@ export function HeroSection() {
       label: "Sun Devil Central",
       icon: <ExternalLink size={30} style={{ color: "#FFC627" }} />,
     },
-    {
-      href: "https://discord.gg/dCWm6xBGtM",
-      label: "Discord",
-      icon: (
-        <div
-          className="w-[30px] h-[30px] rounded-md flex items-center justify-center p-1"
-          style={{ backgroundColor: "#5865F2" }} // Discord Blurple
-        >
-          <Image
-            src="/discord-logo.png" // Assuming this is the white logo silhouette
-            alt="Discord"
-            width={22} // Adjust size to fit well within the 30x30 container
-            height={22}
-            // If discord-logo.png is dark, uncomment the filter to make it white
-            // style={{ filter: "invert(1) brightness(2)" }}
-          />
-        </div>
-      ),
-    },
+    // Discord entry removed from here
   ]
 
   return (
