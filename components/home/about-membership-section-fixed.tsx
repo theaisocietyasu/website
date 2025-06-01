@@ -38,9 +38,7 @@ export function AboutMembershipSection() {
           subtitleClassName="text-base sm:text-lg"
         />
 
-        {/* Bento Grid Layout - Adjust column spacing for mobile */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 mb-8 md:mb-12 w-full">
-          {/* Mission Statement - Spans 8 columns */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -52,7 +50,7 @@ export function AboutMembershipSection() {
               rotationIntensity={3}
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.2), rgba(79, 70, 229, 0.05))" // Alpha updated
+              backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Alpha increased
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -94,7 +92,6 @@ export function AboutMembershipSection() {
             </ThreeDCard>
           </motion.div>
 
-          {/* Stats Card - Spans 4 columns */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -106,7 +103,7 @@ export function AboutMembershipSection() {
               rotationIntensity={3}
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.2), rgba(109, 40, 217, 0.05))" // Alpha updated
+              backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))" // Alpha increased
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -159,7 +156,7 @@ export function AboutMembershipSection() {
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.2), rgba(79, 70, 229, 0.05))" // Alpha updated
+                backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Alpha increased
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
@@ -207,7 +204,7 @@ export function AboutMembershipSection() {
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.2), rgba(109, 40, 217, 0.05))" // Alpha updated
+                backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))" // Alpha increased
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
@@ -255,7 +252,7 @@ export function AboutMembershipSection() {
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.2), rgba(219, 39, 119, 0.05))" // Alpha matches Get In Touch
+                backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))" // Alpha increased
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">

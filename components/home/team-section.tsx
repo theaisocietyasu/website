@@ -21,7 +21,7 @@ function ExecutiveMember({ name, position, imageSrc, email }: TeamMember) {
       rotationIntensity={5}
       glareIntensity={0.1}
       hoverScale={1.02}
-      backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.2), rgba(79, 70, 229, 0.05))" // Alpha updated
+      backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Alpha increased
       className="h-full"
     >
       <Card variant="glass" className="h-full">
