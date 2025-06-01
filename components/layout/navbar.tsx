@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, DiscIcon } from "lucide-react" // Using DiscIcon as a placeholder for Discord
+import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 import type { NavItem } from "@/lib/types"
@@ -132,11 +132,17 @@ export function Navbar({ navItems, className }: NavbarProps) {
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
-                  size="sm" // Reverted to sm for text + icon
+                  size="sm"
                   className="bg-dark-900/80 hover:bg-dark-800/80 border-0"
                   onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
                 >
-                  <DiscIcon className="h-4 w-4 mr-2 text-white" /> {/* Placeholder Discord Icon */}
+                  <Image
+                    src="/discord-logo.png"
+                    alt="Discord"
+                    width={16} // h-4
+                    height={16} // w-4
+                    className="mr-2"
+                  />
                   Join Discord
                 </Button>
               </AnimatedGradientBorder>
@@ -176,7 +182,13 @@ export function Navbar({ navItems, className }: NavbarProps) {
                   }}
                   className={mobileDiscordButtonClasses}
                 >
-                  <DiscIcon className="h-5 w-5 mr-2" /> {/* Placeholder Discord Icon */}
+                  <Image
+                    src="/discord-logo.png"
+                    alt="Discord"
+                    width={20} // h-5
+                    height={20} // w-5
+                    className="mr-2"
+                  />
                   Join Discord
                 </button>
               </div>
