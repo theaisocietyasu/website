@@ -6,10 +6,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-// Button component is no longer needed for the Discord icon itself, but might be used elsewhere.
-// import { Button } from "@/components/ui/button";
-// AnimatedGradientBorder is no longer needed for the Discord icon.
-// import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border";
 import type { NavItem } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -108,8 +104,17 @@ export function Navbar({ navItems, className }: NavbarProps) {
   const mobileApplyButtonClasses =
     "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-400/30 backdrop-blur-sm border border-yellow-500/50 text-dark-900 hover:bg-yellow-400/40 hover:border-yellow-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
 
-  // Classes for the mobile Discord icon link (previously a button)
   const mobileDiscordLinkClasses = "w-full flex items-center justify-center py-3"
+
+  // Estimate width based on typical "Discord" text length next to an icon.
+  // The image provided is 160x36. So aspect ratio is 160/36 = 4.44
+  // If height is 22px, width = 22 * 4.44 = ~97.7px. Let's use 98px.
+  const desktopDiscordLogoWidth = 98
+  const desktopDiscordLogoHeight = 22
+
+  // If height is 28px for mobile, width = 28 * 4.44 = ~124.4px. Let's use 124px.
+  const mobileDiscordLogoWidth = 124
+  const mobileDiscordLogoHeight = 28
 
   return (
     <>
@@ -130,17 +135,21 @@ export function Navbar({ navItems, className }: NavbarProps) {
             </Link>
 
             <nav className="hidden md:flex items-center gap-2">
-              {" "}
-              {/* Increased gap for better spacing */}
               {navItems.map((item, index) => renderNavLink(item, index))}
               <a
                 href="https://discord.gg/dCWm6xBGtM"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Join Discord"
-                className="flex items-center justify-center h-8 w-8 rounded-md hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+                className="flex items-center justify-center h-8 px-1 rounded-md hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
               >
-                <Image src="/discord-logo.png" alt="Discord" width={28} height={28} />
+                <Image
+                  src="/discord-logo.png"
+                  alt="Discord"
+                  width={desktopDiscordLogoWidth}
+                  height={desktopDiscordLogoHeight}
+                  style={{ filter: "invert(1) brightness(2)" }} // Invert to white and brighten for dark mode
+                />
               </a>
               <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
                 Apply
@@ -182,7 +191,13 @@ export function Navbar({ navItems, className }: NavbarProps) {
                   )}
                   aria-label="Join Discord"
                 >
-                  <Image src="/discord-logo.png" alt="Discord" width={36} height={36} />
+                  <Image
+                    src="/discord-logo.png"
+                    alt="Discord"
+                    width={mobileDiscordLogoWidth}
+                    height={mobileDiscordLogoHeight}
+                    style={{ filter: "invert(1) brightness(2)" }} // Invert to white and brighten for dark mode
+                  />
                 </a>
               </div>
               <a
