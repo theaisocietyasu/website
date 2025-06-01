@@ -3,25 +3,26 @@
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
-import { Download, Users, Code, Briefcase, ChevronDown } from "lucide-react"
+import { Download, ChevronDown, UserCheck, Shield, History } from "lucide-react" // Added new icons
 import FileSaver from "file-saver"
 import * as XLSX from "xlsx"
 import jsPDF from "jspdf"
-import { CORE_TEAM, TECHNICAL_TEAM, OPERATIONS_TEAM } from "@/lib/constants"
+import { EXECUTIVE_BOARD, OFFICERS, AIS_ALUMNI } from "@/lib/constants" // Updated imports
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Spotlight } from "@/components/ui/spotlight"
 import { ThreeDCard } from "@/components/ui/3d-card"
 import { Card } from "@/components/ui/card"
 import type { TeamMember } from "@/lib/types"
 
-function ExecutiveMember({ name, position, imageSrc, email }: TeamMember) {
+function ExecutiveMemberCard({ name, position, imageSrc, email }: TeamMember) {
+  // Renamed for clarity
   return (
     <ThreeDCard
       depth={10}
       rotationIntensity={5}
       glareIntensity={0.1}
       hoverScale={1.02}
-      backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Alpha increased
+      backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))"
       className="h-full"
     >
       <Card variant="glass" className="h-full">
@@ -52,7 +53,7 @@ function ExecutiveMember({ name, position, imageSrc, email }: TeamMember) {
 }
 
 export function TeamSection() {
-  const [selectedTeam, setSelectedTeam] = useState("core")
+  const [selectedTeam, setSelectedTeam] = useState("executive") // Default to executive
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
   const [cardHeight, setCardHeight] = useState(240)
@@ -86,7 +87,7 @@ export function TeamSection() {
   const downloadExcel = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...CORE_TEAM, ...TECHNICAL_TEAM, ...OPERATIONS_TEAM]
+      const allMembers = [...EXECUTIVE_BOARD, ...OFFICERS, ...AIS_ALUMNI] // Updated to new team arrays
       const formattedMembers = allMembers.map(({ name, position, email }) => ({
         name,
         position,
@@ -106,7 +107,7 @@ export function TeamSection() {
   const downloadPDF = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...CORE_TEAM, ...TECHNICAL_TEAM, ...OPERATIONS_TEAM]
+      const allMembers = [...EXECUTIVE_BOARD, ...OFFICERS, ...AIS_ALUMNI] // Updated to new team arrays
       const doc = new jsPDF()
       doc.setFontSize(20)
       doc.setTextColor(12, 141, 224)
@@ -134,11 +135,11 @@ export function TeamSection() {
   }
 
   const renderTeamMembers = () => {
-    let team
-    if (selectedTeam === "core") team = CORE_TEAM
-    else if (selectedTeam === "technical") team = TECHNICAL_TEAM
-    else if (selectedTeam === "operations") team = OPERATIONS_TEAM
-    else team = CORE_TEAM
+    let team: TeamMember[]
+    if (selectedTeam === "executive") team = EXECUTIVE_BOARD
+    else if (selectedTeam === "officers") team = OFFICERS
+    else if (selectedTeam === "alumni") team = AIS_ALUMNI
+    else team = EXECUTIVE_BOARD // Default
 
     return (
       <div className="flex flex-wrap justify-center gap-4">
@@ -151,7 +152,7 @@ export function TeamSection() {
             className="h-[240px] w-[180px] team-member-card"
             style={{ height: `${cardHeight}px` }}
           >
-            <ExecutiveMember
+            <ExecutiveMemberCard // Using the renamed card component
               name={member.name}
               position={member.position}
               imageSrc={member.imageSrc}
@@ -177,44 +178,44 @@ export function TeamSection() {
           <div className="flex flex-wrap justify-center gap-3 mb-6">
             <button
               className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
-                selectedTeam === "core"
+                selectedTeam === "executive"
                   ? "bg-primary-600 hover:bg-primary-700 text-white"
                   : "bg-transparent hover:bg-dark-800 text-dark-100"
               }`}
-              onClick={(e) => handleTeamChange("core", e)}
+              onClick={(e) => handleTeamChange("executive", e)}
             >
-              <Users className="h-4 w-4 mr-2" />
-              Core Members
+              <UserCheck className="h-4 w-4 mr-2" /> {/* Changed icon */}
+              Executive Board
               <ChevronDown
-                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "core" ? "rotate-180" : ""}`}
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "executive" ? "rotate-180" : ""}`}
               />
             </button>
             <button
               className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
-                selectedTeam === "technical"
+                selectedTeam === "officers"
                   ? "bg-secondary-600 hover:bg-secondary-700 text-white"
                   : "bg-transparent hover:bg-dark-800 text-dark-100"
               }`}
-              onClick={(e) => handleTeamChange("technical", e)}
+              onClick={(e) => handleTeamChange("officers", e)}
             >
-              <Code className="h-4 w-4 mr-2" />
-              Technical Team
+              <Shield className="h-4 w-4 mr-2" /> {/* Changed icon */}
+              Officers
               <ChevronDown
-                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "technical" ? "rotate-180" : ""}`}
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "officers" ? "rotate-180" : ""}`}
               />
             </button>
             <button
               className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
-                selectedTeam === "operations"
+                selectedTeam === "alumni"
                   ? "bg-accent-600 hover:bg-accent-700 text-white"
                   : "bg-transparent hover:bg-dark-800 text-dark-100"
               }`}
-              onClick={(e) => handleTeamChange("operations", e)}
+              onClick={(e) => handleTeamChange("alumni", e)}
             >
-              <Briefcase className="h-4 w-4 mr-2" />
-              Operations Team
+              <History className="h-4 w-4 mr-2" /> {/* Changed icon */}
+              AIS Alumni
               <ChevronDown
-                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "operations" ? "rotate-180" : ""}`}
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "alumni" ? "rotate-180" : ""}`}
               />
             </button>
           </div>
