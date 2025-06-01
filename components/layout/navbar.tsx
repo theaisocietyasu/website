@@ -132,18 +132,12 @@ export function Navbar({ navItems, className }: NavbarProps) {
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
-                  size="sm"
-                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0"
+                  size="icon" // Use 'icon' size for proper padding with icon-only
+                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-8 w-8" // Override to match Apply button height
                   onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
+                  aria-label="Join Discord"
                 >
-                  <Image
-                    src="/discord-logo.png"
-                    alt="Discord"
-                    width={16} // h-4
-                    height={16} // w-4
-                    className="mr-2"
-                  />
-                  Join Discord
+                  <Image src="/discord-logo.png" alt="Discord" width={20} height={20} />
                 </Button>
               </AnimatedGradientBorder>
               <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
@@ -180,16 +174,10 @@ export function Navbar({ navItems, className }: NavbarProps) {
                     window.open("https://discord.gg/dCWm6xBGtM", "_blank")
                     setIsMobileMenuOpen(false)
                   }}
-                  className={mobileDiscordButtonClasses}
+                  className={cn(mobileDiscordButtonClasses, "flex items-center justify-center")}
+                  aria-label="Join Discord"
                 >
-                  <Image
-                    src="/discord-logo.png"
-                    alt="Discord"
-                    width={20} // h-5
-                    height={20} // w-5
-                    className="mr-2"
-                  />
-                  Join Discord
+                  <Image src="/discord-logo.png" alt="Discord" width={24} height={24} />
                 </button>
               </div>
               <a
