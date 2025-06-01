@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { ThreeDCard } from "@/components/ui/3d-card"
 
 export function ContactSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -77,15 +78,23 @@ export function ContactSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="w-full"
+              className="w-full h-full" // Added h-full
             >
-              <div className="relative w-full rounded-xl overflow-hidden" style={{ perspective: "1000px" }}>
-                <div
-                  className="absolute inset-0 rounded-xl -z-10 pointer-events-none"
-                  style={{ background: item.gradient }}
-                />
-                <Card variant="glass" className="hover:shadow-glow transition-shadow duration-300">
-                  <div className="p-6 flex flex-col items-center text-center h-[220px] sm:h-[240px] md:h-[260px] relative group">
+              <ThreeDCard
+                depth={10}
+                rotationIntensity={3}
+                glareIntensity={0.15}
+                hoverScale={1.02}
+                backgroundGradient={item.gradient} // Gradient passed to ThreeDCard
+                className="h-full"
+                containerClassName="h-full"
+              >
+                <Card variant="glass" className="h-full">
+                  {" "}
+                  {/* Removed hover:shadow-glow and transition-shadow */}
+                  <div className="p-6 flex flex-col items-center text-center h-full relative group">
+                    {" "}
+                    {/* Changed fixed height to h-full */}
                     <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                       <div
                         className={cn(
@@ -127,7 +136,7 @@ export function ContactSection() {
                     </div>
                   </div>
                 </Card>
-              </div>
+              </ThreeDCard>
             </motion.div>
           ))}
         </div>
