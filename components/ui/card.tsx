@@ -9,11 +9,13 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = "default", padding = "md", children, ...props }, ref) => {
-    const baseClasses = "rounded-xl transition-all duration-200"
+    // Removed transition-all duration-200 from baseClasses
+    const baseClasses = "rounded-xl"
 
     const variants = {
       default: "bg-dark-900 border border-dark-800",
-      glass: "bg-dark-900/[.70] backdrop-blur-md border-0", // Increased opacity from .60 to .70
+      // Kept your last opacity for glass
+      glass: "bg-dark-900/[.70] backdrop-blur-md border-0",
       outline: "bg-transparent border border-dark-700",
       gradient: "bg-gradient-to-br from-dark-900 to-dark-800 border border-dark-800/50",
     }
