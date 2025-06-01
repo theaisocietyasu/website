@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
 import { Download, ChevronDown, UserCheck, Shield, History, Mail } from "lucide-react" // Added Mail icon
 import FileSaver from "file-saver"
 import * as XLSX from "xlsx"
@@ -150,21 +150,14 @@ export function TeamSection() {
     return (
       <div className="flex flex-wrap justify-center gap-4">
         {team.map((member, index) => (
-          <motion.div
-            key={member.name}
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-            className="h-[240px] w-[180px] team-member-card"
-            style={{ height: `${cardHeight}px` }}
-          >
+          <div key={member.name} className="h-[240px] w-[180px] team-member-card" style={{ height: `${cardHeight}px` }}>
             <ExecutiveMemberCard
               name={member.name}
               position={member.position}
               imageSrc={member.imageSrc}
               email={member.email}
             />
-          </motion.div>
+          </div>
         ))}
       </div>
     )

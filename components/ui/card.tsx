@@ -13,8 +13,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
 
     const variants = {
       default: "bg-dark-900 border border-dark-800",
-      // Temporarily removed backdrop-blur-md. Kept will-change from previous attempt for now.
-      glass: "bg-dark-900/[.70] border-0" + " " + "will-change-[background-color,backdrop-filter]",
+      // Restored backdrop-blur-md, removed will-change
+      glass: "bg-dark-900/[.70] backdrop-blur-md border-0",
       outline: "bg-transparent border border-dark-700",
       gradient: "bg-gradient-to-br from-dark-900 to-dark-800 border border-dark-800/50",
     }

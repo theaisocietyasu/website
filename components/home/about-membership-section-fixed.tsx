@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { Users, Award, Gift, Zap, ChevronRight, Sparkles, BarChart3 } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
@@ -39,18 +40,13 @@ export function AboutMembershipSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 mb-8 md:mb-12 w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5 }}
-            className="md:col-span-8 h-full w-full"
-          >
+          <div className="md:col-span-8 h-full w-full">
             <ThreeDCard
               depth={10}
               rotationIntensity={3}
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))" // Alpha increased
+              backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))"
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -90,20 +86,15 @@ export function AboutMembershipSection() {
                 </div>
               </Card>
             </ThreeDCard>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="md:col-span-4 h-full w-full"
-          >
+          <div className="md:col-span-4 h-full w-full">
             <ThreeDCard
               depth={10}
               rotationIntensity={3}
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))" // Alpha increased
+              backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))"
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -139,24 +130,19 @@ export function AboutMembershipSection() {
                 </div>
               </Card>
             </ThreeDCard>
-          </motion.div>
+          </div>
 
           <div
             ref={membershipCardsRef}
             className="md:col-span-12 grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="h-full w-full"
-            >
+            <div className="h-full w-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))" // Alpha increased
+                backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
@@ -191,20 +177,15 @@ export function AboutMembershipSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="h-full w-full"
-            >
+            <div className="h-full w-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))" // Alpha increased
+                backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
@@ -239,20 +220,15 @@ export function AboutMembershipSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="h-full w-full"
-            >
+            <div className="h-full w-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.35), rgba(219, 39, 119, 0.15))" // Alpha increased
+                backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.35), rgba(219, 39, 119, 0.15))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
@@ -289,7 +265,7 @@ export function AboutMembershipSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
           </div>
         </div>
 

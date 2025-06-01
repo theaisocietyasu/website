@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useInView } from "framer-motion"
 import { MessageSquare, Mail, ChevronRight, Globe } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
@@ -24,7 +24,7 @@ export function ContactSection() {
       borderColor: "from-primary-500 to-primary-700",
       accent: "primary",
       cornerIcon: <MessageSquare className="h-5 w-5 text-primary-400/70" />,
-      gradient: "linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))", // Alpha increased
+      gradient: "linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))",
     },
     {
       icon: <Mail className="h-6 w-6 text-secondary-400" />,
@@ -36,7 +36,7 @@ export function ContactSection() {
       borderColor: "from-secondary-500 to-secondary-700",
       accent: "secondary",
       cornerIcon: <Mail className="h-5 w-5 text-secondary-400/70" />,
-      gradient: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))", // Alpha increased
+      gradient: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))",
     },
     {
       icon: <Globe className="h-6 w-6 text-accent-400" />,
@@ -48,7 +48,7 @@ export function ContactSection() {
       borderColor: "from-accent-500 to-accent-700",
       accent: "accent",
       cornerIcon: <Globe className="h-5 w-5 text-accent-400/70" />,
-      gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.35), rgba(219, 39, 119, 0.15))", // Alpha increased
+      gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.35), rgba(219, 39, 119, 0.15))",
     },
   ]
 
@@ -73,28 +73,18 @@ export function ContactSection() {
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {contactOptions.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="w-full h-full" // Added h-full
-            >
+            <div key={index} className="w-full h-full">
               <ThreeDCard
                 depth={10}
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient={item.gradient} // Gradient passed to ThreeDCard
+                backgroundGradient={item.gradient}
                 className="h-full"
                 containerClassName="h-full"
               >
                 <Card variant="glass" className="h-full">
-                  {" "}
-                  {/* Removed hover:shadow-glow and transition-shadow */}
                   <div className="p-6 flex flex-col items-center text-center h-full relative group">
-                    {" "}
-                    {/* Changed fixed height to h-full */}
                     <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
                       <div
                         className={cn(
@@ -117,7 +107,7 @@ export function ContactSection() {
                         href={item.buttonLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full h-full group" // Added group here for hover effects on the border
+                        className="block w-full h-full group"
                         onClick={(e) => {
                           e.stopPropagation()
                           window.open(item.buttonLink, "_blank")
@@ -126,7 +116,7 @@ export function ContactSection() {
                         <div
                           className={cn(
                             `bg-gradient-to-r from-${item.accent}-500/40 to-${item.accent}-700/40 rounded-lg p-[1.5px] transition-all duration-300`,
-                            `group-hover:from-${item.accent}-500/60 group-hover:to-${item.accent}-700/60`, // Enhance border on hover
+                            `group-hover:from-${item.accent}-500/60 group-hover:to-${item.accent}-700/60`,
                           )}
                         >
                           <div className="bg-dark-900/70 hover:bg-dark-800/70 text-white rounded-[6.5px] px-4 py-2 flex items-center justify-center transition-colors duration-300">
@@ -144,7 +134,7 @@ export function ContactSection() {
                   </div>
                 </Card>
               </ThreeDCard>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
