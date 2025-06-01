@@ -230,23 +230,23 @@
     background: var(--primary-600);
   }
 
-  /* Add custom gold scrollbar for PDF viewer */
+  /* Custom scrollbar for PDF viewer (matching main theme) */
   .pdf-container::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px; /* Matched to main scrollbar width */
+    height: 8px; /* Matched to main scrollbar height */
   }
 
   .pdf-container::-webkit-scrollbar-track {
-    background: var(--dark-900);
+    background: var(--dark-900); /* Consistent track color */
   }
 
   .pdf-container::-webkit-scrollbar-thumb {
-    background: #ffc107; /* Gold color */
+    background: var(--primary-700); /* Main theme scrollbar color */
     border-radius: 4px;
   }
 
   .pdf-container::-webkit-scrollbar-thumb:hover {
-    background: #ffca28; /* Lighter gold on hover */
+    background: var(--primary-600); /* Main theme scrollbar hover color */
   }
 
   /* Utility classes */
