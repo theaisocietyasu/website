@@ -7,8 +7,6 @@ import { ProjectCard } from "@/components/projects/project-card"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import type { NavItem } from "@/lib/types"
-// colors import from "@/lib/theme" is not strictly needed for these specific RGBA gradients,
-// but can be kept if other parts of the page use it.
 
 const navItems: NavItem[] = [
   { name: "Home", link: "/", icon: <IconHome className="h-6 w-6" /> },
@@ -21,15 +19,15 @@ const navItems: NavItem[] = [
 ]
 
 export default function ProjectsPage() {
-  // Exact RGBA gradients from AboutMembershipSection cards on the home page
-  const mlLabBgColor = "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Primary tint
-  const cvNlpLabBgColor = "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))" // Secondary tint
-  const aiMakerspaceBgColor = "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))" // Accent tint
+  const mlLabBgColor = "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))"
+  const cvNlpLabBgColor = "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))"
+  const aiMakerspaceBgColor = "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))"
 
   return (
     <main className="flex flex-col min-h-screen">
       <Navbar navItems={navItems} />
-      <section className="pt-32 pb-20 px-4 md:px-6 relative">
+      {/* Updated section padding to match home page's membership section */}
+      <section className="py-16 md:py-20 lg:py-32 px-4 md:px-6 relative">
         <ParticleBackground
           particleCount={30}
           particleSize={[1, 2]}
@@ -49,6 +47,7 @@ export default function ProjectsPage() {
             subtitle="Explore our workshops and learning resources from past semesters. These materials are designed to help you develop your AI skills."
           />
 
+          {/* Bento Grid Layout - already centered with max-w-6xl mx-auto */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <ProjectCard
               title="Machine Learning Lab - Fall 2024"
