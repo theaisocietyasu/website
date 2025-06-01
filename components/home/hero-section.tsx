@@ -1,11 +1,9 @@
 "use client"
 
 import { useRef } from "react"
-import Image from "next/image"
+import Image from "next/image" // Keep for the main logo
 import { motion } from "framer-motion"
-import { Instagram, Linkedin, Github, ExternalLink } from "lucide-react"
-// AnimatedGradientBorder is no longer needed for the old buttons
-// import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
+import { Instagram, Linkedin, Github, ExternalLink, MessageCircle } from "lucide-react"
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -14,36 +12,27 @@ export function HeroSection() {
     {
       href: "https://www.instagram.com/theaisociety.asu/",
       label: "Instagram",
-      icon: <Instagram size={28} className="text-dark-200 group-hover:text-primary-400 transition-colors" />,
+      icon: <Instagram size={30} style={{ color: "#E1306C" }} />, // Instagram Pink
     },
     {
       href: "https://www.linkedin.com/company/theaisociety-asu/",
       label: "LinkedIn",
-      icon: <Linkedin size={28} className="text-dark-200 group-hover:text-primary-400 transition-colors" />,
+      icon: <Linkedin size={30} style={{ color: "#0A66C2" }} />, // LinkedIn Blue
     },
     {
       href: "https://github.com/theaisocietyasu",
       label: "GitHub",
-      icon: <Github size={28} className="text-dark-200 group-hover:text-primary-400 transition-colors" />,
+      icon: <Github size={30} style={{ color: "#FFFFFF" }} />, // White
     },
     {
       href: "https://asu.campuslabs.com/engage/organization/the-ai-society",
       label: "Sun Devil Central",
-      icon: <ExternalLink size={28} className="text-dark-200 group-hover:text-primary-400 transition-colors" />,
+      icon: <ExternalLink size={30} style={{ color: "#FFC627" }} />, // ASU Gold
     },
     {
       href: "https://discord.gg/dCWm6xBGtM",
       label: "Discord",
-      icon: (
-        <Image
-          src="/discord-logo.png"
-          alt="Discord"
-          width={28} // Adjusted size to match other icons
-          height={28}
-          style={{ filter: "invert(1) brightness(1.5) grayscale(1) contrast(100)" }} // Make it white and match style
-          className="group-hover:opacity-80 transition-opacity"
-        />
-      ),
+      icon: <MessageCircle size={30} style={{ color: "#5865F2" }} />, // Discord Blurple
     },
   ]
 
@@ -84,8 +73,8 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="group"
-                  whileHover={{ y: -3, scale: 1.1 }}
+                  className="group" // Group class for potential parent-hover effects if needed later
+                  whileHover={{ y: -3, scale: 1.15 }} // Slightly increased scale for colorful icons
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   {social.icon}
@@ -105,7 +94,7 @@ export function HeroSection() {
               <div className="relative flex items-center justify-center mx-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[480px]">
                 <div className="relative p-4 sm:p-6 flex items-center justify-center">
                   <Image
-                    src="/logo.png"
+                    src="/logo.png" // Main AI Society Logo
                     alt="The AI Society Logo"
                     width={400}
                     height={400}
