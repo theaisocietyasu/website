@@ -23,19 +23,21 @@ export default function ProjectsPage() {
   const secondCardColor = "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))"
   const thirdCardColor = "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))"
 
+  // Aligned particle colors with AboutMembershipSection
+  const particleColors = ["#6366f1", "#8b5cf6", "#ec4899"]
+
   return (
     <main className="flex flex-col min-h-screen">
       <Navbar navItems={navItems} />
-      {/* Updated section horizontal padding to be consistent px-6 */}
       <section className="py-16 md:py-20 lg:py-32 px-6 relative">
         <ParticleBackground
           particleCount={30}
           particleSize={[1, 2]}
-          particleSpeed={[0.05, 0.2]}
-          particleColor={["#0c8de0", "#7938ee", "#ff3868"]}
+          particleSpeed={[0.05, 0.2]} // Kept projects page specific speed, can align if needed
+          particleColor={particleColors} // Using aligned colors
           particleOpacity={[0.2, 0.5]}
           connectParticles={true}
-          connectDistance={150}
+          connectDistance={150} // Kept projects page specific distance
           connectWidth={0.5}
           connectOpacity={0.1}
           interactive={true}
