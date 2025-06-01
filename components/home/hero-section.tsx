@@ -1,9 +1,9 @@
 "use client"
 
 import { useRef } from "react"
-import Image from "next/image" // Keep for the main logo
+import Image from "next/image"
 import { motion } from "framer-motion"
-import { Instagram, Linkedin, Github, ExternalLink, MessageCircle } from "lucide-react"
+import { Instagram, Linkedin, Github, ExternalLink } from "lucide-react" // Removed MessageCircle
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -12,27 +12,41 @@ export function HeroSection() {
     {
       href: "https://www.instagram.com/theaisociety.asu/",
       label: "Instagram",
-      icon: <Instagram size={30} style={{ color: "#E1306C" }} />, // Instagram Pink
+      icon: <Instagram size={30} style={{ color: "#E1306C" }} />,
     },
     {
       href: "https://www.linkedin.com/company/theaisociety-asu/",
       label: "LinkedIn",
-      icon: <Linkedin size={30} style={{ color: "#0A66C2" }} />, // LinkedIn Blue
+      icon: <Linkedin size={30} style={{ color: "#0A66C2" }} />,
     },
     {
       href: "https://github.com/theaisocietyasu",
       label: "GitHub",
-      icon: <Github size={30} style={{ color: "#FFFFFF" }} />, // White
+      icon: <Github size={30} style={{ color: "#FFFFFF" }} />,
     },
     {
       href: "https://asu.campuslabs.com/engage/organization/the-ai-society",
       label: "Sun Devil Central",
-      icon: <ExternalLink size={30} style={{ color: "#FFC627" }} />, // ASU Gold
+      icon: <ExternalLink size={30} style={{ color: "#FFC627" }} />,
     },
     {
       href: "https://discord.gg/dCWm6xBGtM",
       label: "Discord",
-      icon: <MessageCircle size={30} style={{ color: "#5865F2" }} />, // Discord Blurple
+      icon: (
+        <div
+          className="w-[30px] h-[30px] rounded-md flex items-center justify-center p-1"
+          style={{ backgroundColor: "#5865F2" }} // Discord Blurple
+        >
+          <Image
+            src="/discord-logo.png" // Assuming this is the white logo silhouette
+            alt="Discord"
+            width={22} // Adjust size to fit well within the 30x30 container
+            height={22}
+            // If discord-logo.png is dark, uncomment the filter to make it white
+            // style={{ filter: "invert(1) brightness(2)" }}
+          />
+        </div>
+      ),
     },
   ]
 
@@ -73,8 +87,8 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="group" // Group class for potential parent-hover effects if needed later
-                  whileHover={{ y: -3, scale: 1.15 }} // Slightly increased scale for colorful icons
+                  className="group"
+                  whileHover={{ y: -3, scale: 1.15 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   {social.icon}
@@ -94,7 +108,7 @@ export function HeroSection() {
               <div className="relative flex items-center justify-center mx-auto w-full max-w-[280px] sm:max-w-[320px] md:max-w-[400px] lg:max-w-[480px]">
                 <div className="relative p-4 sm:p-6 flex items-center justify-center">
                   <Image
-                    src="/logo.png" // Main AI Society Logo
+                    src="/logo.png"
                     alt="The AI Society Logo"
                     width={400}
                     height={400}
