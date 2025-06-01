@@ -7,7 +7,7 @@ import { ProjectCard } from "@/components/projects/project-card"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import type { NavItem } from "@/lib/types"
-// Removed import for colors from "@/lib/theme" as it's no longer needed here for card backgrounds
+import { colors } from "@/lib/theme" // Import theme colors
 
 // Define navigation items
 const navItems: NavItem[] = [
@@ -29,11 +29,11 @@ const navItems: NavItem[] = [
 ]
 
 export default function ProjectsPage() {
-  // The bgColor prop for ProjectCard is now effectively ignored for the background gradient,
-  // as ProjectCard uses a standardized gradient.
-  // We can pass a dummy or empty string, or simply remove the specific gradient definitions.
-  // For clarity, I'm passing a generic value, but it won't affect the visual outcome of the card's background.
-  const placeholderBgColor = ""
+  // Define very dark, subtly tinted gradients for project cards
+  // to match the home page's overall visual style and alpha.
+  const mlLabBgColor = `linear-gradient(to bottom right, ${colors.primary[900]}, ${colors.primary[950]})`
+  const cvNlpLabBgColor = `linear-gradient(to bottom right, ${colors.secondary[900]}, ${colors.secondary[950]})`
+  const aiMakerspaceBgColor = `linear-gradient(to bottom right, ${colors.accent[900]}, ${colors.accent[950]})`
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -45,7 +45,7 @@ export default function ProjectsPage() {
           particleCount={30}
           particleSize={[1, 2]}
           particleSpeed={[0.05, 0.2]}
-          particleColor={["#0c8de0", "#7938ee", "#ff3868"]}
+          particleColor={["#0c8de0", "#7938ee", "#ff3868"]} // These are for particles, not cards
           particleOpacity={[0.2, 0.5]}
           connectParticles={true}
           connectDistance={150}
@@ -69,7 +69,7 @@ export default function ProjectsPage() {
                 imageSrc="/wobble3.png"
                 imageAlt="Machine Learning Lab - Holographic AI Society Package"
                 href="/ml_lab"
-                bgColor={placeholderBgColor} // This prop is now ignored for the gradient
+                bgColor={mlLabBgColor}
               />
             </div>
 
@@ -80,7 +80,7 @@ export default function ProjectsPage() {
                 imageSrc="/wobble4.png"
                 imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
                 href="/nlp_lab"
-                bgColor={placeholderBgColor} // This prop is now ignored for the gradient
+                bgColor={cvNlpLabBgColor}
               />
             </div>
 
@@ -91,7 +91,7 @@ export default function ProjectsPage() {
                 imageSrc="/ai.png"
                 imageAlt="AI Makerspace - Laptop with code editor"
                 href="/ai_makerspace"
-                bgColor={placeholderBgColor} // This prop is now ignored for the gradient
+                bgColor={aiMakerspaceBgColor}
               />
             </div>
           </div>

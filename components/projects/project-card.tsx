@@ -4,7 +4,7 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight } from 'lucide-react'
 import { ThreeDCard } from "@/components/ui/3d-card"
 
 interface ProjectCardProps {
@@ -13,14 +13,11 @@ interface ProjectCardProps {
   imageSrc: string
   imageAlt: string
   href: string
-  bgColor: string // This prop will no longer be used for the ThreeDCard's background gradient
+  bgColor: string // This prop will be used for the ThreeDCard background gradient
 }
 
-export function ProjectCard({ title, description, imageSrc, imageAlt, href }: ProjectCardProps) {
+export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgColor }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-
-  // Standard gradient used for home page cards
-  const homePageCardGradient = "linear-gradient(to bottom right, var(--dark-800), var(--dark-950))"
 
   return (
     <Link
@@ -35,12 +32,12 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href }: Pr
       <ThreeDCard
         depth={20}
         rotationIntensity={10}
-        glareIntensity={0.15}
+        glareIntensity={0.15} // Matched to home page cards
         hoverScale={1.02}
-        backgroundGradient={homePageCardGradient} // Using the standardized home page gradient
+        backgroundGradient={bgColor} // Using the bgColor prop for the outer tinted gradient
         className="h-full"
       >
-        {/* Inner content area with consistent glass styling */}
+        {/* Inner content area with consistent glass styling matching home page */}
         <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
           <div className="relative z-10 flex flex-col h-full">
             <div>
