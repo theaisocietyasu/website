@@ -38,7 +38,7 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgCo
         className="h-full"
       >
         {/* This div below needs to become <Card variant="glass"> */}
-        <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] border border-dark-800/50 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
+        <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
           {/* Content Container with proper z-index */}
           <div className="relative z-10 flex flex-col h-full">
             <div>
