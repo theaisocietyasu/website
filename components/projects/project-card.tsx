@@ -6,7 +6,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { ThreeDCard } from "@/components/ui/3d-card"
-import { cn } from "@/lib/utils" // Import cn utility
+import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
   title: string
@@ -14,8 +14,8 @@ interface ProjectCardProps {
   imageSrc: string
   imageAlt: string
   href: string
-  bgColor: string
-  containerClassName?: string // Added for grid spanning
+  bgColor: string // This will be the semi-transparent RGBA gradient
+  containerClassName?: string
 }
 
 export function ProjectCard({
@@ -34,20 +34,21 @@ export function ProjectCard({
       href={href}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={cn("block h-full", containerClassName)} // Apply containerClassName here
+      className={cn("block h-full", containerClassName)}
       onClick={(e) => {
         e.stopPropagation()
       }}
     >
       <ThreeDCard
-        depth={20}
-        rotationIntensity={10}
-        glareIntensity={0.15}
-        hoverScale={1.02}
-        backgroundGradient={bgColor}
-        className="h-full" // Ensure ThreeDCard itself fills the Link area
+        depth={10} // Matched to AboutMembershipSection cards
+        rotationIntensity={3} // Matched to AboutMembershipSection cards
+        glareIntensity={0.15} // Matched to AboutMembershipSection cards
+        hoverScale={1.02} // Matched to AboutMembershipSection cards
+        backgroundGradient={bgColor} // Using the RGBA gradient from props
+        className="h-full"
       >
-        <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900/85 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
+        {/* Inner content area styled exactly like Card variant="glass" */}
+        <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between border-0">
           <div className="relative z-10 flex flex-col h-full">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h2>

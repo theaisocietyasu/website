@@ -7,7 +7,8 @@ import { ProjectCard } from "@/components/projects/project-card"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import type { NavItem } from "@/lib/types"
-import { colors } from "@/lib/theme"
+// colors import from "@/lib/theme" is not strictly needed for these specific RGBA gradients,
+// but can be kept if other parts of the page use it.
 
 const navItems: NavItem[] = [
   { name: "Home", link: "/", icon: <IconHome className="h-6 w-6" /> },
@@ -20,9 +21,10 @@ const navItems: NavItem[] = [
 ]
 
 export default function ProjectsPage() {
-  const mlLabBgColor = `linear-gradient(to bottom right, ${colors.primary[900]}, ${colors.primary[950]})`
-  const cvNlpLabBgColor = `linear-gradient(to bottom right, ${colors.secondary[900]}, ${colors.secondary[950]})`
-  const aiMakerspaceBgColor = `linear-gradient(to bottom right, ${colors.accent[900]}, ${colors.accent[950]})`
+  // Exact RGBA gradients from AboutMembershipSection cards on the home page
+  const mlLabBgColor = "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Primary tint
+  const cvNlpLabBgColor = "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))" // Secondary tint
+  const aiMakerspaceBgColor = "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))" // Accent tint
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -47,9 +49,7 @@ export default function ProjectsPage() {
             subtitle="Explore our workshops and learning resources from past semesters. These materials are designed to help you develop your AI skills."
           />
 
-          {/* Bento Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Machine Learning Lab - Spans 2 columns on md screens */}
             <ProjectCard
               title="Machine Learning Lab - Fall 2024"
               description="Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques."
@@ -59,8 +59,6 @@ export default function ProjectsPage() {
               bgColor={mlLabBgColor}
               containerClassName="md:col-span-2"
             />
-
-            {/* Computer Vision & NLP Lab - Spans 1 column */}
             <ProjectCard
               title="Computer Vision & NLP Lab - Fall 2024"
               description="Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations."
@@ -70,8 +68,6 @@ export default function ProjectsPage() {
               bgColor={cvNlpLabBgColor}
               containerClassName="md:col-span-1"
             />
-
-            {/* AI Makerspace - Spans 1 column */}
             <ProjectCard
               title="AI Makerspace - Spring 2025"
               description="Explore innovative student projects from our AI Makerspace program, showcasing creative applications of artificial intelligence across various domains."
