@@ -99,10 +99,10 @@ export function Navbar({ navItems, className }: NavbarProps) {
   }
 
   const applyButtonClasses =
-    "inline-flex items-center justify-center h-8 px-3 rounded-md text-sm font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-black hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+    "inline-flex items-center justify-center h-8 px-3 rounded-md text-sm font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-white hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
 
   const mobileApplyButtonClasses =
-    "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-black hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+    "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-white hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
 
   const mobileDiscordLinkClasses = "w-full flex items-center justify-center py-3"
 
