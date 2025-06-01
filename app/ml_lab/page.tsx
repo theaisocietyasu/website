@@ -54,13 +54,8 @@ export default function MlLabPage() {
           interactionRadius={150}
         />
 
-        {/* Centered Page Title and Subtitle */}
-        <div className="text-center mb-8">
-          <SectionHeading title="Machine Learning Lab" subtitle="Dive into practical ML workshops" alignment="center" />
-        </div>
-
-        {/* Back to Projects Link */}
-        <div className="flex justify-start mb-10 md:mb-12">
+        {/* Back to Projects Link - Moved to the top */}
+        <div className="flex justify-start mb-6 md:mb-8">
           <Link
             href="/projects"
             className="flex items-center text-primary-400 hover:text-primary-300 transition-colors group"
@@ -70,6 +65,11 @@ export default function MlLabPage() {
               <span className="text-sm md:text-base">Back to Projects</span>
             </motion.div>
           </Link>
+        </div>
+
+        {/* Centered Page Title and Subtitle */}
+        <div className="text-center mb-10 md:mb-12">
+          <SectionHeading title="Machine Learning Lab" subtitle="Dive into practical ML workshops" alignment="center" />
         </div>
 
         {/* Workshop Selector */}
