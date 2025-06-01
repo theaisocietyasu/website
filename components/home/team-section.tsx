@@ -22,7 +22,7 @@ function ExecutiveMember({ name, position, imageSrc, email }: TeamMember) {
       rotationIntensity={5}
       glareIntensity={0.1}
       hoverScale={1.02}
-      backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.02))"
+      backgroundGradient="linear-gradient(to bottom right, rgb(99, 102, 241), rgb(79, 70, 229))"
       className="h-full"
     >
       <Card variant="glass" className="h-full">

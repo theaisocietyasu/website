@@ -52,7 +52,7 @@ export function AboutMembershipSection() {
               rotationIntensity={3} // Reduced rotation intensity
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.05))"
+              backgroundGradient="linear-gradient(to bottom right, rgb(99, 102, 241), rgb(79, 70, 229))"
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -109,7 +109,7 @@ export function AboutMembershipSection() {
               rotationIntensity={3} // Reduced rotation intensity
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(109, 40, 217, 0.05))"
+              backgroundGradient="linear-gradient(to bottom right, rgb(139, 92, 246), rgb(109, 40, 217))"
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -167,7 +167,7 @@ export function AboutMembershipSection() {
                 rotationIntensity={3} // Reduced rotation
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.05))"
+                backgroundGradient="linear-gradient(to bottom right, rgb(99, 102, 241), rgb(79, 70, 229))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
@@ -223,7 +223,7 @@ export function AboutMembershipSection() {
                 rotationIntensity={3} // Reduced rotation
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(109, 40, 217, 0.05))"
+                backgroundGradient="linear-gradient(to bottom right, rgb(139, 92, 246), rgb(109, 40, 217))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
@@ -279,7 +279,7 @@ export function AboutMembershipSection() {
                 rotationIntensity={3} // Reduced rotation
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05))"
+                backgroundGradient="linear-gradient(to bottom right, rgb(236, 72, 153), rgb(219, 39, 119))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
