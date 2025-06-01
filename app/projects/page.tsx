@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/projects/project-card"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
 import type { NavItem } from "@/lib/types"
+import { colors } from "@/lib/theme" // Import theme colors
 
 // Define navigation items
 const navItems: NavItem[] = [
@@ -28,6 +29,11 @@ const navItems: NavItem[] = [
 ]
 
 export default function ProjectsPage() {
+  // Define darker, theme-consistent gradients for project cards
+  const mlLabBgColor = `linear-gradient(to bottom right, ${colors.primary[700]}, ${colors.primary[900]})` // Dark Indigo/Blue
+  const cvNlpLabBgColor = `linear-gradient(to bottom right, ${colors.secondary[700]}, ${colors.secondary[900]})` // Dark Purple
+  const aiMakerspaceBgColor = `linear-gradient(to bottom right, ${colors.accent[700]}, ${colors.accent[900]})` // Dark Pink/Rose
+
   return (
     <main className="flex flex-col min-h-screen">
       {/* Navigation */}
@@ -62,7 +68,7 @@ export default function ProjectsPage() {
                 imageSrc="/wobble3.png"
                 imageAlt="Machine Learning Lab - Holographic AI Society Package"
                 href="/ml_lab"
-                bgColor="linear-gradient(to bottom right, rgba(12, 141, 224, 0.1), rgba(1, 90, 156, 0.05))"
+                bgColor={mlLabBgColor}
               />
             </div>
 
@@ -73,7 +79,7 @@ export default function ProjectsPage() {
                 imageSrc="/wobble4.png"
                 imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
                 href="/nlp_lab"
-                bgColor="linear-gradient(to bottom right, rgba(121, 56, 238, 0.1), rgba(73, 30, 140, 0.05))"
+                bgColor={cvNlpLabBgColor}
               />
             </div>
 
@@ -84,7 +90,7 @@ export default function ProjectsPage() {
                 imageSrc="/ai.png"
                 imageAlt="AI Makerspace - Laptop with code editor"
                 href="/ai_makerspace"
-                bgColor="linear-gradient(to bottom right, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05))"
+                bgColor={aiMakerspaceBgColor}
               />
             </div>
           </div>

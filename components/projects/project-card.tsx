@@ -13,13 +13,11 @@ interface ProjectCardProps {
   imageSrc: string
   imageAlt: string
   href: string
-  bgColor: string // This prop will now be ignored in favor of a standardized gradient
+  bgColor: string // This prop will be used for the ThreeDCard background
 }
 
-export function ProjectCard({ title, description, imageSrc, imageAlt, href }: ProjectCardProps) {
+export function ProjectCard({ title, description, imageSrc, imageAlt, href, bgColor }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-
-  const homePageCardGradient = "linear-gradient(to bottom right, var(--dark-800), var(--dark-950))"
 
   return (
     <Link
@@ -36,11 +34,11 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href }: Pr
         rotationIntensity={10}
         glareIntensity={0.15}
         hoverScale={1.02}
-        backgroundGradient={homePageCardGradient} // Standardized gradient
+        backgroundGradient={bgColor} // Using the bgColor prop for the outer gradient
         className="h-full"
       >
+        {/* Inner content area with consistent glass styling */}
         <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between">
-          {/* Content Container with proper z-index */}
           <div className="relative z-10 flex flex-col h-full">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h2>
@@ -56,7 +54,6 @@ export function ProjectCard({ title, description, imageSrc, imageAlt, href }: Pr
             </motion.div>
           </div>
 
-          {/* Image Container positioned to not overlap text */}
           <motion.div
             className="absolute bottom-0 right-0 w-1/2 h-1/2 z-0 flex items-end justify-end p-4"
             animate={{
