@@ -22,10 +22,12 @@ function ExecutiveMember({ name, position, imageSrc, email }: TeamMember) {
       rotationIntensity={5}
       glareIntensity={0.1}
       hoverScale={1.02}
-      backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.02))"
+      backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.02))" // Original rgba gradient
       className="h-full"
     >
       <Card variant="glass" className="h-full">
+        {" "}
+        {/* Uses opaque bg-dark-900, backdrop-blur, no border */}
         <div className="p-4 flex flex-col items-center text-center h-[220px] relative group">
           {/* Decorative corner accent */}
           <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">

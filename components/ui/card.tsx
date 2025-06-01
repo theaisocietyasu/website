@@ -11,7 +11,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = "default", padding = "md", children, ...props }, ref) => {
     const variants = {
       default: "bg-dark-900 border border-dark-800",
-      glass: "bg-dark-900 backdrop-blur-md", // Opaque background, blur behind, no explicit border
+      glass: "bg-dark-900 backdrop-blur-md border-0", // Opaque background, blur behind, explicitly no border
       outline: "bg-transparent border border-dark-700",
       gradient: "bg-gradient-to-br from-dark-900 to-dark-800 border border-dark-800/50",
     }
