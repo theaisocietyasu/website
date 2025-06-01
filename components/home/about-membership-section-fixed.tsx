@@ -55,7 +55,7 @@ export function AboutMembershipSection() {
               backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.05))"
               className="h-full w-full"
             >
-              <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+              <Card variant="glass" className="h-full w-full">
                 <div className="flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] p-3 sm:p-5 md:p-8 relative overflow-y-auto">
                   {/* Decorative corner accent */}
                   <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
@@ -112,7 +112,7 @@ export function AboutMembershipSection() {
               backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(109, 40, 217, 0.05))"
               className="h-full w-full"
             >
-              <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+              <Card variant="glass" className="h-full w-full">
                 <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                   {/* Decorative corner accent */}
                   <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
@@ -170,7 +170,7 @@ export function AboutMembershipSection() {
                 backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.05))"
                 className="h-full w-full"
               >
-                <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                <Card variant="glass" className="h-full w-full">
                   <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     {/* Decorative corner accent */}
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
@@ -226,7 +226,7 @@ export function AboutMembershipSection() {
                 backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(109, 40, 217, 0.05))"
                 className="h-full w-full"
               >
-                <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                <Card variant="glass" className="h-full w-full">
                   <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     {/* Decorative corner accent */}
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
@@ -282,7 +282,7 @@ export function AboutMembershipSection() {
                 backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05))"
                 className="h-full w-full"
               >
-                <Card variant="glass" className="h-full w-full border-0 bg-transparent backdrop-blur-none">
+                <Card variant="glass" className="h-full w-full">
                   <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
                     {/* Decorative corner accent */}
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">

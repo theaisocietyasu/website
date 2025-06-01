@@ -91,10 +91,7 @@ export function ContactSection() {
                   style={{ background: item.gradient }}
                 />
 
-                <Card
-                  variant="glass"
-                  className="border-0 bg-transparent backdrop-blur-none hover:shadow-glow transition-shadow duration-300"
-                >
+                <Card variant="glass" className="hover:shadow-glow transition-shadow duration-300">
                   <div className="p-6 flex flex-col items-center text-center h-[220px] sm:h-[240px] md:h-[260px] relative group">
                     {/* Decorative corner accent - with pointer-events-none */}
                     <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
