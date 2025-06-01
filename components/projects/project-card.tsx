@@ -6,6 +6,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { ThreeDCard } from "@/components/ui/3d-card"
+import { Card } from "@/components/ui/card" // Import Card
 import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
@@ -14,7 +15,7 @@ interface ProjectCardProps {
   imageSrc: string
   imageAlt: string
   href: string
-  bgColor: string // This will be the semi-transparent RGBA gradient
+  bgColor: string // This is the semi-transparent RGBA gradient for ThreeDCard
   containerClassName?: string
 }
 
@@ -40,23 +41,29 @@ export function ProjectCard({
       }}
     >
       <ThreeDCard
-        depth={10} // Matched to AboutMembershipSection cards
-        rotationIntensity={3} // Matched to AboutMembershipSection cards
-        glareIntensity={0.15} // Matched to AboutMembershipSection cards
-        hoverScale={1.02} // Matched to AboutMembershipSection cards
-        backgroundGradient={bgColor} // Using the RGBA gradient from props
+        depth={10}
+        rotationIntensity={3}
+        glareIntensity={0.15}
+        hoverScale={1.02}
+        backgroundGradient={bgColor} // This applies the semi-transparent color tint
         className="h-full"
       >
-        {/* Inner content area styled exactly like Card variant="glass" */}
-        <div className="relative overflow-hidden rounded-2xl h-full min-h-[450px] bg-dark-900 backdrop-blur-md transition-all duration-300 p-8 flex flex-col justify-between border-0">
+        {/* Use the Card component directly for perfect style parity */}
+        <Card
+          variant="glass"
+          padding="lg" // Matches home page cards (p-7)
+          className="h-full min-h-[450px] flex flex-col justify-between"
+        >
+          {/* Content Container */}
           <div className="relative z-10 flex flex-col h-full">
+            {" "}
+            {/* Ensure content is above image if overlapping */}
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h2>
               <p className="text-dark-100 text-lg max-w-[65%]">{description}</p>
             </div>
-
             <motion.div
-              className="flex items-center text-primary-400 font-medium mt-6"
+              className="flex items-center text-primary-400 font-medium mt-auto pt-4" // Added mt-auto and pt-4 for spacing
               animate={{ x: isHovered ? 5 : 0 }}
               transition={{ duration: 0.2 }}
             >
@@ -64,8 +71,9 @@ export function ProjectCard({
             </motion.div>
           </div>
 
+          {/* Image Container - ensure it doesn't cause overflow issues with flex */}
           <motion.div
-            className="absolute bottom-0 right-0 w-1/2 h-1/2 z-0 flex items-end justify-end p-4"
+            className="absolute bottom-0 right-0 w-1/2 h-1/2 z-0 flex items-end justify-end p-4" // p-4 to keep image from edge
             animate={{
               scale: isHovered ? 1.05 : 1,
               rotate: isHovered ? -2 : 0,
@@ -80,7 +88,7 @@ export function ProjectCard({
               className="object-contain opacity-80"
             />
           </motion.div>
-        </div>
+        </Card>
       </ThreeDCard>
     </Link>
   )
