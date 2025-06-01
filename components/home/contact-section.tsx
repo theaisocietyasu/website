@@ -117,15 +117,22 @@ export function ContactSection() {
                         href={item.buttonLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full h-full"
+                        className="block w-full h-full group" // Added group here for hover effects on the border
                         onClick={(e) => {
                           e.stopPropagation()
                           window.open(item.buttonLink, "_blank")
                         }}
                       >
-                        <div className="bg-dark-800 hover:bg-dark-700 text-white rounded-lg px-4 py-2 flex items-center justify-center group">
-                          <span>{item.buttonText}</span>
-                          <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        <div
+                          className={cn(
+                            `bg-gradient-to-r from-${item.accent}-500/40 to-${item.accent}-700/40 rounded-lg p-[1.5px] transition-all duration-300`,
+                            `group-hover:from-${item.accent}-500/60 group-hover:to-${item.accent}-700/60`, // Enhance border on hover
+                          )}
+                        >
+                          <div className="bg-dark-900/70 hover:bg-dark-800/70 text-white rounded-[6.5px] px-4 py-2 flex items-center justify-center transition-colors duration-300">
+                            <span>{item.buttonText}</span>
+                            <ChevronRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                          </div>
                         </div>
                       </a>
                     </div>
