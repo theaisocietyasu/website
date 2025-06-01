@@ -106,10 +106,10 @@ export function Navbar({ navItems, className }: NavbarProps) {
   }
 
   const applyButtonClasses =
-    "inline-flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors bg-yellow-400/30 backdrop-blur-sm border border-yellow-500/50 text-dark-900 hover:bg-yellow-400/40 hover:border-yellow-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+    "inline-flex items-center justify-center h-8 px-3 rounded-md text-sm font-medium transition-colors bg-yellow-400/30 backdrop-blur-sm border border-yellow-500/50 text-dark-900 hover:bg-yellow-400/40 hover:border-yellow-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
 
   const mobileApplyButtonClasses =
-    "w-full " + applyButtonClasses.replace("text-sm", "text-lg").replace("px-4 py-2", "px-6 py-3")
+    "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-400/30 backdrop-blur-sm border border-yellow-500/50 text-dark-900 hover:bg-yellow-400/40 hover:border-yellow-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
 
   return (
     <>
@@ -133,20 +133,22 @@ export function Navbar({ navItems, className }: NavbarProps) {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">
               {navItems.map((item, index) => renderNavLink(item, index))}
-              <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-2")}>
-                <ApplyIcon className="h-4 w-4 mr-2" />
-                Apply
-              </a>
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="ml-2 bg-dark-900/80 hover:bg-dark-800/80 border-0"
+                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0" // Removed ml-2
                   onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
                 >
                   Join Discord
                 </Button>
               </AnimatedGradientBorder>
+              <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
+                {" "}
+                {/* Added ml-1 for spacing */}
+                <ApplyIcon className="h-4 w-4 mr-2" />
+                Apply
+              </a>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -174,17 +176,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
             <nav className="container mx-auto px-4 py-8 flex flex-col gap-4 items-center text-center">
               {navItems.map((item, index) => renderNavLink(item, index, true))}
 
-              <a
-                href={applyLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(mobileApplyButtonClasses, "mt-4")}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <ApplyIcon className="h-5 w-5 mr-2" />
-                Apply
-              </a>
-
               {/* Custom Discord button without AnimatedGradientBorder */}
               <div className="mt-4 w-full">
                 <button
@@ -197,6 +188,16 @@ export function Navbar({ navItems, className }: NavbarProps) {
                   Join Discord
                 </button>
               </div>
+              <a
+                href={applyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(mobileApplyButtonClasses, "mt-2")} // Adjusted margin
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <ApplyIcon className="h-5 w-5 mr-2" />
+                Apply
+              </a>
             </nav>
           </motion.div>
         )}
