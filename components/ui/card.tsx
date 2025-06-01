@@ -12,10 +12,10 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseClasses = "rounded-xl transition-all duration-200"
 
     const variants = {
-      default: "bg-dark-900 border border-dark-800 shadow-md",
-      glass: "bg-dark-900 backdrop-blur-md border-0", // Explicitly no shadow here
-      outline: "bg-transparent border border-dark-700", // No shadow by default
-      gradient: "bg-gradient-to-br from-dark-900 to-dark-800 border border-dark-800/50 shadow-md",
+      default: "bg-dark-900 border border-dark-800", // Removed shadow-md
+      glass: "bg-dark-900 backdrop-blur-md border-0",
+      outline: "bg-transparent border border-dark-700",
+      gradient: "bg-gradient-to-br from-dark-900 to-dark-800 border border-dark-800/50", // Removed shadow-md
     }
 
     const paddings = {
