@@ -9,11 +9,13 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = "default", padding = "md", children, ...props }, ref) => {
+    const baseClasses = "rounded-xl transition-all duration-200"
+
     const variants = {
-      default: "bg-dark-900 border border-dark-800",
-      glass: "bg-dark-900 backdrop-blur-md border-0", // Opaque background, blur behind, explicitly no border
-      outline: "bg-transparent border border-dark-700",
-      gradient: "bg-gradient-to-br from-dark-900 to-dark-800 border border-dark-800/50",
+      default: "bg-dark-900 border border-dark-800 shadow-md",
+      glass: "bg-dark-900 backdrop-blur-md border-0", // Explicitly no shadow here
+      outline: "bg-transparent border border-dark-700", // No shadow by default
+      gradient: "bg-gradient-to-br from-dark-900 to-dark-800 border border-dark-800/50 shadow-md",
     }
 
     const paddings = {
@@ -24,16 +26,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     }
 
     return (
-      <div
-        ref={ref}
-        className={cn(
-          "rounded-xl shadow-md transition-all duration-200",
-          variants[variant],
-          paddings[padding],
-          className,
-        )}
-        {...props}
-      >
+      <div ref={ref} className={cn(baseClasses, variants[variant], paddings[padding], className)} {...props}>
         {children}
       </div>
     )
