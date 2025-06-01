@@ -6,7 +6,7 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { ThreeDCard } from "@/components/ui/3d-card"
-import { Card } from "@/components/ui/card" // Import Card
+import { Card } from "@/components/ui/card" // Ensure Card is imported
 import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
@@ -37,7 +37,7 @@ export function ProjectCard({
       onMouseLeave={() => setIsHovered(false)}
       className={cn("block h-full", containerClassName)}
       onClick={(e) => {
-        e.stopPropagation()
+        e.stopPropagation() // Important for nested interactive elements if any
       }}
     >
       <ThreeDCard
@@ -45,49 +45,51 @@ export function ProjectCard({
         rotationIntensity={3}
         glareIntensity={0.15}
         hoverScale={1.02}
-        backgroundGradient={bgColor} // This applies the semi-transparent color tint
-        className="h-full"
+        backgroundGradient={bgColor} // Applies the semi-transparent color tint
+        className="h-full" // Ensures ThreeDCard's motion div takes full height
       >
-        {/* Use the Card component directly for perfect style parity */}
         <Card
-          variant="glass"
-          padding="lg" // Matches home page cards (p-7)
-          className="h-full min-h-[450px] flex flex-col justify-between"
+          variant="glass" // Provides: opaque bg-dark-900, backdrop-blur-md, border-0, rounded-xl
+          padding="md" // Applies p-5, matching the default of Card in AboutMembershipSection
+          className="h-full w-full" // Ensures Card takes full height of ThreeDCard's content area
         >
-          {/* Content Container */}
-          <div className="relative z-10 flex flex-col h-full">
-            {" "}
-            {/* Ensure content is above image if overlapping */}
-            <div>
+          {/* This inner div now precisely mimics the structure and styling of home page card content containers */}
+          <div className="relative flex h-full flex-col justify-between p-3 sm:p-5 md:p-8 min-h-[250px] sm:min-h-[300px] md:min-h-[350px]">
+            {/* Text content part */}
+            <div className="relative z-10">
+              {" "}
+              {/* z-10 to ensure text is above the absolutely positioned image if overlap occurs */}
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h2>
               <p className="text-dark-100 text-lg max-w-[65%]">{description}</p>
             </div>
+
+            {/* Explore link part, pushed to bottom */}
             <motion.div
-              className="flex items-center text-primary-400 font-medium mt-auto pt-4" // Added mt-auto and pt-4 for spacing
+              className="relative z-10 mt-auto flex items-center pt-4 font-medium text-primary-400" // mt-auto pushes to bottom of flex container
               animate={{ x: isHovered ? 5 : 0 }}
               transition={{ duration: 0.2 }}
             >
               Explore <ArrowRight className="ml-2 h-4 w-4" />
             </motion.div>
-          </div>
 
-          {/* Image Container - ensure it doesn't cause overflow issues with flex */}
-          <motion.div
-            className="absolute bottom-0 right-0 w-1/2 h-1/2 z-0 flex items-end justify-end p-4" // p-4 to keep image from edge
-            animate={{
-              scale: isHovered ? 1.05 : 1,
-              rotate: isHovered ? -2 : 0,
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <Image
-              src={imageSrc || "/placeholder.svg?height=400&width=400&query=abstract tech pattern"}
-              width={250}
-              height={250}
-              alt={imageAlt}
-              className="object-contain opacity-80"
-            />
-          </motion.div>
+            {/* Absolutely positioned image relative to the padded inner div */}
+            <motion.div
+              className="absolute bottom-0 right-0 z-0 flex h-1/2 w-1/2 items-end justify-end p-1 sm:p-2 md:p-4" // Adjusted padding for image container
+              animate={{
+                scale: isHovered ? 1.05 : 1,
+                rotate: isHovered ? -2 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src={imageSrc || "/placeholder.svg?height=400&width=400&query=abstract tech pattern"}
+                width={250}
+                height={250}
+                alt={imageAlt}
+                className="object-contain opacity-80"
+              />
+            </motion.div>
+          </div>
         </Card>
       </ThreeDCard>
     </Link>
