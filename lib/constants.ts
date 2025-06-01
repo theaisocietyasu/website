@@ -3,63 +3,69 @@ import type { TeamMember, Workshop, AIProject } from "./types"
 // Updated Member Definitions with new positions
 const poojah: TeamMember = {
   name: "Poojah Ganesan",
-  position: "Ex-President", // Updated
+  position: "Ex-President",
   imageSrc: "/Officers/Poojah_AIS.jpg",
   email: "pganesa4@asu.edu",
 }
 const siddhesh: TeamMember = {
   name: "Siddhesh Badani",
-  position: "Vice President", // Updated
+  position: "Vice President",
   imageSrc: "/Officers/SiddheshBadani.png",
   email: "sid13@asu.edu",
 }
 const darsh: TeamMember = {
   name: "Darsh Chaurasia",
-  position: "President", // Updated
+  position: "President",
   imageSrc: "/Officers/DarshChaurasia.png",
   email: "dchauras@asu.edu",
 }
 const rajat: TeamMember = {
   name: "Rajat Aayush Jha",
-  position: "Ex-Vice President", // Updated
+  position: "Ex-Vice President",
   imageSrc: "/Officers/Rajat_AIS.jpg",
   email: "rjha16@asu.edu",
 }
 const aishwarya: TeamMember = {
   name: "Aishwarya Srivastava",
-  position: "Vice President", // Updated
+  position: "Vice President",
   imageSrc: "/Officers/ash.webp",
   email: "asriv132@asu.edu",
 }
 const gunika: TeamMember = {
   name: "Gunika Dhingra",
-  position: "President", // Updated
+  position: "President",
   imageSrc: "/Officers/gunika.webp",
   email: "gdhingr1@asu.edu",
 }
 const kaustubh: TeamMember = {
   name: "Kaustubh Harapanahalli",
-  position: "Vice President", // Updated
+  position: "Vice President",
   imageSrc: "/Officers/kaustubh.webp",
   email: "kharapan@asu.edu",
 }
 const venkata: TeamMember = {
   name: "Venkata Gunji",
-  position: "Operations Director", // No change requested, keeping as is
+  position: "Operations Director",
   imageSrc: "/Officers/venkata.webp",
   email: "vgunji1@asu.edu",
 }
 const prabakaran: TeamMember = {
   name: "Prabakaran Annadurai",
-  position: "Operations Director", // No change requested, keeping as is
+  position: "Operations Director",
   imageSrc: "/Officers/Prabakaran_Annadurai.png",
   email: "pannadur@asu.edu",
 }
+const krisha: TeamMember = {
+  name: "Krisha Waghela",
+  position: "Ex-President",
+  imageSrc: "/Officers/KrishaWaghela.jpeg",
+  email: "kmwaghel@asu.edu",
+}
 
 // New Team Structure
-export const EXECUTIVE_BOARD: TeamMember[] = [darsh, gunika, siddhesh, aishwarya, kaustubh] // Order might matter for display, adjusted based on new roles
+export const EXECUTIVE_BOARD: TeamMember[] = [darsh, gunika, siddhesh, aishwarya, kaustubh]
 export const OFFICERS: TeamMember[] = [venkata, prabakaran]
-export const AIS_ALUMNI: TeamMember[] = [poojah, rajat]
+export const AIS_ALUMNI: TeamMember[] = [poojah, rajat, krisha] // Added Krisha
 
 // ML Lab workshops data
 export const ML_WORKSHOPS: Workshop[] = [
