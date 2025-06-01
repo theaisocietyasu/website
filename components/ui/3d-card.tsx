@@ -112,7 +112,6 @@ export function ThreeDCard({
             className="absolute inset-0 rounded-xl -z-10 w-full h-full"
             style={{
               background: backgroundGradient,
-              transform: "translateZ(-1px)",
               pointerEvents: "none",
             }}
           />

@@ -6,8 +6,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 import type { NavItem } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
@@ -20,6 +18,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
+  const applyLink = "https://theaisociety.notion.site/1f28867868b481d2ad43e36d5049982b?pvs=105"
 
   // Handle scroll events
   useEffect(() => {
@@ -31,7 +30,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Function to render nav links with proper handling for external links
+  // Function to render nav links
   const renderNavLink = (item: NavItem, index: number, isMobile = false) => {
     const isActive =
       pathname === item.link ||
@@ -39,14 +38,11 @@ export function Navbar({ navItems, className }: NavbarProps) {
       (pathname.startsWith("/ml_lab") && item.link === "/projects") ||
       (pathname.startsWith("/nlp_lab") && item.link === "/projects")
 
-    // Check if this is an external link (starts with http or https)
     const isExternal = item.link.startsWith("http")
-
-    // Special case for "Events" - always open in new tab
     const isEvents = item.name.toLowerCase() === "events"
     const shouldOpenNewTab = isExternal || isEvents
 
-    const className = cn(
+    const navLinkClassName = cn(
       isMobile
         ? "px-4 py-3 rounded-md text-lg font-medium transition-colors flex items-center justify-center"
         : "px-4 py-2 rounded-md text-sm font-medium transition-colors relative",
@@ -59,13 +55,12 @@ export function Navbar({ navItems, className }: NavbarProps) {
 
     const handleClick = isMobile ? () => setIsMobileMenuOpen(false) : undefined
 
-    // For external links or events, use an anchor tag
     if (shouldOpenNewTab) {
       return (
         <a
           key={`nav-${isMobile ? "mobile-" : ""}${index}`}
           href={item.link}
-          className={className}
+          className={navLinkClassName}
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleClick}
@@ -83,12 +78,11 @@ export function Navbar({ navItems, className }: NavbarProps) {
       )
     }
 
-    // For internal links, use Next.js Link
     return (
       <Link
         key={`nav-${isMobile ? "mobile-" : ""}${index}`}
         href={item.link}
-        className={className}
+        className={navLinkClassName}
         onClick={handleClick}
       >
         {item.icon && isMobile && <span className="mr-3">{item.icon}</span>}
@@ -104,6 +98,24 @@ export function Navbar({ navItems, className }: NavbarProps) {
     )
   }
 
+  const applyButtonClasses =
+    "inline-flex items-center justify-center h-8 px-3 rounded-md text-sm font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-white hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+
+  const mobileApplyButtonClasses =
+    "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-white hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+
+  const mobileDiscordLinkClasses = "w-full flex items-center justify-center py-3"
+
+  // Estimate width based on typical "Discord" text length next to an icon.
+  // The image provided is 160x36. So aspect ratio is 160/36 = 4.44
+  // If height is 22px, width = 22 * 4.44 = ~97.7px. Let's use 98px.
+  const desktopDiscordLogoWidth = 98
+  const desktopDiscordLogoHeight = 22
+
+  // If height is 28px for mobile, width = 28 * 4.44 = ~124.4px. Let's use 124px.
+  const mobileDiscordLogoWidth = 124
+  const mobileDiscordLogoHeight = 28
+
   return (
     <>
       <header
@@ -115,7 +127,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
       >
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between">
-            {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
               <div className="relative w-10 h-10 flex items-center justify-center">
                 <Image src="/logo.png" alt="The AI Society Logo" width={40} height={40} className="object-contain" />
@@ -123,22 +134,28 @@ export function Navbar({ navItems, className }: NavbarProps) {
               <span className="font-heading font-bold text-xl text-white">The AI Society</span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-2">
               {navItems.map((item, index) => renderNavLink(item, index))}
-              <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="ml-2 bg-dark-900/80 hover:bg-dark-800/80 border-0"
-                  onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
-                >
-                  Join Discord
-                </Button>
-              </AnimatedGradientBorder>
+              <a
+                href="https://discord.gg/dCWm6xBGtM"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Join Discord"
+                className="flex items-center justify-center h-8 px-1 rounded-md hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+              >
+                <Image
+                  src="/discord-logo.png"
+                  alt="Discord"
+                  width={desktopDiscordLogoWidth}
+                  height={desktopDiscordLogoHeight}
+                  style={{ filter: "invert(1) brightness(2)" }} // Invert to white and brighten for dark mode
+                />
+              </a>
+              <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
+                Apply
+              </a>
             </nav>
 
-            {/* Mobile Menu Button */}
             <button
               className="md:hidden p-2 rounded-md text-dark-200 hover:text-white hover:bg-dark-800/50"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -150,7 +167,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
         </div>
       </header>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -163,18 +179,36 @@ export function Navbar({ navItems, className }: NavbarProps) {
             <nav className="container mx-auto px-4 py-8 flex flex-col gap-4 items-center text-center">
               {navItems.map((item, index) => renderNavLink(item, index, true))}
 
-              {/* Custom Discord button without AnimatedGradientBorder */}
-              <div className="mt-4">
-                <button
-                  onClick={() => {
-                    window.open("https://discord.gg/dCWm6xBGtM", "_blank")
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="inline-flex items-center justify-center px-6 py-2 rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors"
+              <div className="mt-4 w-full">
+                <a
+                  href="https://discord.gg/dCWm6xBGtM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={cn(
+                    mobileDiscordLinkClasses,
+                    "hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-md",
+                  )}
+                  aria-label="Join Discord"
                 >
-                  Join Discord
-                </button>
+                  <Image
+                    src="/discord-logo.png"
+                    alt="Discord"
+                    width={mobileDiscordLogoWidth}
+                    height={mobileDiscordLogoHeight}
+                    style={{ filter: "invert(1) brightness(2)" }} // Invert to white and brighten for dark mode
+                  />
+                </a>
               </div>
+              <a
+                href={applyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(mobileApplyButtonClasses, "mt-2")}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Apply
+              </a>
             </nav>
           </motion.div>
         )}

@@ -3,11 +3,34 @@
 import { useRef } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Sparkles, Zap } from "lucide-react"
-import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
+import { Instagram, Linkedin, Github, ExternalLink } from "lucide-react"
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
+
+  const socialLinks = [
+    {
+      href: "https://www.instagram.com/theaisociety.asu/",
+      label: "Instagram",
+      icon: <Instagram size={30} style={{ color: "#E1306C" }} />,
+    },
+    {
+      href: "https://www.linkedin.com/company/theaisociety-asu/",
+      label: "LinkedIn",
+      icon: <Linkedin size={30} style={{ color: "#0A66C2" }} />,
+    },
+    {
+      href: "https://github.com/theaisocietyasu",
+      label: "GitHub",
+      icon: <Github size={30} style={{ color: "#FFFFFF" }} />,
+    },
+    {
+      href: "https://asu.campuslabs.com/engage/organization/the-ai-society",
+      label: "Sun Devil Central",
+      icon: <ExternalLink size={30} style={{ color: "#FFC627" }} />,
+    },
+    // Discord entry removed from here
+  ]
 
   return (
     <section
@@ -37,44 +60,22 @@ export function HeroSection() {
               nurturing knowledge and driving innovation.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start relative z-20">
-              <a
-                href="https://asu.campuslabs.com/engage/organization/the-ai-society"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative z-20"
-              >
-                <AnimatedGradientBorder
-                  borderRadius="0.5rem"
-                  borderWidth={1.5}
-                  glowIntensity={0.5}
-                  colors={["#6366f1", "#8b5cf6", "#ec4899", "#6366f1"]}
+            {/* Social Media Icons */}
+            <div className="flex flex-wrap gap-x-6 gap-y-4 justify-center lg:justify-start relative z-20">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="group"
+                  whileHover={{ y: -3, scale: 1.15 }}
+                  transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <div className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-12 px-5 text-base w-[180px] flex items-center justify-center rounded-lg text-white font-medium">
-                    <Sparkles className="mr-2 h-4 w-4 text-primary-400 flex-shrink-0" />
-                    <span className="text-center">Sun Devil Central</span>
-                  </div>
-                </AnimatedGradientBorder>
-              </a>
-
-              <a
-                href="https://asu.campuslabs.com/engage/organization/the-ai-society/events"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative z-20"
-              >
-                <AnimatedGradientBorder
-                  borderRadius="0.5rem"
-                  borderWidth={1.5}
-                  glowIntensity={0.3}
-                  colors={["#8b5cf6", "#ec4899", "#6366f1", "#8b5cf6"]}
-                >
-                  <div className="bg-dark-900/80 hover:bg-dark-800/80 border-0 h-12 px-5 text-base w-[180px] flex items-center justify-center rounded-lg text-white font-medium">
-                    <Zap className="mr-2 h-4 w-4 text-secondary-400" />
-                    <span>Events</span>
-                  </div>
-                </AnimatedGradientBorder>
-              </a>
+                  {social.icon}
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 

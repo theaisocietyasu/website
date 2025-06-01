@@ -60,7 +60,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-dark-400 hover:text-white transition-colors"
-                aria-label="Sun Devil Sync"
+                aria-label="Sun Devil Central"
                 whileHover={{ y: -3 }}
               >
                 <ExternalLink size={20} />
@@ -124,7 +124,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-dark-300 hover:text-white transition-colors"
                 >
-                  Sun Devil Sync
+                  Sun Devil Central
                 </a>
               </li>
             </ul>

@@ -1,70 +1,71 @@
 import type { TeamMember, Workshop, AIProject } from "./types"
 
-// Core team members data
-export const CORE_TEAM: TeamMember[] = [
-  {
-    name: "Poojah Ganesan",
-    position: "Co-President & AI MakerSpace Mentor",
-    imageSrc: "/Officers/Poojah_AIS.jpg",
-    email: "pganesa4@asu.edu",
-  },
-  {
-    name: "Siddhesh Badani",
-    position: "Co-President",
-    imageSrc: "/Officers/SiddheshBadani.png",
-    email: "sid13@asu.edu",
-  },
-  {
-    name: "Darsh Chaurasia",
-    position: "Vice President of Operations",
-    imageSrc: "/Officers/DarshChaurasia.png",
-    email: "dchauras@asu.edu",
-  },
-  {
-    name: "Rajat Aayush Jha",
-    position: "Vice President & AI MakerSpace Mentor",
-    imageSrc: "/Officers/Rajat_AIS.jpg",
-    email: "rjha16@asu.edu",
-  },
-]
+// Updated Member Definitions with new positions
+const poojah: TeamMember = {
+  name: "Poojah Ganesan",
+  position: "Ex-President",
+  imageSrc: "/Officers/Poojah_AIS.jpg",
+  email: "pganesa4@asu.edu",
+}
+const siddhesh: TeamMember = {
+  name: "Siddhesh Badani",
+  position: "Vice President",
+  imageSrc: "/Officers/SiddheshBadani.png",
+  email: "sid13@asu.edu",
+}
+const darsh: TeamMember = {
+  name: "Darsh Chaurasia",
+  position: "President",
+  imageSrc: "/Officers/DarshChaurasia.png",
+  email: "dchauras@asu.edu",
+}
+const rajat: TeamMember = {
+  name: "Rajat Aayush Jha",
+  position: "Ex-Vice President",
+  imageSrc: "/Officers/Rajat_AIS.jpg",
+  email: "rjha16@asu.edu",
+}
+const aishwarya: TeamMember = {
+  name: "Aishwarya Srivastava",
+  position: "Vice President",
+  imageSrc: "/Officers/ash.webp",
+  email: "asriv132@asu.edu",
+}
+const gunika: TeamMember = {
+  name: "Gunika Dhingra",
+  position: "President",
+  imageSrc: "/Officers/gunika.webp",
+  email: "gdhingr1@asu.edu",
+}
+const kaustubh: TeamMember = {
+  name: "Kaustubh Harapanahalli",
+  position: "Vice President",
+  imageSrc: "/Officers/kaustubh.webp",
+  email: "kharapan@asu.edu",
+}
+const venkata: TeamMember = {
+  name: "Venkata Gunji",
+  position: "Operations Director",
+  imageSrc: "/Officers/venkata.webp",
+  email: "vgunji1@asu.edu",
+}
+const prabakaran: TeamMember = {
+  name: "Prabakaran Annadurai",
+  position: "Operations Director",
+  imageSrc: "/Officers/Prabakaran_Annadurai.png",
+  email: "pannadur@asu.edu",
+}
+const krisha: TeamMember = {
+  name: "Krisha Waghela",
+  position: "Ex-President",
+  imageSrc: "/Officers/KrishaWaghela.jpeg",
+  email: "kmwaghel@asu.edu",
+}
 
-// Technical team members data
-export const TECHNICAL_TEAM: TeamMember[] = [
-  {
-    name: "Aishwarya Srivastava",
-    position: "Technical Director & AI MakerSpace Mentor",
-    imageSrc: "/Officers/ash.webp",
-    email: "asriv132@asu.edu",
-  },
-  {
-    name: "Gunika Dhingra",
-    position: "Technical Director & AI MakerSpace Mentor",
-    imageSrc: "/Officers/gunika.webp",
-    email: "gdhingr1@asu.edu",
-  },
-  {
-    name: "Kaustubh Harapanahalli",
-    position: "Technical Director & AI MakerSpace Mentor",
-    imageSrc: "/Officers/kaustubh.webp",
-    email: "kharapan@asu.edu",
-  },
-]
-
-// Operations team members data
-export const OPERATIONS_TEAM: TeamMember[] = [
-  {
-    name: "Venkata Gunji",
-    position: "Operations Director",
-    imageSrc: "/Officers/venkata.webp",
-    email: "vgunji1@asu.edu",
-  },
-  {
-    name: "Prabakaran Annadurai",
-    position: "Operations Director",
-    imageSrc: "/Officers/Prabakaran_Annadurai.png",
-    email: "pannadur@asu.edu",
-  },
-]
+// New Team Structure
+export const EXECUTIVE_BOARD: TeamMember[] = [darsh, gunika, siddhesh, aishwarya, kaustubh]
+export const OFFICERS: TeamMember[] = [venkata, prabakaran]
+export const AIS_ALUMNI: TeamMember[] = [poojah, rajat, krisha] // Added Krisha
 
 // ML Lab workshops data
 export const ML_WORKSHOPS: Workshop[] = [
@@ -296,3 +297,8 @@ export const SPONSORS = [
   { id: 1, logo: "/sponsors/Alani_Logo.png", name: "Alani Nu" },
   // Add more sponsors as needed
 ]
+
+// Deprecated: Original team structures for reference if needed during transition
+// export const CORE_TEAM: TeamMember[] = [poojah, siddhesh, darsh, rajat];
+// export const TECHNICAL_TEAM: TeamMember[] = [aishwarya, gunika, kaustubh];
+// export const OPERATIONS_TEAM: TeamMember[] = [venkata, prabakaran];
