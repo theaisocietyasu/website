@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -33,12 +34,19 @@ export function ThreeDCard({
   const [isMobile, setIsMobile] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
+  // Check if we're on a mobile device
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
+
+    // Check on mount
     checkMobile()
+
+    // Add resize listener
     window.addEventListener("resize", checkMobile)
+
+    // Cleanup
     return () => {
       window.removeEventListener("resize", checkMobile)
     }
@@ -50,16 +58,17 @@ export function ThreeDCard({
     const rect = cardRef.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
-    const mouseXVal = e.clientX - centerX
-    const mouseYVal = e.clientY - centerY
+    const mouseX = e.clientX - centerX
+    const mouseY = e.clientY - centerY
 
-    const rY = (mouseXVal / (rect.width / 2)) * rotationIntensity
-    const rX = ((mouseYVal / (rect.height / 2)) * -rotationIntensity) / 2 // Reduced vertical rotation
+    // Calculate rotation based on mouse position
+    const rotateY = (mouseX / (rect.width / 2)) * rotationIntensity
+    const rotateX = ((mouseY / (rect.height / 2)) * -rotationIntensity) / 2
 
-    setRotateX(rX)
-    setRotateY(rY)
-    setMouseX(mouseXVal)
-    setMouseY(mouseYVal)
+    setRotateX(rotateX)
+    setRotateY(rotateY)
+    setMouseX(mouseX)
+    setMouseY(mouseY)
   }
 
   const handleMouseLeave = () => {
@@ -69,16 +78,10 @@ export function ThreeDCard({
     setMouseY(0)
   }
 
+  // Use reduced effects on mobile
   const actualDepth = isMobile ? Math.min(5, depth) : depth
-  // No rotation on mobile for stability, keep hover scale for subtle feedback if desired
-  const actualRotationIntensity = isMobile ? 0 : rotationIntensity
-  const actualHoverScale = isMobile ? 1.0 : hoverScale // Can be 1.0 if no scale on mobile is preferred
-
-  let rect = { width: 0, height: 0, left: 0, top: 0 }
-
-  if (cardRef.current) {
-    rect = cardRef.current.getBoundingClientRect()
-  }
+  const actualRotationIntensity = isMobile ? 0 : rotationIntensity // No rotation on mobile
+  const actualHoverScale = isMobile ? 1 : hoverScale // No hover scaling on mobile
 
   return (
     <motion.div
@@ -88,42 +91,40 @@ export function ThreeDCard({
       onMouseLeave={handleMouseLeave}
       style={{
         perspective: "1000px",
-        width: "100%",
+        width: "100%", // Ensure full width
       }}
       whileHover={{ scale: actualHoverScale }}
       transition={{ duration: 0.3 }}
     >
       <motion.div
-        className={cn(
-          "relative preserve-3d w-full rounded-xl overflow-hidden", // Added rounded-xl and overflow-hidden
-          className,
-        )}
+        className={cn("relative preserve-3d w-full", className)}
         style={{
           rotateX: rotateX,
           rotateY: rotateY,
           transformStyle: "preserve-3d",
-          width: "100%",
+          width: "100%", // Ensure full width
         }}
         transition={{ duration: 0.1 }}
       >
+        {/* Background gradient */}
         {backgroundGradient && (
           <div
             className="absolute inset-0 rounded-xl -z-10 w-full h-full"
             style={{
               background: backgroundGradient,
-              transform: "translateZ(-1px)",
               pointerEvents: "none",
             }}
           />
         )}
 
-        {!isMobile && glareIntensity > 0 && (
+        {/* Glare effect - disabled on mobile */}
+        {!isMobile && (
           <div
-            className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none" // This already had rounded-xl overflow-hidden
+            className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none"
             style={{
-              background: `radial-gradient(circle at ${mouseX + rect.width / 2}px ${
-                mouseY + rect.height / 2
-              }px, rgba(255, 255, 255, ${glareIntensity}), transparent 80%)`,
+              background: `radial-gradient(circle at ${mouseX + 50}% ${
+                mouseY + 50
+              }%, rgba(255, 255, 255, ${glareIntensity}), transparent 80%)`,
               transform: `translateZ(${actualDepth / 2}px)`,
               opacity: Math.abs(rotateX) + Math.abs(rotateY) > 0 ? 1 : 0,
               transition: "opacity 0.3s",
@@ -131,13 +132,14 @@ export function ThreeDCard({
           />
         )}
 
+        {/* Content */}
         <div
           style={{
             transform: `translateZ(${actualDepth}px)`,
             transformStyle: "preserve-3d",
             position: "relative",
             zIndex: 10,
-            width: "100%",
+            width: "100%", // Ensure full width
           }}
         >
           {children}
