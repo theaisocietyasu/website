@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, DiscIcon as DiscordIcon } from "lucide-react"
+import { Menu, X, DiscIcon } from "lucide-react" // Using DiscIcon as a placeholder for Discord
 import { Button } from "@/components/ui/button"
 import { AnimatedGradientBorder } from "@/components/ui/animated-gradient-border"
 import type { NavItem } from "@/lib/types"
@@ -106,6 +106,9 @@ export function Navbar({ navItems, className }: NavbarProps) {
   const mobileApplyButtonClasses =
     "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-400/30 backdrop-blur-sm border border-yellow-500/50 text-dark-900 hover:bg-yellow-400/40 hover:border-yellow-500/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
 
+  const mobileDiscordButtonClasses =
+    "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors text-lg"
+
   return (
     <>
       <header
@@ -129,12 +132,12 @@ export function Navbar({ navItems, className }: NavbarProps) {
               <AnimatedGradientBorder borderRadius="0.5rem" borderWidth={1} glowIntensity={0.5}>
                 <Button
                   variant="ghost"
-                  size="icon"
-                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0 w-8 h-8 p-0 flex items-center justify-center"
+                  size="sm" // Reverted to sm for text + icon
+                  className="bg-dark-900/80 hover:bg-dark-800/80 border-0"
                   onClick={() => window.open("https://discord.gg/dCWm6xBGtM", "_blank")}
-                  aria-label="Join Discord"
                 >
-                  <DiscordIcon className="h-4 w-4 text-white" />
+                  <DiscIcon className="h-4 w-4 mr-2 text-white" /> {/* Placeholder Discord Icon */}
+                  Join Discord
                 </Button>
               </AnimatedGradientBorder>
               <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
@@ -171,10 +174,10 @@ export function Navbar({ navItems, className }: NavbarProps) {
                     window.open("https://discord.gg/dCWm6xBGtM", "_blank")
                     setIsMobileMenuOpen(false)
                   }}
-                  className="w-full h-12 inline-flex items-center justify-center rounded-md text-white bg-dark-900/80 hover:bg-dark-800/80 border border-purple-500/50 transition-colors text-lg"
-                  aria-label="Join Discord"
+                  className={mobileDiscordButtonClasses}
                 >
-                  <DiscordIcon className="h-6 w-6" />
+                  <DiscIcon className="h-5 w-5 mr-2" /> {/* Placeholder Discord Icon */}
+                  Join Discord
                 </button>
               </div>
               <a
