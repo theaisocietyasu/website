@@ -3,11 +3,11 @@
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
-import { Download, ChevronDown, UserCheck, Shield, History } from "lucide-react" // Added new icons
+import { Download, ChevronDown, UserCheck, Shield, History, Mail } from "lucide-react" // Added Mail icon
 import FileSaver from "file-saver"
 import * as XLSX from "xlsx"
 import jsPDF from "jspdf"
-import { EXECUTIVE_BOARD, OFFICERS, AIS_ALUMNI } from "@/lib/constants" // Updated imports
+import { EXECUTIVE_BOARD, OFFICERS, AIS_ALUMNI } from "@/lib/constants"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Spotlight } from "@/components/ui/spotlight"
 import { ThreeDCard } from "@/components/ui/3d-card"
@@ -15,7 +15,6 @@ import { Card } from "@/components/ui/card"
 import type { TeamMember } from "@/lib/types"
 
 function ExecutiveMemberCard({ name, position, imageSrc, email }: TeamMember) {
-  // Renamed for clarity
   return (
     <ThreeDCard
       depth={10}
@@ -38,9 +37,16 @@ function ExecutiveMemberCard({ name, position, imageSrc, email }: TeamMember) {
           <h3 className="text-base font-bold text-white mb-1 w-full">{name}</h3>
           <div className="w-10 h-0.5 bg-gradient-to-r from-primary-500/50 to-secondary-500/50 rounded-full mx-auto my-1"></div>
           <p className="text-dark-300 text-xs line-clamp-2">{position}</p>
-          <p className="text-primary-400 text-xs mt-1 opacity-70 group-hover:opacity-100 transition-opacity line-clamp-1">
-            {email}
-          </p>
+          {email && ( // Check if email exists before rendering
+            <a
+              href={`mailto:${email}`}
+              className="text-primary-400 text-xs mt-1 opacity-70 group-hover:opacity-100 transition-opacity line-clamp-1 hover:underline flex items-center gap-1"
+              onClick={(e) => e.stopPropagation()} // Prevent card click-through
+            >
+              <Mail size={12} className="inline-block" />
+              {email}
+            </a>
+          )}
           <div className="absolute bottom-2 right-2 opacity-10 transition-opacity duration-300 pointer-events-none">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21 3H3V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -53,7 +59,7 @@ function ExecutiveMemberCard({ name, position, imageSrc, email }: TeamMember) {
 }
 
 export function TeamSection() {
-  const [selectedTeam, setSelectedTeam] = useState("executive") // Default to executive
+  const [selectedTeam, setSelectedTeam] = useState("executive")
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, amount: 0.1 })
   const [cardHeight, setCardHeight] = useState(240)
@@ -87,7 +93,7 @@ export function TeamSection() {
   const downloadExcel = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...EXECUTIVE_BOARD, ...OFFICERS, ...AIS_ALUMNI] // Updated to new team arrays
+      const allMembers = [...EXECUTIVE_BOARD, ...OFFICERS, ...AIS_ALUMNI]
       const formattedMembers = allMembers.map(({ name, position, email }) => ({
         name,
         position,
@@ -107,7 +113,7 @@ export function TeamSection() {
   const downloadPDF = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...EXECUTIVE_BOARD, ...OFFICERS, ...AIS_ALUMNI] // Updated to new team arrays
+      const allMembers = [...EXECUTIVE_BOARD, ...OFFICERS, ...AIS_ALUMNI]
       const doc = new jsPDF()
       doc.setFontSize(20)
       doc.setTextColor(12, 141, 224)
@@ -139,7 +145,7 @@ export function TeamSection() {
     if (selectedTeam === "executive") team = EXECUTIVE_BOARD
     else if (selectedTeam === "officers") team = OFFICERS
     else if (selectedTeam === "alumni") team = AIS_ALUMNI
-    else team = EXECUTIVE_BOARD // Default
+    else team = EXECUTIVE_BOARD
 
     return (
       <div className="flex flex-wrap justify-center gap-4">
@@ -152,7 +158,7 @@ export function TeamSection() {
             className="h-[240px] w-[180px] team-member-card"
             style={{ height: `${cardHeight}px` }}
           >
-            <ExecutiveMemberCard // Using the renamed card component
+            <ExecutiveMemberCard
               name={member.name}
               position={member.position}
               imageSrc={member.imageSrc}
@@ -184,7 +190,7 @@ export function TeamSection() {
               }`}
               onClick={(e) => handleTeamChange("executive", e)}
             >
-              <UserCheck className="h-4 w-4 mr-2" /> {/* Changed icon */}
+              <UserCheck className="h-4 w-4 mr-2" />
               Executive Board
               <ChevronDown
                 className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "executive" ? "rotate-180" : ""}`}
@@ -198,7 +204,7 @@ export function TeamSection() {
               }`}
               onClick={(e) => handleTeamChange("officers", e)}
             >
-              <Shield className="h-4 w-4 mr-2" /> {/* Changed icon */}
+              <Shield className="h-4 w-4 mr-2" />
               Officers
               <ChevronDown
                 className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "officers" ? "rotate-180" : ""}`}
@@ -212,7 +218,7 @@ export function TeamSection() {
               }`}
               onClick={(e) => handleTeamChange("alumni", e)}
             >
-              <History className="h-4 w-4 mr-2" /> {/* Changed icon */}
+              <History className="h-4 w-4 mr-2" />
               AIS Alumni
               <ChevronDown
                 className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "alumni" ? "rotate-180" : ""}`}

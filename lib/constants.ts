@@ -1,66 +1,64 @@
 import type { TeamMember, Workshop, AIProject } from "./types"
 
-// Original Team Members (for easy reference before moving)
+// Updated Member Definitions with new positions
 const poojah: TeamMember = {
   name: "Poojah Ganesan",
-  position: "Co-President & AI MakerSpace Mentor",
+  position: "Ex-President", // Updated
   imageSrc: "/Officers/Poojah_AIS.jpg",
   email: "pganesa4@asu.edu",
 }
 const siddhesh: TeamMember = {
   name: "Siddhesh Badani",
-  position: "Co-President",
+  position: "Vice President", // Updated
   imageSrc: "/Officers/SiddheshBadani.png",
   email: "sid13@asu.edu",
 }
 const darsh: TeamMember = {
   name: "Darsh Chaurasia",
-  position: "Vice President of Operations",
+  position: "President", // Updated
   imageSrc: "/Officers/DarshChaurasia.png",
   email: "dchauras@asu.edu",
 }
 const rajat: TeamMember = {
   name: "Rajat Aayush Jha",
-  position: "Vice President & AI MakerSpace Mentor",
+  position: "Ex-Vice President", // Updated
   imageSrc: "/Officers/Rajat_AIS.jpg",
   email: "rjha16@asu.edu",
 }
 const aishwarya: TeamMember = {
   name: "Aishwarya Srivastava",
-  position: "Technical Director & AI MakerSpace Mentor",
+  position: "Vice President", // Updated
   imageSrc: "/Officers/ash.webp",
   email: "asriv132@asu.edu",
 }
 const gunika: TeamMember = {
   name: "Gunika Dhingra",
-  position: "Technical Director & AI MakerSpace Mentor",
+  position: "President", // Updated
   imageSrc: "/Officers/gunika.webp",
   email: "gdhingr1@asu.edu",
 }
 const kaustubh: TeamMember = {
   name: "Kaustubh Harapanahalli",
-  position: "Technical Director & AI MakerSpace Mentor",
+  position: "Vice President", // Updated
   imageSrc: "/Officers/kaustubh.webp",
   email: "kharapan@asu.edu",
 }
 const venkata: TeamMember = {
   name: "Venkata Gunji",
-  position: "Operations Director",
+  position: "Operations Director", // No change requested, keeping as is
   imageSrc: "/Officers/venkata.webp",
   email: "vgunji1@asu.edu",
 }
 const prabakaran: TeamMember = {
   name: "Prabakaran Annadurai",
-  position: "Operations Director",
+  position: "Operations Director", // No change requested, keeping as is
   imageSrc: "/Officers/Prabakaran_Annadurai.png",
   email: "pannadur@asu.edu",
 }
 
 // New Team Structure
-export const EXECUTIVE_BOARD: TeamMember[] = [siddhesh, darsh, aishwarya, gunika, kaustubh]
-
+export const EXECUTIVE_BOARD: TeamMember[] = [darsh, gunika, siddhesh, aishwarya, kaustubh] // Order might matter for display, adjusted based on new roles
 export const OFFICERS: TeamMember[] = [venkata, prabakaran]
-
 export const AIS_ALUMNI: TeamMember[] = [poojah, rajat]
 
 // ML Lab workshops data
