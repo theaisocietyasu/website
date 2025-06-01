@@ -19,15 +19,15 @@ const navItems: NavItem[] = [
 ]
 
 export default function ProjectsPage() {
-  // Define the color sequence
-  const firstCardColor = "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))" // Blue-ish
-  const secondCardColor = "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))" // Purple-ish
-  const thirdCardColor = "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))" // Pink-ish
+  const firstCardColor = "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))"
+  const secondCardColor = "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))"
+  const thirdCardColor = "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))"
 
   return (
     <main className="flex flex-col min-h-screen">
       <Navbar navItems={navItems} />
-      <section className="py-16 md:py-20 lg:py-32 px-4 md:px-6 relative">
+      {/* Updated section horizontal padding to be consistent px-6 */}
+      <section className="py-16 md:py-20 lg:py-32 px-6 relative">
         <ParticleBackground
           particleCount={30}
           particleSize={[1, 2]}
@@ -48,36 +48,31 @@ export default function ProjectsPage() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* AI Makerspace - Now gets the first color in the sequence */}
             <ProjectCard
               title="AI Makerspace - Spring 2025"
               description="Explore innovative student projects from our AI Makerspace program, showcasing creative applications of artificial intelligence across various domains."
               imageSrc="/ai.png"
               imageAlt="AI Makerspace - Laptop with code editor"
               href="/ai_makerspace"
-              bgColor={firstCardColor} // Assigning first color
+              bgColor={firstCardColor}
               containerClassName="md:col-span-2"
             />
-
-            {/* Machine Learning Lab - Now gets the second color in the sequence */}
             <ProjectCard
               title="Machine Learning Lab - Fall 2024"
               description="Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques."
               imageSrc="/wobble3.png"
               imageAlt="Machine Learning Lab - Holographic AI Society Package"
               href="/ml_lab"
-              bgColor={secondCardColor} // Assigning second color
+              bgColor={secondCardColor}
               containerClassName="md:col-span-1"
             />
-
-            {/* Computer Vision & NLP Lab - Now gets the third color in the sequence */}
             <ProjectCard
               title="Computer Vision & NLP Lab - Fall 2024"
               description="Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations."
               imageSrc="/wobble4.png"
               imageAlt="Computer Vision & NLP Lab - AI Society Package with Caution Tape"
               href="/nlp_lab"
-              bgColor={thirdCardColor} // Assigning third color
+              bgColor={thirdCardColor}
               containerClassName="md:col-span-1"
             />
           </div>
