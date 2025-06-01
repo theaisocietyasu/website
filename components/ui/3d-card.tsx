@@ -107,17 +107,15 @@ export function ThreeDCard({
         transition={{ duration: 0.1 }}
       >
         {/* Background gradient */}
-        {/*
-          {backgroundGradient && (
-            <div
-              className="absolute inset-0 rounded-xl -z-10 w-full h-full"
-              style={{
-                background: backgroundGradient,
-                pointerEvents: "none",
-              }}
-            />
-          )}
-          */}
+        {backgroundGradient && (
+          <div
+            className="absolute inset-0 rounded-xl -z-10 w-full h-full"
+            style={{
+              background: backgroundGradient,
+              pointerEvents: "none",
+            }}
+          />
+        )}
 
         {/* Glare effect - disabled on mobile */}
         {!isMobile && (

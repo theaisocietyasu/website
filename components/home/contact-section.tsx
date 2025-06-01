@@ -24,7 +24,7 @@ export function ContactSection() {
       borderColor: "from-primary-500 to-primary-700",
       accent: "primary",
       cornerIcon: <MessageSquare className="h-5 w-5 text-primary-400/70" />,
-      gradient: "linear-gradient(to bottom right, rgba(99, 102, 241, 0.3), rgba(79, 70, 229, 0.1))", // Alpha increased
+      gradient: "linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))", // Alpha increased
     },
     {
       icon: <Mail className="h-6 w-6 text-secondary-400" />,
@@ -36,7 +36,7 @@ export function ContactSection() {
       borderColor: "from-secondary-500 to-secondary-700",
       accent: "secondary",
       cornerIcon: <Mail className="h-5 w-5 text-secondary-400/70" />,
-      gradient: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.3), rgba(109, 40, 217, 0.1))", // Alpha increased
+      gradient: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))", // Alpha increased
     },
     {
       icon: <Globe className="h-6 w-6 text-accent-400" />,
@@ -48,7 +48,7 @@ export function ContactSection() {
       borderColor: "from-accent-500 to-accent-700",
       accent: "accent",
       cornerIcon: <Globe className="h-5 w-5 text-accent-400/70" />,
-      gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.3), rgba(219, 39, 119, 0.1))", // Alpha increased
+      gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.35), rgba(219, 39, 119, 0.15))", // Alpha increased
     },
   ]
 
