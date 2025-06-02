@@ -90,7 +90,7 @@ export default function ProjectsPage() {
       title: "Computer Vision & NLP Lab - Fall 2024",
       description:
         "Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations.",
-      imageSrc: "/nlp-lab-logo.png", // Updated imageSrc
+      imageSrc: "/nlp-lab-logo.png",
       imageAlt: "AI Society metallic eye logo",
       href: "/nlp_lab",
     },
