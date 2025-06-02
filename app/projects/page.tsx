@@ -82,8 +82,8 @@ export default function ProjectsPage() {
       title: "Machine Learning Lab - Fall 2024",
       description:
         "Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques.",
-      imageSrc: "/wobble3.png",
-      imageAlt: "Machine Learning Lab - Holographic AI Society Package",
+      imageSrc: "/ai-society-chip.png",
+      imageAlt: "AI Society computer chip",
       href: "/ml_lab",
     },
     {
