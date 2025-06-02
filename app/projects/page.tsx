@@ -49,7 +49,7 @@ function ProjectArchiveSection({
           src={imageSrc || "/placeholder.svg"}
           alt={imageAlt}
           fill
-          className="object-cover rounded-xl shadow-2xl"
+          className="object-contain rounded-xl shadow-2xl"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
