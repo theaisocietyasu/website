@@ -49,7 +49,7 @@ function ProjectArchiveSection({
           src={imageSrc || "/placeholder.svg"}
           alt={imageAlt}
           fill
-          className="object-cover rounded-xl shadow-2xl"
+          className="object-contain rounded-xl shadow-2xl"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
@@ -82,16 +82,16 @@ export default function ProjectsPage() {
       title: "Machine Learning Lab - Fall 2024",
       description:
         "Join us at AI Society's ML Lab to learn about data cleaning, exploratory analysis, feature engineering, and classification techniques.",
-      imageSrc: "/wobble3.png",
-      imageAlt: "Machine Learning Lab - Holographic AI Society Package",
+      imageSrc: "/ai-society-chip.png",
+      imageAlt: "AI Society computer chip",
       href: "/ml_lab",
     },
     {
       title: "Computer Vision & NLP Lab - Fall 2024",
       description:
         "Dive into natural language processing and computer vision with our comprehensive workshops covering fundamental concepts to advanced implementations.",
-      imageSrc: "/wobble4.png",
-      imageAlt: "Computer Vision & NLP Lab - AI Society Package with Caution Tape",
+      imageSrc: "/nlp-lab-logo.png",
+      imageAlt: "AI Society metallic eye logo",
       href: "/nlp_lab",
     },
   ]
