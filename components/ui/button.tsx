@@ -1,56 +1,49 @@
 import type React from "react"
 import { forwardRef } from "react"
 import { cn } from "@/lib/utils"
+import { cva, type VariantProps } from "class-variance-authority"
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "accent" | "outline" | "ghost" | "link"
-  size?: "sm" | "md" | "lg" | "icon"
+const buttonVariants = cva(
+  "relative inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
+  {
+    variants: {
+      variant: {
+        primary: "bg-primary-600 hover:bg-primary-700 text-white",
+        secondary: "bg-secondary-600 hover:bg-secondary-700 text-white",
+        accent: "bg-accent-600 hover:bg-accent-700 text-white",
+        outline: "bg-transparent border border-dark-700 hover:border-dark-600 text-dark-100",
+        ghost: "bg-transparent hover:bg-dark-800 text-dark-100",
+        link: "bg-transparent underline-offset-4 hover:underline text-primary-400 hover:text-primary-300",
+      },
+      size: {
+        sm: "h-8 px-3 text-sm rounded-md",
+        md: "h-10 px-4 rounded-md",
+        lg: "h-12 px-6 text-lg rounded-lg",
+        icon: "h-10 w-10 rounded-md",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "md",
+    },
+  },
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
   isLoading?: boolean
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant = "primary",
-      size = "md",
-      isLoading = false,
-      leftIcon,
-      rightIcon,
-      children,
-      disabled,
-      ...props
-    },
-    ref,
-  ) => {
-    const variants = {
-      primary: "bg-primary-600 hover:bg-primary-700 text-white",
-      secondary: "bg-secondary-600 hover:bg-secondary-700 text-white",
-      accent: "bg-accent-600 hover:bg-accent-700 text-white",
-      outline: "bg-transparent border border-dark-700 hover:border-dark-600 text-dark-100",
-      ghost: "bg-transparent hover:bg-dark-800 text-dark-100",
-      link: "bg-transparent underline-offset-4 hover:underline text-primary-400 hover:text-primary-300",
-    }
-
-    const sizes = {
-      sm: "h-8 px-3 text-sm rounded-md",
-      md: "h-10 px-4 rounded-md",
-      lg: "h-12 px-6 text-lg rounded-lg",
-      icon: "h-10 w-10 rounded-md",
-    }
-
+  ({ className, variant, size, isLoading = false, leftIcon, rightIcon, children, disabled, ...props }, ref) => {
     return (
       <button
         ref={ref}
         disabled={disabled || isLoading}
-        className={cn(
-          "relative inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
-          variants[variant],
-          sizes[size],
-          className,
-        )}
+        className={cn(buttonVariants({ variant, size, className }))}
         {...props}
       >
         {isLoading && (
@@ -82,4 +75,4 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = "Button"
 
-export { Button }
+export { Button, buttonVariants }

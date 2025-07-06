@@ -18,7 +18,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const pathname = usePathname()
-  const applyLink = "https://theaisociety.notion.site/1f28867868b481d2ad43e36d5049982b?pvs=105"
 
   // Handle scroll events
   useEffect(() => {
@@ -98,12 +97,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
     )
   }
 
-  const applyButtonClasses =
-    "inline-flex items-center justify-center h-8 px-3 rounded-md text-sm font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-white hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
-
-  const mobileApplyButtonClasses =
-    "w-full inline-flex items-center justify-center px-6 py-3 rounded-md text-lg font-medium transition-colors bg-yellow-500/40 backdrop-blur-sm border border-yellow-600/60 text-white hover:bg-yellow-500/50 hover:border-yellow-600/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
-
   const mobileDiscordLinkClasses = "w-full flex items-center justify-center py-3"
 
   // Estimate width based on typical "Discord" text length next to an icon.
@@ -151,9 +144,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
                   style={{ filter: "invert(1) brightness(2)" }} // Invert to white and brighten for dark mode
                 />
               </a>
-              <a href={applyLink} target="_blank" rel="noopener noreferrer" className={cn(applyButtonClasses, "ml-1")}>
-                Apply
-              </a>
             </nav>
 
             <button
@@ -200,15 +190,6 @@ export function Navbar({ navItems, className }: NavbarProps) {
                   />
                 </a>
               </div>
-              <a
-                href={applyLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(mobileApplyButtonClasses, "mt-2")}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Apply
-              </a>
             </nav>
           </motion.div>
         )}
