@@ -15,8 +15,8 @@ interface NavbarProps {
 }
 
 export function Navbar({ navItems, className }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
 
   // Handle scroll events
@@ -90,7 +90,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
           <motion.span
             layoutId="navbar-active-indicator"
             className="absolute inset-0 rounded-md bg-dark-800/80 -z-0"
-            transition={{ type: "spring", duration: 0.5 }}
+            transition={{ duration: 0.5 }}
           />
         )}
       </Link>
@@ -101,20 +101,20 @@ export function Navbar({ navItems, className }: NavbarProps) {
 
   // Estimate width based on typical "Discord" text length next to an icon.
   // The image provided is 160x36. So aspect ratio is 160/36 = 4.44
-  // If height is 22px, width = 22 * 4.44 = ~97.7px. Let's use 98px.
-  const desktopDiscordLogoWidth = 98
-  const desktopDiscordLogoHeight = 22
+  // If height is 25px, width = 25 * 4.44 = ~111px. Let's use 110px.
+  const desktopDiscordLogoWidth = 85
+  const desktopDiscordLogoHeight = 19
 
-  // If height is 28px for mobile, width = 28 * 4.44 = ~124.4px. Let's use 124px.
-  const mobileDiscordLogoWidth = 124
-  const mobileDiscordLogoHeight = 28
+  // If height is 25px for mobile, width = 25 * 4.44 = ~111px. Let's use 110px.
+  const mobileDiscordLogoWidth = 110
+  const mobileDiscordLogoHeight = 25
 
   return (
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "py-3 bg-dark-950/80 backdrop-blur-md border-b border-dark-800/50" : "py-5",
+          "fixed top-0 left-0 right-0 z-50 py-3",
+          isScrolled ? "bg-dark-950/80 backdrop-blur-md border-b border-dark-800/50" : "",
           className,
         )}
       >
@@ -137,11 +137,11 @@ export function Navbar({ navItems, className }: NavbarProps) {
                 className="flex items-center justify-center h-8 px-1 rounded-md hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
               >
                 <Image
-                  src="/discord-logo.png"
+                  src="/discord-new-logo.png"
                   alt="Discord"
                   width={desktopDiscordLogoWidth}
                   height={desktopDiscordLogoHeight}
-                  style={{ filter: "invert(1) brightness(2)" }} // Invert to white and brighten for dark mode
+                  style={{ filter: "brightness(0) invert(1)" }}
                 />
               </a>
             </nav>
@@ -166,30 +166,24 @@ export function Navbar({ navItems, className }: NavbarProps) {
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-40 pt-20 bg-dark-950/95 backdrop-blur-md md:hidden"
           >
-            <nav className="container mx-auto px-4 py-8 flex flex-col gap-4 items-center text-center">
+            <nav className="container mx-auto px-4 py-8 flex flex-col gap-3 items-center text-center">
               {navItems.map((item, index) => renderNavLink(item, index, true))}
-
-              <div className="mt-4 w-full">
-                <a
-                  href="https://discord.gg/dCWm6xBGtM"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={cn(
-                    mobileDiscordLinkClasses,
-                    "hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 rounded-md",
-                  )}
-                  aria-label="Join Discord"
-                >
-                  <Image
-                    src="/discord-logo.png"
-                    alt="Discord"
-                    width={mobileDiscordLogoWidth}
-                    height={mobileDiscordLogoHeight}
-                    style={{ filter: "invert(1) brightness(2)" }} // Invert to white and brighten for dark mode
-                  />
-                </a>
-              </div>
+              <a
+                href="https://discord.gg/dCWm6xBGtM"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-4 py-3 rounded-md text-lg font-medium transition-colors flex items-center justify-center text-dark-200 hover:text-white hover:bg-dark-800/50 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 -mt-3"
+                aria-label="Join Discord"
+              >
+                <Image
+                  src="/discord-new-logo.png"
+                  alt="Discord"
+                  width={mobileDiscordLogoWidth}
+                  height={mobileDiscordLogoHeight}
+                  style={{ filter: "brightness(0) invert(1)" }}
+                />
+              </a>
             </nav>
           </motion.div>
         )}

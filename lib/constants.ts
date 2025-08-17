@@ -1,73 +1,209 @@
 import type { TeamMember, Workshop, AIProject } from "./types"
 
-// Updated Member Definitions with new positions
-const poojah: TeamMember = {
-  name: "Poojah Ganesan",
-  position: "Ex-President",
-  imageSrc: "/Officers/Poojah_AIS.jpg",
-  email: "pganesa4@asu.edu",
-}
-const siddhesh: TeamMember = {
-  name: "Siddhesh Badani",
-  position: "Vice President",
-  imageSrc: "/Officers/SiddheshBadani.png",
-  email: "sid13@asu.edu",
-}
-const darsh: TeamMember = {
-  name: "Darsh Chaurasia",
-  position: "President",
-  imageSrc: "/Officers/DarshChaurasia.png",
-  email: "dchauras@asu.edu",
-}
-const rajat: TeamMember = {
-  name: "Rajat Aayush Jha",
-  position: "Ex-Vice President",
-  imageSrc: "/Officers/Rajat_AIS.jpg",
-  email: "rjha16@asu.edu",
-}
-const aishwarya: TeamMember = {
-  name: "Aishwarya Srivastava",
-  position: "Vice President",
-  imageSrc: "/Officers/ash.webp",
-  email: "asriv132@asu.edu",
-}
-const gunika: TeamMember = {
-  name: "Gunika Dhingra",
-  position: "President",
-  imageSrc: "/Officers/gunika.webp",
-  email: "gdhingr1@asu.edu",
-}
-const kaustubh: TeamMember = {
-  name: "Kaustubh Harapanahalli",
-  position: "Vice President",
-  imageSrc: "/Officers/kaustubh.webp",
-  email: "kharapan@asu.edu",
-}
-const venkata: TeamMember = {
-  name: "Venkata Gunji",
-  position: "Operations Director",
-  imageSrc: "/Officers/venkata.webp",
-  email: "vgunji1@asu.edu",
-}
-const prabakaran: TeamMember = {
-  name: "Prabakaran Annadurai",
-  position: "Operations Director",
-  imageSrc: "/Officers/Prabakaran_Annadurai.png",
-  email: "pannadur@asu.edu",
-}
-const krisha: TeamMember = {
-  name: "Krisha Waghela",
-  position: "Ex-President",
-  imageSrc: "/Officers/KrishaWaghela.jpeg",
-  email: "kmwaghel@asu.edu",
-}
+export const EXECUTIVE_BOARD: TeamMember[] = [
+  {
+    name: "Darsh Chaurasia",
+    position: "President",
+    imageSrc: "/Officers/DarshChaurasia.png",
+    email: "dchaurasia@asu.edu",
+  },
+  {
+    name: "Gunika Dhingra",
+    position: "President",
+    imageSrc: "/Officers/gunika.webp",
+    email: "gdhingra@asu.edu",
+  },
+  {
+    name: "Aishwarya Srivastava",
+    position: "Director of Internal Tools",
+    imageSrc: "/Officers/ash.webp",
+    email: "asrivast@asu.edu",
+  },
+  {
+    name: "Kaustubh Harapanahalli",
+    position: "Vice President",
+    imageSrc: "/Officers/kaustubh.webp",
+    email: "kharapan@asu.edu",
+  },
+]
 
-// New Team Structure
-export const EXECUTIVE_BOARD: TeamMember[] = [darsh, gunika, siddhesh, aishwarya, kaustubh]
-export const OFFICERS: TeamMember[] = [venkata, prabakaran]
-export const AIS_ALUMNI: TeamMember[] = [poojah, rajat, krisha] // Added Krisha
+export const TECHNICAL_OFFICERS: TeamMember[] = [
+  {
+    name: "Joshua Tom",
+    position: "Technical Officer",
+    imageSrc: "/Officers/joshua.jpg",
+    email: "joshuato@asu.edu",
+  },
+  {
+    name: "Javier Ramirez",
+    position: "Technical Officer",
+    imageSrc: "/Officers/javier.jpeg",
+    email: "jcrami25@asu.edu",
+  },
+  {
+    name: "Pruthvi Nandan Janga",
+    position: "Technical Officer",
+    imageSrc: "/Officers/pruthvi.jpeg",
+    email: "pjanga@asu.edu",
+  },
+  {
+    name: "Sahil Panjwani",
+    position: "Technical Officer",
+    imageSrc: "/Officers/sahil.jpeg",
+    email: "spanjwa3@asu.edu",
+  },
+  {
+    name: "Siddharth Mehta",
+    position: "Internal Tools Officer",
+    imageSrc: "/Officers/siddharth.jpg",
+    email: "smehta74@asu.edu",
+  },
+  {
+    name: "George Badulescu",
+    position: "Internal Tools Officer",
+    imageSrc: "/Officers/george_headshot.png",
+    email: "gbadules@asu.edu",
+  },
+  {
+    name: "Asmit Datta",
+    position: "Technical Officer",
+    imageSrc: "/Officers/asmit.jpg",
+    email: "adatta18@asu.edu",
+  },
+  {
+    name: "Shreyanshi Bhatt",
+    position: "Internal Tools Officer",
+    imageSrc: "/Officers/shreyanshi.jpg",
+    email: "sbhat136@asu.edu",
+  },
+  {
+    name: "Bhavya Minesh Shah",
+    position: "Technical Officer",
+    imageSrc: "/Officers/bhavya_minesh_shah.jpg",
+    email: "bshah43@asu.edu",
+  },
+  {
+    name: "Yahia Alqurnawi",
+    position: "Internal Tools Officer",
+    imageSrc: "/Officers/yahia.jpg",
+    email: "yalqurna@asu.edu",
+  },
+  {
+    name: "Anannya Reddy Gade",
+    position: "Technical Officer",
+    imageSrc: "/Officers/anannya.jpg",
+    email: "agade4@asu.edu",
+  },
+  {
+    name: "Aaditya Jindal",
+    position: "Internal Tools Officer",
+    imageSrc: "/Officers/aaditya.jpg",
+    email: "ajinda17@asu.edu",
+  },
+  {
+    name: "Diya Shrivastava",
+    position: "Technical Officer",
+    imageSrc: "/Officers/diya.jpeg",
+    email: "dshriva6@asu.edu",
+  },
+]
 
-// ML Lab workshops data
+export const OPERATIONS_OFFICERS: TeamMember[] = [
+  {
+    name: "Siddhesh Badani",
+    position: "Outreach Officer",
+    imageSrc: "/Officers/SiddheshBadani.png",
+    email: "sbadani@asu.edu",
+  },
+  {
+    name: "Shashwat Balaji",
+    position: "Finance Officer",
+    imageSrc: "/Officers/shashwat.jpeg",
+    email: "srbalaji@asu.edu",
+  },
+  {
+    name: "Vivek Sahukar",
+    position: "Outreach Officer",
+    imageSrc: "/Officers/vivek_sahukar.jpg",
+    email: "vsahukar@asu.edu",
+  },
+  {
+    name: "Armita Tavasoli",
+    position: "Marketing Officer",
+    imageSrc: "/Officers/armita.jpeg",
+    email: "atavaso1@asu.edu",
+  },
+  {
+    name: "Arun Louis",
+    position: "Event Logistics Officer",
+    imageSrc: "/Officers/arun.jpg",
+    email: "alouis6@asu.edu",
+  },
+  {
+    name: "Subramanian Raj Narayanan",
+    position: "Event Logistics Officer",
+    imageSrc: "/Officers/subramaniam.jpg",
+    email: "srajnar2@asu.edu",
+  },
+  {
+    name: "Erick Li",
+    position: "Finance Officer",
+    imageSrc: "/Officers/erick_li.jpeg",
+    email: "erickli@asu.edu",
+  },
+  {
+    name: "Milan Tiwari",
+    position: "Event Logistics Officer",
+    imageSrc: "/Officers/milan.jpeg",
+    email: "mtiwar26@asu.edu",
+  },
+  {
+    name: "Manisha Chakraborty",
+    position: "Marketing Officer",
+    imageSrc: "/Officers/manisha.jpg",
+    email: "mchakr11@asu.edu",
+  },
+  {
+    name: "Gaurav Najpande",
+    position: "Outreach Officer",
+    imageSrc: "/Officers/gaurav.jpg",
+    email: "gnajpand@asu.edu",
+  },
+]
+
+export const AIS_ALUMNI: TeamMember[] = [
+  {
+    name: "Poojah Ganesan",
+    position: "Ex-President",
+    imageSrc: "/Officers/Poojah_AIS.jpg",
+    email: "pganesa4@asu.edu",
+  },
+  {
+    name: "Rajat Aayush Jha",
+    position: "Ex-Vice President",
+    imageSrc: "/Officers/Rajat_AIS.jpg",
+    email: "rjha16@asu.edu",
+  },
+  {
+    name: "Krisha Waghela",
+    position: "Ex-President",
+    imageSrc: "/Officers/KrishaWaghela.jpeg",
+    email: "kmwaghel@asu.edu",
+  },
+  {
+    name: "Venkata Gunji",
+    position: "Ex-Operations Director",
+    imageSrc: "/Officers/venkata.webp",
+    email: "vgunji1@asu.edu",
+  },
+  {
+    name: "Prabakaran Annadurai",
+    position: "Ex-Operations Director",
+    imageSrc: "/Officers/Prabakaran_Annadurai.png",
+    email: "pannadur@asu.edu",
+  },
+]
+
 export const ML_WORKSHOPS: Workshop[] = [
   {
     id: 1,
@@ -155,7 +291,6 @@ export const ML_WORKSHOPS: Workshop[] = [
   },
 ]
 
-// NLP Lab workshops data
 export const NLP_WORKSHOPS: Workshop[] = [
   {
     id: 1,
@@ -252,7 +387,6 @@ export const NLP_WORKSHOPS: Workshop[] = [
   },
 ]
 
-// AI Makerspace Projects data - Updated with actual project names and team members
 export const AI_MAKERSPACE_PROJECTS: AIProject[] = [
   {
     id: 1,
@@ -292,13 +426,7 @@ export const AI_MAKERSPACE_PROJECTS: AIProject[] = [
   },
 ]
 
-// Sponsors data
 export const SPONSORS = [
   { id: 1, logo: "/sponsors/Alani_Logo.png", name: "Alani Nu" },
   // Add more sponsors as needed
 ]
-
-// Deprecated: Original team structures for reference if needed during transition
-// export const CORE_TEAM: TeamMember[] = [poojah, siddhesh, darsh, rajat];
-// export const TECHNICAL_TEAM: TeamMember[] = [aishwarya, gunika, kaustubh];
-// export const OPERATIONS_TEAM: TeamMember[] = [venkata, prabakaran];

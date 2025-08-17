@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
-import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 interface ThreeDCardProps {
@@ -84,7 +83,7 @@ export function ThreeDCard({
   const actualHoverScale = isMobile ? 1 : hoverScale // No hover scaling on mobile
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
       className={cn("relative perspective w-full", containerClassName)}
       onMouseMove={handleMouseMove}
@@ -93,18 +92,16 @@ export function ThreeDCard({
         perspective: "1000px",
         width: "100%", // Ensure full width
       }}
-      whileHover={{ scale: actualHoverScale }}
-      transition={{ duration: 0.3 }}
     >
-      <motion.div
+      <div
         className={cn("relative preserve-3d w-full", className)}
         style={{
           rotateX: rotateX,
           rotateY: rotateY,
           transformStyle: "preserve-3d",
           width: "100%", // Ensure full width
+          transition: "transform 0.1s ease-out",
         }}
-        transition={{ duration: 0.1 }}
       >
         {/* Background gradient */}
         {backgroundGradient && (
@@ -144,7 +141,7 @@ export function ThreeDCard({
         >
           {children}
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   )
 }

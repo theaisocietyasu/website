@@ -2,7 +2,6 @@
 
 import { useRef } from "react"
 import { useInView } from "framer-motion"
-import { motion } from "framer-motion"
 import { Users, Award, Gift, Zap, ChevronRight, Sparkles, BarChart3 } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { ParticleBackground } from "@/components/ui/particle-background"
@@ -17,7 +16,7 @@ export function AboutMembershipSection() {
   return (
     <section
       ref={ref}
-      className="py-16 md:py-20 lg:py-32 px-4 md:px-6 relative overflow-x-hidden"
+      className="py-20 md:py-32 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative overflow-x-hidden"
       id="about-membership"
     >
       <ParticleBackground
@@ -35,8 +34,6 @@ export function AboutMembershipSection() {
         <SectionHeading
           title="About Us & Membership"
           subtitle="Join our community of passionate AI enthusiasts dedicated to nurturing knowledge and driving innovation in the field of Artificial Intelligence."
-          titleClassName="text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
-          subtitleClassName="text-base sm:text-lg"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 mb-8 md:mb-12 w-full">
@@ -46,7 +43,7 @@ export function AboutMembershipSection() {
               rotationIntensity={3}
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))"
+              backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.6), rgba(79, 70, 229, 0.4))"
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -57,13 +54,15 @@ export function AboutMembershipSection() {
                       <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 text-primary-400/70" />
                     </div>
                   </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-white">Our Mission</h3>
-                  <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mb-3"></div>
-                  <p className="text-dark-100 mb-3 text-xs md:text-sm leading-relaxed">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold mb-2 text-white text-center">
+                    Our Mission
+                  </h3>
+                  <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mb-3 mx-auto"></div>
+                  <p className="text-sm sm:text-base md:text-base mb-3 text-white leading-relaxed">
                     We are a thriving community of lifelong learners offering a platform for students to explore AI
                     through workshops, tutorials, and hands-on projects.
                   </p>
-                  <p className="text-dark-200 mb-4 text-xs md:text-sm leading-relaxed">
+                  <p className="text-sm sm:text-base md:text-base mb-4 text-white leading-relaxed">
                     Our goal is to make AI education accessible to all ASU students, regardless of background or major.
                   </p>
                   <div className="mt-auto flex flex-col sm:flex-row gap-3 md:gap-4 flex-wrap">
@@ -79,7 +78,7 @@ export function AboutMembershipSection() {
                       }}
                     >
                       <Zap className="mr-1 h-3 w-3 flex-shrink-0" />
-                      <span className="whitespace-nowrap text-xs">Join Community</span>
+                      <span className="whitespace-nowrap text-sm sm:text-base">Join Community</span>
                       <ChevronRight className="ml-1 h-3 w-3 transition-transform duration-300 group-hover:translate-x-1 flex-shrink-0" />
                     </a>
                   </div>
@@ -94,7 +93,7 @@ export function AboutMembershipSection() {
               rotationIntensity={3}
               glareIntensity={0.15}
               hoverScale={1.02}
-              backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))"
+              backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.6), rgba(109, 40, 217, 0.4))"
               className="h-full w-full"
             >
               <Card variant="glass" className="h-full w-full">
@@ -105,8 +104,10 @@ export function AboutMembershipSection() {
                       <BarChart3 className="h-5 w-5 sm:h-6 sm:w-6 text-secondary-400/70" />
                     </div>
                   </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">By The Numbers</h3>
-                  <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-secondary-500 to-accent-500 rounded-full mb-4"></div>
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-3 text-center">
+                    By The Numbers
+                  </h3>
+                  <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-secondary-500 to-accent-500 rounded-full mb-4 mx-auto"></div>
                   <div className="space-y-6 sm:space-y-8 mt-2">
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg bg-primary-900/50 flex items-center justify-center">
@@ -114,7 +115,7 @@ export function AboutMembershipSection() {
                       </div>
                       <div>
                         <p className="text-lg sm:text-xl font-bold text-white">350+</p>
-                        <p className="text-dark-300 text-xs">General Members</p>
+                        <p className="text-sm sm:text-base md:text-base text-white">General Members</p>
                       </div>
                     </div>
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -123,7 +124,7 @@ export function AboutMembershipSection() {
                       </div>
                       <div>
                         <p className="text-lg sm:text-xl font-bold text-white">30+</p>
-                        <p className="text-dark-300 text-xs">Events Per Year</p>
+                        <p className="text-sm sm:text-base md:text-base text-white">Events Per Year</p>
                       </div>
                     </div>
                   </div>
@@ -142,29 +143,31 @@ export function AboutMembershipSection() {
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.35), rgba(79, 70, 229, 0.15))"
+                backgroundGradient="linear-gradient(to bottom right, rgba(99, 102, 241, 0.6), rgba(79, 70, 229, 0.4))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
-                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
+                  <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-center h-[280px] sm:h-[340px] md:h-[360px] relative">
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/20 to-transparent"></div>
                       <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
                         <Award className="h-5 w-5 sm:h-6 sm:w-6 text-primary-400/70" />
                       </div>
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">Officer</h3>
-                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-primary-500 to-dark-500 rounded-full mb-4"></div>
-                    <div className="space-y-4">
+                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-3 text-center">
+                      Officer
+                    </h3>
+                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-primary-500 to-dark-500 rounded-full mb-4 mx-auto"></div>
+                    <div className="space-y-3">
                       <div>
-                        <p className="text-primary-300 font-medium mb-1 text-sm">How:</p>
-                        <p className="text-dark-100 text-xs leading-relaxed">
+                        <p className="text-primary-300 font-medium mb-1 text-sm sm:text-base md:text-base">How:</p>
+                        <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
                           Apply through our website. Applications are reviewed on a rolling basis.
                         </p>
                       </div>
                       <div>
-                        <p className="text-primary-300 font-medium mb-1 text-sm">Why:</p>
-                        <p className="text-dark-100 text-xs leading-relaxed">
+                        <p className="text-primary-300 font-medium mb-1 text-sm sm:text-base md:text-base">Why:</p>
+                        <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
                           Access to funding, alumni network, and opportunities with partner research labs.
                         </p>
                       </div>
@@ -185,30 +188,32 @@ export function AboutMembershipSection() {
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.35), rgba(109, 40, 217, 0.15))"
+                backgroundGradient="linear-gradient(to bottom right, rgba(139, 92, 246, 0.6), rgba(109, 40, 217, 0.4))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
-                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
+                  <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-center h-[280px] sm:h-[340px] md:h-[360px] relative">
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-secondary-500/20 to-transparent"></div>
                       <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
                         <Users className="h-5 w-5 sm:h-6 sm:w-6 text-secondary-400/70" />
                       </div>
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">General Member</h3>
-                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-secondary-500 to-dark-500 rounded-full mb-4"></div>
-                    <div className="space-y-4">
+                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-3 text-center">
+                      Member
+                    </h3>
+                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-secondary-500 to-dark-500 rounded-full mb-4 mx-auto"></div>
+                    <div className="space-y-3">
                       <div>
-                        <p className="text-secondary-300 font-medium mb-1 text-sm">How:</p>
-                        <p className="text-dark-100 text-xs leading-relaxed">
-                          Join through Sun Devil Central and our Discord. Links available at the bottom of the page.
+                        <p className="text-secondary-300 font-medium mb-1 text-sm sm:text-base md:text-base">How:</p>
+                        <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
+                          Join through Sun Devil Central and Discord. Links below.
                         </p>
                       </div>
                       <div>
-                        <p className="text-secondary-300 font-medium mb-1 text-sm">Why:</p>
-                        <p className="text-dark-100 text-xs leading-relaxed">
-                          Access to workshops, events, and resume book placement with consistent participation.
+                        <p className="text-secondary-300 font-medium mb-1 text-sm sm:text-base md:text-base">Why:</p>
+                        <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
+                          Access to workshops, events, and resume book with participation.
                         </p>
                       </div>
                     </div>
@@ -228,32 +233,32 @@ export function AboutMembershipSection() {
                 rotationIntensity={3}
                 glareIntensity={0.15}
                 hoverScale={1.02}
-                backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.35), rgba(219, 39, 119, 0.15))"
+                backgroundGradient="linear-gradient(to bottom right, rgba(236, 72, 153, 0.6), rgba(219, 39, 119, 0.4))"
                 className="h-full w-full"
               >
                 <Card variant="glass" className="h-full w-full">
-                  <div className="p-3 sm:p-5 md:p-8 flex flex-col min-h-[250px] sm:min-h-[300px] md:min-h-[350px] relative overflow-y-auto">
+                  <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-center h-[280px] sm:h-[340px] md:h-[360px] relative">
                     <div className="absolute top-0 right-0 w-20 sm:w-24 h-20 sm:h-24 pointer-events-none">
                       <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-accent-500/20 to-transparent"></div>
                       <div className="absolute top-3 sm:top-4 right-3 sm:right-4">
                         <Gift className="h-5 w-5 sm:h-6 sm:w-6 text-accent-400/70" />
                       </div>
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-3">Sponsor</h3>
-                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-accent-500 to-dark-500 rounded-full mb-4"></div>
-                    <div className="space-y-4">
+                    <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-3 text-center">
+                      Sponsor
+                    </h3>
+                    <div className="w-12 sm:w-16 h-1 bg-gradient-to-r from-accent-500 to-dark-500 rounded-full mb-4 mx-auto"></div>
+                    <div className="space-y-3">
                       <div>
-                        <p className="text-accent-300 font-medium mb-1 text-sm">How:</p>
-                        <p className="text-dark-100 text-xs leading-relaxed">
-                          Partner with us by contacting us via email. Contact information available at the bottom of the
-                          page.
+                        <p className="text-accent-300 font-medium mb-1 text-sm sm:text-base md:text-base">How:</p>
+                        <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
+                          Contact us via email. Info in footer.
                         </p>
                       </div>
                       <div>
-                        <p className="text-accent-300 font-medium mb-1 text-sm">Why:</p>
-                        <p className="text-dark-100 text-xs leading-relaxed">
-                          Visibility in our community, exclusive events access, and our curated AI/ML talent resume
-                          book.
+                        <p className="text-accent-300 font-medium mb-1 text-sm sm:text-base md:text-base">Why:</p>
+                        <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
+                          Community visibility, exclusive events, and curated talent resume book.
                         </p>
                       </div>
                     </div>
@@ -269,16 +274,11 @@ export function AboutMembershipSection() {
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.8 }}
-          className="text-center max-w-3xl mx-auto"
-        >
-          <p className="text-primary-400 font-medium text-xs md:text-sm">
+        <div className="text-center max-w-3xl mx-auto">
+          <p className="text-primary-400 font-medium text-sm sm:text-base">
             Join us for an engaging, hands-on learning experience and valuable networking opportunities!
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

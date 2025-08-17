@@ -3,46 +3,24 @@ import { cn } from "@/lib/utils"
 interface SectionHeadingProps {
   title: string
   subtitle?: string
-  alignment?: "left" | "center" | "right"
+  className?: string
   titleClassName?: string
   subtitleClassName?: string
-  decorative?: boolean
 }
 
-export function SectionHeading({
-  title,
-  subtitle,
-  alignment = "center",
-  titleClassName,
-  subtitleClassName,
-  decorative = true,
-}: SectionHeadingProps) {
-  const alignmentClasses = {
-    left: "text-left",
-    center: "text-center mx-auto",
-    right: "text-right ml-auto",
-  }
-
+export function SectionHeading({ title, subtitle, className, titleClassName, subtitleClassName }: SectionHeadingProps) {
   return (
-    <div className={cn("max-w-3xl mb-16", alignmentClasses[alignment])}>
+    <div className={cn("text-center mb-12 md:mb-16", className)}>
       <h2
         className={cn(
-          "text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 relative inline-block",
+          "text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-white via-white to-primary-200 bg-clip-text text-transparent mb-4",
           titleClassName,
         )}
       >
-        <span className="gradient-text">{title}</span>
-        {decorative && (
-          <span
-            className="absolute -bottom-2 left-0 w-1/3 h-1 rounded-full"
-            style={{
-              background: "linear-gradient(to right, var(--primary-500), var(--secondary-600))",
-            }}
-          ></span>
-        )}
+        {title}
       </h2>
       {subtitle && (
-        <p className={cn("text-dark-200 text-lg md:text-xl max-w-2xl", alignmentClasses[alignment], subtitleClassName)}>
+        <p className={cn("text-lg md:text-xl text-dark-200 max-w-3xl mx-auto leading-relaxed", subtitleClassName)}>
           {subtitle}
         </p>
       )}

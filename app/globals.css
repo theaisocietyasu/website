@@ -51,6 +51,13 @@
   --dark-800: #27272a;
   --dark-900: #18181b;
   --dark-950: #09090b;
+
+  /* Gradient Animation Variables */
+  --animate-first: moveVertical 30s ease infinite;
+  --animate-second: moveInCircle 20s reverse infinite;
+  --animate-third: moveInCircle 40s linear infinite;
+  --animate-fourth: moveHorizontal 40s ease infinite;
+  --animate-fifth: moveInCircle 20s ease infinite;
 }
 
 @layer base {
@@ -117,7 +124,65 @@
 }
 
 @layer utilities {
-  /* Animations */
+  /* Gradient Background Animations */
+  @keyframes moveHorizontal {
+    0% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+    50% {
+      transform: translateX(50%) translateY(10%);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-10%);
+    }
+  }
+
+  @keyframes moveInCircle {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes moveVertical {
+    0% {
+      transform: translateY(-50%);
+    }
+    50% {
+      transform: translateY(50%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  /* Animation classes for gradient background */
+  .animate-first {
+    animation: var(--animate-first);
+  }
+
+  .animate-second {
+    animation: var(--animate-second);
+  }
+
+  .animate-third {
+    animation: var(--animate-third);
+  }
+
+  .animate-fourth {
+    animation: var(--animate-fourth);
+  }
+
+  .animate-fifth {
+    animation: var(--animate-fifth);
+  }
+
+  /* Existing animations */
   @keyframes float {
     0% {
       transform: translateY(0px) translateX(0px);
@@ -285,43 +350,12 @@
     overflow: hidden;
   }
 
-  .hero-bg::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.15), rgba(99, 102, 241, 0) 50%),
-      radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.1), rgba(99, 102, 241, 0) 50%);
-    z-index: -1;
-  }
-
-  /* Hero to About transition */
-  .hero-about-transition {
-    position: relative;
-  }
-
-  .hero-about-transition::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 150px;
-    background: linear-gradient(to top, var(--dark-950) 10%, transparent 100%);
-    pointer-events: none;
-    z-index: 1;
-  }
-
   /* Grid patterns */
   .grid-pattern {
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 20px 20px;
   }
-
-  /* Floating elements */
 
   /* Team section */
   .executive-members-section {

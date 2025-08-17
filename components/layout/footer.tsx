@@ -1,140 +1,138 @@
-"use client"
-
-import Link from "next/link"
 import Image from "next/image"
-import { Github, Instagram, Linkedin, ExternalLink } from "lucide-react"
-import { motion } from "framer-motion"
+import { Instagram, Linkedin, Github, ExternalLink, Youtube } from "lucide-react"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
-
   return (
-    <footer className="mt-auto py-8 px-4 md:px-6 bg-dark-950/90 backdrop-blur-md border-t border-dark-800/50">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and description */}
-          <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <Image src="/logo.png" alt="The AI Society Logo" width={32} height={32} className="object-contain" />
-              </div>
-              <span className="font-heading font-bold text-lg text-white">The AI Society</span>
-            </Link>
-            <p className="text-dark-300 text-sm mb-4 max-w-md">
+    <footer className="bg-gradient-to-b from-dark-900 to-dark-950 border-t border-dark-800/50 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-500/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/3 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary-500/3 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="container mx-auto px-6 md:px-8 lg:px-12 py-12 md:py-16 relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-center md:text-left gap-8 md:gap-12">
+          {/* Left section - Logo, title, description, and social links */}
+          <div className="flex-1 space-y-6">
+            <div className="flex items-center justify-center md:justify-start gap-3">
+              <Image src="/logo.png" alt="The AI Society Logo" width={40} height={40} className="rounded-lg" />
+              <h2 className="text-2xl md:text-3xl font-bold text-white">The AI Society</h2>
+            </div>
+
+            <p className="text-dark-300 text-sm md:text-base leading-relaxed max-w-md mx-auto md:mx-0">
               Arizona State University's premier AI club dedicated to nurturing knowledge and driving innovation in the
               field of Artificial Intelligence.
             </p>
-            <div className="flex space-x-4">
-              <motion.a
+
+            <div className="flex justify-center md:justify-start gap-4">
+              <a
                 href="https://www.instagram.com/theaisociety.asu/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark-400 hover:text-white transition-colors"
-                aria-label="Instagram"
-                whileHover={{ y: -3 }}
+                className="text-dark-400 hover:text-primary-400 transition-colors duration-300"
+                aria-label="Follow us on Instagram"
               >
-                <Instagram size={20} />
-              </motion.a>
-              <motion.a
-                href="https://www.linkedin.com/company/theaisociety-asu/"
+                <Instagram size={24} />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/theaisocietyasu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-                whileHover={{ y: -3 }}
+                className="text-dark-400 hover:text-primary-400 transition-colors duration-300"
+                aria-label="Connect with us on LinkedIn"
               >
-                <Linkedin size={20} />
-              </motion.a>
-              <motion.a
+                <Linkedin size={24} />
+              </a>
+              <a
                 href="https://github.com/theaisocietyasu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark-400 hover:text-white transition-colors"
-                aria-label="GitHub"
-                whileHover={{ y: -3 }}
+                className="text-dark-400 hover:text-primary-400 transition-colors duration-300"
+                aria-label="View our projects on GitHub"
               >
-                <Github size={20} />
-              </motion.a>
-              <motion.a
-                href="https://asu.campuslabs.com/engage/organization/the-ai-society"
+                <Github size={24} />
+              </a>
+              <a
+                href="https://www.youtube.com/@TheAISocietyASU/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-dark-400 hover:text-white transition-colors"
-                aria-label="Sun Devil Central"
-                whileHover={{ y: -3 }}
+                className="text-dark-400 hover:text-primary-400 transition-colors duration-300"
+                aria-label="Subscribe to our YouTube channel"
               >
-                <ExternalLink size={20} />
-              </motion.a>
+                <Youtube size={24} />
+              </a>
+              <a
+                href="https://discord.gg/dCWm6xBGtM"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-dark-400 hover:text-primary-400 transition-colors duration-300"
+                aria-label="Join our Discord community"
+              >
+                <ExternalLink size={24} />
+              </a>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-white font-medium text-lg mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-dark-300 hover:text-white transition-colors text-sm">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="text-dark-300 hover:text-white transition-colors text-sm">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <a
-                  href="https://asu.campuslabs.com/engage/organization/the-ai-society/events"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark-300 hover:text-white transition-colors text-sm"
-                >
-                  Events
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://discord.gg/dCWm6xBGtM"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark-300 hover:text-white transition-colors text-sm"
-                >
-                  Join Discord
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* Right section - Quick Links and Contact */}
+          <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16">
+            {/* Quick Links */}
+            <div className="min-w-[120px]">
+              <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href="/" className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm">
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/projects"
+                    className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
+                  >
+                    Projects
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#team"
+                    className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
+                  >
+                    Events
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://discord.gg/dCWm6xBGtM"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
+                  >
+                    Join Discord
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="text-white font-medium text-lg mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li className="text-dark-300 text-sm">
+            {/* Contact */}
+            <div className="min-w-[200px]">
+              <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
+              <div className="space-y-2">
                 <a
-                  href="mailto:theaisociety.asu@gmail.com"
-                  className="text-dark-300 hover:text-white transition-colors"
+                  href="mailto:theaisociety@asu.edu"
+                  className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm block"
                 >
-                  theaisociety.asu@gmail.com
+                  theaisociety@asu.edu
                 </a>
-              </li>
-              <li className="text-dark-300 text-sm">
-                <a
-                  href="https://asu.campuslabs.com/engage/organization/the-ai-society"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark-300 hover:text-white transition-colors"
-                >
-                  Sun Devil Central
-                </a>
-              </li>
-            </ul>
+                <p className="text-dark-300 text-sm">Sun Devil Central</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-dark-800/20">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-dark-400 text-sm">© {currentYear} The AI Society at ASU. All rights reserved.</p>
-            <p className="text-dark-500 text-xs mt-2 md:mt-0">Built with ❤️ by The AI Society team</p>
+        {/* Bottom section */}
+        <div className="border-t border-dark-800/50 mt-12 pt-8 text-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-dark-400 text-sm">© 2025 The AI Society at ASU. All rights reserved.</p>
+            <p className="text-dark-400 text-sm">Built with ❤️ by The AI Society team</p>
           </div>
         </div>
       </div>
