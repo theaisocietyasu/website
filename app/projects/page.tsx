@@ -15,7 +15,7 @@ const navItems: NavItem[] = [
   { name: "Home", link: "/", icon: <IconHome className="h-6 w-6" /> },
   { name: "Projects", link: "/projects", icon: <IconUsers className="h-6 w-6" /> },
   {
-    name: "Events",
+    name: "SDC",
     link: "https://asu.campuslabs.com/engage/organization/the-ai-society/events",
     icon: <IconCalendar className="h-6 w-6" />,
   },
