@@ -77,7 +77,7 @@ export function ContactSection() {
                   <div className="p-3 sm:p-4 md:p-5 flex flex-col justify-center h-[200px] sm:h-[240px] md:h-[260px] text-center">
                     <div className="flex items-center justify-center mb-4">
                       <div className="p-3 rounded-full bg-primary-900/30 border border-primary-500/30">
-                        <method.icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary-400" />
+                        <method.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
                       </div>
                     </div>
 
