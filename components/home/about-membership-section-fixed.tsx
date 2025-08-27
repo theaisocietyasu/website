@@ -67,7 +67,7 @@ export function AboutMembershipSection() {
                   </p>
                   <div className="mt-auto flex flex-col sm:flex-row gap-3 md:gap-4 flex-wrap">
                     <a
-                      href="https://asu.campuslabs.com/engage/organization/the-ai-society"
+                      href="https://sundevilcentral.eoss.asu.edu/AIS/club_signup"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full sm:max-w-[180px] bg-primary-600 hover:bg-primary-700 text-white rounded-lg px-4 py-2 flex items-center justify-center group"

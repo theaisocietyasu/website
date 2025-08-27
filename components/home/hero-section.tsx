@@ -29,7 +29,7 @@ export function HeroSection() {
       icon: <Youtube size={30} style={{ color: "#FF0000" }} />,
     },
     {
-      href: "https://asu.campuslabs.com/engage/organization/the-ai-society",
+      href: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
       label: "Sun Devil Central",
       icon: <ExternalLink size={30} style={{ color: "#FFC627" }} />,
     },

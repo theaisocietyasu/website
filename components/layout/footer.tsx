@@ -61,7 +61,7 @@ export function Footer() {
                 <Youtube size={24} />
               </a>
               <a
-                href="https://discord.gg/dCWm6xBGtM"
+                href="https://sundevilcentral.eoss.asu.edu/AIS/club_signup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-dark-400 hover:text-primary-400 transition-colors duration-300"
@@ -122,7 +122,14 @@ export function Footer() {
                 >
                   theaisociety@asu.edu
                 </a>
-                <p className="text-dark-300 text-sm">Sun Devil Central</p>
+               <a
+                    href="https://sundevilcentral.eoss.asu.edu/AIS/club_signup"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
+                  >
+                    Sun Devil Central
+                  </a>
               </div>
             </div>
           </div>

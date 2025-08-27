@@ -30,7 +30,7 @@ const contactMethods = [
     icon: ExternalLink,
     description: "Visit our official ASU organization page for more information.",
     action: "Visit Page",
-    href: "https://sundevilcentral.asu.edu/organization/aisociety",
+    href: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
     gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.5), rgba(236, 72, 153, 0.35))", // Red/Pink
   },
 ]

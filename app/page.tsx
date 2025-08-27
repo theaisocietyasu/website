@@ -24,7 +24,7 @@ const navItems: NavItem[] = [
   },
   {
     name: "SDC",
-    link: "https://asu.campuslabs.com/engage/organization/the-ai-society/events",
+    link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
     icon: <IconCalendar className="h-6 w-6" />,
   },
 ]
