@@ -106,6 +106,12 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     imageSrc: "/Officers/diya.jpeg",
     email: "dshriva6@asu.edu",
   },
+    {
+    name: "Gunbir Singh",
+    position: "Internal Tools Officer",
+    imageSrc: "/Officers/gunbir.png",
+    email: "gsing136@gmail.com",
+  },
 ]
 
 export const OPERATIONS_OFFICERS: TeamMember[] = [
@@ -160,7 +166,7 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
   {
     name: "Manisha Chakraborty",
     position: "Marketing Officer",
-    imageSrc: "/Officers/manisha.jpg",
+    imageSrc: "/Officers/manisha.png",
     email: "mchakr11@asu.edu",
   },
   {
