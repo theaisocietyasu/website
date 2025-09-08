@@ -14,6 +14,7 @@ import type { NavItem } from "@/lib/types"
 const navItems: NavItem[] = [
   { name: "Home", link: "/", icon: <IconHome className="h-6 w-6" /> },
   { name: "Projects", link: "/projects", icon: <IconUsers className="h-6 w-6" /> },
+  { name: "Events", link: "/events", icon: <IconCalendar className="h-6 w-6" /> },
   {
     name: "SDC",
     link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",

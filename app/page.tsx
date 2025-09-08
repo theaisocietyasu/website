@@ -23,6 +23,11 @@ const navItems: NavItem[] = [
     icon: <IconUsers className="h-6 w-6" />,
   },
   {
+    name: "Events",
+    link: "/events",
+    icon: <IconCalendar className="h-6 w-6" />,
+  },
+  {
     name: "SDC",
     link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
     icon: <IconCalendar className="h-6 w-6" />,
