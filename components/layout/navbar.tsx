@@ -35,11 +35,11 @@ export function Navbar({ navItems, className }: NavbarProps) {
       pathname === item.link ||
       (pathname.startsWith("/projects") && item.link === "/projects") ||
       (pathname.startsWith("/ml_lab") && item.link === "/projects") ||
-      (pathname.startsWith("/nlp_lab") && item.link === "/projects")
+      (pathname.startsWith("/nlp_lab") && item.link === "/projects") ||
+      (pathname.startsWith("/events") && item.link === "/events")
 
     const isExternal = item.link.startsWith("http")
-    const isEvents = item.name.toLowerCase() === "events"
-    const shouldOpenNewTab = isExternal || isEvents
+    const shouldOpenNewTab = isExternal
 
     const navLinkClassName = cn(
       isMobile
@@ -114,7 +114,7 @@ export function Navbar({ navItems, className }: NavbarProps) {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 py-3",
-          isScrolled ? "bg-dark-950/80 backdrop-blur-md border-b border-dark-800/50" : "",
+          isScrolled ? "bg-dark-950/80 backdrop-blur-md" : "",
           className,
         )}
       >
