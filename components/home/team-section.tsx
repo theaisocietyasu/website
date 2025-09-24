@@ -3,7 +3,7 @@
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { useInView } from "framer-motion"
-import { Download, ChevronDown, UserCheck, History, Code, Settings, Mail } from "lucide-react"
+import { Download, ChevronDown, UserCheck, History, Code, Settings, Mail, Linkedin } from "lucide-react"
 import FileSaver from "file-saver"
 import * as XLSX from "xlsx"
 import jsPDF from "jspdf"
@@ -14,7 +14,7 @@ import { ThreeDCard } from "@/components/ui/3d-card"
 import { Card } from "@/components/ui/card"
 import type { TeamMember } from "@/lib/types"
 
-function ExecutiveMemberCard({ name, position, imageSrc, email }: TeamMember) {
+function ExecutiveMemberCard({ name, position, imageSrc, email, linkedin }: TeamMember) {
   const [emailCopied, setEmailCopied] = useState(false)
   const handleEmailClick = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -22,6 +22,13 @@ function ExecutiveMemberCard({ name, position, imageSrc, email }: TeamMember) {
       navigator.clipboard.writeText(email)
       setEmailCopied(true)
       setTimeout(() => setEmailCopied(false), 2000) // Reset after 2 seconds
+    }
+  }
+
+  const handleLinkedInClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (linkedin) {
+      window.open(linkedin, '_blank', 'noopener,noreferrer')
     }
   }
 
@@ -54,17 +61,26 @@ function ExecutiveMemberCard({ name, position, imageSrc, email }: TeamMember) {
             <p className="text-dark-300 text-xs sm:text-sm md:text-base leading-relaxed text-center px-1">{position}</p>
           </div>
 
-          {/* Fixed position email button at bottom - centered on mobile */}
-          <div className="flex justify-center items-center pb-2 w-full">
+          {/* Fixed position social buttons at bottom - centered on mobile */}
+          <div className="flex justify-center items-center gap-3 pb-2 w-full">
             {email && (
               <button
                 onClick={handleEmailClick}
-                className={`text-sm sm:text-base opacity-70 group-hover:opacity-100 transition-all duration-300 hover:text-primary-300 flex items-center justify-center gap-1 mx-auto ${
+                className={`text-sm sm:text-base opacity-70 group-hover:opacity-100 transition-all duration-300 hover:text-primary-300 flex items-center justify-center gap-1 ${
                   emailCopied ? "text-green-400" : "text-primary-400"
                 }`}
                 title={emailCopied ? "Email copied!" : `Copy email: ${email}`}
               >
                 <Mail size={16} className="inline-block" />
+              </button>
+            )}
+            {linkedin && (
+              <button
+                onClick={handleLinkedInClick}
+                className="text-sm sm:text-base opacity-70 group-hover:opacity-100 transition-all duration-300 hover:text-blue-400 flex items-center justify-center gap-1 text-blue-400"
+                title="View LinkedIn profile"
+              >
+                <Linkedin size={16} className="inline-block" />
               </button>
             )}
           </div>
@@ -183,6 +199,7 @@ export function TeamSection() {
               position={member.position}
               imageSrc={member.imageSrc}
               email={member.email}
+              linkedin={member.linkedin}
             />
           </div>
         ))}

@@ -14,6 +14,7 @@ export interface TeamMember {
   position: string
   imageSrc: string
   email: string
+  linkedin?: string
 }
 
 // Workshop types
