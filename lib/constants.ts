@@ -3,14 +3,14 @@ import type { TeamMember, Workshop, AIProject } from "./types"
 export const EXECUTIVE_BOARD: TeamMember[] = [
   {
     name: "Darsh Chaurasia",
-    position: "President",
+    position: "Co-President",
     imageSrc: "/Officers/DarshChaurasia.png",
     email: "dchaurasia@asu.edu",
     linkedin: "https://www.linkedin.com/in/darshchaurasia/",
   },
   {
     name: "Gunika Dhingra",
-    position: "President",
+    position: "Co-President",
     imageSrc: "/Officers/gunika.webp",
     email: "gdhingra@asu.edu",
     linkedin: "https://www.linkedin.com/in/gunika-dhingra/",
