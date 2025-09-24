@@ -50,7 +50,7 @@ function NotionEmbed() {
     <div className="relative w-full">
       {isLoading && <SkeletonLoader />}
       <iframe
-        src="https://theaisociety.notion.site/ebd/26a8867868b48066beabc17d1907a829"
+        src="https://theaisociety.notion.site/ebd/2678867868b4806e8ce0e81e94f95b99?v=2678867868b481f18a38000c715b632d"
         width="100%"
         height="600"
         className={`rounded-xl border border-dark-800/50 transition-opacity duration-500 ${
