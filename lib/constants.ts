@@ -16,18 +16,32 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/gunika-dhingra/",
   },
   {
-    name: "Aishwarya Srivastava",
-    position: "Director of Internal Tools",
-    imageSrc: "/Officers/ash.webp",
-    email: "asrivast@asu.edu",
-    linkedin: "https://www.linkedin.com/in/ashworks",
-  },
-  {
     name: "Kaustubh Harapanahalli",
     position: "Vice President",
     imageSrc: "/Officers/kaustubh.webp",
     email: "kharapan@asu.edu",
     linkedin: "https://www.linkedin.com/in/kaustubhharapanahalli/",
+  },
+  {
+    name: "Aishwarya Srivastava",
+    position: "Director, Internal Tools",
+    imageSrc: "/Officers/ash.webp",
+    email: "asrivast@asu.edu",
+    linkedin: "https://www.linkedin.com/in/ashworks",
+  },
+  {
+    name: "Siddharth Mehta",
+    position: "Director, Special Events",
+    imageSrc: "/Officers/siddharth.jpg",
+    email: "smehta74@asu.edu",
+    linkedin: "https://www.linkedin.com/in/siddharthasu",
+  },
+  {
+    name: "Arun Louis",
+    position: "Director, Event Logistics",
+    imageSrc: "/Officers/arun.jpg",
+    email: "alouis6@asu.edu",
+    linkedin: "https://www.linkedin.com/in/arunlouis17",
   },
 ]
 
@@ -59,13 +73,6 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     imageSrc: "/Officers/sahil.jpeg",
     email: "spanjwa3@asu.edu",
     linkedin: "https://www.linkedin.com/in/pansahi/",
-  },
-  {
-    name: "Siddharth Mehta",
-    position: "Internal Tools Officer",
-    imageSrc: "/Officers/siddharth.jpg",
-    email: "smehta74@asu.edu",
-    linkedin: "https://www.linkedin.com/in/siddharthasu",
   },
   {
     name: "George Badulescu",
@@ -155,13 +162,6 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/gauravnajpande/",
   },
   {
-    name: "Arun Louis",
-    position: "Event Logistics Officer",
-    imageSrc: "/Officers/arun.jpg",
-    email: "alouis6@asu.edu",
-    linkedin: "https://www.linkedin.com/in/arunlouis17",
-  },
-  {
     name: "Manisha Chakraborty",
     position: "Marketing Officer",
     imageSrc: "/Officers/manisha.png",
@@ -222,31 +222,31 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
 export const AIS_ALUMNI: TeamMember[] = [
   {
     name: "Poojah Ganesan",
-    position: "Ex-President",
+    position: "Ex President",
     imageSrc: "/Officers/Poojah_AIS.jpg",
     email: "pganesa4@asu.edu",
   },
   {
     name: "Rajat Aayush Jha",
-    position: "Ex-Vice President",
+    position: "Ex Vice President",
     imageSrc: "/Officers/Rajat_AIS.jpg",
     email: "rjha16@asu.edu",
   },
   {
     name: "Krisha Waghela",
-    position: "Ex-President",
+    position: "Ex President",
     imageSrc: "/Officers/KrishaWaghela.jpeg",
     email: "kmwaghel@asu.edu",
   },
   {
     name: "Venkata Gunji",
-    position: "Ex-Operations Director",
+    position: "Ex Operations Director",
     imageSrc: "/Officers/venkata.webp",
     email: "vgunji1@asu.edu",
   },
   {
     name: "Prabakaran Annadurai",
-    position: "Ex-Operations Director",
+    position: "Ex Operations Director",
     imageSrc: "/Officers/Prabakaran_Annadurai.png",
     email: "pannadur@asu.edu",
   },
