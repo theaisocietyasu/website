@@ -14,28 +14,16 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     email: "gdhingra@asu.edu",
   },
   {
-    name: "Kaustubh Harapanahalli",
-    position: "Vice President",
-    imageSrc: "/Officers/kaustubh.webp",
-    email: "kharapan@asu.edu",
-  },
-  {
-    name: "Siddharth Mehta",
-    position: "Director - Special Events",
-    imageSrc: "/Officers/siddharth.jpg",
-    email: "smehta74@asu.edu",
-  },
-  {
     name: "Aishwarya Srivastava",
     position: "Director of Internal Tools",
     imageSrc: "/Officers/ash.webp",
     email: "asrivast@asu.edu",
   },
   {
-    name: "Arun Louis",
-    position: "Director - Event Logistics",
-    imageSrc: "/Officers/arun.jpg",
-    email: "alouis6@asu.edu",
+    name: "Kaustubh Harapanahalli",
+    position: "Vice President",
+    imageSrc: "/Officers/kaustubh.webp",
+    email: "kharapan@asu.edu",
   },
 ]
 
@@ -63,6 +51,12 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     position: "Technical Officer",
     imageSrc: "/Officers/sahil.jpeg",
     email: "spanjwa3@asu.edu",
+  },
+  {
+    name: "Siddharth Mehta",
+    position: "Internal Tools Officer",
+    imageSrc: "/Officers/siddharth.jpg",
+    email: "smehta74@asu.edu",
   },
   {
     name: "George Badulescu",
@@ -144,6 +138,12 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
     position: "Marketing Officer",
     imageSrc: "/Officers/armita.jpeg",
     email: "atavaso1@asu.edu",
+  },
+  {
+    name: "Arun Louis",
+    position: "Event Logistics Officer",
+    imageSrc: "/Officers/arun.jpg",
+    email: "alouis6@asu.edu",
   },
   {
     name: "Subramanian Raj Narayanan",
