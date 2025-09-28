@@ -7,7 +7,7 @@ import { Download, ChevronDown, UserCheck, History, Code, Settings, Mail, Linked
 import FileSaver from "file-saver"
 import * as XLSX from "xlsx"
 import jsPDF from "jspdf"
-import { EXECUTIVE_BOARD, TECHNICAL_OFFICERS, OPERATIONS_OFFICERS, AIS_ALUMNI } from "@/lib/constants"
+import { EXECUTIVE_BOARD, TECHNICAL_OFFICERS, SOFTWARE_DEVELOPERS, OPERATIONS_OFFICERS, AIS_ALUMNI } from "@/lib/constants"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Spotlight } from "@/components/ui/spotlight"
 import { ThreeDCard } from "@/components/ui/3d-card"
@@ -42,27 +42,39 @@ function ExecutiveMemberCard({ name, position, imageSrc, email, linkedin }: Team
       className="h-full"
     >
       <Card variant="glass" className="h-full">
-        <div className="p-2 flex flex-col h-[300px] sm:h-[320px] md:h-[280px] relative group justify-between">
+        <div className="p-4 flex flex-col h-[300px] sm:h-[320px] md:h-[280px] relative group">
           <div className="absolute top-0 right-0 w-24 h-24 pointer-events-none">
             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-primary-500/10 to-transparent"></div>
           </div>
 
-          {/* Main content area with consistent spacing */}
-          <div className="flex flex-col items-center text-center flex-1 justify-center px-1">
+          {/* Image section - fixed height */}
+          <div className="flex justify-center items-center mb-4 h-20">
             <img
               src={imageSrc || "/placeholder.svg?height=120&width=120&query=person"}
               alt={name}
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover mb-4"
+              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover"
             />
-            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white mb-3 w-full text-center leading-tight">
-              {name}
-            </h3>
-            <div className="w-10 h-0.5 bg-gradient-to-r from-primary-500/50 to-secondary-500/50 rounded-full mx-auto mb-3"></div>
-            <p className="text-dark-300 text-xs sm:text-sm md:text-base leading-relaxed text-center px-1">{position}</p>
           </div>
 
-          {/* Fixed position social buttons at bottom - centered on mobile */}
-          <div className="flex justify-center items-center gap-3 pb-2 w-full">
+          {/* Text content - structured for alignment */}
+          <div className="flex flex-col items-center text-center flex-1 min-h-0">
+            {/* Name section - fixed height */}
+            <div className="h-16 flex items-center justify-center w-full mb-2">
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white text-center leading-tight">
+                {name}
+              </h3>
+            </div>
+            <div className="w-10 h-0.5 bg-gradient-to-r from-primary-500/50 to-secondary-500/50 rounded-full mx-auto mb-3"></div>
+            {/* Position section - fixed height for exactly 2 lines */}
+            <div className="h-12 flex items-center justify-center w-full px-1">
+              <p className="text-dark-300 text-xs sm:text-sm md:text-base leading-tight text-center max-w-full" style={{ lineHeight: '1.3' }}>
+                {position}
+              </p>
+            </div>
+          </div>
+
+          {/* Fixed position social buttons at bottom */}
+          <div className="flex justify-center items-center gap-3 pt-4 w-full h-10">
             {email && (
               <button
                 onClick={handleEmailClick}
@@ -131,7 +143,7 @@ export function TeamSection() {
   const downloadExcel = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...EXECUTIVE_BOARD, ...TECHNICAL_OFFICERS, ...OPERATIONS_OFFICERS, ...AIS_ALUMNI]
+      const allMembers = [...EXECUTIVE_BOARD, ...TECHNICAL_OFFICERS, ...SOFTWARE_DEVELOPERS, ...OPERATIONS_OFFICERS, ...AIS_ALUMNI]
       const formattedMembers = allMembers.map(({ name, position, email }) => ({
         name,
         position,
@@ -151,7 +163,7 @@ export function TeamSection() {
   const downloadPDF = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...EXECUTIVE_BOARD, ...TECHNICAL_OFFICERS, ...OPERATIONS_OFFICERS, ...AIS_ALUMNI]
+      const allMembers = [...EXECUTIVE_BOARD, ...TECHNICAL_OFFICERS, ...SOFTWARE_DEVELOPERS, ...OPERATIONS_OFFICERS, ...AIS_ALUMNI]
       const doc = new jsPDF()
       doc.setFontSize(20)
       doc.setTextColor(12, 141, 224)
@@ -182,12 +194,18 @@ export function TeamSection() {
     let team: TeamMember[]
     if (selectedTeam === "executive") team = EXECUTIVE_BOARD
     else if (selectedTeam === "technical") team = TECHNICAL_OFFICERS
+    else if (selectedTeam === "software") team = SOFTWARE_DEVELOPERS
     else if (selectedTeam === "operations") team = OPERATIONS_OFFICERS
     else if (selectedTeam === "alumni") team = AIS_ALUMNI
     else team = EXECUTIVE_BOARD
 
+    const needsConstrainedWidth = selectedTeam === "executive" || selectedTeam === "software"
+    const containerStyle = needsConstrainedWidth
+      ? { maxWidth: '720px', margin: '0 auto' }
+      : { margin: '0 auto' }
+
     return (
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-4" style={containerStyle}>
         {team.map((member, index) => (
           <div
             key={member.name}
@@ -249,8 +267,22 @@ export function TeamSection() {
             </button>
             <button
               className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
-                selectedTeam === "operations"
+                selectedTeam === "software"
                   ? "bg-accent-600 hover:bg-accent-700 text-white"
+                  : "bg-transparent hover:bg-dark-800 text-dark-100"
+              }`}
+              onClick={(e) => handleTeamChange("software", e)}
+            >
+              <Code className="h-4 w-4 mr-2" />
+              Software Developers
+              <ChevronDown
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "software" ? "rotate-180" : ""}`}
+              />
+            </button>
+            <button
+              className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
+                selectedTeam === "operations"
+                  ? "bg-green-600 hover:bg-green-700 text-white"
                   : "bg-transparent hover:bg-dark-800 text-dark-100"
               }`}
               onClick={(e) => handleTeamChange("operations", e)}
@@ -262,7 +294,11 @@ export function TeamSection() {
               />
             </button>
             <button
-              className="group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md bg-transparent hover:bg-dark-800 text-dark-100"
+              className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
+                selectedTeam === "alumni"
+                  ? "bg-purple-600 hover:bg-purple-700 text-white"
+                  : "bg-transparent hover:bg-dark-800 text-dark-100"
+              }`}
               onClick={(e) => handleTeamChange("alumni", e)}
             >
               <History className="h-4 w-4 mr-2" />
