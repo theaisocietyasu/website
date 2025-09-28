@@ -23,7 +23,7 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/kaustubhharapanahalli/",
   },
   {
-    name: "Aishwarya Srivastava",
+    name: "Ash Srivastava",
     position: "Director, Software Solutions",
     imageSrc: "/Officers/ash.webp",
     email: "asrivast@asu.edu",
@@ -43,6 +43,7 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     email: "smehta74@asu.edu",
     linkedin: "https://www.linkedin.com/in/siddharthasu",
   },
+ 
 ]
 
 export const TECHNICAL_OFFICERS: TeamMember[] = [
@@ -232,35 +233,35 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
 export const AIS_ALUMNI: TeamMember[] = [
   {
     name: "Poojah Ganesan",
-    position: "Ex-President",
+    position: "Ex President",
     imageSrc: "/Officers/Poojah_AIS.jpg",
     email: "pganesa4@asu.edu",
     linkedin: "https://www.linkedin.com/in/poojahkg/",
   },
   {
     name: "Rajat Aayush Jha",
-    position: "Ex-Vice President",
+    position: "Ex Vice President",
     imageSrc: "/Officers/Rajat_AIS.jpg",
     email: "rjha16@asu.edu",
     linkedin: "https://www.linkedin.com/in/rajat-aayush-jha-4596b616b/",
   },
   {
     name: "Krisha Waghela",
-    position: "Ex-President",
+    position: "Ex President",
     imageSrc: "/Officers/KrishaWaghela.jpeg",
     email: "kmwaghel@asu.edu",
     linkedin: "https://www.linkedin.com/in/krisha-waghela/",
   },
   {
     name: "Venkata Gunji",
-    position: "Ex-Operations Director",
+    position: "Ex Operations Director",
     imageSrc: "/Officers/venkata.webp",
     email: "vgunji1@asu.edu",
     linkedin: "https://www.linkedin.com/in/venkata-surya-prakash/",
   },
   {
     name: "Prabakaran Annadurai",
-    position: "Ex-Operations Director",
+    position: "Ex Operations Director",
     imageSrc: "/Officers/Prabakaran_Annadurai.png",
     email: "pannadur@asu.edu",
     linkedin: "https://www.linkedin.com/in/praba2210/",
