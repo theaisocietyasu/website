@@ -59,6 +59,15 @@ function NotionEmbed() {
         onLoad={() => setIsLoading(false)}
         title="Events Calendar"
       />
+      <div className="mt-8">
+        <iframe
+          src="https://theaisociety.notion.site/ebd/2798867868b480319245c67676e03700?v=2798867868b481529f75000c0d647244"
+          width="100%"
+          height="600"
+          className="rounded-xl border border-dark-800/50"
+          title="Additional Events"
+        />
+      </div>
     </div>
   )
 }
