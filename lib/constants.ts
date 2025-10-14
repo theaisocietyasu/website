@@ -166,18 +166,18 @@ export const SOFTWARE_DEVELOPERS: TeamMember[] = [
 
 export const OPERATIONS_OFFICERS: TeamMember[] = [
   {
+    name: "Atharva Goyal",
+    position: "Cinematography Officer",
+    imageSrc: "/Officers/atharva.jpg",
+    email: "agoyal95@asu.edu",
+    linkedin: "https://www.linkedin.com/in/atharva--goyal/",
+  },
+  {
     name: "Debopam Banerjee",
     position: "Cinematography Officer",
     imageSrc: "/Officers/debopam.jpg",
     email: "dbaner10@asu.edu",
     linkedin: "https://www.linkedin.com/in/debopam-banerjee/",
-  },
-  {
-    name: "Gaurav Najpande",
-    position: "Outreach Officer",
-    imageSrc: "/Officers/gaurav.jpg",
-    email: "gnajpand@asu.edu",
-    linkedin: "https://www.linkedin.com/in/gauravnajpande/",
   },
   {
     name: "Harshita Prasad",
