@@ -81,6 +81,7 @@ export function HeroSection() {
                     alt="The AI Society Logo"
                     width={400}
                     height={400}
+                    sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, (max-width: 1024px) 320px, 384px"
                     className="w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain"
                     priority
                   />
