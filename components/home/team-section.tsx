@@ -199,14 +199,16 @@ export function TeamSection() {
     else if (selectedTeam === "alumni") team = AIS_ALUMNI
     else team = EXECUTIVE_BOARD
 
-    const needsConstrainedWidth = selectedTeam === "executive" || selectedTeam === "software"
+    const needsConstrainedWidth = selectedTeam === "software"
     const containerStyle = needsConstrainedWidth
       ? { maxWidth: '720px', margin: '0 auto' }
+      : selectedTeam !== "alumni"
+      ? { maxWidth: '920px', margin: '0 auto' }
       : { margin: '0 auto' }
 
     return (
       <div className="flex flex-wrap justify-center gap-4" style={containerStyle}>
-        {team.map((member, index) => (
+        {team.map((member) => (
           <div
             key={member.name}
             className="h-[300px] sm:h-[320px] md:h-[280px] w-[200px] sm:w-[220px] md:w-[200px] team-member-card"
