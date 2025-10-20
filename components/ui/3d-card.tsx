@@ -32,6 +32,7 @@ export function ThreeDCard({
   const [mouseY, setMouseY] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
+  const rafRef = useRef<number | null>(null)
 
   // Check if we're on a mobile device
   useEffect(() => {
@@ -48,26 +49,38 @@ export function ThreeDCard({
     // Cleanup
     return () => {
       window.removeEventListener("resize", checkMobile)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
     }
   }, [])
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || isMobile) return
 
-    const rect = cardRef.current.getBoundingClientRect()
-    const centerX = rect.left + rect.width / 2
-    const centerY = rect.top + rect.height / 2
-    const mouseX = e.clientX - centerX
-    const mouseY = e.clientY - centerY
+    // Throttle using requestAnimationFrame
+    if (rafRef.current) return
 
-    // Calculate rotation based on mouse position
-    const rotateY = (mouseX / (rect.width / 2)) * rotationIntensity
-    const rotateX = ((mouseY / (rect.height / 2)) * -rotationIntensity) / 2
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null
 
-    setRotateX(rotateX)
-    setRotateY(rotateY)
-    setMouseX(mouseX)
-    setMouseY(mouseY)
+      if (!cardRef.current) return
+
+      const rect = cardRef.current.getBoundingClientRect()
+      const centerX = rect.left + rect.width / 2
+      const centerY = rect.top + rect.height / 2
+      const mouseX = e.clientX - centerX
+      const mouseY = e.clientY - centerY
+
+      // Calculate rotation based on mouse position
+      const rotateY = (mouseX / (rect.width / 2)) * rotationIntensity
+      const rotateX = ((mouseY / (rect.height / 2)) * -rotationIntensity) / 2
+
+      setRotateX(rotateX)
+      setRotateY(rotateY)
+      setMouseX(mouseX)
+      setMouseY(mouseY)
+    })
   }
 
   const handleMouseLeave = () => {
