@@ -37,13 +37,20 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/arunlouis17",
   },
   {
+    name: "Kashish Bhutani",
+    position: "Director, Marketing",
+    imageSrc: "/Officers/kashish.jpg",
+    email: "kbhutan1@asu.edu",
+    linkedin: "https://www.linkedin.com/in/kashish-bhutani-239137350",
+  },
+  {
     name: "Siddharth Mehta",
     position: "Director, Special Events",
     imageSrc: "/Officers/siddharth.jpg",
     email: "smehta74@asu.edu",
     linkedin: "https://www.linkedin.com/in/siddharthasu",
   },
- 
+
 ]
 
 export const TECHNICAL_OFFICERS: TeamMember[] = [
@@ -95,20 +102,6 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     imageSrc: "/Officers/joshua.jpg",
     email: "joshuato@asu.edu",
     linkedin: "https://www.linkedin.com/in/joshua-tom-5929b1290/",
-  },
-  {
-    name: "Pradnya S Nidagundi",
-    position: "Technical Officer",
-    imageSrc: "/Officers/pradnya.jpg",
-    email: "pnidagun@asu.edu",
-    linkedin: "https://www.linkedin.com/in/pradnya-nidagundi/",
-  },
-  {
-    name: "Pruthvi Nandan Janga",
-    position: "Technical Officer",
-    imageSrc: "/Officers/pruthvi.jpeg",
-    email: "pjanga@asu.edu",
-    linkedin: "https://www.linkedin.com/in/pruthvijanga/",
   },
   {
     name: "Sahil Panjwani",
@@ -166,6 +159,13 @@ export const SOFTWARE_DEVELOPERS: TeamMember[] = [
 
 export const OPERATIONS_OFFICERS: TeamMember[] = [
   {
+    name: "Atharva Goyal",
+    position: "Cinematography Officer",
+    imageSrc: "/Officers/atharva.jpg",
+    email: "agoyal95@asu.edu",
+    linkedin: "https://www.linkedin.com/in/atharva--goyal/",
+  },
+  {
     name: "Debopam Banerjee",
     position: "Cinematography Officer",
     imageSrc: "/Officers/debopam.jpg",
@@ -173,25 +173,11 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/debopam-banerjee/",
   },
   {
-    name: "Gaurav Najpande",
-    position: "Outreach Officer",
-    imageSrc: "/Officers/gaurav.jpg",
-    email: "gnajpand@asu.edu",
-    linkedin: "https://www.linkedin.com/in/gauravnajpande/",
-  },
-  {
     name: "Harshita Prasad",
     position: "Event Logistics Officer",
     imageSrc: "/Officers/harshita.jpg",
     email: "hprasad4@asu.edu",
     linkedin: "https://www.linkedin.com/in/harshitaprasad2905/",
-  },
-  {
-    name: "Kashish Bhutani",
-    position: "Design Officer",
-    imageSrc: "/Officers/kashish.jpg",
-    email: "kbhutan1@asu.edu",
-    linkedin: "https://www.linkedin.com/in/kashish-bhutani-239137350",
   },
   {
     name: "Manisha Chakraborty",

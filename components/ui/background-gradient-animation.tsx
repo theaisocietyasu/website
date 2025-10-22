@@ -4,6 +4,12 @@ import type React from "react"
 
 import { useEffect, useRef, useState } from "react"
 
+// Check if user prefers reduced motion
+const prefersReducedMotion = () => {
+  if (typeof window === 'undefined') return false
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
@@ -76,9 +82,26 @@ export const BackgroundGradientAnimation = ({
   }
 
   const [isSafari, setIsSafari] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
+
   useEffect(() => {
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))
+    setReducedMotion(prefersReducedMotion())
   }, [])
+
+  // If user prefers reduced motion, use a simpler static gradient
+  if (reducedMotion) {
+    return (
+      <div
+        className={cn(
+          "h-screen w-screen relative overflow-hidden top-0 left-0 bg-[linear-gradient(40deg,var(--gradient-background-start),var(--gradient-background-end))]",
+          containerClassName,
+        )}
+      >
+        <div className={cn("", className)}>{children}</div>
+      </div>
+    )
+  }
 
   return (
     <div
@@ -102,6 +125,7 @@ export const BackgroundGradientAnimation = ({
           "gradients-container h-full w-full blur-lg",
           isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]",
         )}
+        style={{ willChange: 'transform' }}
       >
         <div
           className={cn(
@@ -111,6 +135,7 @@ export const BackgroundGradientAnimation = ({
             `animate-first`,
             `opacity-100`,
           )}
+          style={{ willChange: 'transform' }}
         ></div>
         <div
           className={cn(
@@ -120,6 +145,7 @@ export const BackgroundGradientAnimation = ({
             `animate-second`,
             `opacity-100`,
           )}
+          style={{ willChange: 'transform' }}
         ></div>
         <div
           className={cn(
@@ -129,24 +155,7 @@ export const BackgroundGradientAnimation = ({
             `animate-third`,
             `opacity-100`,
           )}
-        ></div>
-        <div
-          className={cn(
-            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fourth-color),_0.8)_0,_rgba(var(--fourth-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-            `[transform-origin:calc(50%-200px)]`,
-            `animate-fourth`,
-            `opacity-70`,
-          )}
-        ></div>
-        <div
-          className={cn(
-            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.8)_0,_rgba(var(--fifth-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
-            `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
-            `animate-fifth`,
-            `opacity-100`,
-          )}
+          style={{ willChange: 'transform' }}
         ></div>
 
         {interactive && (

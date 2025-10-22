@@ -4,6 +4,7 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { useInView } from "framer-motion"
 import { Download, ChevronDown, UserCheck, History, Code, Settings, Mail, Linkedin } from "lucide-react"
+import Image from "next/image"
 import FileSaver from "file-saver"
 import * as XLSX from "xlsx"
 import jsPDF from "jspdf"
@@ -49,11 +50,17 @@ function ExecutiveMemberCard({ name, position, imageSrc, email, linkedin }: Team
 
           {/* Image section - fixed height */}
           <div className="flex justify-center items-center mb-4 h-20">
-            <img
-              src={imageSrc || "/placeholder.svg?height=120&width=120&query=person"}
-              alt={name}
-              className="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover"
-            />
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20">
+              <Image
+                src={imageSrc || "/placeholder.svg?height=120&width=120&query=person"}
+                alt={name}
+                fill
+                sizes="(max-width: 640px) 64px, 80px"
+                className="rounded-full object-cover"
+                loading="lazy"
+                quality={85}
+              />
+            </div>
           </div>
 
           {/* Text content - structured for alignment */}
@@ -199,14 +206,16 @@ export function TeamSection() {
     else if (selectedTeam === "alumni") team = AIS_ALUMNI
     else team = EXECUTIVE_BOARD
 
-    const needsConstrainedWidth = selectedTeam === "executive" || selectedTeam === "software"
+    const needsConstrainedWidth = selectedTeam === "software"
     const containerStyle = needsConstrainedWidth
       ? { maxWidth: '720px', margin: '0 auto' }
+      : selectedTeam !== "alumni"
+      ? { maxWidth: '920px', margin: '0 auto' }
       : { margin: '0 auto' }
 
     return (
       <div className="flex flex-wrap justify-center gap-4" style={containerStyle}>
-        {team.map((member, index) => (
+        {team.map((member) => (
           <div
             key={member.name}
             className="h-[300px] sm:h-[320px] md:h-[280px] w-[200px] sm:w-[220px] md:w-[200px] team-member-card"
