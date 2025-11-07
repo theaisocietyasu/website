@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { outfit, spaceGrotesk } from "@/lib/fonts"
 import { ParticleBackground } from "@/components/ui/particle-background"
+import { ClerkProvider } from "@clerk/nextjs"
 import "./globals.css"
 import { Suspense } from "react"
 
@@ -79,37 +80,39 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${spaceGrotesk.variable}`}>
-      <head>
-        {/* Additional meta tags for better social media sharing */}
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta name="twitter:image:width" content="1200" />
-        <meta name="twitter:image:height" content="630" />
-        <link rel="canonical" href="https://theaisociety.asu.edu" />
-      </head>
-      <body className="font-sans antialiased">
-        {/* Background elements */}
-        <ParticleBackground
-          particleCount={50}
-          particleSize={[1, 2]}
-          particleSpeed={[0.05, 0.2]}
-          particleColor={["#6366f1", "#8b5cf6", "#ec4899"]}
-          particleOpacity={[0.2, 0.5]}
-          connectParticles={true}
-          connectDistance={150}
-          connectWidth={0.5}
-          connectOpacity={0.1}
-          interactive={true}
-          interactiveDistance={150}
-          interactiveStrength={0.3}
-          className="z-[-5]"
-        />
+    <ClerkProvider>
+      <html lang="en" className={`${outfit.variable} ${spaceGrotesk.variable}`}>
+        <head>
+          {/* Additional meta tags for better social media sharing */}
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta name="twitter:image:width" content="1200" />
+          <meta name="twitter:image:height" content="630" />
+          <link rel="canonical" href="https://theaisociety.asu.edu" />
+        </head>
+        <body className="font-sans antialiased">
+          {/* Background elements */}
+          <ParticleBackground
+            particleCount={50}
+            particleSize={[1, 2]}
+            particleSpeed={[0.05, 0.2]}
+            particleColor={["#6366f1", "#8b5cf6", "#ec4899"]}
+            particleOpacity={[0.2, 0.5]}
+            connectParticles={true}
+            connectDistance={150}
+            connectWidth={0.5}
+            connectOpacity={0.1}
+            interactive={true}
+            interactiveDistance={150}
+            interactiveStrength={0.3}
+            className="z-[-5]"
+          />
 
-        <Suspense>{children}</Suspense>
-        <Analytics />
-        <SpeedInsights />
-      </body>
-    </html>
+          <Suspense>{children}</Suspense>
+          <Analytics />
+          <SpeedInsights />
+        </body>
+      </html>
+    </ClerkProvider>
   )
 }
