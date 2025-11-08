@@ -1,14 +1,21 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import { auth } from '@/lib/auth'
 
-const isProtectedRoute = createRouteMatcher([
-  '/relink/edit(.*)',
-])
-
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) {
-    await auth.protect()
+export async function middleware(request: NextRequest) {
+  // Check if the route is protected
+  if (request.nextUrl.pathname.startsWith('/relink/edit')) {
+    // Check for valid session
+    const session = await auth()
+    
+    if (!session) {
+      // Redirect to sign-in page if not authenticated
+      return NextResponse.redirect(new URL('/relink/signin', request.url))
+    }
   }
-})
+
+  return NextResponse.next()
+}
 
 export const config = {
   matcher: [

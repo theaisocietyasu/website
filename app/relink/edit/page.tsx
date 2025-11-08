@@ -17,13 +17,17 @@ import {
   Edit,
   Link as LinkIcon,
   Megaphone,
+  LogOut,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import Link from 'next/link'
-import { UserButton, SignedIn, SignedOut, SignInButton } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
+import { useSession, signOut } from 'next-auth/react'
 
 export default function RelinkEditPage() {
+  const router = useRouter()
+  const { data: session, status } = useSession()
   const [links, setLinks] = useState<RelinkLink[]>([])
   const [banners, setBanners] = useState<RelinkBanner[]>([])
   const [loading, setLoading] = useState(true)
@@ -34,8 +38,16 @@ export default function RelinkEditPage() {
   const [uploadingImage, setUploadingImage] = useState(false)
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    if (status === 'unauthenticated') {
+      router.push('/relink/signin')
+    } else if (status === 'authenticated') {
+      fetchData()
+    }
+  }, [status, router])
+
+  async function handleSignOut() {
+    await signOut({ callbackUrl: '/relink' })
+  }
 
   async function fetchData() {
     try {
@@ -186,7 +198,7 @@ export default function RelinkEditPage() {
     })
   }
 
-  if (loading) {
+  if (loading || status === 'loading' || !session) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 flex items-center justify-center">
         <div className="text-white text-xl">Loading...</div>
@@ -195,52 +207,31 @@ export default function RelinkEditPage() {
   }
 
   return (
-    <>
-      {/* Sign-in required for unauthorized users */}
-      <SignedOut>
-        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 flex items-center justify-center px-4">
-          <Card className="p-8 bg-white/10 backdrop-blur-sm border-purple-500/30 max-w-md w-full text-center">
-            <div className="mb-6">
-              <h1 className="text-3xl font-bold text-white mb-2">
-                Officers Only
-              </h1>
-              <p className="text-gray-300">
-                Please sign in to access the Relink editor
-              </p>
-            </div>
-            <SignInButton mode="modal">
-              <Button size="lg" className="w-full">
-                Sign In
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 py-12 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h1 className="text-4xl font-bold text-white mb-2">
+              Relink Editor
+            </h1>
+            <p className="text-gray-300">
+              Manage links and announcements for the AI Society
+            </p>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link href="/relink">
+              <Button variant="outline" className="gap-2">
+                <Eye className="w-4 h-4" />
+                Preview
               </Button>
-            </SignInButton>
-          </Card>
+            </Link>
+            <Button variant="outline" onClick={handleSignOut} className="gap-2">
+              <LogOut className="w-4 h-4" />
+              Sign Out
+            </Button>
+          </div>
         </div>
-      </SignedOut>
-
-      {/* Main editor for signed-in users */}
-      <SignedIn>
-        <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h1 className="text-4xl font-bold text-white mb-2">
-                  Relink Editor
-                </h1>
-                <p className="text-gray-300">
-                  Manage links and announcements for the AI Society
-                </p>
-              </div>
-              <div className="flex items-center gap-4">
-                <Link href="/relink">
-                  <Button variant="outline" className="gap-2">
-                    <Eye className="w-4 h-4" />
-                    Preview
-                  </Button>
-                </Link>
-                <UserButton afterSignOutUrl="/relink" />
-              </div>
-            </div>
 
         {/* Tabs */}
         <div className="flex gap-4 mb-8">
@@ -641,9 +632,7 @@ export default function RelinkEditPage() {
             )}
           </div>
         )}
-          </div>
-        </div>
-      </SignedIn>
-    </>
+      </div>
+    </div>
   )
 }

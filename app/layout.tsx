@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { outfit, spaceGrotesk } from "@/lib/fonts"
 import { ParticleBackground } from "@/components/ui/particle-background"
-import { ClerkProvider } from "@clerk/nextjs"
+import AuthSessionProvider from "@/components/providers/session-provider"
 import "./globals.css"
 import { Suspense } from "react"
 
@@ -80,17 +80,17 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className={`${outfit.variable} ${spaceGrotesk.variable}`}>
-        <head>
-          {/* Additional meta tags for better social media sharing */}
-          <meta property="og:image:width" content="1200" />
-          <meta property="og:image:height" content="630" />
-          <meta name="twitter:image:width" content="1200" />
-          <meta name="twitter:image:height" content="630" />
-          <link rel="canonical" href="https://theaisociety.asu.edu" />
-        </head>
-        <body className="font-sans antialiased">
+    <html lang="en" className={`${outfit.variable} ${spaceGrotesk.variable}`}>
+      <head>
+        {/* Additional meta tags for better social media sharing */}
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image:width" content="1200" />
+        <meta name="twitter:image:height" content="630" />
+        <link rel="canonical" href="https://theaisociety.asu.edu" />
+      </head>
+      <body className="font-sans antialiased">
+        <AuthSessionProvider>
           {/* Background elements */}
           <ParticleBackground
             particleCount={50}
@@ -111,8 +111,8 @@ export default function RootLayout({
           <Suspense>{children}</Suspense>
           <Analytics />
           <SpeedInsights />
-        </body>
-      </html>
-    </ClerkProvider>
+        </AuthSessionProvider>
+      </body>
+    </html>
   )
 }

@@ -9,7 +9,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.34.5",
     "@emotion/is-prop-valid": "latest",
     "@hookform/resolvers": "^3.9.1",
     "@monaco-editor/react": "^4.7.0",
@@ -40,8 +39,6 @@
     "@radix-ui/react-toggle": "latest",
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
-    "@remix-run/react": "latest",
-    "@sveltejs/kit": "latest",
     "@tabler/icons-react": "latest",
     "@vercel/analytics": "latest",
     "@vercel/speed-insights": "latest",
@@ -58,6 +55,7 @@
     "lucide-react": "^0.454.0",
     "mongodb": "^7.0.0",
     "next": "15.2.4",
+    "next-auth": "5.0.0-beta.30",
     "next-themes": "latest",
     "react": "^19",
     "react-confetti": "latest",
@@ -70,12 +68,9 @@
     "remark-gfm": "^4.0.1",
     "simplex-noise": "latest",
     "sonner": "latest",
-    "svelte": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "latest",
-    "vue": "latest",
-    "vue-router": "latest",
     "xlsx": "latest",
     "zod": "^3.24.1"
   },
