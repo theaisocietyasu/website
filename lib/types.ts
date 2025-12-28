@@ -99,3 +99,24 @@ export interface WorkshopSidebarProps {
 export interface WorkshopContentProps {
   workshop: Workshop
 }
+
+// Relink types
+export interface RelinkLink {
+  _id?: string
+  title: string
+  url: string
+  description?: string
+  order: number
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+export interface RelinkBanner {
+  _id?: string
+  title: string
+  content: string
+  imageUrl?: string
+  order: number
+  createdAt?: Date
+  updatedAt?: Date
+}
