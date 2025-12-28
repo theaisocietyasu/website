@@ -1,4 +1,4 @@
-# AI Society Website 2025
+# The AI Society Website 2025
 
 Official website for The AI Society at Arizona State University.
 
