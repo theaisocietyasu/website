@@ -8,7 +8,6 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { WorkshopContent } from "@/components/labs/workshop-content"
 import { NLP_WORKSHOPS } from "@/lib/constants"
-import { ParticleBackground } from "@/components/ui/particle-background"
 import { SectionHeading } from "@/components/ui/section-heading"
 import type { NavItem, Workshop } from "@/lib/types"
 
@@ -39,21 +38,6 @@ export default function NlpLabPage() {
       <Navbar navItems={navItems} />
 
       <div className="pt-24 pb-16 flex-grow relative container-padding">
-        <ParticleBackground
-          className="absolute inset-0 -z-10"
-          particleCount={30}
-          particleSize={[0.5, 1.5]}
-          particleSpeed={[0.05, 0.15]}
-          particleColor={["#7938ee", "#ff3868", "#ec4899"]} // Secondary, Accent, and a touch of primary's pink
-          particleOpacity={[0.2, 0.5]}
-          connectParticles={true}
-          connectDistance={120}
-          connectWidth={0.75}
-          connectOpacity={0.15}
-          interactive={true}
-          interactionRadius={150}
-        />
-
         {/* Back to Projects Link */}
         <div className="flex justify-start mb-6 md:mb-8">
           <Link

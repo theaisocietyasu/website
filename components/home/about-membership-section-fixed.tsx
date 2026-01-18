@@ -4,7 +4,6 @@ import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { Users, Award, Gift, Zap, ChevronRight, Sparkles, BarChart3 } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { ParticleBackground } from "@/components/ui/particle-background"
 import { Card } from "@/components/ui/card"
 import { ThreeDCard } from "@/components/ui/3d-card"
 
@@ -19,16 +18,7 @@ export function AboutMembershipSection() {
       className="py-20 md:py-32 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative overflow-x-hidden"
       id="about-membership"
     >
-      <ParticleBackground
-        particleCount={30}
-        particleSize={[1, 2]}
-        particleSpeed={[0.1, 0.3]}
-        connectDistance={100}
-        connectOpacity={0.1}
-        particleColor={["#6366f1", "#8b5cf6", "#ec4899"]}
-        interactive={true}
-        interactiveStrength={0.3}
-      />
+
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <SectionHeading
