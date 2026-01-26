@@ -3,7 +3,6 @@
 import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { ParticleBackground } from "@/components/ui/particle-background"
 import { Card } from "@/components/ui/card"
 import { ThreeDCard } from "@/components/ui/3d-card"
 
@@ -56,17 +55,6 @@ export function ProgramsSection() {
       className="py-20 md:py-32 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative overflow-hidden"
       id="programs"
     >
-      <ParticleBackground
-        particleCount={40}
-        particleSize={[1, 3]}
-        particleSpeed={[0.1, 0.5]}
-        connectDistance={150}
-        connectOpacity={0.2}
-        particleColor={["#6366f1", "#8b5cf6", "#ec4899"]}
-        interactive={true}
-        interactiveStrength={0.5}
-      />
-
       <div className="container mx-auto max-w-6xl relative z-10">
         <SectionHeading
           title="Our Programs"

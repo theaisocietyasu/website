@@ -7,7 +7,7 @@ import { AboutMembershipSection } from "@/components/home/about-membership-secti
 import { ProgramsSection } from "@/components/home/programs-section"
 import { TeamSection } from "@/components/home/team-section"
 import { ContactSection } from "@/components/home/contact-section"
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"
+import LightPillar from "@/components/ui/LightPillar"
 import type { NavItem } from "@/lib/types"
 
 // Define navigation items
@@ -37,21 +37,22 @@ const navItems: NavItem[] = [
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen relative">
-      {/* Background Gradient Animation - ONLY background effect */}
-      <BackgroundGradientAnimation
-        gradientBackgroundStart="rgb(9, 9, 11)"
-        gradientBackgroundEnd="rgb(30, 27, 75)"
-        firstColor="99, 102, 241"
-        secondColor="139, 92, 246"
-        thirdColor="236, 72, 153"
-        fourthColor="79, 70, 229"
-        fifthColor="124, 58, 237"
-        pointerColor="99, 102, 241"
-        size="80%"
-        blendingValue="multiply"
-        containerClassName="fixed inset-0 -z-10"
-        interactive={true}
-      />
+      {/* LightPillar Background */}
+      <div style={{ width: '100vw', height: '100vh', position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: -10 }}>
+        <LightPillar
+          topColor="#5227FF"
+          bottomColor="#FF9FFC"
+          intensity={1.0}
+          rotationSpeed={0.3}
+          glowAmount={0.001}
+          pillarWidth={3.0}
+          pillarHeight={0.4}
+          noiseIntensity={0.5}
+          pillarRotation={159}
+          interactive={false}
+          mixBlendMode="normal"
+        />
+      </div>
 
       {/* Navigation */}
       <Navbar navItems={navItems} />

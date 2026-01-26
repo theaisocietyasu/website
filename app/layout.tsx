@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next"
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { outfit, spaceGrotesk } from "@/lib/fonts"
-import { ParticleBackground } from "@/components/ui/particle-background"
 import AuthSessionProvider from "@/components/providers/session-provider"
 import "./globals.css"
 import { Suspense } from "react"
@@ -91,23 +90,6 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         <AuthSessionProvider>
-          {/* Background elements */}
-          <ParticleBackground
-            particleCount={50}
-            particleSize={[1, 2]}
-            particleSpeed={[0.05, 0.2]}
-            particleColor={["#6366f1", "#8b5cf6", "#ec4899"]}
-            particleOpacity={[0.2, 0.5]}
-            connectParticles={true}
-            connectDistance={150}
-            connectWidth={0.5}
-            connectOpacity={0.1}
-            interactive={true}
-            interactiveDistance={150}
-            interactiveStrength={0.3}
-            className="z-[-5]"
-          />
-
           <Suspense>{children}</Suspense>
           <Analytics />
           <SpeedInsights />
