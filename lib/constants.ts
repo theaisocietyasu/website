@@ -193,18 +193,18 @@ export const SOFTWARE_DEVELOPERS: TeamMember[] = [
 
 export const OPERATIONS_OFFICERS: TeamMember[] = [
   {
+    name: "Amy Zhang",
+    position: "Outreach Officer",
+    imageSrc: "/Officers/Amy.jpeg",
+    email: "azhang69@asu.edu",
+    linkedin: "https://www.linkedin.com/in/amy133",
+  },
+  {
     name: "Atharva Goyal",
     position: "Cinematography Officer",
     imageSrc: "/Officers/atharva.jpg",
     email: "agoyal95@asu.edu",
     linkedin: "https://www.linkedin.com/in/atharva--goyal/",
-  },
-  {
-    name: "Kashish Bhutani",
-    position: "Design Officer",
-    imageSrc: "/Officers/kashish.jpg",
-    email: "kbhutan1@asu.edu",
-    linkedin: "https://www.linkedin.com/in/kashish-bhutani-239137350",
   },
   {
     name: "Debopam Banerjee",
@@ -214,11 +214,46 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/debopam-banerjee/",
   },
   {
+    name: "Dev Thakkar",
+    position: "Event Logistics Officer",
+    imageSrc: "/Officers/Dev.jpeg",
+    email: "dthakk12@asu.edu",
+    linkedin: "https://www.linkedin.com/in/dev-thakkar-ba1466329/",
+  },
+  {
+    name: "Devansh RajPurohit",
+    position: "Finance Officer",
+    imageSrc: "/Officers/Devansh.jpeg",
+    email: "dpurohi4@asu.edu",
+    linkedin: "https://www.linkedin.com/in/devansh-purohit-22b7b9249",
+  },
+  {
     name: "Harshita Prasad",
     position: "Event Logistics Officer",
     imageSrc: "/Officers/harshita.jpg",
     email: "hprasad4@asu.edu",
     linkedin: "https://www.linkedin.com/in/harshitaprasad2905/",
+  },
+  {
+    name: "Jatin Kumar Reddimalla",
+    position: "Event Logistics Officer",
+    imageSrc: "/Officers/Jatin.jpeg",
+    email: "jreddima@asu.edu",
+    linkedin: "https://www.linkedin.com/in/jatin-kumar-reddimalla-142482398/",
+  },
+  {
+    name: "Kashish Bhutani",
+    position: "Design Officer",
+    imageSrc: "/Officers/kashish.jpg",
+    email: "kbhutan1@asu.edu",
+    linkedin: "https://www.linkedin.com/in/kashish-bhutani-239137350",
+  },
+  {
+    name: "Muhammad Alyan",
+    position: "Marketing Officer",
+    imageSrc: "/Officers/alyan.jpeg",
+    email: "malyan1@asu.edu",
+    linkedin: "https://www.linkedin.com/in/muhammad-alyan-a7838232b/",
   },
   {
     name: "Ronak Koyani",
@@ -228,18 +263,18 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/ronak-koyani/",
   },
   {
-    name: "Rutuja Patil",
-    position: "Marketing Officer",
-    imageSrc: "/Officers/rutuja.jpg",
-    email: "rpatil46@asu.edu",
-    linkedin: "https://www.linkedin.com/in/rutuja-patil-bb5996254/",
-  },
-  {
     name: "Saksham Kochar",
     position: "Event Logistics Officer",
     imageSrc: "/Officers/saksham.jpg",
     email: "sakshamkochar@gmail.com",
     linkedin: "https://www.linkedin.com/in/saksham-kochar-95555030a/",
+  },
+  {
+    name: "Vedesh Makanaboyina",
+    position: "Marketing Officer",
+    imageSrc: "/Officers/Vedesh.jpeg",
+    email: "vmakanab@asu.edu",
+    linkedin: "https://www.linkedin.com/in/vedesh-m",
   },
 ]
 
