@@ -2,7 +2,7 @@
 
 import { useRef } from "react"
 import Image from "next/image"
-import { Instagram, Linkedin, Github, ExternalLink, Youtube } from "lucide-react"
+import { Instagram, Linkedin, Github, ExternalLink, Youtube, FileText } from "lucide-react"
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -73,8 +73,41 @@ export function HeroSection() {
                 </a>
               ))}
             </div>
-  
-            
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <div className="relative group">
+                <a
+                  href="https://theaisociety.notion.site/2858867868b480d9bd10e92d9f56fd6f?pvs=105"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-medium transition-colors"
+                >
+                  <FileText className="mr-2 h-5 w-5" />
+                  Resume
+                </a>
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-dark-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none w-[280px] text-center z-50 shadow-lg border border-dark-700">
+                  Submit your resume to be considered by our partners for opportunities
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-dark-800"></div>
+                </div>
+              </div>
+              <div className="relative group">
+                <a
+                  href="https://theaisociety.notion.site/1f28867868b481d2ad43e36d5049982b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 rounded-lg bg-secondary-600 hover:bg-secondary-700 text-white font-medium transition-colors"
+                >
+                  <FileText className="mr-2 h-5 w-5" />
+                  Apply
+                </a>
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-4 py-2 bg-dark-800 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none w-[280px] text-center z-50 shadow-lg border border-dark-700">
+                  Apply to become an officer and join our leadership team
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-dark-800"></div>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
