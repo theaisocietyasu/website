@@ -40,6 +40,7 @@
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
     "@tabler/icons-react": "latest",
+    "@types/three": "^0.182.0",
     "@vercel/analytics": "latest",
     "@vercel/speed-insights": "latest",
     "autoprefixer": "^10.4.20",
@@ -70,10 +71,14 @@
     "sonner": "latest",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.182.0",
     "vaul": "latest",
     "xlsx": "latest",
     "zod": "^3.24.1"
   },
+  "browserslist": [
+    "defaults and fully supports es6-module"
+  ],
   "devDependencies": {
     "@types/node": "^22",
     "@types/react": "^19",

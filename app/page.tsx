@@ -7,7 +7,11 @@ import { AboutMembershipSection } from "@/components/home/about-membership-secti
 import { ProgramsSection } from "@/components/home/programs-section"
 import { TeamSection } from "@/components/home/team-section"
 import { ContactSection } from "@/components/home/contact-section"
-import LightPillar from "@/components/ui/LightPillar"
+import dynamic from "next/dynamic"
+
+const LightPillar = dynamic(() => import("@/components/ui/LightPillar"), {
+  ssr: false,
+})
 import type { NavItem } from "@/lib/types"
 
 // Define navigation items
