@@ -134,6 +134,13 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
 
 export const SOFTWARE_DEVELOPERS: TeamMember[] = [
   {
+    name: "Aarav Matalia",
+    position: "Software Developer",
+    imageSrc: "/Officers/Aarav.jpeg",
+    email: "amatalia@asu.edu",
+    linkedin: "https://www.linkedin.com/in/aarav-matalia",
+  },
+  {
     name: "Ash Srivastava",
     position: "Software Developer",
     imageSrc: "/Officers/ash.webp",
@@ -155,11 +162,11 @@ export const SOFTWARE_DEVELOPERS: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/gunbir06",
   },
   {
-    name: "Aryan Patel",
+    name: "Rahul Ganesh",
     position: "Software Developer",
-    imageSrc: "/Officers/aryan.jpg",
-    email: "akpate24@asu.edu",
-    linkedin: "https://www.linkedin.com/in/aryan-patel-b33a61278/",
+    imageSrc: "/Officers/Rahul.jpeg",
+    email: "rmarath4@asu.edu",
+    linkedin: "https://www.linkedin.com/in/rahul-ganesh-marathervar/",
   },
   {
     name: "Shreyanshi Bhatt",
@@ -167,6 +174,13 @@ export const SOFTWARE_DEVELOPERS: TeamMember[] = [
     imageSrc: "/Officers/shreyanshi.jpg",
     email: "sbhat136@asu.edu",
     linkedin: "https://www.linkedin.com/in/shreyanshi-bhatt-3bab3324b/",
+  },
+  {
+    name: "Van Den Pham",
+    position: "Software Developer",
+    imageSrc: "/Officers/Van.jpeg",
+    email: "vpham128@asu.edu",
+    linkedin: "https://www.linkedin.com/in/van-den-pham/",
   },
   {
     name: "Yahia Alqurnawi",
