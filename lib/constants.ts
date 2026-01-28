@@ -9,13 +9,6 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/darshchaurasia/",
   },
   {
-    name: "Siddharth Mehta",
-    position: "Vice President",
-    imageSrc: "/Officers/siddharth.jpg",
-    email: "smehta74@asu.edu",
-    linkedin: "https://www.linkedin.com/in/siddharthasu",
-  },
-  {
     name: "Kaustubh Harapanahalli",
     position: "Co-President, Technical and Outreach",
     imageSrc: "/Officers/kaustubh.webp",
@@ -23,11 +16,32 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/kaustubhharapanahalli/",
   },
   {
+    name: "Siddharth Mehta",
+    position: "Vice President",
+    imageSrc: "/Officers/siddharth.jpg",
+    email: "smehta74@asu.edu",
+    linkedin: "https://www.linkedin.com/in/siddharthasu",
+  },
+  {
+    name: "Sahil Panjwani",
+    position: "Vice President",
+    imageSrc: "/Officers/sahil.jpeg",
+    email: "spanjwa3@asu.edu",
+    linkedin: "https://www.linkedin.com/in/pansahi/",
+  },
+  {
     name: "Aaditya Jindal",
     position: "Director, Software Solutions",
     imageSrc: "/Officers/aaditya.jpg",
     email: "ajinda17@asu.edu",
     linkedin: "https://www.linkedin.com/in/aadityajindal12",
+  },
+  {
+    name: "Arun Louis",
+    position: "Director, Event Logistics",
+    imageSrc: "/Officers/arun.jpg",
+    email: "alouis6@asu.edu",
+    linkedin: "https://www.linkedin.com/in/arunlouis17",
   },
   {
     name: "Manisha Chakraborty",
@@ -43,13 +57,6 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
     email: "opatel7@asu.edu",
     linkedin: "https://www.linkedin.com/in/om-patel-1512om/",
   },
-  {
-    name: "Arun Louis",
-    position: "Director, Event Logistics",
-    imageSrc: "/Officers/arun.jpg",
-    email: "alouis6@asu.edu",
-    linkedin: "https://www.linkedin.com/in/arunlouis17",
-  },
 ]
 
 export const TECHNICAL_OFFICERS: TeamMember[] = [
@@ -59,13 +66,6 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     imageSrc: "/Officers/anannya.jpg",
     email: "agade4@asu.edu",
     linkedin: "https://www.linkedin.com/in/anannyareddy/",
-  },
-  {
-    name: "Asmit Datta",
-    position: "Technical Officer",
-    imageSrc: "/Officers/asmit.jpg",
-    email: "adatta18@asu.edu",
-    linkedin: "https://www.linkedin.com/in/asmitrajeet/",
   },
   {
     name: "Bhavya Minesh Shah",
@@ -101,13 +101,6 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     imageSrc: "/Officers/joshua.jpg",
     email: "joshuato@asu.edu",
     linkedin: "https://www.linkedin.com/in/joshua-tom-5929b1290/",
-  },
-  {
-    name: "Sahil Panjwani",
-    position: "Technical Officer",
-    imageSrc: "/Officers/sahil.jpeg",
-    email: "spanjwa3@asu.edu",
-    linkedin: "https://www.linkedin.com/in/pansahi/",
   },
 ]
 
