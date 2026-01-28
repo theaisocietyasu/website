@@ -231,6 +231,8 @@ export function TeamSection() {
     const needsConstrainedWidth = selectedTeam === "software"
     const containerStyle = needsConstrainedWidth
       ? { maxWidth: '720px', margin: '0 auto' }
+      : selectedTeam === "technical"
+      ? { maxWidth: '1100px', margin: '0 auto' }
       : selectedTeam !== "alumni"
       ? { maxWidth: '920px', margin: '0 auto' }
       : { margin: '0 auto' }

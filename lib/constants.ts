@@ -61,6 +61,13 @@ export const EXECUTIVE_BOARD: TeamMember[] = [
 
 export const TECHNICAL_OFFICERS: TeamMember[] = [
   {
+    name: "Amaan Mohamed Kalemullah",
+    position: "Technical Officer",
+    imageSrc: "/Officers/amaan.jpeg",
+    email: "akalemul@asu.edu",
+    linkedin: "https://www.linkedin.com/in/amaan-mohamed-k/",
+  },
+  {
     name: "Anannya Reddy Gade",
     position: "Technical Officer",
     imageSrc: "/Officers/anannya.jpg",
@@ -73,13 +80,6 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     imageSrc: "/Officers/bhavya_minesh_shah.jpg",
     email: "bshah43@asu.edu",
     linkedin: "https://www.linkedin.com/in/bhavya-minesh-shah/",
-  },
-  {
-    name: "Diya Shrivastava",
-    position: "Technical Officer",
-    imageSrc: "/Officers/diya.jpeg",
-    email: "dshriva6@asu.edu",
-    linkedin: "https://www.linkedin.com/in/diya-shrivastava",
   },
   {
     name: "Harmitkumar Desai",
@@ -101,6 +101,34 @@ export const TECHNICAL_OFFICERS: TeamMember[] = [
     imageSrc: "/Officers/joshua.jpg",
     email: "joshuato@asu.edu",
     linkedin: "https://www.linkedin.com/in/joshua-tom-5929b1290/",
+  },
+  {
+    name: "Maanesh Mohanraj",
+    position: "Technical Officer",
+    imageSrc: "/Officers/Maanesh.jpeg",
+    email: "mmohanr1@asu.edu",
+    linkedin: "https://www.linkedin.com/in/maanesh/",
+  },
+  {
+    name: "Samyukta Chinivar",
+    position: "Technical Officer",
+    imageSrc: "/Officers/Samyukta.jpeg",
+    email: "schiniva@asu.edu",
+    linkedin: "https://www.linkedin.com/in/samyuktachinivar/",
+  },
+  {
+    name: "Vinayak Sharma",
+    position: "Technical Officer",
+    imageSrc: "/Officers/Vinayak.jpeg",
+    email: "vsharm87@asu.edu",
+    linkedin: "https://www.linkedin.com/in/vinayak19th",
+  },
+  {
+    name: "Vishal Lakshmi Narayanan",
+    position: "Technical Officer",
+    imageSrc: "/Officers/Vishal.jpeg",
+    email: "vlaksh16@asu.edu",
+    linkedin: "https://www.linkedin.com/in/vishal-lakshmi-narayanan-687619324/",
   },
 ]
 
