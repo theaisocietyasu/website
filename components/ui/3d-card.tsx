@@ -31,6 +31,7 @@ export function ThreeDCard({
   const [mouseX, setMouseX] = useState(0)
   const [mouseY, setMouseY] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [isInView, setIsInView] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
   const rafRef = useRef<number | null>(null)
 
@@ -55,8 +56,21 @@ export function ThreeDCard({
     }
   }, [])
 
+  // Visibility detection - only enable effects when in viewport
+  useEffect(() => {
+    if (!cardRef.current) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.1, rootMargin: '50px' }
+    )
+    observer.observe(cardRef.current)
+
+    return () => observer.disconnect()
+  }, [])
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current || isMobile) return
+    if (!cardRef.current || isMobile || !isInView) return
 
     // Throttle using requestAnimationFrame
     if (rafRef.current) return

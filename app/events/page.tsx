@@ -75,7 +75,7 @@ export default function EventsPage() {
   const particleColors = ["#6366f1", "#8b5cf6", "#ec4899"]
 
   const handleAddToCalendar = () => {
-    const calendarUrl = "https://calendar.google.com/calendar/u/0?cid=Y180ZWZkNGJkNDI4ZGY3MjdjNTY2ZWVmNzk0ZjU4MjEwZGIzNTNhMjk4ZTZjZjY5NzU3OTI2MjgzNjNiNzY2ODdkQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+    const calendarUrl = "https://calendar.google.com/calendar/u/0?cid=dGhlYWlzb2NpZXR5LmFzdUBnbWFpbC5jb20"
     window.open(calendarUrl, "_blank")
   }
 

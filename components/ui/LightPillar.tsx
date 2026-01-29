@@ -1,5 +1,15 @@
 import React, { useRef, useEffect, useState } from 'react';
-import * as THREE from 'three';
+import {
+  WebGLRenderer,
+  Scene,
+  OrthographicCamera,
+  ShaderMaterial,
+  PlaneGeometry,
+  Mesh,
+  Color,
+  Vector2,
+  Vector3,
+} from 'three';
 import './LightPillar.css';
 
 interface LightPillarProps {
@@ -33,16 +43,17 @@ const LightPillar: React.FC<LightPillarProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const materialRef = useRef<THREE.ShaderMaterial | null>(null);
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const cameraRef = useRef<THREE.OrthographicCamera | null>(null);
-  const geometryRef = useRef<THREE.PlaneGeometry | null>(null);
-  const mouseRef = useRef<THREE.Vector2>(new THREE.Vector2(0, 0));
+  const rendererRef = useRef<WebGLRenderer | null>(null);
+  const materialRef = useRef<ShaderMaterial | null>(null);
+  const sceneRef = useRef<Scene | null>(null);
+  const cameraRef = useRef<OrthographicCamera | null>(null);
+  const geometryRef = useRef<PlaneGeometry | null>(null);
+  const mouseRef = useRef<Vector2>(new Vector2(0, 0));
   const timeRef = useRef<number>(0);
   const [webGLSupported, setWebGLSupported] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  // Check WebGL support
+  // Check WebGL support and mobile detection
   useEffect(() => {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
@@ -50,7 +61,9 @@ const LightPillar: React.FC<LightPillarProps> = ({
       setWebGLSupported(false);
       console.warn('WebGL is not supported in this browser');
     }
+    setIsMobile(window.innerWidth < 768);
   }, []);
+
 
   useEffect(() => {
     if (!containerRef.current || !webGLSupported) return;
@@ -60,14 +73,14 @@ const LightPillar: React.FC<LightPillarProps> = ({
     const height = container.clientHeight;
 
     // Scene setup
-    const scene = new THREE.Scene();
+    const scene = new Scene();
     sceneRef.current = scene;
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     cameraRef.current = camera;
 
-    let renderer: THREE.WebGLRenderer;
+    let renderer: WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({
+      renderer = new WebGLRenderer({
         antialias: false,
         alpha: true,
         powerPreference: 'high-performance',
@@ -82,14 +95,14 @@ const LightPillar: React.FC<LightPillarProps> = ({
     }
 
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Convert hex colors to RGB
-    const parseColor = (hex: string): THREE.Vector3 => {
-      const color = new THREE.Color(hex);
-      return new THREE.Vector3(color.r, color.g, color.b);
+    const parseColor = (hex: string): Vector3 => {
+      const color = new Color(hex);
+      return new Vector3(color.r, color.g, color.b);
     };
 
     // Shader material
@@ -183,7 +196,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
 
         vec3 color = vec3(0.0);
         
-        for(float i = 0.0; i < 100.0; i++) {
+        for(float i = 0.0; i < 50.0; i++) {
           vec3 pos = origin + direction * depth;
           pos.xz *= rotX;
 
@@ -220,12 +233,12 @@ const LightPillar: React.FC<LightPillarProps> = ({
       }
     `;
 
-    const material = new THREE.ShaderMaterial({
+    const material = new ShaderMaterial({
       vertexShader,
       fragmentShader,
       uniforms: {
         uTime: { value: 0 },
-        uResolution: { value: new THREE.Vector2(width, height) },
+        uResolution: { value: new Vector2(width, height) },
         uMouse: { value: mouseRef.current },
         uTopColor: { value: parseColor(topColor) },
         uBottomColor: { value: parseColor(bottomColor) },
@@ -243,9 +256,9 @@ const LightPillar: React.FC<LightPillarProps> = ({
     });
     materialRef.current = material;
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
+    const geometry = new PlaneGeometry(2, 2);
     geometryRef.current = geometry;
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new Mesh(geometry, material);
     scene.add(mesh);
 
     // Mouse interaction - throttled for performance
@@ -349,7 +362,8 @@ const LightPillar: React.FC<LightPillarProps> = ({
     pillarHeight,
     noiseIntensity,
     pillarRotation,
-    webGLSupported
+    webGLSupported,
+    isMobile
   ]);
 
   if (!webGLSupported) {
