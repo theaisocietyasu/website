@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Github, ExternalLink, Youtube } from "lucide-react
 
 export function Footer() {
   return (
-    <footer className="absolute bg-black/80 pointer-events-none relative overflow-hidden">
+    <footer className="relative overflow-hidden bg-transparent">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary-500/5 to-transparent pointer-events-none" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/3 rounded-full blur-3xl pointer-events-none" />
