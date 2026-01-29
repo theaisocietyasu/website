@@ -221,7 +221,7 @@ export const OPERATIONS_OFFICERS: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/dev-thakkar-ba1466329/",
   },
   {
-    name: "Devansh RajPurohit",
+    name: "Devansh Raj Purohit",
     position: "Finance Officer",
     imageSrc: "/Officers/Devansh.jpeg",
     email: "dpurohi4@asu.edu",

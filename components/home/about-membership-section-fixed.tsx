@@ -104,7 +104,7 @@ export function AboutMembershipSection() {
                         <Users className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary-400" />
                       </div>
                       <div>
-                        <p className="text-lg sm:text-xl font-bold text-white">350+</p>
+                        <p className="text-lg sm:text-xl font-bold text-white">1000+</p>
                         <p className="text-sm sm:text-base md:text-base text-white">General Members</p>
                       </div>
                     </div>
@@ -242,7 +242,7 @@ export function AboutMembershipSection() {
                       <div>
                         <p className="text-accent-300 font-medium mb-1 text-sm sm:text-base md:text-base">How:</p>
                         <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
-                          Contact us via email. Info in footer.
+                          Contact us <a href="mailto:theaisociety@asu.edu" className="underline">here</a>.
                         </p>
                       </div>
                       <div>
