@@ -17,12 +17,33 @@ import type { TeamMember } from "@/lib/types"
 
 function ExecutiveMemberCard({ name, position, imageSrc, email, linkedin }: TeamMember) {
   const [emailCopied, setEmailCopied] = useState(false)
-  const handleEmailClick = (e: React.MouseEvent) => {
+  const handleEmailClick = async (e: React.MouseEvent) => {
     e.stopPropagation()
+    e.preventDefault()
     if (email) {
-      navigator.clipboard.writeText(email)
-      setEmailCopied(true)
-      setTimeout(() => setEmailCopied(false), 2000) // Reset after 2 seconds
+      try {
+        // Try modern clipboard API first
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email)
+        } else {
+          // Fallback for older browsers
+          const textArea = document.createElement('textarea')
+          textArea.value = email
+          textArea.style.position = 'fixed'
+          textArea.style.left = '-999999px'
+          document.body.appendChild(textArea)
+          textArea.select()
+          document.execCommand('copy')
+          document.body.removeChild(textArea)
+        }
+        setEmailCopied(true)
+        setTimeout(() => setEmailCopied(false), 2000) // Reset after 2 seconds
+      } catch (error) {
+        console.error('Failed to copy email:', error)
+        // Still show feedback even if copy fails
+        setEmailCopied(true)
+        setTimeout(() => setEmailCopied(false), 1000)
+      }
     }
   }
 
@@ -81,11 +102,12 @@ function ExecutiveMemberCard({ name, position, imageSrc, email, linkedin }: Team
           </div>
 
           {/* Fixed position social buttons at bottom */}
-          <div className="flex justify-center items-center gap-3 pt-4 w-full h-10">
+          <div className="flex justify-center items-center gap-3 pt-4 w-full h-10 relative z-50">
             {email && (
               <button
                 onClick={handleEmailClick}
-                className={`text-sm sm:text-base opacity-70 group-hover:opacity-100 transition-all duration-300 hover:text-primary-300 flex items-center justify-center gap-1 ${
+                type="button"
+                className={`relative z-50 text-sm sm:text-base opacity-70 group-hover:opacity-100 transition-all duration-300 hover:text-primary-300 flex items-center justify-center gap-1 pointer-events-auto ${
                   emailCopied ? "text-green-400" : "text-primary-400"
                 }`}
                 title={emailCopied ? "Email copied!" : `Copy email: ${email}`}
@@ -208,7 +230,9 @@ export function TeamSection() {
 
     const needsConstrainedWidth = selectedTeam === "software"
     const containerStyle = needsConstrainedWidth
-      ? { maxWidth: '720px', margin: '0 auto' }
+      ? { maxWidth: '880px', margin: '0 auto' }
+      : selectedTeam === "technical"
+      ? { maxWidth: '1100px', margin: '0 auto' }
       : selectedTeam !== "alumni"
       ? { maxWidth: '920px', margin: '0 auto' }
       : { margin: '0 auto' }
@@ -236,7 +260,7 @@ export function TeamSection() {
 
   return (
     <section ref={ref} className="py-20 md:py-32 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative" id="team">
-      <Spotlight className="absolute inset-0" size={800} opacity={0.1} />
+      <Spotlight className="absolute inset-0" size={800} opacity={0.1}>{null}</Spotlight>
       <div className="absolute top-20 left-10 w-64 h-64 bg-primary-500/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-secondary-500/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
       <div className="container mx-auto max-w-6xl relative z-20">

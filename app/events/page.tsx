@@ -5,7 +5,6 @@ import { IconHome, IconUsers, IconCalendar, IconCalendarPlus } from "@tabler/ico
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { ParticleBackground } from "@/components/ui/particle-background"
 import { Button } from "@/components/ui/button"
 import type { NavItem } from "@/lib/types"
 
@@ -76,7 +75,7 @@ export default function EventsPage() {
   const particleColors = ["#6366f1", "#8b5cf6", "#ec4899"]
 
   const handleAddToCalendar = () => {
-    const calendarUrl = "https://calendar.google.com/calendar/u/0?cid=Y180ZWZkNGJkNDI4ZGY3MjdjNTY2ZWVmNzk0ZjU4MjEwZGIzNTNhMjk4ZTZjZjY5NzU3OTI2MjgzNjNiNzY2ODdkQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+    const calendarUrl = "https://calendar.google.com/calendar/u/0?cid=dGhlYWlzb2NpZXR5LmFzdUBnbWFpbC5jb20"
     window.open(calendarUrl, "_blank")
   }
 
@@ -86,19 +85,6 @@ export default function EventsPage() {
       
       {/* Header Section */}
       <section className="py-16 md:py-20 lg:py-32 px-6 relative">
-        <ParticleBackground
-          particleCount={30}
-          particleSize={[1, 2]}
-          particleSpeed={[0.05, 0.2]}
-          particleColor={particleColors}
-          particleOpacity={[0.2, 0.5]}
-          connectParticles={true}
-          connectDistance={150}
-          connectWidth={0.5}
-          connectOpacity={0.1}
-          interactive={true}
-          interactiveStrength={0.3}
-        />
         <div className="container mx-auto relative z-10">
           <SectionHeading
             title="Events"

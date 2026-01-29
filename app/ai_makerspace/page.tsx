@@ -7,7 +7,6 @@ import { motion } from "framer-motion"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { ParticleBackground } from "@/components/ui/particle-background"
 import { PDFViewer } from "@/components/projects/pdf-viewer"
 import { AI_MAKERSPACE_PROJECTS } from "@/lib/constants"
 import type { NavItem, AIProject } from "@/lib/types"
@@ -39,21 +38,6 @@ export default function AIMakerspaceProjectsPage() {
       <Navbar navItems={navItems} />
 
       <div className="pt-24 pb-16 flex-grow relative container-padding">
-        <ParticleBackground
-          className="absolute inset-0 -z-10"
-          particleCount={30}
-          particleSize={[0.5, 1.5]}
-          particleSpeed={[0.05, 0.15]}
-          particleColor={["#ec4899", "#ff3868", "#db2777"]} // Accent colors
-          particleOpacity={[0.2, 0.5]}
-          connectParticles={true}
-          connectDistance={120}
-          connectWidth={0.75}
-          connectOpacity={0.15}
-          interactive={true}
-          interactionRadius={150}
-        />
-
         {/* Back to Projects Link */}
         <div className="flex justify-start mb-6 md:mb-8">
           <Link

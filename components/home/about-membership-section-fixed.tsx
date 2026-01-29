@@ -4,7 +4,6 @@ import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { Users, Award, Gift, Zap, ChevronRight, Sparkles, BarChart3 } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { ParticleBackground } from "@/components/ui/particle-background"
 import { Card } from "@/components/ui/card"
 import { ThreeDCard } from "@/components/ui/3d-card"
 
@@ -19,16 +18,7 @@ export function AboutMembershipSection() {
       className="py-20 md:py-32 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative overflow-x-hidden"
       id="about-membership"
     >
-      <ParticleBackground
-        particleCount={30}
-        particleSize={[1, 2]}
-        particleSpeed={[0.1, 0.3]}
-        connectDistance={100}
-        connectOpacity={0.1}
-        particleColor={["#6366f1", "#8b5cf6", "#ec4899"]}
-        interactive={true}
-        interactiveStrength={0.3}
-      />
+
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <SectionHeading
@@ -114,7 +104,7 @@ export function AboutMembershipSection() {
                         <Users className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-primary-400" />
                       </div>
                       <div>
-                        <p className="text-lg sm:text-xl font-bold text-white">350+</p>
+                        <p className="text-lg sm:text-xl font-bold text-white">1000+</p>
                         <p className="text-sm sm:text-base md:text-base text-white">General Members</p>
                       </div>
                     </div>
@@ -252,7 +242,7 @@ export function AboutMembershipSection() {
                       <div>
                         <p className="text-accent-300 font-medium mb-1 text-sm sm:text-base md:text-base">How:</p>
                         <p className="text-sm sm:text-base md:text-base text-white leading-relaxed">
-                          Contact us via email. Info in footer.
+                          Contact us <a href="mailto:theaisociety@asu.edu" className="underline">here</a>.
                         </p>
                       </div>
                       <div>
