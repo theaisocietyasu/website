@@ -51,8 +51,9 @@ const LightPillar: React.FC<LightPillarProps> = ({
   const mouseRef = useRef<Vector2>(new Vector2(0, 0));
   const timeRef = useRef<number>(0);
   const [webGLSupported, setWebGLSupported] = useState<boolean>(true);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
-  // Check WebGL support
+  // Check WebGL support and mobile detection
   useEffect(() => {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
@@ -60,7 +61,9 @@ const LightPillar: React.FC<LightPillarProps> = ({
       setWebGLSupported(false);
       console.warn('WebGL is not supported in this browser');
     }
+    setIsMobile(window.innerWidth < 768);
   }, []);
+
 
   useEffect(() => {
     if (!containerRef.current || !webGLSupported) return;
@@ -92,7 +95,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
     }
 
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
     container.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
@@ -193,7 +196,7 @@ const LightPillar: React.FC<LightPillarProps> = ({
 
         vec3 color = vec3(0.0);
         
-        for(float i = 0.0; i < 100.0; i++) {
+        for(float i = 0.0; i < 50.0; i++) {
           vec3 pos = origin + direction * depth;
           pos.xz *= rotX;
 
@@ -359,7 +362,8 @@ const LightPillar: React.FC<LightPillarProps> = ({
     pillarHeight,
     noiseIntensity,
     pillarRotation,
-    webGLSupported
+    webGLSupported,
+    isMobile
   ]);
 
   if (!webGLSupported) {

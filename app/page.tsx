@@ -4,13 +4,27 @@ import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { HeroSection } from "@/components/home/hero-section"
 import { AboutMembershipSection } from "@/components/home/about-membership-section-fixed"
-import { ProgramsSection } from "@/components/home/programs-section"
-import { TeamSection } from "@/components/home/team-section"
-import { ContactSection } from "@/components/home/contact-section"
 import dynamic from "next/dynamic"
 
 const LightPillar = dynamic(() => import("@/components/ui/LightPillar"), {
   ssr: false,
+  loading: () => <div className="w-full h-full bg-gradient-to-b from-[#5227FF]/20 to-[#FF9FFC]/20" />
+})
+
+// Lazy load below-fold sections to reduce initial bundle size
+const ProgramsSection = dynamic(() => import("@/components/home/programs-section").then(m => ({ default: m.ProgramsSection })), {
+  ssr: true,
+  loading: () => <div className="min-h-[400px]" />
+})
+
+const TeamSection = dynamic(() => import("@/components/home/team-section").then(m => ({ default: m.TeamSection })), {
+  ssr: true,
+  loading: () => <div className="min-h-[400px]" />
+})
+
+const ContactSection = dynamic(() => import("@/components/home/contact-section").then(m => ({ default: m.ContactSection })), {
+  ssr: true,
+  loading: () => <div className="min-h-[300px]" />
 })
 import type { NavItem } from "@/lib/types"
 
