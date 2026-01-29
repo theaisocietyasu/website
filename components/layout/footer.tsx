@@ -139,7 +139,6 @@ export function Footer() {
         <div className="border-t border-dark-800/50 mt-12 pt-8 text-center">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-dark-400 text-sm">© 2025 The AI Society at ASU. All rights reserved.</p>
-            <p className="text-dark-400 text-sm">Built with ❤️ by The AI Society team</p>
           </div>
         </div>
       </div>
