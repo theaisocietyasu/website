@@ -40,7 +40,6 @@
     "@radix-ui/react-toggle-group": "latest",
     "@radix-ui/react-tooltip": "latest",
     "@tabler/icons-react": "latest",
-    "@types/three": "^0.182.0",
     "@vercel/analytics": "latest",
     "@vercel/speed-insights": "latest",
     "autoprefixer": "^10.4.20",
