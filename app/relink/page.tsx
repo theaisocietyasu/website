@@ -89,7 +89,7 @@ export default function RelinkPage() {
                 className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 hover:border-purple-400/50 transition-all"
               >
                 {banner.imageUrl && (
-                  <div className="relative w-full h-48 mb-4 rounded-xl overflow-hidden">
+                  <div className="relative w-full aspect-video mb-4 rounded-xl overflow-hidden">
                     <Image
                       src={banner.imageUrl}
                       alt={banner.title}
