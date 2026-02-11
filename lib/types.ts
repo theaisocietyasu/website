@@ -120,3 +120,27 @@ export interface RelinkBanner {
   createdAt?: Date
   updatedAt?: Date
 }
+
+// Software Corner types
+export interface SoftwareProject {
+  _id: string
+  title: string
+  description: string
+  thumbnail_file_id?: string
+  github_url?: string
+  live_url?: string
+  collaborators: string[]
+  published: boolean
+  owner_discord_id: string
+  created_at: string
+  updated_at: string
+}
+
+export interface ProjectFormData {
+  title: string
+  description: string
+  github_url: string
+  live_url: string
+  collaborators: string[]
+  thumbnail?: File | null
+}

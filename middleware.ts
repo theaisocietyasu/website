@@ -4,10 +4,13 @@ import { auth } from '@/lib/auth'
 
 export async function middleware(request: NextRequest) {
   // Check if the route is protected
-  if (request.nextUrl.pathname.startsWith('/relink/edit')) {
+  if (
+    request.nextUrl.pathname.startsWith('/relink/edit') ||
+    request.nextUrl.pathname.startsWith('/admin/software-corner')
+  ) {
     // Check for valid session
     const session = await auth()
-    
+
     if (!session) {
       // Redirect to sign-in page if not authenticated
       return NextResponse.redirect(new URL('/relink/signin', request.url))
