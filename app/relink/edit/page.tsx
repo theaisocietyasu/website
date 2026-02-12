@@ -36,6 +36,7 @@ export default function RelinkEditPage() {
   const [editingLink, setEditingLink] = useState<RelinkLink | null>(null)
   const [editingBanner, setEditingBanner] = useState<RelinkBanner | null>(null)
   const [uploadingImage, setUploadingImage] = useState(false)
+    const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (status === 'unauthenticated') {
@@ -43,10 +44,10 @@ export default function RelinkEditPage() {
     } else if (status === 'authenticated') {
       fetchData()
     }
-  }, [status, router])
+  }, [status, router]);
 
   async function handleSignOut() {
-    await signOut({ callbackUrl: '/relink' })
+    await signOut({ callbackUrl: "/relink" });
   }
 
   async function fetchData() {
@@ -68,12 +69,12 @@ export default function RelinkEditPage() {
     } catch (error) {
       console.error('Error fetching data:', error)
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   async function saveLink(link: RelinkLink) {
-    setSaving(true)
+    setSaving(true);
     try {
       const method = link._id ? 'PUT' : 'POST'
       const res = await fetch('/api/relink/links', {
@@ -187,7 +188,56 @@ export default function RelinkEditPage() {
       url: '',
       description: '',
       order: links.length,
-    })
+    });
+  }
+
+  async function reorderLinks(fromIndex: number, toIndex: number) {
+    const newLinks = [...links];
+    const [movedLink] = newLinks.splice(fromIndex, 1);
+    newLinks.splice(toIndex, 0, movedLink);
+
+    const updatedLinks = newLinks.map((link, index) => ({
+      ...link,
+      order: index,
+    }));
+
+    setLinks(updatedLinks);
+
+    // Persist order to database using Promise.allSettled for better error handling
+    try {
+      const updatePromises = updatedLinks.map((link) =>
+        fetch("/api/relink/links", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(link),
+        }).then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              `Failed to update link ${link._id}: ${res.statusText}`,
+            );
+          }
+          return res;
+        }),
+      );
+
+      const results = await Promise.allSettled(updatePromises);
+
+      const failedUpdates = results.filter(
+        (result) => result.status === "rejected",
+      );
+
+      if (failedUpdates.length > 0) {
+        console.error("Some link updates failed:", failedUpdates);
+        alert(
+          `Failed to save ${failedUpdates.length} link(s). Please try again.`,
+        );
+        await fetchData();
+      }
+    } catch (error) {
+      console.error("Error updating link order:", error);
+      alert("Failed to save link order. Please try again.");
+      await fetchData();
+    }
   }
 
   function createNewBanner() {
@@ -195,7 +245,7 @@ export default function RelinkEditPage() {
       title: '',
       content: '',
       order: banners.length,
-    })
+    });
   }
 
   if (loading || status === 'loading' || !session) {
@@ -367,17 +417,28 @@ export default function RelinkEditPage() {
             </AnimatePresence>
 
             <div className="space-y-4">
-              {links.map((link) => (
+              {links.map((link, index) => (
                 <Card
                   key={link._id?.toString()}
-                  className="p-4 bg-white/10 backdrop-blur-sm border-white/20 hover:border-white/30 transition-all"
+                  draggable
+                  onDragStart={() => setDraggedIndex(index)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    if (draggedIndex !== null && draggedIndex !== index) {
+                      reorderLinks(draggedIndex, index);
+                    }
+                    setDraggedIndex(null);
+                  }}
+                  onDragLeave={() => {}}
+                  className={`p-4 bg-white/10 backdrop-blur-sm border-white/20 hover:border-white/30 transition-all cursor-move ${
+                    draggedIndex === index ? "opacity-50" : ""
+                  } ${draggedIndex !== null && draggedIndex !== index ? "hover:bg-white/20" : ""}`}
                 >
                   <div className="flex items-center gap-4">
-                    <GripVertical className="w-5 h-5 text-gray-400" />
+                    <GripVertical className="w-5 h-5 text-gray-400 flex-shrink-0" />
                     <div className="flex-1">
-                      <h4 className="text-white font-semibold">
-                        {link.title}
-                      </h4>
+                      <h4 className="text-white font-semibold">{link.title}</h4>
                       <p className="text-gray-400 text-sm">{link.url}</p>
                       {link.description && (
                         <p className="text-gray-300 text-sm mt-1">
@@ -411,7 +472,9 @@ export default function RelinkEditPage() {
               <div className="text-center text-gray-400 py-12">
                 <LinkIcon className="w-16 h-16 mx-auto mb-4 opacity-50" />
                 <p className="text-lg">No links yet</p>
-                <p className="text-sm">Click the button above to add your first link</p>
+                <p className="text-sm">
+                  Click the button above to add your first link
+                </p>
               </div>
             )}
           </div>
@@ -518,14 +581,14 @@ export default function RelinkEditPage() {
                           type="file"
                           accept="image/*"
                           onChange={async (e) => {
-                            const file = e.target.files?.[0]
+                            const file = e.target.files?.[0];
                             if (file) {
-                              const url = await uploadImage(file)
+                              const url = await uploadImage(file);
                               if (url) {
                                 setEditingBanner({
                                   ...editingBanner,
                                   imageUrl: url,
-                                })
+                                });
                               }
                             }
                           }}
@@ -590,7 +653,8 @@ export default function RelinkEditPage() {
                       </h4>
                       <div className="prose prose-sm prose-invert max-w-none">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                          {banner.content.substring(0, 200) + (banner.content.length > 200 ? '...' : '')}
+                          {banner.content.substring(0, 200) +
+                            (banner.content.length > 200 ? "..." : "")}
                         </ReactMarkdown>
                       </div>
                       {banner.imageUrl && (
@@ -634,5 +698,5 @@ export default function RelinkEditPage() {
         )}
       </div>
     </div>
-  )
+  );
 }
