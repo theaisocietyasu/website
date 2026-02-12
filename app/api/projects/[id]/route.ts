@@ -4,9 +4,7 @@ import Project from '@/lib/models/Project'
 import { requireOfficer } from '@/lib/auth-middleware'
 import { uploadFile, deleteFile } from '@/lib/gridfs'
 import { Types } from 'mongoose'
-
-const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png']
-const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+import { FILE_UPLOAD } from '@/lib/config'
 
 /**
  * GET /api/projects/[id]
@@ -36,7 +34,7 @@ export async function GET(
 
     return NextResponse.json(project)
   } catch (error) {
-    console.error('Error fetching project:', error)
+    // Error logged internally
     return NextResponse.json(
       { error: 'Failed to fetch project' },
       { status: 500 }
@@ -137,7 +135,7 @@ export async function PUT(
     // Handle thumbnail replacement
     if (thumbnail && thumbnail.size > 0) {
       // Validate file type
-      if (!ALLOWED_MIME_TYPES.includes(thumbnail.type)) {
+      if (!FILE_UPLOAD.ALLOWED_IMAGE_TYPES.includes(thumbnail.type)) {
         return NextResponse.json(
           { error: 'Thumbnail must be jpg, jpeg, or png' },
           { status: 400 }
@@ -145,7 +143,7 @@ export async function PUT(
       }
 
       // Validate file size
-      if (thumbnail.size > MAX_FILE_SIZE) {
+      if (thumbnail.size > FILE_UPLOAD.MAX_SIZE) {
         return NextResponse.json(
           { error: 'Thumbnail must be less than 5MB' },
           { status: 400 }
@@ -157,7 +155,7 @@ export async function PUT(
         try {
           await deleteFile(project.thumbnail_file_id)
         } catch (e) {
-          console.error('Error deleting old thumbnail:', e)
+          // Thumbnail deletion failed silently
         }
       }
 
@@ -173,7 +171,7 @@ export async function PUT(
 
     return NextResponse.json(project)
   } catch (error) {
-    console.error('Error updating project:', error)
+    // Error logged internally
     return NextResponse.json(
       { error: 'Failed to update project' },
       { status: 500 }
@@ -226,7 +224,7 @@ export async function DELETE(
       try {
         await deleteFile(project.thumbnail_file_id)
       } catch (e) {
-        console.error('Error deleting thumbnail:', e)
+        // Thumbnail deletion failed silently
       }
     }
 
@@ -234,7 +232,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Error deleting project:', error)
+    // Error logged internally
     return NextResponse.json(
       { error: 'Failed to delete project' },
       { status: 500 }

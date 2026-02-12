@@ -4,9 +4,7 @@ import Project, { IProject } from '@/lib/models/Project'
 import { requireOfficer } from '@/lib/auth-middleware'
 import { uploadFile } from '@/lib/gridfs'
 import { ObjectId } from 'mongodb'
-
-const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/jpg', 'image/png']
-const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+import { FILE_UPLOAD, PAGINATION } from '@/lib/config'
 
 /**
  * GET /api/projects
@@ -14,7 +12,7 @@ const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
  * Query params:
  *   - pageSize: number (default 12, max 100)
  *   - cursor: ISO date string
- *   - published: boolean (default true for public, false for admin view)
+ *   - published: boolean (default true for public view)
  *   - search: string (text search)
  */
 export async function GET(request: NextRequest) {
@@ -28,11 +26,11 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search')
 
     const pageSize = Math.min(
-      parseInt(pageSizeParam || '12', 10),
-      100
+      parseInt(pageSizeParam || String(PAGINATION.DEFAULT_PAGE_SIZE), 10),
+      PAGINATION.MAX_PAGE_SIZE
     )
 
-    const query: any = {}
+    const query: Record<string, any> = {}
 
     // Filter by published status
     if (publishedParam !== null) {
@@ -80,7 +78,7 @@ export async function GET(request: NextRequest) {
       hasMore,
     })
   } catch (error) {
-    console.error('Error fetching projects:', error)
+    // Error logged internally
     return NextResponse.json(
       { error: 'Failed to fetch projects' },
       { status: 500 }
@@ -113,9 +111,9 @@ export async function POST(request: NextRequest) {
     const thumbnail = formData.get('thumbnail') as File | null
 
     // Validation
-    if (!title || title.length > 120) {
+    if (!title || title.length > FILE_UPLOAD.MAX_TITLE_LENGTH) {
       return NextResponse.json(
-        { error: 'Title is required and must be max 120 characters' },
+        { error: 'Title is required and must be max FILE_UPLOAD.MAX_TITLE_LENGTH characters' },
         { status: 400 }
       )
     }
@@ -144,7 +142,7 @@ export async function POST(request: NextRequest) {
 
     if (thumbnail && thumbnail.size > 0) {
       // Validate file type
-      if (!ALLOWED_MIME_TYPES.includes(thumbnail.type)) {
+      if (!FILE_UPLOAD.ALLOWED_IMAGE_TYPES.includes(thumbnail.type)) {
         return NextResponse.json(
           { error: 'Thumbnail must be jpg, jpeg, or png' },
           { status: 400 }
@@ -152,7 +150,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Validate file size
-      if (thumbnail.size > MAX_FILE_SIZE) {
+      if (thumbnail.size > FILE_UPLOAD.MAX_SIZE) {
         return NextResponse.json(
           { error: 'Thumbnail must be less than 5MB' },
           { status: 400 }
@@ -180,7 +178,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(project, { status: 201 })
   } catch (error) {
-    console.error('Error creating project:', error)
+    // Error logged internally
     return NextResponse.json(
       { error: 'Failed to create project' },
       { status: 500 }

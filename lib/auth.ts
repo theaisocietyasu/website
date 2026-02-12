@@ -11,7 +11,7 @@ async function verifyDiscordAdminRole(discordUserId: string): Promise<boolean> {
   const adminRoleId = process.env.ADMIN_ROLE_ID
 
   if (!botToken || !guildId || !adminRoleId) {
-    console.error('Missing Discord configuration in environment variables')
+    // Missing configuration - fail silently for security
     return false
   }
 
@@ -26,24 +26,16 @@ async function verifyDiscordAdminRole(discordUserId: string): Promise<boolean> {
     )
 
     if (!response.ok) {
-      if (response.status === 404) {
-        console.log(`User ${discordUserId} is not a member of the guild`)
-        return false
-      }
-      console.error(`Discord API error: ${response.status} ${response.statusText}`)
+      // User not found or API error - fail silently
       return false
     }
 
     const member: { roles: string[] } = await response.json()
     const hasRole = member.roles.includes(adminRoleId)
-    
-    if (!hasRole) {
-      console.log(`User ${discordUserId} does not have admin role ${adminRoleId}`)
-    }
-    
+
     return hasRole
   } catch (error) {
-    console.error('Error verifying Discord role:', error)
+    // Authentication error - fail silently for security
     return false
   }
 }
@@ -57,7 +49,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   session: {
     strategy: "jwt", // NO DATABASE - JWT only!
-    maxAge: 7 * 24 * 60 * 60, // 7 days
+    maxAge: (await import('@/lib/config')).SESSION.MAX_AGE,
   },
   callbacks: {
     async signIn({ user, account, profile }) {

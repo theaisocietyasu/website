@@ -33,7 +33,6 @@ export async function requireOfficer(
     // Session exists means they are an officer
     return { discordId }
   } catch (error) {
-    console.error('Auth middleware error:', error)
     return NextResponse.json(
       { error: 'Authentication failed' },
       { status: 500 }
@@ -53,7 +52,6 @@ export async function optionalAuth(
       discordId: session?.user?.discordId,
     }
   } catch (error) {
-    console.error('Optional auth error:', error)
     return {}
   }
 }

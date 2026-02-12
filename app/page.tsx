@@ -1,6 +1,6 @@
 "use client"
-import { IconHome, IconUsers, IconCalendar } from "@tabler/icons-react"
 import { Navbar } from "@/components/layout/navbar"
+import { NAV_ITEMS } from "@/lib/navigation"
 import { Footer } from "@/components/layout/footer"
 import { HeroSection } from "@/components/home/hero-section"
 import { AboutMembershipSection } from "@/components/home/about-membership-section-fixed"
@@ -26,31 +26,6 @@ const ContactSection = dynamic(() => import("@/components/home/contact-section")
   ssr: true,
   loading: () => <div className="min-h-[300px]" />
 })
-import type { NavItem } from "@/lib/types"
-
-// Define navigation items
-const navItems: NavItem[] = [
-  {
-    name: "Home",
-    link: "/",
-    icon: <IconHome className="h-6 w-6" />,
-  },
-  {
-    name: "Projects",
-    link: "/projects",
-    icon: <IconUsers className="h-6 w-6" />,
-  },
-  {
-    name: "Events",
-    link: "/events",
-    icon: <IconCalendar className="h-6 w-6" />,
-  },
-  {
-    name: "SDC",
-    link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
-    icon: <IconCalendar className="h-6 w-6" />,
-  },
-]
 
 export default function Home() {
   return (
@@ -73,7 +48,7 @@ export default function Home() {
       </div>
 
       {/* Navigation */}
-      <Navbar navItems={navItems} />
+      <Navbar navItems={NAV_ITEMS} />
 
       {/* Hero Section */}
       <HeroSection />

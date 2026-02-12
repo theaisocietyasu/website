@@ -2,40 +2,22 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { IconHome, IconUsers, IconCalendar, IconArrowLeft } from "@tabler/icons-react"
+import { IconArrowLeft } from "@tabler/icons-react"
 import { motion } from "framer-motion"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { PDFViewer } from "@/components/projects/pdf-viewer"
 import { AI_MAKERSPACE_PROJECTS } from "@/lib/constants"
-import type { NavItem, AIProject } from "@/lib/types"
-
-// Define navigation items
-const navItems: NavItem[] = [
-  {
-    name: "Home",
-    link: "/",
-    icon: <IconHome className="h-6 w-6" />,
-  },
-  {
-    name: "Projects",
-    link: "/projects",
-    icon: <IconUsers className="h-6 w-6" />,
-  },
-  {
-    name: "SDC",
-    link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
-    icon: <IconCalendar className="h-6 w-6" />,
-  },
-]
+import { NAV_ITEMS } from "@/lib/navigation"
+import type { AIProject } from "@/lib/types"
 
 export default function AIMakerspaceProjectsPage() {
   const [selectedProject, setSelectedProject] = useState<AIProject>(AI_MAKERSPACE_PROJECTS[0])
 
   return (
     <main className="flex flex-col min-h-screen bg-dark-950">
-      <Navbar navItems={navItems} />
+      <Navbar navItems={NAV_ITEMS} />
 
       <div className="pt-24 pb-16 flex-grow relative container-padding">
         {/* Back to Projects Link */}

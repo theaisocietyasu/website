@@ -2,40 +2,22 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { IconHome, IconUsers, IconCalendar, IconArrowLeft } from "@tabler/icons-react"
+import { IconArrowLeft } from "@tabler/icons-react"
 import { motion } from "framer-motion"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { WorkshopContent } from "@/components/labs/workshop-content"
 import { NLP_WORKSHOPS } from "@/lib/constants"
+import { NAV_ITEMS } from "@/lib/navigation"
 import { SectionHeading } from "@/components/ui/section-heading"
-import type { NavItem, Workshop } from "@/lib/types"
-
-// Define navigation items
-const navItems: NavItem[] = [
-  {
-    name: "Home",
-    link: "/",
-    icon: <IconHome className="h-6 w-6" />,
-  },
-  {
-    name: "Projects",
-    link: "/projects",
-    icon: <IconUsers className="h-6 w-6" />,
-  },
-  {
-    name: "SDC",
-    link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
-    icon: <IconCalendar className="h-6 w-6" />,
-  },
-]
+import type { Workshop } from "@/lib/types"
 
 export default function NlpLabPage() {
   const [selectedWorkshop, setSelectedWorkshop] = useState<Workshop>(NLP_WORKSHOPS[0])
 
   return (
     <main className="flex flex-col min-h-screen bg-dark-950">
-      <Navbar navItems={navItems} />
+      <Navbar navItems={NAV_ITEMS} />
 
       <div className="pt-24 pb-16 flex-grow relative container-padding">
         {/* Back to Projects Link */}

@@ -36,18 +36,20 @@ async function getGridFSBucket(): Promise<{
   }
 
   if (!cached.promise) {
+    const { DATABASE } = await import('@/lib/config')
     cached.promise = MongoClient.connect(MONGODB_URI, {
-      maxPoolSize: 10,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
+      maxPoolSize: DATABASE.MAX_POOL_SIZE,
+      serverSelectionTimeoutMS: DATABASE.SERVER_SELECTION_TIMEOUT,
+      socketTimeoutMS: DATABASE.SOCKET_TIMEOUT,
     })
   }
 
   try {
     cached.client = await cached.promise
     const db = cached.client.db()
+    const { DATABASE } = await import('@/lib/config')
     cached.bucket = new GridFSBucket(db, {
-      bucketName: 'project_thumbnails',
+      bucketName: DATABASE.GRIDFS_BUCKET_NAME,
     })
   } catch (e) {
     cached.promise = null
@@ -134,8 +136,7 @@ export async function deleteFile(fileId: ObjectId): Promise<void> {
   try {
     await bucket.delete(fileId)
   } catch (error) {
-    console.error('Error deleting file from GridFS:', error)
-    throw error
+    throw new Error('Failed to delete file')
   }
 }
 
