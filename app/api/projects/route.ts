@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import connectMongoose from '@/lib/mongoose'
-import Project, { IProject } from '@/lib/models/Project'
+import Project from '@/lib/models/Project'
 import { requireOfficer } from '@/lib/auth-middleware'
 import { uploadFile } from '@/lib/gridfs'
 import { ObjectId } from 'mongodb'
