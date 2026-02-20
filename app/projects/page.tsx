@@ -2,24 +2,13 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { IconHome, IconUsers, IconCalendar } from "@tabler/icons-react"
 import { ChevronRight } from "lucide-react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { Button } from "@/components/ui/button" // Assuming you have this
+import { Button } from "@/components/ui/button"
+import { NAV_ITEMS } from "@/lib/navigation"
 import type { NavItem } from "@/lib/types"
-
-const navItems: NavItem[] = [
-  { name: "Home", link: "/", icon: <IconHome className="h-6 w-6" /> },
-  { name: "Projects", link: "/projects", icon: <IconUsers className="h-6 w-6" /> },
-  { name: "Events", link: "/events", icon: <IconCalendar className="h-6 w-6" /> },
-  {
-    name: "SDC",
-    link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
-    icon: <IconCalendar className="h-6 w-6" />,
-  },
-]
 
 interface ProjectSectionProps {
   title: string
@@ -98,7 +87,7 @@ export default function ProjectsPage() {
 
   return (
     <main className="flex flex-col min-h-screen bg-dark-950">
-      <Navbar navItems={navItems} />
+      <Navbar navItems={NAV_ITEMS} />
       <section className="py-16 md:py-20 lg:py-32 px-6 relative">
         <div className="container mx-auto relative z-10">
           <SectionHeading

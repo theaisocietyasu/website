@@ -36,7 +36,9 @@ export function Navbar({ navItems, className }: NavbarProps) {
       (pathname.startsWith("/projects") && item.link === "/projects") ||
       (pathname.startsWith("/ml_lab") && item.link === "/projects") ||
       (pathname.startsWith("/nlp_lab") && item.link === "/projects") ||
-      (pathname.startsWith("/events") && item.link === "/events")
+      (pathname.startsWith("/events") && item.link === "/events") ||
+      (pathname.startsWith("/software-corner") && item.link === "/software-corner") ||
+      (pathname.startsWith("/admin/software-corner") && item.link === "/software-corner")
 
     const isExternal = item.link.startsWith("http")
     const shouldOpenNewTab = isExternal

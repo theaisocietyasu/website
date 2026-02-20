@@ -7,7 +7,8 @@ Official website for The AI Society at Arizona State University
 - **Framework**: Next.js 15.2.4 (App Router)
 - **UI**: React 19, Tailwind CSS, Framer Motion
 - **Authentication**: NextAuth.js v5 (Discord OAuth with role verification)
-- **Database**: MongoDB (for Relink feature only)
+- **Database**: MongoDB with Mongoose (Relink + Software Corner)
+- **File Storage**: GridFS for project thumbnails
 - **Deployment**: Vercel
 
 ## Features
@@ -16,6 +17,7 @@ Official website for The AI Society at Arizona State University
 - **Programs**: AI Makerspace, ML Lab, NLP Lab
 - **Events**: Upcoming events and workshops
 - **Projects**: Student projects showcase
+- **Software Corner**: Officer project showcase with admin dashboard
 - **Relink**: Link management system (officers only)
 
 ## Getting Started
@@ -23,7 +25,7 @@ Official website for The AI Society at Arizona State University
 ### Prerequisites
 
 - Node.js 18+ and pnpm
-- MongoDB instance (for Relink feature)
+- MongoDB instance (for Relink & Software Corner features)
 - Discord Application with OAuth & Bot enabled
 
 ### Installation
@@ -71,44 +73,71 @@ NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
 
 ## Authentication
 
-The Relink editor (`/relink/edit`) is protected and only accessible to users who:
+Protected routes (`/relink/edit`, `/admin/software-corner`) are only accessible to users who:
 1. Sign in with Discord
 2. Are members of the specified Discord server
 3. Have the specified admin role
 
 Authentication uses NextAuth.js v5 with JWT-only sessions (no database required for auth).
 
+## Software Corner
+
+The Software Corner feature allows officers to showcase their projects. See [SOFTWARE_CORNER_README.md](SOFTWARE_CORNER_README.md) for detailed setup and integration instructions.
+
+**Quick start:**
+```bash
+# Seed sample projects
+node scripts/seed.js
+
+# Visit pages
+# Public: http://localhost:3000/software-corner
+# Admin: http://localhost:3000/admin/software-corner
+```
+
 ## Project Structure
 
 ```
-app/                    # Next.js app router pages
-  ├── api/             # API routes
-  │   ├── auth/        # NextAuth handlers
-  │   └── relink/      # Relink CRUD operations
-  ├── events/          # Events page
-  ├── ml_lab/          # ML Lab page
-  ├── nlp_lab/         # NLP Lab page
-  ├── projects/        # Projects page
-  └── relink/          # Relink pages
-      ├── page.tsx     # Public link viewer
-      ├── signin/      # Discord OAuth sign-in
-      └── edit/        # Protected editor
+app/                       # Next.js app router pages
+  ├── api/                # API routes
+  │   ├── auth/           # NextAuth handlers
+  │   ├── projects/       # Software Corner API
+  │   └── relink/         # Relink CRUD operations
+  ├── admin/
+  │   └── software-corner/ # Project management dashboard
+  ├── events/             # Events page
+  ├── ml_lab/             # ML Lab page
+  ├── nlp_lab/            # NLP Lab page
+  ├── projects/           # Projects page
+  ├── software-corner/    # Public project showcase
+  └── relink/             # Relink pages
+      ├── page.tsx        # Public link viewer
+      ├── signin/         # Discord OAuth sign-in
+      └── edit/           # Protected editor
 
-components/            # React components
-  ├── home/           # Homepage sections
-  ├── labs/           # Lab components
-  ├── layout/         # Navbar, Footer
-  ├── projects/       # Project components
-  ├── providers/      # Context providers
-  └── ui/             # Reusable UI components
+components/               # React components
+  ├── home/              # Homepage sections
+  ├── labs/              # Lab components
+  ├── layout/            # Navbar, Footer
+  ├── projects/          # Project components
+  ├── providers/         # Context providers
+  ├── software-corner/   # Software Corner components
+  └── ui/                # Reusable UI components
 
-lib/                   # Utilities and configurations
-  ├── auth.ts         # NextAuth configuration
-  ├── auth-types.ts   # TypeScript type extensions
-  ├── mongodb.ts      # MongoDB connection
-  └── types.ts        # Shared types
+lib/                      # Utilities and configurations
+  ├── auth.ts            # NextAuth configuration
+  ├── auth-middleware.ts # API authentication
+  ├── auth-types.ts      # TypeScript type extensions
+  ├── gridfs.ts          # GridFS file storage
+  ├── models/            # Mongoose models
+  │   └── Project.ts     # Project model
+  ├── mongodb.ts         # MongoDB connection (native)
+  ├── mongoose.ts        # Mongoose connection
+  └── types.ts           # Shared types
 
-middleware.ts          # Route protection
+scripts/                  # Utility scripts
+  └── seed.js            # Database seeding
+
+middleware.ts             # Route protection
 ```
 
 ## Deployment
