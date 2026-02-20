@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import Discord from "next-auth/providers/discord"
 import "./auth-types" // Extend NextAuth types
+import { SESSION } from "@/lib/config"
 
 /**
  * Verify user has admin role in Discord guild using bot token
@@ -49,7 +50,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   session: {
     strategy: "jwt", // NO DATABASE - JWT only!
-    maxAge: (await import('@/lib/config')).SESSION.MAX_AGE,
+    maxAge: SESSION.MAX_AGE,
   },
   callbacks: {
     async signIn({ user, account, profile }) {
