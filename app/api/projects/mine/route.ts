@@ -44,17 +44,15 @@ export async function GET(request: NextRequest) {
 
     // Cursor-based pagination
     if (cursor) {
-      try {
-        const cursorDate = new Date(cursor)
-        query.created_at = { $lt: cursorDate }
-      } catch (e) {
+      const cursorDate = new Date(cursor)
+      if (isNaN(cursorDate.getTime())) {
         return NextResponse.json(
           { error: 'Invalid cursor format' },
           { status: 400 }
         )
       }
+      query.created_at = { $lt: cursorDate }
     }
-
     const projects = await Project.find(query)
       .sort({ created_at: -1 })
       .limit(pageSize + 1)
