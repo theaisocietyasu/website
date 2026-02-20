@@ -204,8 +204,8 @@ export default function AdminSoftwareCornerPage() {
 
   if (status === "loading") {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-slate-950 via-purple-950 to-slate-900">
-        <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+      <div className="flex min-h-screen items-center justify-center bg-dark-950">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-dark-700 border-t-primary-500" />
       </div>
     )
   }
@@ -214,50 +214,52 @@ export default function AdminSoftwareCornerPage() {
     return null
   }
 
+  const publishedCount = projects.filter((p) => p.published).length
+  const draftCount = projects.filter((p) => !p.published).length
+
   return (
-    <main className="flex min-h-screen flex-col bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 relative overflow-hidden">
-      {/* Background decoration */}
+    <main className="flex min-h-screen flex-col bg-dark-950 bg-grid-pattern relative overflow-hidden">
+      {/* Background glow blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl" />
+        <div className="absolute -top-60 -right-60 w-[500px] h-[500px] bg-primary-500/6 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 -left-60 w-[500px] h-[500px] bg-secondary-500/6 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-accent-500/4 rounded-full blur-3xl" />
       </div>
 
       <Navbar navItems={NAV_ITEMS} />
 
       <div className="flex-1 px-6 pt-32 pb-20 relative z-10">
         <div className="mx-auto w-full max-w-[1400px]">
+
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-12"
+            className="mb-10"
           >
-            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <div>
-                <div className="mb-4 inline-block rounded-full bg-gradient-to-r from-primary-500/20 to-purple-500/20 px-5 py-2 backdrop-blur-sm border border-primary-500/30">
-                  <span className="text-sm font-bold uppercase tracking-widest text-primary-300">
-                    Admin Dashboard
-                  </span>
+                <div className="mb-4 inline-flex items-center px-4 py-1.5 rounded-full bg-dark-800/50 border border-dark-700 text-dark-100 text-sm">
+                  Admin Dashboard
                 </div>
-                <h1 className="mb-3 font-space-grotesk text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-primary-200 to-purple-200 md:text-6xl">
+                <h1 className="mb-2 font-heading text-4xl font-bold gradient-text md:text-5xl">
                   Manage Projects
                 </h1>
-                <p className="text-xl text-dark-50">
-                  Create, edit, and publish projects in the Software Corner
+                <p className="text-dark-300 text-base">
+                  Create, edit, and publish your Software Corner projects
                 </p>
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-3">
                 <button
                   onClick={() => setShowDrafts(!showDrafts)}
-                  className="rounded-2xl border-2 border-white/20 bg-white/5 px-6 py-3.5 font-bold text-white backdrop-blur-md shadow-lg transition-all hover:bg-white/10 hover:shadow-xl hover:scale-105"
+                  className="rounded-xl border border-dark-700/60 bg-dark-800/50 px-5 py-2.5 text-sm font-semibold text-dark-100 backdrop-blur-sm transition-all hover:bg-dark-700/60 hover:text-white hover:border-dark-600"
                 >
                   {showDrafts ? "Show Published" : "Show Drafts"}
                 </button>
                 <button
                   onClick={openCreateModal}
-                  className="rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 px-8 py-3.5 font-bold text-white shadow-lg transition-all hover:from-primary-500 hover:to-primary-600 hover:shadow-xl hover:scale-105"
+                  className="rounded-xl bg-primary-600 hover:bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition-colors"
                 >
                   + New Project
                 </button>
@@ -270,40 +272,19 @@ export default function AdminSoftwareCornerPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="mb-10 grid gap-4 sm:grid-cols-3"
           >
-            <div className="group rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-6 backdrop-blur-md shadow-lg transition-all hover:border-primary-500/50 hover:shadow-xl hover:shadow-primary-500/20">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-bold uppercase tracking-wide text-primary-300">My Projects</p>
-                <svg className="h-8 w-8 text-primary-400 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                </svg>
-              </div>
-              <p className="font-space-grotesk text-5xl font-bold text-white">
-                {projects.length}
-              </p>
+            <div className="rounded-xl border border-dark-700/60 bg-dark-900/50 backdrop-blur-sm p-5 transition-all hover:border-primary-500/30">
+              <p className="text-xs font-semibold uppercase tracking-widest text-dark-400 mb-2">Total Projects</p>
+              <p className="font-heading text-4xl font-bold text-white">{projects.length}</p>
             </div>
-            <div className="group rounded-2xl border border-white/10 bg-gradient-to-br from-green-500/10 to-green-500/5 p-6 backdrop-blur-md shadow-lg transition-all hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/20">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-bold uppercase tracking-wide text-green-300">Published</p>
-                <svg className="h-8 w-8 text-green-400 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p className="font-space-grotesk text-5xl font-bold text-green-400">
-                {projects.filter((p) => p.published).length}
-              </p>
+            <div className="rounded-xl border border-dark-700/60 bg-dark-900/50 backdrop-blur-sm p-5 transition-all hover:border-primary-500/30">
+              <p className="text-xs font-semibold uppercase tracking-widest text-dark-400 mb-2">Published</p>
+              <p className="font-heading text-4xl font-bold text-primary-400">{publishedCount}</p>
             </div>
-            <div className="group rounded-2xl border border-white/10 bg-gradient-to-br from-yellow-500/10 to-yellow-500/5 p-6 backdrop-blur-md shadow-lg transition-all hover:border-yellow-500/50 hover:shadow-xl hover:shadow-yellow-500/20">
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-bold uppercase tracking-wide text-yellow-300">Drafts</p>
-                <svg className="h-8 w-8 text-yellow-400 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <p className="font-space-grotesk text-5xl font-bold text-yellow-400">
-                {projects.filter((p) => !p.published).length}
-              </p>
+            <div className="rounded-xl border border-dark-700/60 bg-dark-900/50 backdrop-blur-sm p-5 transition-all hover:border-primary-500/30">
+              <p className="text-xs font-semibold uppercase tracking-widest text-dark-400 mb-2">Drafts</p>
+              <p className="font-heading text-4xl font-bold text-secondary-400">{draftCount}</p>
             </div>
           </motion.div>
 
@@ -311,11 +292,10 @@ export default function AdminSoftwareCornerPage() {
           {isLoading ? (
             <div className="flex min-h-[500px] items-center justify-center">
               <div className="text-center">
-                <div className="relative mx-auto mb-6 h-20 w-20">
-                  <div className="absolute inset-0 animate-spin rounded-full border-4 border-primary-500/30 border-t-primary-500" />
-                  <div className="absolute inset-2 animate-ping rounded-full bg-primary-500/20" />
+                <div className="relative mx-auto mb-5 h-16 w-16">
+                  <div className="absolute inset-0 animate-spin rounded-full border-4 border-dark-700 border-t-primary-500" />
                 </div>
-                <p className="text-lg font-medium text-primary-300">Loading projects...</p>
+                <p className="text-sm font-medium text-dark-300">Loading projects...</p>
               </div>
             </div>
           ) : projects.length === 0 ? (
@@ -325,16 +305,16 @@ export default function AdminSoftwareCornerPage() {
               transition={{ duration: 0.5 }}
               className="flex min-h-[500px] items-center justify-center"
             >
-              <div className="text-center max-w-md">
-                <div className="mx-auto mb-6 w-24 h-24 rounded-full bg-gradient-to-br from-primary-500/20 to-purple-500/20 flex items-center justify-center border border-primary-500/30">
-                  <svg className="w-12 h-12 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <div className="text-center max-w-sm">
+                <div className="mx-auto mb-5 w-16 h-16 rounded-full bg-dark-800/60 border border-dark-700/60 flex items-center justify-center">
+                  <svg className="w-8 h-8 text-dark-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <p className="text-2xl font-bold text-white mb-3">
+                <p className="text-xl font-semibold text-white mb-2">
                   {showDrafts ? "No draft projects" : "No published projects"}
                 </p>
-                <p className="text-lg text-dark-100">
+                <p className="text-dark-400 text-sm">
                   Create your first project to get started
                 </p>
               </div>
@@ -345,14 +325,14 @@ export default function AdminSoftwareCornerPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+                className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               >
                 {projects.map((project, index) => (
                   <motion.div
                     key={project._id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    transition={{ duration: 0.4, delay: index * 0.07 }}
                     className="relative"
                   >
                     <ProjectCard
@@ -363,46 +343,46 @@ export default function AdminSoftwareCornerPage() {
                     />
                     <button
                       onClick={() => handleTogglePublish(project)}
-                      className={`absolute right-3 top-3 z-10 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wide shadow-lg transition-all hover:scale-110 ${
+                      className={`absolute right-3 top-3 z-20 rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide shadow-lg transition-all hover:scale-105 ${
                         project.published
-                          ? "bg-green-500 text-white hover:bg-green-600 hover:shadow-green-500/50"
-                          : "bg-yellow-500 text-dark-950 hover:bg-yellow-600 hover:shadow-yellow-500/50"
+                          ? "bg-primary-600 text-white hover:bg-primary-500"
+                          : "bg-dark-700 text-dark-200 border border-dark-600 hover:bg-dark-600"
                       }`}
                     >
-                      {project.published ? "✓ Published" : "Publish"}
+                      {project.published ? "✓ Live" : "Publish"}
                     </button>
                   </motion.div>
                 ))}
               </motion.div>
 
-              {/* Load More Button */}
+              {/* Load More */}
               {hasMore && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="mt-16 flex justify-center"
+                  className="mt-14 flex justify-center"
                 >
                   <button
                     onClick={handleLoadMore}
                     disabled={isLoadingMore}
-                    className="group rounded-2xl bg-gradient-to-r from-primary-600 to-primary-700 px-10 py-4 font-bold text-white shadow-lg transition-all hover:from-primary-500 hover:to-primary-600 hover:shadow-xl hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="inline-flex items-center gap-2.5 rounded-xl bg-primary-600 hover:bg-primary-500 px-8 py-3.5 font-semibold text-white shadow-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoadingMore ? (
-                      <span className="flex items-center gap-3">
-                        <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                      <>
+                        <svg className="h-4 w-4 animate-spin" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                         </svg>
                         Loading...
-                      </span>
+                      </>
                     ) : (
-                      <span className="flex items-center gap-2">
-                        Load More Projects
-                        <svg className="h-5 w-5 transition-transform group-hover:translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <>
+                        Load More
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
-                      </span>
+                      </>
                     )}
                   </button>
                 </motion.div>
