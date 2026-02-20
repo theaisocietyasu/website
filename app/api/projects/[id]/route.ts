@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import connectMongoose from '@/lib/mongoose'
 import Project from '@/lib/models/Project'
-import { requireOfficer } from '@/lib/auth-middleware'
+import { requireOfficer, optionalAuth } from '@/lib/auth-middleware'
 import { uploadFile, deleteFile } from '@/lib/gridfs'
 import { Types } from 'mongoose'
 import { FILE_UPLOAD } from '@/lib/config'
@@ -30,6 +30,14 @@ export async function GET(
 
     if (!project) {
       return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+    }
+
+    // Draft projects are only visible to authenticated officers
+    if (!project.published) {
+      const { discordId } = await optionalAuth(request)
+      if (!discordId) {
+        return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+      }
     }
 
     return NextResponse.json(project)
