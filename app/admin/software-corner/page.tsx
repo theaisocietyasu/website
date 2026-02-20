@@ -1,8 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
+import { signIn, useSession } from "next-auth/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
@@ -13,7 +12,6 @@ import type { SoftwareProject } from "@/lib/types"
 
 export default function AdminSoftwareCornerPage() {
   const { data: session, status } = useSession()
-  const router = useRouter()
   const [projects, setProjects] = useState<SoftwareProject[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
@@ -28,9 +26,9 @@ export default function AdminSoftwareCornerPage() {
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push("/relink/signin")
+      signIn("discord", { callbackUrl: "/admin/software-corner" })
     }
-  }, [status, router])
+  }, [status])
 
   const fetchProjects = async (cursor?: string | null) => {
     try {
