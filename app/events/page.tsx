@@ -1,23 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { IconHome, IconUsers, IconCalendar, IconCalendarPlus } from "@tabler/icons-react"
+import { IconCalendarPlus } from "@tabler/icons-react"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Button } from "@/components/ui/button"
-import type { NavItem } from "@/lib/types"
-
-const navItems: NavItem[] = [
-  { name: "Home", link: "/", icon: <IconHome className="h-6 w-6" /> },
-  { name: "Projects", link: "/projects", icon: <IconUsers className="h-6 w-6" /> },
-  { name: "Events", link: "/events", icon: <IconCalendar className="h-6 w-6" /> },
-  {
-    name: "SDC",
-    link: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
-    icon: <IconCalendar className="h-6 w-6" />,
-  },
-]
+import { NAV_ITEMS } from "@/lib/navigation"
 
 function NotionEmbed() {
   const [isLoading, setIsLoading] = useState(true)
@@ -81,7 +70,7 @@ export default function EventsPage() {
 
   return (
     <main className="flex flex-col min-h-screen bg-dark-950">
-      <Navbar navItems={navItems} />
+      <Navbar navItems={NAV_ITEMS} />
       
       {/* Header Section */}
       <section className="py-16 md:py-20 lg:py-32 px-6 relative">
