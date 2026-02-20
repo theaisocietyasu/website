@@ -75,6 +75,29 @@ export function ProjectCard({
           unoptimized
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-purple-950/80" />
+
+        {/* Admin Actions - Top Left */}
+        {isAdmin && (
+          <div className="absolute left-4 top-4 flex gap-2 z-10">
+            <motion.button
+              onClick={onEdit}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="flex-none relative overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 text-xs font-bold text-white shadow-lg transition-all hover:shadow-blue-500/50"
+            >
+              <span className="relative z-10">Edit</span>
+            </motion.button>
+            <motion.button
+              onClick={onDelete}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="flex-none relative overflow-hidden rounded-lg bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 text-xs font-bold text-white shadow-lg transition-all hover:shadow-red-500/50"
+            >
+              <span className="relative z-10">Delete</span>
+            </motion.button>
+          </div>
+        )}
+
         {!project.published && isAdmin && (
           <div className="absolute right-4 top-4 rounded-full bg-yellow-500 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-dark-950 shadow-lg">
             Draft
@@ -187,30 +210,6 @@ export function ProjectCard({
             </motion.svg>
             <span className="relative z-10">Live Demo</span>
           </motion.a>
-        </div>
-
-        {/* Admin Actions - Fixed height container */}
-        <div className={cn("min-h-[40px] flex items-end", isAdmin && "border-t border-white/10 pt-2")}> 
-          {isAdmin && (
-            <div className="flex gap-2 w-full justify-end">
-              <motion.button
-                onClick={onEdit}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="flex-none relative overflow-hidden rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 px-3 py-2 text-xs font-bold text-white shadow-md transition-all hover:shadow-blue-500/50"
-              >
-                <span className="relative z-10">Edit</span>
-              </motion.button>
-              <motion.button
-                onClick={onDelete}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="flex-none relative overflow-hidden rounded-lg bg-gradient-to-r from-red-600 to-red-700 px-3 py-2 text-xs font-bold text-white shadow-md transition-all hover:shadow-red-500/50"
-              >
-                <span className="relative z-10">Delete</span>
-              </motion.button>
-            </div>
-          )}
         </div>
       </div>
     </motion.div>
