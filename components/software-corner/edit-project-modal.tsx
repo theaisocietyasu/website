@@ -189,7 +189,7 @@ export function EditProjectModal({
                       setFormData({ ...formData, title: e.target.value })
                     }
                     maxLength={120}
-                    className="w-full rounded-xl border-2 border-white/10 bg-dark-800/50 px-5 py-3.5 text-white placeholder-dark-300 backdrop-blur-sm transition-all focus:border-primary-500 focus:bg-dark-800 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
+                    className="w-full rounded-xl border-2 border-white/10 bg-dark-800 px-5 py-3.5 text-white placeholder-dark-300 transition-all focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
                     placeholder="My Awesome Project"
                     required
                   />
@@ -211,7 +211,7 @@ export function EditProjectModal({
                       setFormData({ ...formData, description: e.target.value })
                     }
                     rows={5}
-                    className="w-full rounded-xl border-2 border-white/10 bg-dark-800/50 px-5 py-3.5 text-white placeholder-dark-300 backdrop-blur-sm transition-all focus:border-primary-500 focus:bg-dark-800 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
+                    className="w-full rounded-xl border-2 border-white/10 bg-dark-800 px-5 py-3.5 text-white placeholder-dark-300 transition-all focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
                     placeholder="Describe your project in detail..."
                     required
                   />
@@ -276,7 +276,7 @@ export function EditProjectModal({
                       onChange={(e) =>
                         setFormData({ ...formData, github_url: e.target.value })
                       }
-                      className="w-full rounded-xl border-2 border-white/10 bg-dark-800/50 pl-12 pr-5 py-3.5 text-white placeholder-dark-300 backdrop-blur-sm transition-all focus:border-primary-500 focus:bg-dark-800 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
+                      className="w-full rounded-xl border-2 border-white/10 bg-dark-800 pl-12 pr-5 py-3.5 text-white placeholder-dark-300 transition-all focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
                       placeholder="https://github.com/username/repo"
                     />
                   </div>
@@ -299,7 +299,7 @@ export function EditProjectModal({
                       onChange={(e) =>
                         setFormData({ ...formData, live_url: e.target.value })
                       }
-                      className="w-full rounded-xl border-2 border-white/10 bg-dark-800/50 pl-12 pr-5 py-3.5 text-white placeholder-dark-300 backdrop-blur-sm transition-all focus:border-primary-500 focus:bg-dark-800 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
+                      className="w-full rounded-xl border-2 border-white/10 bg-dark-800 pl-12 pr-5 py-3.5 text-white placeholder-dark-300 transition-all focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
                       placeholder="https://myproject.com"
                     />
                   </div>
@@ -321,7 +321,7 @@ export function EditProjectModal({
                           handleAddCollaborator()
                         }
                       }}
-                      className="flex-1 rounded-xl border-2 border-white/10 bg-dark-800/50 px-5 py-3.5 text-white placeholder-dark-300 backdrop-blur-sm transition-all focus:border-primary-500 focus:bg-dark-800 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
+                      className="flex-1 rounded-xl border-2 border-white/10 bg-dark-800 px-5 py-3.5 text-white placeholder-dark-300 transition-all focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-500/30"
                       placeholder="username"
                     />
                     <button
