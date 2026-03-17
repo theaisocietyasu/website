@@ -1,12 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
 import { Navbar } from "@/components/layout/navbar"
 import { Footer } from "@/components/layout/footer"
 import { ProjectCard } from "@/components/software-corner/project-card"
 import { NAV_ITEMS } from "@/lib/navigation"
 import type { SoftwareProject } from "@/lib/types"
+
+const SIDEBAR_WIDTH = 380
 
 export default function SoftwareCornerPage() {
   const [projects, setProjects] = useState<SoftwareProject[]>([])
@@ -14,6 +17,8 @@ export default function SoftwareCornerPage() {
   const [hasMore, setHasMore] = useState(false)
   const [nextCursor, setNextCursor] = useState<string | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
+  const [selectedProject, setSelectedProject] = useState<SoftwareProject | null>(null)
+  const [navbarHeight, setNavbarHeight] = useState(80)
 
   const fetchProjects = async (cursor?: string | null, search?: string) => {
     try {
@@ -39,12 +44,19 @@ export default function SoftwareCornerPage() {
 
       const data = await response.json()
 
+
+
+
+
+
+
+
+
       if (cursor) {
         setProjects((prev) => [...prev, ...data.data])
       } else {
         setProjects(data.data)
       }
-
       setHasMore(data.hasMore)
       setNextCursor(data.nextCursor)
     } catch (error) {
@@ -54,9 +66,15 @@ export default function SoftwareCornerPage() {
     }
   }
 
+
   useEffect(() => {
     fetchProjects(null, searchQuery)
   }, [searchQuery])
+
+  useEffect(() => {
+    const navbar = document.querySelector("nav, header") as HTMLElement | null
+    if (navbar) setNavbarHeight(navbar.offsetHeight)
+  }, [])
 
   const handleLoadMore = () => {
     if (nextCursor && !isLoading) {
@@ -67,12 +85,17 @@ export default function SoftwareCornerPage() {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
-    const query = formData.get("search") as string
-    setSearchQuery(query)
+    setSearchQuery(formData.get("search") as string)
   }
 
+  const handleSelectProject = (project: SoftwareProject) => {
+    setSelectedProject((prev) => prev?._id === project._id ? null : project)
+  }
+
+  const sidebarOpen = !!selectedProject
+
   return (
-    <main className="flex min-h-screen flex-col bg-dark-950 bg-grid-pattern relative overflow-hidden">
+    <main className="flex min-h-screen flex-col bg-dark-950 bg-grid-pattern relative">
       {/* Background glow blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-60 -right-60 w-[500px] h-[500px] bg-primary-500/6 rounded-full blur-3xl" />
@@ -82,7 +105,131 @@ export default function SoftwareCornerPage() {
 
       <Navbar navItems={NAV_ITEMS} />
 
-      <div className="flex-1 px-6 pt-32 pb-20 relative z-10">
+      {/* Fixed sidebar — lives outside scroll flow, anchored to the right edge of the viewport */}
+      <AnimatePresence>
+        {sidebarOpen && selectedProject && (
+          <motion.aside
+            key="sidebar"
+            initial={{ x: SIDEBAR_WIDTH }}
+            animate={{ x: 0 }}
+            exit={{ x: SIDEBAR_WIDTH }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            style={{
+              position: "fixed",
+              top: navbarHeight,
+              right: 0,
+              width: SIDEBAR_WIDTH,
+              height: `calc(100vh - ${navbarHeight}px)`,
+              zIndex: 40,
+            }}
+            className="flex flex-col bg-dark-900 border-l border-dark-800 shadow-2xl shadow-black/60"
+          >
+            {/* Thumbnail — full width, fixed height */}
+            <div className="relative w-full h-52 flex-shrink-0 bg-dark-950">
+              <Image
+                src={
+                  selectedProject.thumbnail_file_id
+                    ? `/api/projects/${selectedProject.thumbnail_file_id}/thumbnail`
+                    : "/placeholder-project.png"
+                }
+                alt={selectedProject.title}
+                fill
+                className="object-cover"
+                unoptimized
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/20 to-transparent" />
+
+              {/* Close button overlaid on image */}
+              <button
+                type="button"
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 inline-flex h-8 w-8 items-center justify-center rounded-full bg-dark-950/70 border border-dark-700/60 text-dark-300 hover:text-white hover:bg-dark-800 transition-colors backdrop-blur-sm"
+                aria-label="Close project details"
+              >
+                <svg className="h-3.5 w-3.5" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 3l8 8M11 3L3 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Scrollable content */}
+            <div className="flex flex-col flex-1 overflow-y-auto p-6 gap-5">
+
+              {/* Title */}
+              <div>
+                <span className="inline-flex items-center rounded-full bg-primary-500/10 px-3 py-1 text-xs font-semibold text-primary-300 border border-primary-500/20 mb-3">
+                  Project details
+                </span>
+                <h2 className="font-heading text-2xl font-bold text-white leading-tight">
+                  {selectedProject.title}
+                </h2>
+              </div>
+
+              {/* Description */}
+              <div className="space-y-1.5">
+                <h3 className="text-xs font-semibold uppercase tracking-widest text-dark-400">
+                  Description
+                </h3>
+                <p className="text-sm text-dark-100 leading-relaxed whitespace-pre-line">
+                  {selectedProject.description}
+                </p>
+              </div>
+
+              {/* Collaborators */}
+              {selectedProject.collaborators && selectedProject.collaborators.length > 0 && (
+                <div className="space-y-2">
+                  <h3 className="text-xs font-semibold uppercase tracking-widest text-dark-400">
+                    Collaborators
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedProject.collaborators.map((name) => (
+                      <span
+                        key={name}
+                        className="rounded-full bg-dark-800 border border-dark-700 px-3 py-1 text-xs font-medium text-dark-100"
+                      >
+                        {name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Push links to bottom */}
+              <div className="flex-1" />
+
+              {/* Links */}
+              <div className="flex gap-2 pt-4 border-t border-dark-800">
+                {selectedProject.github_url && (
+                  <a
+                    href={selectedProject.github_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl border border-dark-700 bg-dark-800 px-4 py-2.5 text-sm font-semibold text-dark-100 hover:bg-dark-700 hover:border-dark-500 transition-colors"
+                  >
+                    GitHub
+                  </a>
+                )}
+                {selectedProject.live_url && (
+                  <a
+                    href={selectedProject.live_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary-600 to-secondary-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-primary-700/30 hover:shadow-lg transition-shadow"
+                  >
+                    Live demo
+                  </a>
+                )}
+              </div>
+            </div>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+
+      {/* Page content — right padding reserves space so content never slides under the fixed sidebar */}
+      <div
+        className="flex-1 px-6 pt-32 pb-20 relative z-10"
+        style={{ paddingRight: sidebarOpen ? `calc(1.5rem + ${SIDEBAR_WIDTH}px)` : undefined }}
+      >
         <div className="mx-auto w-full max-w-[1400px]">
 
           {/* Header */}
@@ -169,33 +316,47 @@ export default function SoftwareCornerPage() {
                 </div>
                 <p className="text-xl font-semibold text-white mb-2">No projects found</p>
                 <p className="text-dark-400 text-sm">
-                  {searchQuery
-                    ? "Try adjusting your search query"
-                    : "Check back soon for new projects"}
+                  {searchQuery ? "Try adjusting your search query" : "Check back soon for new projects"}
                 </p>
               </div>
             </motion.div>
           ) : (
             <>
               <motion.div
+                layout
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                transition={{ duration: 0.5 }}
+                className="mt-4"
+                style={{
+                  display: 'grid',
+                  gap: '1.5rem',
+                  gridTemplateColumns: sidebarOpen
+                    ? 'repeat(3, 332px)'
+                    : 'repeat(4, 332px)',
+                  justifyContent: 'start',
+                }}
               >
                 {projects.map((project, index) => (
-                  <motion.div
+                  <motion.button
+                    layout
                     key={project._id}
+                    type="button"
+                    onClick={() => handleSelectProject(project)}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.07 }}
+                    transition={{ duration: 0.4, delay: index * 0.04 }}
+                    className={`text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500/60 rounded-2xl transition-shadow ${
+                      selectedProject?._id === project._id
+                        ? "ring-2 ring-primary-500/60"
+                        : ""
+                    }`}
                   >
                     <ProjectCard project={project} />
-                  </motion.div>
+                  </motion.button>
                 ))}
               </motion.div>
 
-              {/* Load More */}
               {hasMore && (
                 <motion.div
                   initial={{ opacity: 0 }}
