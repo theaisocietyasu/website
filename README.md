@@ -1,6 +1,6 @@
 # The AI Society Website 2025
 
-Official website for The AI Society at Arizona State University.
+Official website for The AI Society at Arizona State University
 
 ## Tech Stack
 
