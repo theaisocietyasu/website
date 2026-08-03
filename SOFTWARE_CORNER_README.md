@@ -49,14 +49,11 @@ All routes are in `/app/api/projects/`:
 
 ### 1. Environment Variables
 
-Add these to your `.env.local`:
+Add these to your `.env.local` (see also `.env.example`):
 
 ```bash
 # MongoDB (required)
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database?retryWrites=true&w=majority
-
-# Site base URL (for redirects)
-SITE_BASE_URL=http://localhost:3000
 
 # Discord OAuth (already configured)
 DISCORD_CLIENT_ID=your_client_id
@@ -66,11 +63,10 @@ DISCORD_GUILD_ID=your_guild_id
 ADMIN_ROLE_ID=your_admin_role_id
 
 # NextAuth (already configured)
-NEXT_AUTH_SECRET=your_nextauth_secret
+NEXTAUTH_SECRET=your_nextauth_secret
 NEXTAUTH_URL=http://localhost:3000
-
-# Optional: GitHub token for collaborator avatar rate limiting
-GITHUB_TOKEN=ghp_your_token_here
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+AUTH_TRUST_HOST=true
 ```
 
 ### 2. Install Dependencies
@@ -246,7 +242,7 @@ GitHub usernames are stored as strings. The frontend fetches avatars in real-tim
 fetch(`https://api.github.com/users/${username}`)
 ```
 
-**Rate limiting**: Consider adding `GITHUB_TOKEN` to environment variables for higher rate limits.
+**Rate limiting**: Avatar fetches are unauthenticated today. Higher limits would need a `GITHUB_TOKEN` wired into those requests.
 
 ## Security
 
@@ -285,9 +281,8 @@ fetch(`https://api.github.com/users/${username}`)
 - Ensure `thumbnail_file_id` is valid ObjectId
 
 ### "Rate limit exceeded" for GitHub avatars
-- Add `GITHUB_TOKEN` to environment variables
 - Reduce number of collaborators per project
-- Implement avatar caching in the future
+- Implement authenticated GitHub requests (e.g. `GITHUB_TOKEN`) and avatar caching in the future
 
 ## Future Enhancements
 
