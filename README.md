@@ -24,7 +24,7 @@ Official website for The AI Society at Arizona State University
 
 ### Prerequisites
 
-- Node.js 18+ and pnpm
+- Node.js 18+ and npm
 - MongoDB instance (for Relink & Software Corner features)
 - Discord Application with OAuth & Bot enabled
 
@@ -32,10 +32,10 @@ Official website for The AI Society at Arizona State University
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Run development server
-pnpm dev
+npm run dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000)
@@ -154,7 +154,7 @@ NEXTAUTH_URL="https://yourdomain.com"
 
 ```bash
 # Install Vercel CLI
-pnpm add -g vercel
+npm i -g vercel
 
 # Deploy
 vercel
@@ -166,16 +166,16 @@ Or push to GitHub and connect to Vercel via the dashboard.
 
 ```bash
 # Run dev server
-pnpm dev
+npm run dev
 
 # Build for production
-pnpm build
+npm run build
 
 # Start production server
-pnpm start
+npm start
 
 # Lint code
-pnpm lint
+npm run lint
 ```
 
 ## Contributing
