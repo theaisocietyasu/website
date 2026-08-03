@@ -3,12 +3,19 @@
 import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { useInView } from "framer-motion"
-import { Download, ChevronDown, UserCheck, History, Code, Settings, Mail, Linkedin } from "lucide-react"
+import { Download, ChevronDown, UserCheck, History, Code, Settings, Mail, Linkedin, Users } from "lucide-react"
 import Image from "next/image"
 import FileSaver from "file-saver"
 import * as XLSX from "xlsx"
 import jsPDF from "jspdf"
-import { EXECUTIVE_BOARD, TECHNICAL_OFFICERS, SOFTWARE_DEVELOPERS, OPERATIONS_OFFICERS, AIS_ALUMNI } from "@/lib/constants"
+import {
+  EXECUTIVE_BOARD,
+  ACADEMIC_OFFICERS,
+  PROJECT_DEVELOPERS,
+  COLLABORATION_OFFICERS,
+  OPERATIONS_OFFICERS,
+  AIS_ALUMNI,
+} from "@/lib/constants"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { Spotlight } from "@/components/ui/spotlight"
 import { ThreeDCard } from "@/components/ui/3d-card"
@@ -172,7 +179,14 @@ export function TeamSection() {
   const downloadExcel = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...EXECUTIVE_BOARD, ...TECHNICAL_OFFICERS, ...SOFTWARE_DEVELOPERS, ...OPERATIONS_OFFICERS, ...AIS_ALUMNI]
+      const allMembers = [
+        ...EXECUTIVE_BOARD,
+        ...ACADEMIC_OFFICERS,
+        ...PROJECT_DEVELOPERS,
+        ...COLLABORATION_OFFICERS,
+        ...OPERATIONS_OFFICERS,
+        ...AIS_ALUMNI,
+      ]
       const formattedMembers = allMembers.map(({ name, position, email }) => ({
         name,
         position,
@@ -192,7 +206,14 @@ export function TeamSection() {
   const downloadPDF = (e: React.MouseEvent) => {
     e.stopPropagation()
     try {
-      const allMembers = [...EXECUTIVE_BOARD, ...TECHNICAL_OFFICERS, ...SOFTWARE_DEVELOPERS, ...OPERATIONS_OFFICERS, ...AIS_ALUMNI]
+      const allMembers = [
+        ...EXECUTIVE_BOARD,
+        ...ACADEMIC_OFFICERS,
+        ...PROJECT_DEVELOPERS,
+        ...COLLABORATION_OFFICERS,
+        ...OPERATIONS_OFFICERS,
+        ...AIS_ALUMNI,
+      ]
       const doc = new jsPDF()
       doc.setFontSize(20)
       doc.setTextColor(12, 141, 224)
@@ -222,16 +243,17 @@ export function TeamSection() {
   const renderTeamMembers = () => {
     let team: TeamMember[]
     if (selectedTeam === "executive") team = EXECUTIVE_BOARD
-    else if (selectedTeam === "technical") team = TECHNICAL_OFFICERS
-    else if (selectedTeam === "software") team = SOFTWARE_DEVELOPERS
+    else if (selectedTeam === "academic") team = ACADEMIC_OFFICERS
+    else if (selectedTeam === "project") team = PROJECT_DEVELOPERS
+    else if (selectedTeam === "collaboration") team = COLLABORATION_OFFICERS
     else if (selectedTeam === "operations") team = OPERATIONS_OFFICERS
     else if (selectedTeam === "alumni") team = AIS_ALUMNI
     else team = EXECUTIVE_BOARD
 
-    const needsConstrainedWidth = selectedTeam === "software"
+    const needsConstrainedWidth = selectedTeam === "project" || selectedTeam === "collaboration"
     const containerStyle = needsConstrainedWidth
       ? { maxWidth: '880px', margin: '0 auto' }
-      : selectedTeam === "technical"
+      : selectedTeam === "academic" || selectedTeam === "operations"
       ? { maxWidth: '1100px', margin: '0 auto' }
       : selectedTeam !== "alumni"
       ? { maxWidth: '920px', margin: '0 auto' }
@@ -286,30 +308,44 @@ export function TeamSection() {
             </button>
             <button
               className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
-                selectedTeam === "technical"
+                selectedTeam === "academic"
                   ? "bg-secondary-600 hover:bg-secondary-700 text-white"
                   : "bg-transparent hover:bg-dark-800 text-dark-100"
               }`}
-              onClick={(e) => handleTeamChange("technical", e)}
+              onClick={(e) => handleTeamChange("academic", e)}
             >
               <Code className="h-4 w-4 mr-2" />
-              Technical Officers
+              Academic Officers
               <ChevronDown
-                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "technical" ? "rotate-180" : ""}`}
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "academic" ? "rotate-180" : ""}`}
               />
             </button>
             <button
               className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
-                selectedTeam === "software"
+                selectedTeam === "project"
                   ? "bg-accent-600 hover:bg-accent-700 text-white"
                   : "bg-transparent hover:bg-dark-800 text-dark-100"
               }`}
-              onClick={(e) => handleTeamChange("software", e)}
+              onClick={(e) => handleTeamChange("project", e)}
             >
               <Code className="h-4 w-4 mr-2" />
-              Software Developers
+              Project Developers
               <ChevronDown
-                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "software" ? "rotate-180" : ""}`}
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "project" ? "rotate-180" : ""}`}
+              />
+            </button>
+            <button
+              className={`group relative z-50 inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 h-10 px-4 rounded-md ${
+                selectedTeam === "collaboration"
+                  ? "bg-blue-600 hover:bg-blue-700 text-white"
+                  : "bg-transparent hover:bg-dark-800 text-dark-100"
+              }`}
+              onClick={(e) => handleTeamChange("collaboration", e)}
+            >
+              <Users className="h-4 w-4 mr-2" />
+              Collaboration Officers
+              <ChevronDown
+                className={`ml-2 h-4 w-4 transition-transform duration-300 ${selectedTeam === "collaboration" ? "rotate-180" : ""}`}
               />
             </button>
             <button

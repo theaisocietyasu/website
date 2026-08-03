@@ -24,7 +24,7 @@ Official website for The AI Society at Arizona State University
 
 ### Prerequisites
 
-- Node.js 18+ and pnpm
+- Node.js 18+ and npm
 - MongoDB instance (for Relink & Software Corner features)
 - Discord Application with OAuth & Bot enabled
 
@@ -32,21 +32,25 @@ Official website for The AI Society at Arizona State University
 
 ```bash
 # Install dependencies
-pnpm install
+npm install
 
 # Run development server
-pnpm dev
+npm run dev
 ```
 
 Visit [http://localhost:3000](http://localhost:3000)
 
 ### Environment Variables
 
-Create a `.env.local` file:
+Copy `.env.example` to `.env.local` and fill in values:
 
 ```bash
-# MongoDB (for Relink feature)
+# MongoDB (for Relink & Software Corner)
 MONGODB_URI="mongodb+srv://..."
+
+# Collections
+BANNERS_COLLECTION_NAME="banners"
+LINKS_COLLECTION_NAME="links"
 
 # Discord OAuth (for officer authentication)
 DISCORD_CLIENT_ID="your-client-id"
@@ -59,9 +63,14 @@ ADMIN_ROLE_ID="your-admin-role-id"
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
 NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
+
+# Auth.js - trust host in development
+AUTH_TRUST_HOST=true
 ```
 
+Optional Clerk keys (`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY`) are listed in `.env.example` but are not used by the app today.
 ### Discord Setup
 
 1. Create a Discord Application at [discord.com/developers](https://discord.com/developers/applications)
@@ -154,7 +163,7 @@ NEXTAUTH_URL="https://yourdomain.com"
 
 ```bash
 # Install Vercel CLI
-pnpm add -g vercel
+npm i -g vercel
 
 # Deploy
 vercel
@@ -166,16 +175,16 @@ Or push to GitHub and connect to Vercel via the dashboard.
 
 ```bash
 # Run dev server
-pnpm dev
+npm run dev
 
 # Build for production
-pnpm build
+npm run build
 
 # Start production server
-pnpm start
+npm start
 
 # Lint code
-pnpm lint
+npm run lint
 ```
 
 ## Contributing

@@ -12,20 +12,20 @@ export function ProgramsSection() {
 
   const programs = [
     {
-      title: "Beginner Workshops",
-      description: "Introduction to AI concepts, Python basics, and foundational machine learning principles.",
+      title: "Workshops",
+      description: "From foundational AI concepts and Python basics to complex machine learning and advanced techniques.",
       gradient: "linear-gradient(to bottom right, rgba(99, 102, 241, 0.6), rgba(79, 70, 229, 0.4))",
       delay: 0.1,
     },
     {
-      title: "Advanced Workshops",
-      description: "Deep learning, neural networks, computer vision, and cutting-edge AI techniques.",
+      title: "Network Expansion",
+      description: "Regular collaborations with organizations and industries across the field of AI.",
       gradient: "linear-gradient(to bottom right, rgba(99, 102, 241, 0.6), rgba(79, 70, 229, 0.4))",
       delay: 0.2,
     },
     {
-      title: "AI MakerSpace",
-      description: "Hands-on project development, prototyping, and collaborative innovation space.",
+      title: "AI Flagship Initiative",
+      description: "Club wide multidisciplinary project representing the spirit of AI.",
       gradient: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.6), rgba(109, 40, 217, 0.4))",
       delay: 0.3,
     },
@@ -36,14 +36,14 @@ export function ProgramsSection() {
       delay: 0.4,
     },
     {
-      title: "Guest Speaker Sessions",
-      description: "Industry experts and researchers sharing insights on AI trends and career paths.",
+      title: "Guest Speaker Sessions and Recruitment Events",
+      description: "Industry/academic experts and researchers sharing insights on AI trends and career paths.",
       gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.6), rgba(219, 39, 119, 0.4))",
       delay: 0.5,
     },
     {
-      title: "Social Events",
-      description: "Mountain hikes, movie nights, and networking events to build lasting friendships.",
+      title: "Social and Special Events",
+      description: "Summits, hackathons, bootcamps, mountain hikes, movie nights, and networking to build lasting friendships.",
       gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.6), rgba(219, 39, 119, 0.4))",
       delay: 0.6,
     },

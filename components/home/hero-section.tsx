@@ -92,7 +92,7 @@ export function HeroSection() {
               </div>
               <div className="relative group">
                 <a
-                  href="https://theaisociety.notion.site/1f28867868b481d2ad43e36d5049982b"
+                  href="https://docs.google.com/forms/d/1Qt3cjem9FvS_nFlnGlLP4aIYVDNAAlM2qK4udKxHa3E/viewform?edit_requested=true#responses"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-6 py-3 rounded-lg bg-secondary-600 hover:bg-secondary-700 text-white font-medium transition-colors"
