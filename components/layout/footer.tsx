@@ -72,7 +72,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right section - Quick Links and Contact */}
+          {/* Right section - Quick Links, Initiatives, and Contact */}
           <div className="flex flex-col md:flex-row gap-8 md:gap-12 lg:gap-16 items-center md:items-start">
             {/* Quick Links */}
             <div className="min-w-[120px] text-center md:text-left">
@@ -107,6 +107,43 @@ export function Footer() {
                     className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
                   >
                     Join Discord
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Initiatives */}
+            <div className="min-w-[120px] text-center md:text-left">
+              <h3 className="text-lg font-semibold text-white mb-4">Initiatives</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="https://innovationhacks.dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
+                  >
+                    Innovation Hacks
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://ai-summit.ais-asu.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
+                  >
+                    AI Summit
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://ai-pedia.ais-asu.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-dark-300 hover:text-primary-400 transition-colors duration-300 text-sm"
+                  >
+                    AI Pedia
                   </a>
                 </li>
               </ul>
