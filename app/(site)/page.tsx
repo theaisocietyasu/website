@@ -2,6 +2,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { AsciiChip } from "@/components/site/ascii-chip"
+import { EventPhoto, ProgramPhotos } from "@/components/site/photos"
 import { PixelIcon } from "@/components/site/pixel-icons"
 import { MemberCard } from "@/components/site/member-card"
 import { Section } from "@/components/site/section"
@@ -59,17 +60,6 @@ function InitiativeCard({ item }: { item: Initiative }) {
   }
   return (
     <a href={item.href} {...external} className={`group ${CARD} transition-colors hover:bg-haze-50`}>
-      {item.image && (
-        <span aria-hidden="true" className="portrait -mx-4 -mt-4 mb-4 block h-24 border-b border-ink">
-          <Image
-            src={item.image}
-            alt=""
-            fill
-            sizes="240px"
-            className={item.imageFit === "contain" ? "object-contain p-2" : "object-cover"}
-          />
-        </span>
-      )}
       {body}
       <span className="mt-1.5 flex items-center justify-between gap-3 font-mono text-[11px] text-ink-mute">
         <span className="min-w-0 truncate">{new URL(item.href).hostname}</span>
@@ -179,6 +169,7 @@ export default function HomePage() {
         id="about"
         index="01"
         label="About"
+        aside={<EventPhoto photo="kickoff" fig={1} />}
         title="A community of lifelong learners, making AI education accessible to every ASU student."
       >
         <div className="grid gap-12 lg:grid-cols-9">
@@ -210,17 +201,30 @@ export default function HomePage() {
               <pre className="font-mono text-[11px] leading-relaxed text-ink sm:text-xs">{LOOP}</pre>
             </div>
             <figcaption className="border-t border-paper-line px-5 py-3 font-mono text-[11px] text-ink-mute">
-              fig. 1: the loop we run every semester
+              fig. 2: the loop we run every semester
             </figcaption>
           </figure>
         </div>
       </Section>
 
-      <Section id="programs" index="02" label="Programs" title="What we do, all year.">
+      <Section
+        id="programs"
+        index="02"
+        label="Programs"
+        title="What we do, all year."
+        aside={
+          <ProgramPhotos
+            sectionId="programs"
+            photos={PROGRAMS.flatMap((p) => (p.photo ? [p.photo] : []))}
+            fig={3}
+          />
+        }
+      >
         <ol className="border-t border-paper-line">
           {PROGRAMS.map((program, i) => (
             <li
               key={program.title}
+              data-photo={program.photo}
               className="grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-2 border-b border-paper-line py-7 transition-colors hover:bg-haze-50/60 md:grid-cols-[3.5rem_minmax(0,1fr)_minmax(0,1.3fr)_auto] md:items-baseline md:px-2"
             >
               <span className="font-mono text-xs text-ink-mute">{String(i + 1).padStart(2, "0")}</span>

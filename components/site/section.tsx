@@ -9,6 +9,7 @@ export function Section({
   index,
   label,
   title,
+  aside,
   children,
   className = "",
 }: {
@@ -16,6 +17,8 @@ export function Section({
   index: string
   label: string
   title?: ReactNode
+  /** Rendered under the label in the left rail, sticky on wide screens. */
+  aside?: ReactNode
   children: ReactNode
   className?: string
 }) {
@@ -23,9 +26,12 @@ export function Section({
   return (
     <section id={id} aria-labelledby={title ? headingId : undefined} className={`wrap py-20 md:py-28 ${className}`}>
       <div className="grid gap-10 border-t border-ink pt-6 md:grid-cols-12 md:gap-8">
-        <p className="label md:col-span-3">
-          <span className="text-signal">[{index}]</span> {label}
-        </p>
+        <div className="md:col-span-3">
+          <p className="label">
+            <span className="text-signal">[{index}]</span> {label}
+          </p>
+          {aside && <div className="mt-8 max-w-sm md:sticky md:top-[calc(var(--nav-h)+24px)] md:pr-6">{aside}</div>}
+        </div>
         <div className="md:col-span-9">
           {title && (
             <h2

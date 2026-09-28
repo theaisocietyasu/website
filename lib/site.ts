@@ -48,12 +48,24 @@ export const STATS = [
   { value: "30+", label: "Events per year" },
 ] as const
 
-export const PROGRAMS = [
+/** Photos from our events under public/photos. `caption` reads as a figure caption. */
+export const PHOTOS = {
+  kickoff: { src: "/photos/kickoff.webp", caption: "AI MakerSpace kickoff" },
+  workshop: { src: "/photos/workshop.webp", caption: "Getting Started with Machine Learning" },
+  speaker: { src: "/photos/guest-speaker.webp", caption: "guest speaker session" },
+  networking: { src: "/photos/networking.webp", caption: "after the talk" },
+  team: { src: "/photos/team.webp", caption: "officers and volunteers" },
+} as const
+
+export type PhotoKey = keyof typeof PHOTOS
+
+export const PROGRAMS: { title: string; tag: string; description: string; photo?: PhotoKey }[] = [
   {
     title: "Workshops",
     tag: "learn",
     description:
       "From foundational AI concepts and Python basics to machine learning and advanced techniques.",
+    photo: "workshop",
   },
   {
     title: "Research Paper Reading",
@@ -70,19 +82,22 @@ export const PROGRAMS = [
     tag: "listen",
     description:
       "Industry and academic researchers sharing insight on AI trends and career paths.",
+    photo: "speaker",
   },
   {
     title: "Network Expansion",
     tag: "connect",
     description: "Regular collaborations with organizations and industry across the field of AI.",
+    photo: "networking",
   },
   {
     title: "Social & Special Events",
     tag: "gather",
     description:
       "Summits, hackathons, bootcamps, mountain hikes, movie nights and networking that build lasting friendships.",
+    photo: "team",
   },
-] as const
+]
 
 /** Folders in the ~/ais/projects console under Initiatives; initiatives with a matching `folder` sit inside. */
 export const PROJECT_KINDS = [
@@ -102,10 +117,8 @@ export type Initiative = {
   folder?: (typeof PROJECT_KINDS)[number]["dir"]
   /** Omit while it isn't public yet; the card then reads "coming soon". */
   href?: string
-  /** Background photo or artwork under public/initiatives, shown duotone and in full colour on hover. */
+  /** Flagship tile background under public/initiatives, shown duotone and in full colour on hover. */
   image?: string
-  /** "contain" for logos that must not be cropped; photos default to cover. */
-  imageFit?: "cover" | "contain"
 }
 
 export const INITIATIVES: Initiative[] = [
@@ -118,21 +131,8 @@ export const INITIATIVES: Initiative[] = [
   { name: "AI Summit", kind: "summit", href: "https://ai-summit.ais-asu.com/", image: "/initiatives/ai-summit.webp" },
   { name: "Bedrock", kind: "tool", folder: "internal-tools/" },
   { name: "Godfather", kind: "compute", folder: "internal-tools/", href: "https://pypi.org/project/godfather-cli/" },
-  {
-    name: "AI-pedia",
-    kind: "reference",
-    folder: "education/",
-    href: "https://ai-pedia.ais-asu.com/",
-    image: "/initiatives/ai-pedia.webp",
-  },
-  {
-    name: "SparkyAI",
-    kind: "assistant",
-    folder: "agent-harnesses/",
-    href: "https://sparkyai.lol",
-    image: "/initiatives/sparkyai.webp",
-    imageFit: "contain",
-  },
+  { name: "AI-pedia", kind: "reference", folder: "education/", href: "https://ai-pedia.ais-asu.com/" },
+  { name: "SparkyAI", kind: "assistant", folder: "agent-harnesses/", href: "https://sparkyai.lol" },
   { name: "Sir Beeps a Lot", kind: "robot", folder: "robotics/" },
 ]
 
