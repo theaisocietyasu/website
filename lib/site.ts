@@ -164,7 +164,7 @@ export const RESEARCH_PARTNERS: ResearchPartner[] = [
     href: "https://home.riselab.info/",
   },
   {
-    name: "NewWave Behavioral Consultation",
+    name: "NewWave Behavioral",
     detail: "Applied behavior analysis practice in Fairfax, VA, serving children and adults with autism and developmental delays",
     kind: "industry",
     focus: ["clinician assistant", "synthetic data", "paper + product"],
