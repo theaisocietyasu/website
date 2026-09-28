@@ -102,14 +102,37 @@ export type Initiative = {
   folder?: (typeof PROJECT_KINDS)[number]["dir"]
   /** Omit while it isn't public yet; the card then reads "coming soon". */
   href?: string
+  /** Background photo or artwork under public/initiatives, shown duotone and in full colour on hover. */
+  image?: string
+  /** "contain" for logos that must not be cropped; photos default to cover. */
+  imageFit?: "cover" | "contain"
 }
 
 export const INITIATIVES: Initiative[] = [
-  { name: "Innovation Hacks", kind: "hackathon", href: "https://innovationhacks.dev" },
-  { name: "AI Summit", kind: "summit", href: "https://ai-summit.ais-asu.com/" },
+  {
+    name: "Innovation Hacks",
+    kind: "hackathon",
+    href: "https://innovationhacks.dev",
+    image: "/initiatives/innovation-hacks.webp",
+  },
+  { name: "AI Summit", kind: "summit", href: "https://ai-summit.ais-asu.com/", image: "/initiatives/ai-summit.webp" },
   { name: "Bedrock", kind: "tool", folder: "internal-tools/" },
-  { name: "AI-pedia", kind: "reference", folder: "education/", href: "https://ai-pedia.ais-asu.com/" },
-  { name: "SparkyAI", kind: "assistant", folder: "agent-harnesses/", href: "https://sparkyai.lol" },
+  { name: "Godfather", kind: "compute", folder: "internal-tools/", href: "https://pypi.org/project/godfather-cli/" },
+  {
+    name: "AI-pedia",
+    kind: "reference",
+    folder: "education/",
+    href: "https://ai-pedia.ais-asu.com/",
+    image: "/initiatives/ai-pedia.webp",
+  },
+  {
+    name: "SparkyAI",
+    kind: "assistant",
+    folder: "agent-harnesses/",
+    href: "https://sparkyai.lol",
+    image: "/initiatives/sparkyai.webp",
+    imageFit: "contain",
+  },
   { name: "Sir Beeps a Lot", kind: "robot", folder: "robotics/" },
 ]
 

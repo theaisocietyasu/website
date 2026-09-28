@@ -1,4 +1,5 @@
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { AsciiChip } from "@/components/site/ascii-chip"
 import { PixelIcon } from "@/components/site/pixel-icons"
@@ -58,6 +59,17 @@ function InitiativeCard({ item }: { item: Initiative }) {
   }
   return (
     <a href={item.href} {...external} className={`group ${CARD} transition-colors hover:bg-haze-50`}>
+      {item.image && (
+        <span aria-hidden="true" className="portrait -mx-4 -mt-4 mb-4 block h-24 border-b border-ink">
+          <Image
+            src={item.image}
+            alt=""
+            fill
+            sizes="240px"
+            className={item.imageFit === "contain" ? "object-contain p-2" : "object-cover"}
+          />
+        </span>
+      )}
       {body}
       <span className="mt-1.5 flex items-center justify-between gap-3 font-mono text-[11px] text-ink-mute">
         <span className="min-w-0 truncate">{new URL(item.href).hostname}</span>
@@ -237,11 +249,23 @@ export default function HomePage() {
               <a
                 href={item.href}
                 {...external}
-                className="group relative flex h-full min-h-[220px] flex-col justify-between p-6 transition-colors hover:bg-haze-50"
+                className="group relative flex h-full min-h-[300px] flex-col justify-between overflow-hidden p-6 transition-colors hover:bg-haze-50"
               >
-                <span className="dither pointer-events-none absolute right-0 top-0 h-20 w-20 opacity-60" />
-                <span className="label relative">[{item.kind}]</span>
-                <span>
+                {item.image ? (
+                  <>
+                    <span aria-hidden="true" className="portrait pointer-events-none !absolute inset-0">
+                      <Image src={item.image} alt="" fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-paper-warm via-paper-warm/60 to-transparent"
+                    />
+                  </>
+                ) : (
+                  <span className="dither pointer-events-none absolute right-0 top-0 h-20 w-20 opacity-60" />
+                )}
+                <span className="label relative self-start bg-paper-warm/85 px-1.5 py-0.5">[{item.kind}]</span>
+                <span className="relative">
                   <span className="block font-display text-2xl font-semibold tracking-[-0.03em]">{item.name}</span>
                   {item.href && (
                     <span className="mt-2 flex items-center justify-between gap-3 font-mono text-xs text-ink-mute">
