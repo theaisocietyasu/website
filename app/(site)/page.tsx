@@ -1,10 +1,11 @@
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { AsciiChip } from "@/components/site/ascii-chip"
+import { PixelIcon } from "@/components/site/pixel-icons"
 import { MemberCard } from "@/components/site/member-card"
 import { Section } from "@/components/site/section"
 import { EXECUTIVE_BOARD } from "@/lib/constants"
-import { INITIATIVES, LABS, LINKS, MEMBERSHIP, PROGRAMS, PROJECT_KINDS, SITE, STATS, type Initiative } from "@/lib/site"
+import { INITIATIVES, LABS, LINKS, MEMBERSHIP, PROGRAMS, PROJECT_KINDS, SITE, SOCIALS, STATS, type Initiative } from "@/lib/site"
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const
 
@@ -110,6 +111,21 @@ function Hero() {
                   Join the Discord <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
                 </a>
               </div>
+              <ul aria-label="The AI Society elsewhere" className="mt-7 flex items-center gap-5">
+                {SOCIALS.map((social) => (
+                  <li key={social.label}>
+                    <a
+                      href={social.href}
+                      {...external}
+                      aria-label={social.label}
+                      title={social.label}
+                      className="block text-ink transition-[color,transform] duration-150 hover:-translate-y-px hover:text-paper-warm"
+                    >
+                      <PixelIcon name={social.label} className="h-[26px] w-[26px]" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
