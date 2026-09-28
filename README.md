@@ -3,7 +3,7 @@
 The public site for The AI Society at Arizona State University: home page, team, events, and Relink (the link page used in social bios). The 2024–25 site is kept under `/legacy`.
 
 Next.js 15 (App Router), React 19, Tailwind CSS 3. MongoDB backs Relink and the legacy Software Corner. Officers sign in with Discord. Hosted on Vercel.
-
+ 
 ## Run it
 
 Needs Node 18+ and npm.
