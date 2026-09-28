@@ -267,10 +267,6 @@ export default function HomePage() {
                   return (
                     <div key={kind.dir}>
                       <dt className="text-haze-500">{kind.dir}</dt>
-                      <dd className="pl-4 text-ink-soft">
-                        <span className="text-ink-mute"># </span>
-                        {kind.what}
-                      </dd>
                       {inside.length > 0 && (
                         <dd className="ml-1.5 mt-3 space-y-3 border-l border-dashed border-ink/40 pl-4">
                           {inside.map((item) => (

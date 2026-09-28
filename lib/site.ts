@@ -84,12 +84,12 @@ export const PROGRAMS = [
   },
 ] as const
 
-/** The kinds of things members and officers build, shown as a directory listing under Initiatives. */
+/** Folders in the ~/ais/projects console under Initiatives; initiatives with a matching `folder` sit inside. */
 export const PROJECT_KINDS = [
-  { dir: "internal-tools/", what: "tooling that runs the org" },
-  { dir: "education/", what: "workshops, courses and learning content" },
-  { dir: "agent-harnesses/", what: "agentic systems, evals and tool use" },
-  { dir: "robotics/", what: "physical robots, built and programmed" },
+  { dir: "internal-tools/" },
+  { dir: "education/" },
+  { dir: "agent-harnesses/" },
+  { dir: "robotics/" },
 ] as const
 
 export type Initiative = {
