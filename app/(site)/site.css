@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * The AI Society, 2026.
+ * Direction: "the 2020s, as imagined in the 1990s": violet-haze gradients, film grain,
+ * chunky rounded display type, ASCII renderings, and 90s window chrome, laid out
+ * with the calm, long-scroll restraint of a modern research lab site.
+ */
+
+:root {
+  --ink: #0f1419;
+  --ink-soft: #3b4552;
+  --ink-mute: #6b7684;
+  --paper: #f6f7f5;
+  --paper-warm: #fbfaf6;
+  --line: #dde2e6;
+  --haze-50: #f4f2fb;
+  --haze-200: #d0c7ef;
+  --haze-400: #8d7bd1;
+  --haze-500: #6b57bb;
+  --signal: #e2471f;
+
+  /* Hero palette: sky gradient stops, heading glow, and the ASCII artwork's shading. */
+  --sky-0: #6a52c4;
+  --sky-1: #8c78d8;
+  --sky-2: #b8a9e8;
+  --sky-3: #e3ddf4;
+  --glow: rgba(58, 42, 120, 0.3);
+  --ascii-frost: #ece8f8;
+  --ascii-shade: #5b479f;
+  --ascii-deep: #3a2a78;
+  --ascii-pulse: #4a1fcf;
+  --ascii-pulse-soft: #7a5cf0;
+  --nav-h: 60px;
+
+  /* SVG fractal noise, used for the film-grain overlay. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--nav-h) + 16px);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body.site {
+    @apply font-body text-ink antialiased;
+    background: var(--paper);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  /* Film grain over everything; purely decorative, never intercepts input. */
+  body.site::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    background-image: var(--grain);
+    opacity: 0.09;
+    mix-blend-mode: multiply;
+  }
+
+  ::selection {
+    background: var(--signal);
+    color: var(--paper-warm);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: clamp(16px, 5vw, 56px);
+  }
+
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[200] rounded bg-ink px-3 py-2 font-mono text-xs text-paper;
+  }
+
+  /* Small mono caption: section numbers, metadata, tags. */
+  .label {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em] text-ink-mute;
+  }
+
+  /* Poster sky, dusk edition: deep violet at the top, washing out to paper, like the LUNA print. */
+  .sky {
+    background:
+      radial-gradient(120% 70% at 78% 18%, rgba(255, 255, 255, 0.35), transparent 60%),
+      radial-gradient(90% 60% at 10% 100%, rgba(246, 247, 245, 0.9), transparent 70%),
+      linear-gradient(180deg, var(--sky-0) 0%, var(--sky-1) 26%, var(--sky-2) 56%, var(--sky-3) 84%, var(--paper) 100%);
+  }
+
+  /* 1-bit dither dots, for texture panels. */
+  .dither {
+    background-image: radial-gradient(rgba(15, 20, 25, 0.22) 0.7px, transparent 0.8px);
+    background-size: 5px 5px;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink px-5 py-2.5 font-mono text-xs uppercase tracking-[0.12em] text-ink transition-colors duration-200;
+  }
+  .btn:hover {
+    @apply bg-ink text-paper;
+  }
+  .btn-solid {
+    @apply btn bg-ink text-paper;
+  }
+  .btn-solid:hover {
+    background: var(--signal);
+    border-color: var(--signal);
+    color: var(--paper-warm);
+  }
+  .btn-ghost-light {
+    @apply btn border-paper-warm/80 text-paper-warm;
+  }
+  .btn-ghost-light:hover {
+    @apply bg-paper-warm text-ink;
+  }
+
+  /* Underlined text link with a quiet hover. */
+  .link {
+    @apply underline decoration-ink/25 decoration-1 underline-offset-4 transition-colors hover:decoration-signal;
+  }
+
+  /* 90s window chrome: pinstripe title bar, close box, hard 1px frame, offset shadow. */
+  .window {
+    @apply relative border border-ink bg-paper-warm;
+    box-shadow: 6px 6px 0 0 var(--ink);
+  }
+  .window-bar {
+    @apply relative flex h-7 items-center border-b border-ink px-2;
+    background: repeating-linear-gradient(180deg, var(--ink) 0 1px, transparent 1px 3px) content-box;
+    padding-block: 7px;
+  }
+  .window-bar::before {
+    content: "";
+    @apply relative z-10 h-3.5 w-3.5 border border-ink bg-paper-warm;
+    box-shadow: 0 0 0 3px var(--paper-warm);
+  }
+  .window-title {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-paper-warm px-3 font-mono text-[11px] tracking-wide text-ink;
+  }
+
+  /* Blinking block cursor for terminal blocks. */
+  .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1.1em;
+    vertical-align: text-bottom;
+    background: var(--signal);
+    animation: blink 1.1s steps(1) infinite;
+  }
+
+  .marquee-track {
+    animation: marquee 48s linear infinite;
+  }
+
+  /* Officer photos: sun-faded duotone, full colour on hover/focus. */
+  .portrait {
+    @apply relative overflow-hidden bg-haze-100;
+  }
+  .portrait img {
+    filter: grayscale(1) contrast(1.05) brightness(1.04);
+    mix-blend-mode: multiply;
+    transition: filter 400ms ease, transform 600ms ease;
+  }
+  .portrait::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0;
+    background-image: var(--grain);
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+  }
+  .group:hover .portrait img,
+  .group:focus-within .portrait img {
+    filter: none;
+    mix-blend-mode: normal;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .cursor,
+  .marquee-track {
+    animation: none;
+  }
+  .portrait img {
+    transition: none;
+  }
+}

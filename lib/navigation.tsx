@@ -7,22 +7,22 @@ import type { NavItem } from "@/lib/types"
 export const NAV_ITEMS: NavItem[] = [
   {
     name: "Home",
-    link: "/",
+    link: "/legacy",
     icon: <IconHome className="h-6 w-6" />,
   },
   {
     name: "Projects",
-    link: "/projects",
+    link: "/legacy/projects",
     icon: <IconUsers className="h-6 w-6" />,
   },
   {
     name: "Software Corner",
-    link: "/software-corner",
+    link: "/legacy/software-corner",
     icon: <IconCode className="h-6 w-6" />,
   },
   {
     name: "Events",
-    link: "/events",
+    link: "/legacy/events",
     icon: <IconCalendar className="h-6 w-6" />,
   },
   {

@@ -1,0 +1,107 @@
+"use client"
+
+import { useRef } from "react"
+import { useInView } from "framer-motion"
+import { SectionHeading } from "@/components/legacy/ui/section-heading"
+import { Card } from "@/components/legacy/ui/card"
+import { ThreeDCard } from "@/components/legacy/ui/3d-card"
+import { Mail, MessageSquare, ExternalLink } from "lucide-react"
+
+const contactMethods = [
+  {
+    title: "Email Us",
+    icon: Mail,
+    description: "Reach out for partnerships, questions, or collaboration opportunities.",
+    action: "theaisociety@asu.edu",
+    href: "mailto:theaisociety@asu.edu",
+    gradient: "linear-gradient(to bottom right, rgba(59, 130, 246, 0.5), rgba(59, 130, 246, 0.35))", // Blue
+  },
+  {
+    title: "Join Discord",
+    icon: MessageSquare,
+    description: "Connect with our community and stay updated on events.",
+    action: "Join Server",
+    href: "https://discord.gg/dCWm6xBGtM", // Updated href
+    gradient: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.5), rgba(139, 92, 246, 0.35))", // Purple
+  },
+  {
+    title: "Sun Devil Central",
+    icon: ExternalLink,
+    description: "Visit our official ASU organization page for more information.",
+    action: "Visit Page",
+    href: "https://sundevilcentral.eoss.asu.edu/AIS/club_signup",
+    gradient: "linear-gradient(to bottom right, rgba(236, 72, 153, 0.5), rgba(236, 72, 153, 0.35))", // Red/Pink
+  },
+]
+
+export function ContactSection() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
+
+  return (
+    <section
+      ref={ref}
+      className="py-20 md:py-32 px-8 sm:px-12 md:px-16 lg:px-20 xl:px-24 relative overflow-x-hidden"
+      id="contact"
+    >
+      <div className="container mx-auto max-w-6xl relative z-10">
+        <SectionHeading
+          title="Get In Touch"
+          subtitle="Ready to join our community or have questions? We'd love to hear from you!"
+        />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {contactMethods.map((method, index) => (
+            <div key={index} className="h-full w-full">
+              <ThreeDCard
+                depth={10}
+                rotationIntensity={2}
+                glareIntensity={0.1}
+                hoverScale={1.02}
+                backgroundGradient={method.gradient}
+                className="h-full w-full"
+              >
+                <Card variant="glass" className="h-full w-full">
+                  <div className="p-4 flex flex-col h-[200px] sm:h-[240px] md:h-[260px] text-center">
+                    {/* Icon section - fixed height */}
+                    <div className="flex items-center justify-center mb-4 h-16">
+                      <div className="p-3 rounded-full bg-primary-900/30 border border-primary-500/30">
+                        <method.icon className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Title section - fixed height */}
+                    <div className="h-8 flex items-center justify-center w-full mb-3">
+                      <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white text-center">
+                        {method.title}
+                      </h3>
+                    </div>
+
+                    {/* Description section - flexible height */}
+                    <div className="flex-1 flex items-center justify-center px-2 mb-4">
+                      <p className="text-sm sm:text-base text-dark-300 leading-relaxed text-center">
+                        {method.description}
+                      </p>
+                    </div>
+
+                    {/* Button section - fixed height */}
+                    <div className="h-10 flex items-center justify-center">
+                      <a
+                        href={method.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white text-sm sm:text-base font-medium rounded-lg transition-colors duration-300"
+                      >
+                        {method.action}
+                      </a>
+                    </div>
+                  </div>
+                </Card>
+              </ThreeDCard>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

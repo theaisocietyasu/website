@@ -17,8 +17,17 @@ export default {
       fontFamily: {
         sans: ["var(--font-outfit)"],
         heading: ["var(--font-space-grotesk)"],
+        // New site (app/(site)) — variables are only defined by its root layout.
+        body: ["var(--font-body)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
+        // New site palette: 90s-imagined-future. Violet haze, cream paper, ink, and one hot signal orange.
+        ink: { DEFAULT: "#0f1419", soft: "#3b4552", mute: "#6b7684" },
+        paper: { DEFAULT: "#f6f7f5", warm: "#fbfaf6", line: "#dde2e6" },
+        haze: { 50: "#f4f2fb", 100: "#e7e2f6", 200: "#d0c7ef", 300: "#b0a2e2", 400: "#8d7bd1", 500: "#6b57bb" },
+        signal: { DEFAULT: "#e2471f", soft: "#f6c9b8" },
         primary: {
           50: "var(--primary-50)",
           100: "var(--primary-100)",
