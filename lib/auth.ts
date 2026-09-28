@@ -6,7 +6,7 @@ import { SESSION } from "@/lib/config"
 /**
  * Verify user has admin role in Discord guild using bot token
  */
-async function verifyDiscordAdminRole(discordUserId: string): Promise<boolean> {
+export async function verifyDiscordAdminRole(discordUserId: string): Promise<boolean> {
   const botToken = process.env.DISCORD_BOT_TOKEN
   const guildId = process.env.DISCORD_GUILD_ID
   const adminRoleId = process.env.ADMIN_ROLE_ID
