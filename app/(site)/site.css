@@ -158,6 +158,39 @@
     @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-paper-warm px-3 font-mono text-[11px] tracking-wide text-ink;
   }
 
+  /* Form controls for officer tools: hard 1px frame, mono label above. */
+  .field {
+    @apply block w-full border border-ink bg-paper-warm px-3 py-2.5 font-body text-[15px] text-ink placeholder:text-ink-mute/70 focus:border-signal focus:outline-none;
+  }
+  .field-label {
+    @apply label mb-2 block;
+  }
+
+  /* Rendered markdown (Relink banners). */
+  .md {
+    @apply space-y-3 text-[15px] leading-relaxed text-ink-soft;
+  }
+  .md a {
+    @apply link text-ink;
+  }
+  .md strong {
+    @apply font-semibold text-ink;
+  }
+  .md ul {
+    @apply list-disc space-y-1 pl-5;
+  }
+  .md ol {
+    @apply list-decimal space-y-1 pl-5;
+  }
+  .md h1,
+  .md h2,
+  .md h3 {
+    @apply font-display text-lg font-semibold tracking-[-0.02em] text-ink;
+  }
+  .md code {
+    @apply bg-haze-50 px-1 font-mono text-[13px];
+  }
+
   /* Blinking block cursor for terminal blocks. */
   .cursor {
     display: inline-block;

@@ -1,6 +1,8 @@
 import { ArrowDown, ArrowRight, ArrowUpRight } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { AsciiChip } from "@/components/site/ascii-chip"
+import { EventPhoto, ProgramPhotos } from "@/components/site/photos"
 import { PixelIcon } from "@/components/site/pixel-icons"
 import { MemberCard } from "@/components/site/member-card"
 import { Section } from "@/components/site/section"
@@ -167,6 +169,7 @@ export default function HomePage() {
         id="about"
         index="01"
         label="About"
+        aside={<EventPhoto photo="kickoff" fig={1} />}
         title="A community of lifelong learners, making AI education accessible to every ASU student."
       >
         <div className="grid gap-12 lg:grid-cols-9">
@@ -198,17 +201,30 @@ export default function HomePage() {
               <pre className="font-mono text-[11px] leading-relaxed text-ink sm:text-xs">{LOOP}</pre>
             </div>
             <figcaption className="border-t border-paper-line px-5 py-3 font-mono text-[11px] text-ink-mute">
-              fig. 1: the loop we run every semester
+              fig. 2: the loop we run every semester
             </figcaption>
           </figure>
         </div>
       </Section>
 
-      <Section id="programs" index="02" label="Programs" title="What we do, all year.">
+      <Section
+        id="programs"
+        index="02"
+        label="Programs"
+        title="What we do, all year."
+        aside={
+          <ProgramPhotos
+            sectionId="programs"
+            photos={PROGRAMS.flatMap((p) => (p.photo ? [p.photo] : []))}
+            fig={3}
+          />
+        }
+      >
         <ol className="border-t border-paper-line">
           {PROGRAMS.map((program, i) => (
             <li
               key={program.title}
+              data-photo={program.photo}
               className="grid grid-cols-[2.5rem_1fr] gap-x-4 gap-y-2 border-b border-paper-line py-7 transition-colors hover:bg-haze-50/60 md:grid-cols-[3.5rem_minmax(0,1fr)_minmax(0,1.3fr)_auto] md:items-baseline md:px-2"
             >
               <span className="font-mono text-xs text-ink-mute">{String(i + 1).padStart(2, "0")}</span>
@@ -237,11 +253,23 @@ export default function HomePage() {
               <a
                 href={item.href}
                 {...external}
-                className="group relative flex h-full min-h-[220px] flex-col justify-between p-6 transition-colors hover:bg-haze-50"
+                className="group relative flex h-full min-h-[300px] flex-col justify-between overflow-hidden p-6 transition-colors hover:bg-haze-50"
               >
-                <span className="dither pointer-events-none absolute right-0 top-0 h-20 w-20 opacity-60" />
-                <span className="label relative">[{item.kind}]</span>
-                <span>
+                {item.image ? (
+                  <>
+                    <span aria-hidden="true" className="portrait pointer-events-none !absolute inset-0">
+                      <Image src={item.image} alt="" fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-paper-warm via-paper-warm/60 to-transparent"
+                    />
+                  </>
+                ) : (
+                  <span className="dither pointer-events-none absolute right-0 top-0 h-20 w-20 opacity-60" />
+                )}
+                <span className="label relative self-start bg-paper-warm/85 px-1.5 py-0.5">[{item.kind}]</span>
+                <span className="relative">
                   <span className="block font-display text-2xl font-semibold tracking-[-0.03em]">{item.name}</span>
                   {item.href && (
                     <span className="mt-2 flex items-center justify-between gap-3 font-mono text-xs text-ink-mute">
