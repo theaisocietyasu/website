@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // The 2024–25 site lives on under /legacy. Temporary (307) so these paths can be reclaimed later.
+  async redirects() {
+    return ["projects", "software-corner", "ml_lab", "nlp_lab", "ai_makerspace"].map((path) => ({
+      source: `/${path}`,
+      destination: `/legacy/${path}`,
+      permanent: false,
+    }))
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
