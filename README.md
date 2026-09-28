@@ -19,6 +19,7 @@ Official website for The AI Society at Arizona State University
 - **Projects**: Student projects showcase
 - **Software Corner**: Officer project showcase with admin dashboard
 - **Relink**: Link management system (officers only)
+- **Legacy**: The 2024–25 site (projects, labs, Software Corner) archived at `/legacy`
 
 ## Getting Started
 
