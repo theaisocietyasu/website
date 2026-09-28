@@ -137,20 +137,44 @@ export const INITIATIVES: Initiative[] = [
 ]
 
 
-/** Partner labs where our academic officers join real research projects. */
-export const LABS = [
+export type ResearchPartner = {
+  name: string
+  /** Shown under the name, e.g. the lab's full name. */
+  detail: string
+  kind: "lab" | "industry"
+  focus: readonly string[]
+  /** Omit while the collaboration isn't public; the card then has no link. */
+  href?: string
+}
+
+/** Labs and companies our officers do research or build products with. Sponsors are listed separately. */
+export const RESEARCH_PARTNERS: ResearchPartner[] = [
   {
     name: "MPS Lab",
-    fullName: "Make Programming Simple Lab",
+    detail: "Make Programming Simple Lab, Arizona State University",
+    kind: "lab",
     focus: ["intelligent transportation", "AI compilers", "ML for science"],
     href: "https://mpslab-asu.github.io/",
   },
   {
     name: "RISE Lab",
-    fullName: "Robotics & Intelligent Systems Lab",
+    detail: "Robotics & Intelligent Systems Lab, Arizona State University",
+    kind: "lab",
     focus: ["soft robotics", "aerial robots / UAVs", "human-robot interaction"],
     href: "https://home.riselab.info/",
   },
+  {
+    name: "ABA Clinic",
+    detail: "A medical-grade clinician assistant built on synthetic data, aiming for a paper and a product",
+    kind: "industry",
+    focus: ["clinical AI", "synthetic data", "paper + product"],
+  },
+]
+
+/** Event sponsors, shown as a logo row under Membership. Logos live in public/sponsors (transparent PNG or SVG). */
+export const SPONSORS = [
+  { name: "ReliaQuest", logo: "/sponsors/reliaquest.png", width: 291, height: 71, href: "https://www.reliaquest.com/" },
+  { name: "AntonRx", logo: "/sponsors/antonrx.png", width: 790, height: 210, href: "https://www.antonrx.com/" },
 ] as const
 
 export const MEMBERSHIP = [

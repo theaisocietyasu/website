@@ -42,7 +42,8 @@ Most content changes are data edits, not layout edits.
 | Social links, Discord invite, officer application, resume book, calendar | `LINKS` and `SOCIALS` in `lib/site.ts` |
 | Nav items | `NAV` in `lib/site.ts` |
 | Stats (member count, events per year) | `STATS` in `lib/site.ts` |
-| Partner research labs | `LABS` in `lib/site.ts` |
+| Research partners (labs and industry) | `RESEARCH_PARTNERS` in `lib/site.ts`. `kind` is `lab` or `industry`; leave out `href` if the collaboration isn't public. |
+| Sponsors | `SPONSORS` in `lib/site.ts`. Put a transparent PNG or SVG logo in `public/sponsors/` and set its pixel `width` and `height`. Only paying sponsors go here; research collaborators go in `RESEARCH_PARTNERS`. |
 | Membership / officer / sponsor blurbs | `MEMBERSHIP` in `lib/site.ts` |
 | Events page calendars | `BOARDS` in `app/(site)/events/page.tsx` (Notion embeds, edited in Notion) |
 | Relink links and banners | Not in code. Sign in at `/relink/edit` with an officer Discord account. |
@@ -72,7 +73,7 @@ lib/
   auth.ts               NextAuth config and Discord role check
   auth-middleware.ts    requireOfficer() for API routes
 public/
-  Officers/  photos/  initiatives/
+  Officers/  photos/  initiatives/  sponsors/
 middleware.ts           redirects signed-out users away from /relink/edit and /admin
 next.config.mjs         redirects old paths (/projects, /ml_lab, ...) to /legacy
 ```
