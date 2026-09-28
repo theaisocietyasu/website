@@ -164,10 +164,11 @@ export const RESEARCH_PARTNERS: ResearchPartner[] = [
     href: "https://home.riselab.info/",
   },
   {
-    name: "ABA Clinic",
-    detail: "A medical-grade clinician assistant built on synthetic data, aiming for a paper and a product",
+    name: "NewWave Behavioral Consultation",
+    detail: "Applied behavior analysis practice in Fairfax, VA, serving children and adults with autism and developmental delays",
     kind: "industry",
-    focus: ["clinical AI", "synthetic data", "paper + product"],
+    focus: ["clinician assistant", "synthetic data", "paper + product"],
+    href: "https://www.newwaveaba.com/",
   },
 ]
 
