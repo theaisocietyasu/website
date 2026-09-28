@@ -42,7 +42,7 @@ export function ProgramPhotos({ sectionId, photos, fig }: { sectionId: string; p
       <div className="window-bar">
         <span className="window-title">programs/*.webp</span>
       </div>
-      <div className="portrait aspect-[4/3]">
+      <div className="portrait aspect-[4/3] md:aspect-[9/16]">
         {photos.map((key) => (
           <span
             key={key}
