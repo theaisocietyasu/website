@@ -7,7 +7,20 @@ import { PixelIcon } from "@/components/site/pixel-icons"
 import { MemberCard } from "@/components/site/member-card"
 import { Section } from "@/components/site/section"
 import { EXECUTIVE_BOARD } from "@/lib/constants"
-import { INITIATIVES, LABS, LINKS, MEMBERSHIP, PROGRAMS, PROJECT_KINDS, SITE, SOCIALS, STATS, type Initiative } from "@/lib/site"
+import {
+  INITIATIVES,
+  LINKS,
+  MEMBERSHIP,
+  PROGRAMS,
+  PROJECT_KINDS,
+  RESEARCH_PARTNERS,
+  SITE,
+  SOCIALS,
+  SPONSORS,
+  STATS,
+  type Initiative,
+  type ResearchPartner,
+} from "@/lib/site"
 
 const external = { target: "_blank", rel: "noopener noreferrer" } as const
 
@@ -68,6 +81,46 @@ function InitiativeCard({ item }: { item: Initiative }) {
           className="h-4 w-4 shrink-0 text-ink transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal"
         />
       </span>
+    </a>
+  )
+}
+
+/** A research partner tile. Partners without an href render as a plain card. */
+function PartnerCard({ partner }: { partner: ResearchPartner }) {
+  const body = (
+    <>
+      <span className="dither pointer-events-none absolute right-0 top-0 h-24 w-24 opacity-60" />
+      <span className="label relative">[{partner.kind === "lab" ? "partner lab" : "industry partner"}]</span>
+      <span>
+        <span className="block font-display text-3xl font-semibold tracking-[-0.03em]">{partner.name}</span>
+        <span className="mt-1 block text-ink-soft">{partner.detail}</span>
+        <span className="mt-5 flex flex-wrap gap-2">
+          {partner.focus.map((f) => (
+            <span
+              key={f}
+              className="border border-ink/25 px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft"
+            >
+              {f}
+            </span>
+          ))}
+        </span>
+        {partner.href && (
+          <span className="mt-6 flex items-center justify-between gap-3 font-mono text-xs text-ink-mute">
+            <span className="min-w-0 truncate">{new URL(partner.href).hostname}</span>
+            <ArrowUpRight
+              aria-hidden="true"
+              className="h-5 w-5 shrink-0 text-ink transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal"
+            />
+          </span>
+        )}
+      </span>
+    </>
+  )
+  const className = "relative flex h-full min-h-[260px] flex-col justify-between gap-8 p-6 md:p-8"
+  if (!partner.href) return <div className={className}>{body}</div>
+  return (
+    <a href={partner.href} {...external} className={`group ${className} transition-colors hover:bg-haze-50`}>
+      {body}
     </a>
   )
 }
@@ -328,12 +381,12 @@ export default function HomePage() {
 
       </Section>
 
-      <Section id="research" index="04" label="Research" title="Real research, with ASU labs.">
+      <Section id="research" index="04" label="Research" title="Real research, with labs and industry.">
         <div className="grid gap-10 lg:grid-cols-9">
           <p className="text-lg leading-relaxed text-ink-soft lg:col-span-5">
-            Our academic officers volunteer with partner labs across ASU, working on state-of-the-art problems in AI
-            where our interests overlap. One semester, one point of contact in the lab, and a real result at the end,
-            ideally a paper.
+            Our academic officers volunteer with partner labs across ASU and with industry partners, working on
+            state-of-the-art problems in AI where our interests overlap. One semester, one point of contact, and a real
+            result at the end, ideally a paper.
           </p>
           <figure className="window self-start lg:col-span-4">
             <div className="window-bar">
@@ -345,38 +398,10 @@ export default function HomePage() {
           </figure>
         </div>
 
-        <ul className="mt-12 grid gap-px border border-ink bg-ink sm:grid-cols-2">
-          {LABS.map((lab) => (
-            <li key={lab.href} className="bg-paper-warm">
-              <a
-                href={lab.href}
-                {...external}
-                className="group relative flex h-full min-h-[260px] flex-col justify-between gap-8 p-6 transition-colors hover:bg-haze-50 md:p-8"
-              >
-                <span className="dither pointer-events-none absolute right-0 top-0 h-24 w-24 opacity-60" />
-                <span className="label relative">[partner lab]</span>
-                <span>
-                  <span className="block font-display text-3xl font-semibold tracking-[-0.03em]">{lab.name}</span>
-                  <span className="mt-1 block text-ink-soft">{lab.fullName}, Arizona State University</span>
-                  <span className="mt-5 flex flex-wrap gap-2">
-                    {lab.focus.map((f) => (
-                      <span
-                        key={f}
-                        className="border border-ink/25 px-2 py-0.5 font-mono text-[11px] uppercase tracking-[0.1em] text-ink-soft"
-                      >
-                        {f}
-                      </span>
-                    ))}
-                  </span>
-                  <span className="mt-6 flex items-center justify-between gap-3 font-mono text-xs text-ink-mute">
-                    <span className="min-w-0 truncate">{new URL(lab.href).hostname}</span>
-                    <ArrowUpRight
-                      aria-hidden="true"
-                      className="h-5 w-5 shrink-0 text-ink transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-signal"
-                    />
-                  </span>
-                </span>
-              </a>
+        <ul className="mt-12 grid gap-px border border-ink bg-ink sm:grid-cols-2 lg:grid-cols-3">
+          {RESEARCH_PARTNERS.map((partner) => (
+            <li key={partner.name} className="bg-paper-warm">
+              <PartnerCard partner={partner} />
             </li>
           ))}
         </ul>
@@ -422,6 +447,21 @@ export default function HomePage() {
           <p className="border-t border-paper-line px-6 py-3 font-mono text-[13px] text-ink-mute">
             <span className="text-signal">$</span> <span className="cursor" aria-hidden="true" />
           </p>
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center gap-x-12 gap-y-6 border-t border-ink pt-6">
+          <p className="label w-full sm:w-auto">[supported by]</p>
+          {SPONSORS.map((sponsor) => (
+            <a key={sponsor.name} href={sponsor.href} {...external} aria-label={sponsor.name} className="group">
+              <Image
+                src={sponsor.logo}
+                alt={sponsor.name}
+                width={sponsor.width}
+                height={sponsor.height}
+                className="h-8 w-auto opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 md:h-9"
+              />
+            </a>
+          ))}
         </div>
       </Section>
 

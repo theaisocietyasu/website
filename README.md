@@ -1,197 +1,112 @@
-# The AI Society Website 2025
+# The AI Society website
 
-Official website for The AI Society at Arizona State University
+The public site for The AI Society at Arizona State University: home page, team, events, and Relink (the link page used in social bios). The 2024–25 site is kept under `/legacy`.
 
-## Tech Stack
+Next.js 15 (App Router), React 19, Tailwind CSS 3. MongoDB backs Relink and the legacy Software Corner. Officers sign in with Discord. Hosted on Vercel.
 
-- **Framework**: Next.js 15.2.4 (App Router)
-- **UI**: React 19, Tailwind CSS, Framer Motion
-- **Authentication**: NextAuth.js v5 (Discord OAuth with role verification)
-- **Database**: MongoDB with Mongoose (Relink + Software Corner)
-- **File Storage**: GridFS for project thumbnails
-- **Deployment**: Vercel
+## Run it
 
-## Features
-
-- **Home**: Society overview, programs, team, and contact
-- **Programs**: AI Makerspace, ML Lab, NLP Lab
-- **Events**: Upcoming events and workshops
-- **Projects**: Student projects showcase
-- **Software Corner**: Officer project showcase with admin dashboard
-- **Relink**: Link management system (officers only)
-- **Legacy**: The 2024–25 site (projects, labs, Software Corner) archived at `/legacy`
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- MongoDB instance (for Relink & Software Corner features)
-- Discord Application with OAuth & Bot enabled
-
-### Installation
+Needs Node 18+ and npm.
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
-npm run dev
+cp .env.example .env.local   # fill in values, see below
+npm run dev                  # http://localhost:3000
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+The home, team and events pages work without any env vars. Relink and Software Corner need MongoDB and the Discord values.
 
-### Environment Variables
+| Variable | Used for |
+| --- | --- |
+| `MONGODB_URI` | Relink and Software Corner data |
+| `LINKS_COLLECTION_NAME`, `BANNERS_COLLECTION_NAME` | Relink collection names (default `links`, `banners`) |
+| `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET` | Discord sign-in |
+| `DISCORD_BOT_TOKEN`, `DISCORD_GUILD_ID`, `ADMIN_ROLE_ID` | Checking that a user holds the officer role in the AIS server |
+| `NEXTAUTH_SECRET`, `NEXTAUTH_URL`, `AUTH_TRUST_HOST` | Session signing |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata and the sitemap |
 
-Copy `.env.example` to `.env.local` and fill in values:
+`NEXT_PUBLIC_APP_URL` and the Clerk keys in `.env.example` are not used.
+
+For local Discord sign-in, add `http://localhost:3000/api/auth/callback/discord` as a redirect in the Discord application, and invite its bot to the server with View Server Members.
+
+## Common edits
+
+Most content changes are data edits, not layout edits.
+
+| To change | Edit |
+| --- | --- |
+| Officers and alumni | `lib/constants.ts` (`EXECUTIVE_BOARD`, `ACADEMIC_OFFICERS`, ..., `AIS_ALUMNI`). Photos go in `public/Officers/`; keep them under ~300 KB. A group with no members is hidden. |
+| Programs list | `PROGRAMS` in `lib/site.ts`. Set `photo` to show that photo in the left rail when the row is hovered. |
+| Event photos | Add the file to `public/photos/` (WebP, portrait for Programs), then register it in `PHOTOS` in `lib/site.ts`. |
+| Initiatives (flagship events and the projects console) | `INITIATIVES` in `lib/site.ts`. No `folder` makes it a flagship tile; a `folder` from `PROJECT_KINDS` files it in `~/ais/projects`. No `href` shows "coming soon". Flagship `image` files live in `public/initiatives/`. |
+| Social links, Discord invite, officer application, resume book, calendar | `LINKS` and `SOCIALS` in `lib/site.ts` |
+| Nav items | `NAV` in `lib/site.ts` |
+| Stats (member count, events per year) | `STATS` in `lib/site.ts` |
+| Research partners (labs and industry) | `RESEARCH_PARTNERS` in `lib/site.ts`. `kind` is `lab` or `industry`; leave out `href` if the collaboration isn't public. |
+| Sponsors | `SPONSORS` in `lib/site.ts`. Put a transparent PNG or SVG logo in `public/sponsors/` and set its pixel `width` and `height`. Only paying sponsors go here; research collaborators go in `RESEARCH_PARTNERS`. |
+| Membership / officer / sponsor blurbs | `MEMBERSHIP` in `lib/site.ts` |
+| Events page calendars | `BOARDS` in `app/(site)/events/page.tsx` (Notion embeds, edited in Notion) |
+| Relink links and banners | Not in code. Sign in at `/relink/edit` with an officer Discord account. |
+| Page copy and layout | `app/(site)/page.tsx` (home), `app/(site)/team/page.tsx`, `app/(site)/events/page.tsx` |
+| Colours, fonts, shared styles | `tailwind.config.mjs` (palette), `app/(site)/fonts.ts`, `app/(site)/site.css` (`.window`, `.btn`, `.portrait`, `.sky`, and the rest) |
+
+## Layout
+
+```
+app/
+  (site)/               current site: layout, home, team, events, relink
+    relink/(officer)/   Relink editor and sign-in, wrapped in the session provider
+  (legacy)/             2024-25 site, served under /legacy (not indexed)
+  api/
+    auth/               NextAuth (Discord)
+    relink/             Relink links, banners, image upload
+    projects/           Software Corner (legacy)
+  sitemap.ts, robots.ts
+components/
+  site/                 components for the current site
+  legacy/               components for /legacy only
+lib/
+  site.ts               content and links for the current site
+  constants.ts          officer rosters (shared with /legacy) and legacy data
+  relink.ts             Relink data access and validation
+  relink-api.ts         Relink route handlers
+  auth.ts               NextAuth config and Discord role check
+  auth-middleware.ts    requireOfficer() for API routes
+public/
+  Officers/  photos/  initiatives/  sponsors/
+middleware.ts           redirects signed-out users away from /relink/edit and /admin
+next.config.mjs         redirects old paths (/projects, /ml_lab, ...) to /legacy
+```
+
+The two route groups have separate root layouts and stylesheets, so a change in one does not affect the other. New pages go in `app/(site)`.
+
+## Auth
+
+Discord is the only sign-in. Sign-in succeeds only if the bot finds the user in `DISCORD_GUILD_ID` with `ADMIN_ROLE_ID`. Every API write calls `requireOfficer`, which checks the role again (cached for 60 seconds), so removing the role in Discord removes write access. Sessions are JWTs with no database.
+
+## Deploy
+
+The Vercel project is `ais-website` under the `theaisociety` team. Every pull request gets a preview deployment, linked in a comment on the PR, and merging to `main` deploys production. Environment variables are set in Vercel, not in the repo.
+
+Work on a branch, open a PR, check the preview, then merge.
+
+## Before you merge
+
+There is no CI and no test suite. `next.config.mjs` sets `ignoreBuildErrors` and `ignoreDuringBuilds`, so type and lint errors do not stop a deploy. Run these yourself:
 
 ```bash
-# MongoDB (for Relink & Software Corner)
-MONGODB_URI="mongodb+srv://..."
-
-# Collections
-BANNERS_COLLECTION_NAME="banners"
-LINKS_COLLECTION_NAME="links"
-
-# Discord OAuth (for officer authentication)
-DISCORD_CLIENT_ID="your-client-id"
-DISCORD_CLIENT_SECRET="your-client-secret"
-
-# Discord Bot (for role verification)
-DISCORD_BOT_TOKEN="your-bot-token"
-DISCORD_GUILD_ID="your-server-id"
-ADMIN_ROLE_ID="your-admin-role-id"
-
-# NextAuth
-NEXTAUTH_URL="http://localhost:3000"
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
-NEXTAUTH_SECRET="generate-with-openssl-rand-base64-32"
-
-# Auth.js - trust host in development
-AUTH_TRUST_HOST=true
-```
-
-Optional Clerk keys (`NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY`) are listed in `.env.example` but are not used by the app today.
-### Discord Setup
-
-1. Create a Discord Application at [discord.com/developers](https://discord.com/developers/applications)
-2. Enable OAuth2 and add redirect: `http://localhost:3000/api/auth/callback/discord`
-3. Enable Bot and add to your Discord server with permissions: View Channels, View Server Members
-4. Copy Client ID, Client Secret, and Bot Token to `.env.local`
-5. Enable Developer Mode in Discord, right-click your server → Copy ID (Guild ID)
-6. Right-click the admin role → Copy ID (Admin Role ID)
-
-## Authentication
-
-Protected routes (`/relink/edit`, `/admin/software-corner`) are only accessible to users who:
-1. Sign in with Discord
-2. Are members of the specified Discord server
-3. Have the specified admin role
-
-Authentication uses NextAuth.js v5 with JWT-only sessions (no database required for auth).
-
-## Software Corner
-
-The Software Corner feature allows officers to showcase their projects. See [SOFTWARE_CORNER_README.md](SOFTWARE_CORNER_README.md) for detailed setup and integration instructions.
-
-**Quick start:**
-```bash
-# Seed sample projects
-node scripts/seed.js
-
-# Visit pages
-# Public: http://localhost:3000/software-corner
-# Admin: http://localhost:3000/admin/software-corner
-```
-
-## Project Structure
-
-```
-app/                       # Next.js app router pages
-  ├── api/                # API routes
-  │   ├── auth/           # NextAuth handlers
-  │   ├── projects/       # Software Corner API
-  │   └── relink/         # Relink CRUD operations
-  ├── admin/
-  │   └── software-corner/ # Project management dashboard
-  ├── events/             # Events page
-  ├── ml_lab/             # ML Lab page
-  ├── nlp_lab/            # NLP Lab page
-  ├── projects/           # Projects page
-  ├── software-corner/    # Public project showcase
-  └── relink/             # Relink pages
-      ├── page.tsx        # Public link viewer
-      ├── signin/         # Discord OAuth sign-in
-      └── edit/           # Protected editor
-
-components/               # React components
-  ├── home/              # Homepage sections
-  ├── labs/              # Lab components
-  ├── layout/            # Navbar, Footer
-  ├── projects/          # Project components
-  ├── providers/         # Context providers
-  ├── software-corner/   # Software Corner components
-  └── ui/                # Reusable UI components
-
-lib/                      # Utilities and configurations
-  ├── auth.ts            # NextAuth configuration
-  ├── auth-middleware.ts # API authentication
-  ├── auth-types.ts      # TypeScript type extensions
-  ├── gridfs.ts          # GridFS file storage
-  ├── models/            # Mongoose models
-  │   └── Project.ts     # Project model
-  ├── mongodb.ts         # MongoDB connection (native)
-  ├── mongoose.ts        # Mongoose connection
-  └── types.ts           # Shared types
-
-scripts/                  # Utility scripts
-  └── seed.js            # Database seeding
-
-middleware.ts             # Route protection
-```
-
-## Deployment
-
-### Production Environment Variables
-
-Update these for production:
-```bash
-NEXTAUTH_URL="https://yourdomain.com"
-# Add other production URLs/secrets
-```
-
-### Deploy to Vercel
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-Or push to GitHub and connect to Vercel via the dashboard.
-
-## Development
-
-```bash
-# Run dev server
-npm run dev
-
-# Build for production
 npm run build
-
-# Start production server
-npm start
-
-# Lint code
-npm run lint
+npx tsc --noEmit    # errors in Software Corner files are pre-existing
 ```
 
-## Contributing
+## Known issues
 
-This is a fork. Push changes to upstream and notify Darsh Chaurasia for production deployment.
+- Type and lint errors are ignored at build time (see above).
+- `package.json` still carries the v0 template: the name is `my-v0-project`, many Radix packages are unused, and many versions are pinned to `latest`.
+- There are two Tailwind configs. `tailwind.config.mjs` is the one in use; `tailwind.config.ts` is dead.
+- `public/Officers/` is about 50 MB of uncompressed photos.
+- Software Corner (`/legacy/software-corner`, `/admin/software-corner`) is legacy. See `SOFTWARE_CORNER_README.md`. Its routes in that file predate the move to `/legacy`.
 
 ## License
 
-© 2025 The AI Society at Arizona State University
+© The AI Society at Arizona State University

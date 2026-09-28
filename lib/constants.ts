@@ -527,7 +527,3 @@ export const AI_MAKERSPACE_PROJECTS: AIProject[] = [
   },
 ]
 
-export const SPONSORS = [
-  { id: 1, logo: "/sponsors/Alani_Logo.png", name: "Alani Nu" },
-  // Add more sponsors as needed
-]
