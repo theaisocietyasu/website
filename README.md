@@ -3,6 +3,8 @@
 The public site for The AI Society at Arizona State University: home page, team, events, and Relink (the link page used in social bios). The 2024–25 site is kept under `/legacy`.
 
 Next.js 15 (App Router), React 19, Tailwind CSS 3. MongoDB backs Relink and the legacy Software Corner. Officers sign in with Discord. Hosted on Vercel.
+
+How it fits together: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). What to build next: [docs/ROADMAP.md](docs/ROADMAP.md).
  
 ## Run it
 
@@ -100,6 +102,8 @@ npx tsc --noEmit    # errors in Software Corner files are pre-existing
 ```
 
 ## Known issues
+
+Fixes for these are planned in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 - Type and lint errors are ignored at build time (see above).
 - `package.json` still carries the v0 template: the name is `my-v0-project`, many Radix packages are unused, and many versions are pinned to `latest`.
