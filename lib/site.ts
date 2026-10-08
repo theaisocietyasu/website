@@ -129,9 +129,9 @@ export const INITIATIVES: Initiative[] = [
     image: "/initiatives/innovation-hacks.webp",
   },
   { name: "AI Summit", kind: "summit", href: "https://ai-summit.ais-asu.com/", image: "/initiatives/ai-summit.webp" },
-  { name: "Bedrock", kind: "tool", folder: "internal-tools/", href: "https://bedrock-zeta-six.vercel.app/" },
+  { name: "Bedrock", kind: "tool", folder: "internal-tools/", href: "https://platform.ais-asu.com/" },
   { name: "Godfather", kind: "compute", folder: "internal-tools/", href: "https://pypi.org/project/godfather-cli/" },
-  { name: "AI-pedia", kind: "reference", folder: "education/", href: "https://ai-pedia.ais-asu.com/" },
+  { name: "AI-pedia", kind: "reference", folder: "education/", href: "https://pedia.ais-asu.com/" },
   { name: "SparkyAI", kind: "assistant", folder: "agent-harnesses/", href: "https://sparkyai.lol" },
   { name: "Sir Beeps a Lot", kind: "robot", folder: "robotics/" },
 ]
