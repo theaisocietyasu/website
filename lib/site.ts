@@ -125,14 +125,14 @@ export const INITIATIVES: Initiative[] = [
   {
     name: "Innovation Hacks",
     kind: "hackathon",
-    href: "https://innovationhacks.dev",
+    href: "https://innovation.ais-asu.com",
     image: "/initiatives/innovation-hacks.webp",
   },
-  { name: "AI Summit", kind: "summit", href: "https://ai-summit.ais-asu.com/", image: "/initiatives/ai-summit.webp" },
+  { name: "AI Summit", kind: "summit", href: "https://summit.ais-asu.com/", image: "/initiatives/ai-summit.webp" },
   { name: "Bedrock", kind: "tool", folder: "internal-tools/", href: "https://platform.ais-asu.com/" },
   { name: "Godfather", kind: "compute", folder: "internal-tools/", href: "https://pypi.org/project/godfather-cli/" },
   { name: "AI-pedia", kind: "reference", folder: "education/", href: "https://pedia.ais-asu.com/" },
-  { name: "SparkyAI", kind: "assistant", folder: "agent-harnesses/", href: "https://sparkyai.lol" },
+  { name: "SparkyAI", kind: "assistant", folder: "agent-harnesses/", href: "https://sparky.ais-asu.com" },
   { name: "Sir Beeps a Lot", kind: "robot", folder: "robotics/" },
 ]
 
