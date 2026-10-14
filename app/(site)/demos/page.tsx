@@ -43,12 +43,12 @@ function loadDemos(): DemoItem[] {
       )
     }
     const preview = path.join(DIR, "previews", `${demo.slug}.webp`)
+    const { author, year, license, ...shown } = demo
     return [
       {
-        ...demo,
+        ...shown,
         href: `/demos/${demo.slug}.html`,
         size: formatSize(statSync(file).size),
-        licenseUrl: licenseUrl ?? undefined,
         preview: existsSync(preview) ? `/demos/previews/${demo.slug}.webp` : undefined,
       },
     ]
