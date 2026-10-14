@@ -48,15 +48,16 @@ Most content changes are data edits, not layout edits.
 | Sponsors | `SPONSORS` in `lib/site.ts`. Put a transparent PNG or SVG logo in `public/sponsors/` and set its pixel `width` and `height`. Only paying sponsors go here; research collaborators go in `RESEARCH_PARTNERS`. |
 | Membership / officer / sponsor blurbs | `MEMBERSHIP` in `lib/site.ts` |
 | Events page calendars | `BOARDS` in `app/(site)/events/page.tsx` (Notion embeds, edited in Notion) |
+| Demos (`/demos`) | Put the self-contained HTML file in `public/demos/` with a short kebab-case name, then add an entry to `DEMOS` in `lib/site.ts` whose `slug` is that file name without `.html`. Optional: a 16:10 screenshot as `public/demos/previews/<slug>.webp` (about 1600×1000). The page reads the file size itself. |
 | Relink links and banners | Not in code. Sign in at `/relink/edit` with an officer Discord account. |
-| Page copy and layout | `app/(site)/page.tsx` (home), `app/(site)/team/page.tsx`, `app/(site)/events/page.tsx` |
+| Page copy and layout | `app/(site)/page.tsx` (home), `app/(site)/team/page.tsx`, `app/(site)/events/page.tsx`, `app/(site)/demos/page.tsx` |
 | Colours, fonts, shared styles | `tailwind.config.mjs` (palette), `app/(site)/fonts.ts`, `app/(site)/site.css` (`.window`, `.btn`, `.portrait`, `.sky`, and the rest) |
 
 ## Layout
 
 ```
 app/
-  (site)/               current site: layout, home, team, events, relink
+  (site)/               current site: layout, home, team, events, demos, relink
     relink/(officer)/   Relink editor and sign-in, wrapped in the session provider
   (legacy)/             2024-25 site, served under /legacy (not indexed)
   api/
@@ -75,7 +76,7 @@ lib/
   auth.ts               NextAuth config and Discord role check
   auth-middleware.ts    requireOfficer() for API routes
 public/
-  Officers/  photos/  initiatives/  sponsors/
+  Officers/  photos/  initiatives/  sponsors/  demos/ (demo HTML files, previews/)
 middleware.ts           redirects signed-out users away from /relink/edit and /admin
 next.config.mjs         redirects old paths (/projects, /ml_lab, ...) to /legacy
 ```

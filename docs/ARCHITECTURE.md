@@ -11,7 +11,7 @@ browser
   |
   v
 Vercel (Next.js)
-  |-- static pages      /, /team, /events, /legacy/*     content from lib/site.ts and lib/constants.ts
+  |-- static pages      /, /team, /events, /demos, /legacy/*  content from lib/site.ts and lib/constants.ts
   |-- dynamic pages     /relink                            reads MongoDB on every request
   |-- client pages      /relink/edit, /admin/software-corner
   |-- route handlers    /api/relink/*, /api/projects/*, /api/auth/*
@@ -31,7 +31,7 @@ There is no separate backend, no queue, and no scheduled job. Everything runs in
 
 | Group | Served at | Layout | Stylesheet | Purpose |
 | --- | --- | --- | --- | --- |
-| `app/(site)` | `/`, `/team`, `/events`, `/relink`, `/relink/edit`, `/relink/signin` | `app/(site)/layout.tsx` | `app/(site)/site.css` | Current site |
+| `app/(site)` | `/`, `/team`, `/events`, `/demos`, `/relink`, `/relink/edit`, `/relink/signin` | `app/(site)/layout.tsx` | `app/(site)/site.css` | Current site |
 | `app/(legacy)` | `/legacy/*`, `/admin/software-corner` | `app/(legacy)/layout.tsx` | `app/(legacy)/globals.css` | 2024-25 site, kept for reference and old links |
 
 Moving between the two groups is a full page load, because they have different root layouts.
@@ -47,6 +47,7 @@ Moving between the two groups is a full page load, because they have different r
 | `/` | `page.tsx` | Static | `lib/site.ts`, `lib/constants.ts` |
 | `/team` | `team/page.tsx` | Static | Rosters in `lib/constants.ts` |
 | `/events` | `events/page.tsx` | Static shell, Notion iframes | `BOARDS` in the same file, `LINKS.googleCalendar` |
+| `/demos` | `demos/page.tsx` | Static (file sizes read at build), client `DemoBrowser` | `DEMOS` in `lib/site.ts`, files in `public/demos/` |
 | `/relink` | `relink/page.tsx` | `force-dynamic` | MongoDB via `getRelinkContent()` |
 | `/relink/edit` | `relink/(officer)/edit/page.tsx` | Client component | `/api/relink/*` |
 | `/relink/signin` | `relink/(officer)/signin/page.tsx` | Client component | NextAuth |
@@ -82,7 +83,7 @@ Some relationships are encoded in the data:
 
 `app/(site)/layout.tsx` sets site-wide metadata: title template, Open Graph and Twitter images from `public/og-image.png`, and an `Organization` JSON-LD block built from `SITE`, `SOCIALS` and `LINKS`. It also loads Vercel Analytics and Speed Insights. Each page sets its own title, description and canonical URL.
 
-`app/sitemap.ts` lists `/`, `/events` and `/team`. `app/robots.ts` blocks `/api/`, `/admin/`, `/relink/edit` and `/relink/signin`. `NEXT_PUBLIC_SITE_URL` sets `SITE.url`, which is used as the base for canonical URLs.
+`app/sitemap.ts` lists `/`, `/events`, `/team` and `/demos`. `app/robots.ts` blocks `/api/`, `/admin/`, `/relink/edit` and `/relink/signin`. `NEXT_PUBLIC_SITE_URL` sets `SITE.url`, which is used as the base for canonical URLs.
 
 ## Relink
 

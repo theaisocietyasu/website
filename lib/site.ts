@@ -41,6 +41,7 @@ export const NAV = [
   { label: "Research", href: "/#research" },
   { label: "Team", href: "/team" },
   { label: "Events", href: "/events" },
+  { label: "Demos", href: "/demos" },
 ] as const
 
 export const STATS = [
@@ -169,6 +170,45 @@ export const RESEARCH_PARTNERS: ResearchPartner[] = [
     kind: "industry",
     focus: ["clinician assistant", "synthetic data", "paper + product"],
     href: "https://www.newwaveaba.com/",
+  },
+]
+
+export type Demo = {
+  /** The file name in public/demos without ".html". Also the demo's own link: /demos#<slug>. */
+  slug: string
+  title: string
+  /** A word or two, e.g. "cnn" or "transformer". */
+  tag: string
+  /** One or two short sentences: what you can do in it. */
+  blurb: string
+}
+
+/**
+ * Interactive demos on /demos, in page order; the first one is on screen when the page opens.
+ * Each is one self-contained HTML file at public/demos/<slug>.html, served as-is and downloadable.
+ * Optional preview: a 16:10 screenshot at public/demos/previews/<slug>.webp (without one the card shows the file name).
+ */
+export const DEMOS: Demo[] = [
+  {
+    slug: "mlp-forward-pass",
+    title: "MLP forward pass",
+    tag: "mlp",
+    blurb:
+      "A tiny two-layer network with its real numbers. Press play to watch every multiply, add and activation, or click any result to see what made it.",
+  },
+  {
+    slug: "mnist-cnn",
+    title: "MNIST CNN",
+    tag: "cnn",
+    blurb:
+      "Draw a digit and watch a small convolutional network read it, filter by filter, down to its answer.",
+  },
+  {
+    slug: "toy-language-model",
+    title: "Toy language model",
+    tag: "transformer",
+    blurb:
+      "A small three-block transformer that writes simple stories. Follow its next-word guess through every attention head and MLP.",
   },
 ]
 
