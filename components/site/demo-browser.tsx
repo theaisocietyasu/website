@@ -2,11 +2,27 @@
 
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
-import { ArrowUpRight, Download, Play } from "lucide-react"
+import { ArrowUpRight, Play } from "lucide-react"
 import type { Demo } from "@/lib/site"
 
 /** A DEMOS entry plus what the page found on disk. */
-export type DemoItem = Demo & { href: string; size: string; preview?: string }
+export type DemoItem = Demo & { href: string; size: string; preview?: string; licenseUrl?: string }
+
+/** "© 2026 Joshua Tom · CC BY-NC-ND 4.0", the license linked to its terms. */
+function Credit({ demo, className = "" }: { demo: DemoItem; className?: string }) {
+  return (
+    <p className={`font-mono text-[11px] text-ink-mute ${className}`}>
+      © {demo.year} {demo.author} ·{" "}
+      {demo.licenseUrl ? (
+        <a href={demo.licenseUrl} target="_blank" rel="license noopener noreferrer" className="link relative z-10">
+          {demo.license}
+        </a>
+      ) : (
+        "all rights reserved"
+      )}
+    </p>
+  )
+}
 
 const pad = (n: number) => String(n).padStart(2, "0")
 
@@ -22,7 +38,7 @@ function Preview({ demo, sizes, className = "" }: { demo: DemoItem; sizes: strin
 }
 
 /**
- * The demo on screen (a preview until "Run it here" loads the real page), its blurb and download,
+ * The demo on screen (a preview until "Run it here" loads the real page), its blurb and a full-screen link,
  * then every demo as a card. /demos#<slug> opens on that demo, and the hash follows the selection.
  */
 export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
@@ -115,12 +131,10 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
               {demo.title}
             </h2>
             <p className="mt-4 max-w-2xl text-lg leading-snug text-ink-soft">{demo.blurb}</p>
+            <Credit demo={demo} className="mt-4" />
           </div>
           <div className="flex flex-wrap gap-3 md:col-span-4 md:justify-end">
-            <a href={demo.href} download={`${demo.slug}.html`} className="btn-solid">
-              Download <Download aria-hidden="true" className="h-3.5 w-3.5" />
-            </a>
-            <a href={demo.href} target="_blank" rel="noopener" className="btn">
+            <a href={demo.href} target="_blank" rel="noopener" className="btn-solid">
               Full screen <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
             </a>
           </div>
@@ -133,7 +147,7 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
             All demos
           </h2>
           <span className="label">
-            <span className="text-signal">[{pad(demos.length)}]</span> single-file html
+            <span className="text-signal">[{pad(demos.length)}]</span> run in your browser
           </span>
         </div>
         <ul className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -157,7 +171,7 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <p className="label">
-                      <span className="text-signal">[{pad(i + 1)}]</span> {d.tag}
+                      <span className="text-signal">[{pad(i + 1)}]</span> {d.tag} · {d.size}
                     </p>
                     <h3 className="mt-2 font-display text-lg font-semibold tracking-[-0.02em]">
                       {/* Stretched over the whole card: clicking anywhere puts this demo on screen. */}
@@ -171,14 +185,16 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
                       </button>
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{d.blurb}</p>
+                    <Credit demo={d} className="mt-3" />
                     <div className="mt-auto flex items-center justify-between gap-3 pt-5">
                       <span className={`label ${on ? "!text-signal" : ""}`}>{on ? "● on screen" : "show ↑"}</span>
                       <a
                         href={d.href}
-                        download={`${d.slug}.html`}
-                        className="relative z-10 inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-ink hover:text-signal"
+                        target="_blank"
+                        rel="noopener"
+                        className="relative z-10 inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink hover:text-signal"
                       >
-                        <Download aria-hidden="true" className="h-3.5 w-3.5" /> {d.size}
+                        Full screen <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
                       </a>
                     </div>
                   </div>
@@ -187,6 +203,10 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
             )
           })}
         </ul>
+        <p className="mt-12 max-w-2xl text-sm leading-relaxed text-ink-mute">
+          Each demo belongs to its author and is shared under the license shown with it, not the site&apos;s own
+          copyright. Data inside a demo keeps its own license.
+        </p>
       </section>
     </>
   )

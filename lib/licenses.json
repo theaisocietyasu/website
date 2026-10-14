@@ -1,0 +1,30 @@
+{
+  "CC BY 4.0": {
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "terms": "you may share and adapt it, even commercially, with credit"
+  },
+  "CC BY-SA 4.0": {
+    "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "terms": "you may share and adapt it with credit; adaptations must use the same license"
+  },
+  "CC BY-NC 4.0": {
+    "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+    "terms": "you may share and adapt it with credit, not for commercial use"
+  },
+  "CC BY-NC-SA 4.0": {
+    "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "terms": "you may share and adapt it with credit, not for commercial use; adaptations must use the same license"
+  },
+  "CC BY-ND 4.0": {
+    "url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "terms": "you may share it with credit, without changes"
+  },
+  "CC BY-NC-ND 4.0": {
+    "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/",
+    "terms": "you may share it with credit, not for commercial use, without changes"
+  },
+  "All rights reserved": {
+    "url": null,
+    "terms": "no copying or sharing without the author's permission"
+  }
+}
