@@ -185,7 +185,7 @@ export type Demo = {
   tag: string
   /** One or two short sentences: what you can do in it. */
   blurb: string
-  /** Who made it and owns it. Shown on the page and written into the file by scripts/credit-demo.mjs. */
+  /** Who made it and owns it. Written into the file by scripts/credit-demo.mjs (shown in the demo's bottom bar). */
   author: string
   /** Year for the © line. */
   year: number
