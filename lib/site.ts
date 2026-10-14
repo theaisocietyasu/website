@@ -1,3 +1,5 @@
+import LICENSES from "./licenses.json"
+
 /**
  * Content + links for the public site.
  * Officer/alumni rosters stay in `lib/constants.ts` (shared with /legacy).
@@ -173,6 +175,8 @@ export const RESEARCH_PARTNERS: ResearchPartner[] = [
   },
 ]
 
+export type DemoLicense = keyof typeof LICENSES
+
 export type Demo = {
   /** The file name in public/demos without ".html". Also the demo's own link: /demos#<slug>. */
   slug: string
@@ -181,12 +185,19 @@ export type Demo = {
   tag: string
   /** One or two short sentences: what you can do in it. */
   blurb: string
+  /** Who made it and owns it. Shown on the page and written into the file by scripts/credit-demo.mjs. */
+  author: string
+  /** Year for the © line. */
+  year: number
+  /** A name from lib/licenses.json, e.g. "CC BY-NC-ND 4.0" or "All rights reserved". */
+  license: DemoLicense
 }
 
 /**
  * Interactive demos on /demos, in page order; the first one is on screen when the page opens.
  * Each is one self-contained HTML file at public/demos/<slug>.html, served as-is ("Full screen" opens it directly).
  * Optional preview: a 16:10 screenshot at public/demos/previews/<slug>.webp (without one the card shows the file name).
+ * Credit the file to match its entry: node scripts/credit-demo.mjs public/demos/<slug>.html "<author>" "<license>" <year>
  */
 export const DEMOS: Demo[] = [
   {
@@ -195,6 +206,9 @@ export const DEMOS: Demo[] = [
     tag: "mlp",
     blurb:
       "A tiny two-layer network with its real numbers. Press play to watch every multiply, add and activation, or click any result to see what made it.",
+    author: "Joshua Tom",
+    year: 2026,
+    license: "CC BY-NC-ND 4.0",
   },
   {
     slug: "mnist-cnn",
@@ -202,6 +216,9 @@ export const DEMOS: Demo[] = [
     tag: "cnn",
     blurb:
       "Draw a digit and watch a small convolutional network read it, filter by filter, down to its answer.",
+    author: "Joshua Tom",
+    year: 2026,
+    license: "CC BY-NC-ND 4.0",
   },
   {
     slug: "toy-language-model",
@@ -209,6 +226,9 @@ export const DEMOS: Demo[] = [
     tag: "transformer",
     blurb:
       "A small three-block transformer that writes simple stories. Follow its next-word guess through every attention head and MLP.",
+    author: "Joshua Tom",
+    year: 2026,
+    license: "CC BY-NC-ND 4.0",
   },
 ]
 

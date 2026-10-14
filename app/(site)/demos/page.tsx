@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
-import { existsSync, statSync } from "node:fs"
+import { existsSync, readFileSync, statSync } from "node:fs"
 import path from "node:path"
 import { DemoBrowser, type DemoItem } from "@/components/site/demo-browser"
+import LICENSES from "@/lib/licenses.json"
 import { DEMOS } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -19,7 +20,10 @@ function formatSize(bytes: number) {
   return kb < 1024 ? `${Math.round(kb)} KB` : `${(kb / 1024).toFixed(1)} MB`
 }
 
-/** DEMOS plus what the files say: link, size, preview. Runs at build time; a missing file leaves its demo off. */
+/**
+ * DEMOS plus what the files say: link, size, preview. Runs at build time; a missing file leaves its demo off,
+ * and a file whose credit doesn't match its entry gets a warning.
+ */
 function loadDemos(): DemoItem[] {
   return DEMOS.flatMap((demo) => {
     const file = path.join(DIR, `${demo.slug}.html`)
@@ -27,12 +31,24 @@ function loadDemos(): DemoItem[] {
       console.warn(`[demos] public/demos/${demo.slug}.html is missing, so "${demo.title}" is left off /demos.`)
       return []
     }
+    const html = readFileSync(file, "utf8")
+    const licenseUrl = LICENSES[demo.license].url
+    const credited =
+      html.includes(`<meta name="copyright" content="© ${demo.year} ${demo.author}">`) &&
+      (licenseUrl ? html.includes(`<link rel="license" href="${licenseUrl}">`) : !html.includes(`<link rel="license"`))
+    if (!credited) {
+      console.warn(
+        `[demos] public/demos/${demo.slug}.html isn't credited to match DEMOS. Run:\n` +
+          `  node scripts/credit-demo.mjs public/demos/${demo.slug}.html "${demo.author}" "${demo.license}" ${demo.year}`,
+      )
+    }
     const preview = path.join(DIR, "previews", `${demo.slug}.webp`)
     return [
       {
         ...demo,
         href: `/demos/${demo.slug}.html`,
         size: formatSize(statSync(file).size),
+        licenseUrl: licenseUrl ?? undefined,
         preview: existsSync(preview) ? `/demos/previews/${demo.slug}.webp` : undefined,
       },
     ]

@@ -6,7 +6,23 @@ import { ArrowUpRight, Play } from "lucide-react"
 import type { Demo } from "@/lib/site"
 
 /** A DEMOS entry plus what the page found on disk. */
-export type DemoItem = Demo & { href: string; size: string; preview?: string }
+export type DemoItem = Demo & { href: string; size: string; preview?: string; licenseUrl?: string }
+
+/** "© 2026 Joshua Tom · CC BY-NC-ND 4.0", the license linked to its terms. */
+function Credit({ demo, className = "" }: { demo: DemoItem; className?: string }) {
+  return (
+    <p className={`font-mono text-[11px] text-ink-mute ${className}`}>
+      © {demo.year} {demo.author} ·{" "}
+      {demo.licenseUrl ? (
+        <a href={demo.licenseUrl} target="_blank" rel="license noopener noreferrer" className="link relative z-10">
+          {demo.license}
+        </a>
+      ) : (
+        "all rights reserved"
+      )}
+    </p>
+  )
+}
 
 const pad = (n: number) => String(n).padStart(2, "0")
 
@@ -115,6 +131,7 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
               {demo.title}
             </h2>
             <p className="mt-4 max-w-2xl text-lg leading-snug text-ink-soft">{demo.blurb}</p>
+            <Credit demo={demo} className="mt-4" />
           </div>
           <div className="flex flex-wrap gap-3 md:col-span-4 md:justify-end">
             <a href={demo.href} target="_blank" rel="noopener" className="btn-solid">
@@ -168,6 +185,7 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
                       </button>
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{d.blurb}</p>
+                    <Credit demo={d} className="mt-3" />
                     <div className="mt-auto flex items-center justify-between gap-3 pt-5">
                       <span className={`label ${on ? "!text-signal" : ""}`}>{on ? "● on screen" : "show ↑"}</span>
                       <a
@@ -185,6 +203,10 @@ export function DemoBrowser({ demos }: { demos: DemoItem[] }) {
             )
           })}
         </ul>
+        <p className="mt-12 max-w-2xl text-sm leading-relaxed text-ink-mute">
+          Each demo belongs to its author and is shared under the license shown with it, not the site&apos;s own
+          copyright. Data inside a demo keeps its own license.
+        </p>
       </section>
     </>
   )
