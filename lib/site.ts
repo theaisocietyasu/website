@@ -185,7 +185,7 @@ export type Demo = {
 
 /**
  * Interactive demos on /demos, in page order; the first one is on screen when the page opens.
- * Each is one self-contained HTML file at public/demos/<slug>.html, served as-is and downloadable.
+ * Each is one self-contained HTML file at public/demos/<slug>.html, served as-is ("Full screen" opens it directly).
  * Optional preview: a 16:10 screenshot at public/demos/previews/<slug>.webp (without one the card shows the file name).
  */
 export const DEMOS: Demo[] = [

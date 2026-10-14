@@ -7,7 +7,7 @@ import { DEMOS } from "@/lib/site"
 export const metadata: Metadata = {
   title: "Demos",
   description:
-    "Interactive neural network demos from The AI Society at ASU: an MLP, a CNN and a toy language model, step by step. Run them in the browser or download them to use offline.",
+    "Interactive neural network demos from The AI Society at ASU: an MLP, a CNN and a toy language model, step by step. Run them right in your browser.",
   alternates: { canonical: "/demos" },
   openGraph: { url: "/demos" },
 }
@@ -53,8 +53,8 @@ export default function DemosPage() {
             Demos
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-snug text-ink">
-            Small neural networks you can take apart, one step at a time. Each is a single HTML file: run it here, or
-            download it and it works offline. Best on a computer.
+            Small neural networks you can take apart, one step at a time. Run one right here or open it full screen.
+            Best on a computer.
           </p>
         </div>
       </header>
