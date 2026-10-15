@@ -8,7 +8,7 @@ import { DEMOS } from "@/lib/site"
 export const metadata: Metadata = {
   title: "Demos",
   description:
-    "Interactive neural network demos from The AI Society at ASU: an MLP, a CNN and a toy language model, step by step. Run them right in your browser.",
+    "Interactive neural network demos from The AI Society at ASU: an MLP, CNNs and a toy language model, step by step. Run them right in your browser.",
   alternates: { canonical: "/demos" },
   openGraph: { url: "/demos" },
 }

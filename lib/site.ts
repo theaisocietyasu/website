@@ -230,6 +230,15 @@ export const DEMOS: Demo[] = [
     year: 2026,
     license: "CC BY-NC-ND 4.0",
   },
+  {
+    slug: "cnn-playground",
+    title: "CNN Playground",
+    tag: "playground",
+    blurb: "A CNN playground with a visualizer.",
+    author: "Joshua Tom",
+    year: 2026,
+    license: "CC BY-NC-ND 4.0",
+  },
 ]
 
 /** Event sponsors, shown as a logo row under Membership. Logos live in public/sponsors (transparent PNG or SVG). */
