@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 import { existsSync, readFileSync, statSync } from "node:fs"
 import path from "node:path"
+import { CnnGallery, type CnnItem } from "@/components/site/cnn-gallery"
 import { DemoBrowser, type DemoItem } from "@/components/site/demo-browser"
 import LICENSES from "@/lib/licenses.json"
-import { DEMOS } from "@/lib/site"
+import { DEMOS, DIFFERENT_CNNS, type DemoLicense } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Demos",
@@ -21,27 +22,34 @@ function formatSize(bytes: number) {
 }
 
 /**
- * DEMOS plus what the files say: link, size, preview. Runs at build time; a missing file leaves its demo off,
- * and a file whose credit doesn't match its entry gets a warning.
+ * Build-time check of a demo file under public/demos: false (with a warning) when it's missing, and a warning when
+ * the credit written into it doesn't match its entry in lib/site.ts.
  */
+function checkFile(rel: string, label: string, credit: { author: string; year: number; license: DemoLicense }) {
+  const file = path.join(DIR, rel)
+  if (!existsSync(file)) {
+    console.warn(`[demos] public/demos/${rel} is missing, so "${label}" is left off /demos.`)
+    return false
+  }
+  const html = readFileSync(file, "utf8")
+  const licenseUrl = LICENSES[credit.license].url
+  const credited =
+    html.includes(`<meta name="copyright" content="© ${credit.year} ${credit.author}">`) &&
+    (licenseUrl ? html.includes(`<link rel="license" href="${licenseUrl}">`) : !html.includes(`<link rel="license"`))
+  if (!credited) {
+    console.warn(
+      `[demos] public/demos/${rel} isn't credited to match lib/site.ts. Run:\n` +
+        `  node scripts/credit-demo.mjs public/demos/${rel} "${credit.author}" "${credit.license}" ${credit.year}`,
+    )
+  }
+  return true
+}
+
+/** DEMOS plus what the files say: link, size, preview. Runs at build time; a missing file leaves its demo off. */
 function loadDemos(): DemoItem[] {
   return DEMOS.flatMap((demo) => {
+    if (!checkFile(`${demo.slug}.html`, demo.title, demo)) return []
     const file = path.join(DIR, `${demo.slug}.html`)
-    if (!existsSync(file)) {
-      console.warn(`[demos] public/demos/${demo.slug}.html is missing, so "${demo.title}" is left off /demos.`)
-      return []
-    }
-    const html = readFileSync(file, "utf8")
-    const licenseUrl = LICENSES[demo.license].url
-    const credited =
-      html.includes(`<meta name="copyright" content="© ${demo.year} ${demo.author}">`) &&
-      (licenseUrl ? html.includes(`<link rel="license" href="${licenseUrl}">`) : !html.includes(`<link rel="license"`))
-    if (!credited) {
-      console.warn(
-        `[demos] public/demos/${demo.slug}.html isn't credited to match DEMOS. Run:\n` +
-          `  node scripts/credit-demo.mjs public/demos/${demo.slug}.html "${demo.author}" "${demo.license}" ${demo.year}`,
-      )
-    }
     const preview = path.join(DIR, "previews", `${demo.slug}.webp`)
     const { author, year, license, ...shown } = demo
     return [
@@ -55,10 +63,20 @@ function loadDemos(): DemoItem[] {
   })
 }
 
+/** DIFFERENT_CNNS whose files are there, with their links. */
+function loadCnns(): CnnItem[] {
+  return DIFFERENT_CNNS.flatMap((cnn) =>
+    checkFile(`cnns/${cnn.slug}.html`, cnn.name, cnn)
+      ? [{ slug: cnn.slug, name: cnn.name, href: `/demos/cnns/${cnn.slug}.html` }]
+      : [],
+  )
+}
+
 const pad = (n: number) => String(n).padStart(2, "0")
 
 export default function DemosPage() {
   const demos = loadDemos()
+  const cnns = loadCnns()
 
   return (
     <>
@@ -80,6 +98,8 @@ export default function DemosPage() {
       ) : (
         <p className="wrap pt-20 text-ink-soft">No demos yet. Check back soon.</p>
       )}
+
+      {cnns.length > 0 && <CnnGallery cnns={cnns} />}
     </>
   )
 }

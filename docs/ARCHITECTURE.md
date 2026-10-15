@@ -47,7 +47,7 @@ Moving between the two groups is a full page load, because they have different r
 | `/` | `page.tsx` | Static | `lib/site.ts`, `lib/constants.ts` |
 | `/team` | `team/page.tsx` | Static | Rosters in `lib/constants.ts` |
 | `/events` | `events/page.tsx` | Static shell, Notion iframes | `BOARDS` in the same file, `LINKS.googleCalendar` |
-| `/demos` | `demos/page.tsx` | Static (file sizes read at build), client `DemoBrowser` | `DEMOS` in `lib/site.ts`, files in `public/demos/` |
+| `/demos` | `demos/page.tsx` | Static (file sizes read at build), client `DemoBrowser` and `CnnGallery` | `DEMOS` and `DIFFERENT_CNNS` in `lib/site.ts`, files in `public/demos/` |
 | `/relink` | `relink/page.tsx` | `force-dynamic` | MongoDB via `getRelinkContent()` |
 | `/relink/edit` | `relink/(officer)/edit/page.tsx` | Client component | `/api/relink/*` |
 | `/relink/signin` | `relink/(officer)/signin/page.tsx` | Client component | NextAuth |

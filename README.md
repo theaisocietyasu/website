@@ -50,6 +50,7 @@ Most content changes are data edits, not layout edits.
 | Events page calendars | `BOARDS` in `app/(site)/events/page.tsx` (Notion embeds, edited in Notion) |
 | Demos (`/demos`) | Put the self-contained HTML file in `public/demos/` with a short kebab-case name, then add an entry to `DEMOS` in `lib/site.ts` whose `slug` is that file name without `.html`, with its `author`, `year` and `license` (a name from `lib/licenses.json`). Then write the same credit into the file: `node scripts/credit-demo.mjs public/demos/<slug>.html "<author>" "<license>" <year>` (the build warns if they differ). Optional: a 16:10 screenshot as `public/demos/previews/<slug>.webp` (about 1600×1000). The page reads the file size itself. |
 | Relink links and banners | Not in code. Sign in at `/relink/edit` with an officer Discord account. |
+| Different CNNs (on `/demos`) | Put the file in `public/demos/cnns/<slug>.html`, credit it with the same script, and add `{ slug, name, author, year, license }` to `DIFFERENT_CNNS` in `lib/site.ts`. They show live, one under the other, in list order (oldest first). |
 | Page copy and layout | `app/(site)/page.tsx` (home), `app/(site)/team/page.tsx`, `app/(site)/events/page.tsx`, `app/(site)/demos/page.tsx` |
 | Colours, fonts, shared styles | `tailwind.config.mjs` (palette), `app/(site)/fonts.ts`, `app/(site)/site.css` (`.window`, `.btn`, `.portrait`, `.sky`, and the rest) |
 
