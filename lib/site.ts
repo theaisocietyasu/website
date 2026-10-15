@@ -241,6 +241,19 @@ export const DEMOS: Demo[] = [
   },
 ]
 
+/**
+ * "Different CNNs" on /demos: each plays live, one under the other in this order (oldest first), so you can scroll
+ * down and compare. Files are public/demos/cnns/<slug>.html, credited like the demos with scripts/credit-demo.mjs.
+ */
+export const DIFFERENT_CNNS: { slug: string; name: string; author: string; year: number; license: DemoLicense }[] = [
+  { slug: "neocognitron", name: "Neocognitron", author: "Joshua Tom", year: 2026, license: "CC BY-NC-ND 4.0" },
+  { slug: "lenet-5", name: "LeNet-5", author: "Joshua Tom", year: 2026, license: "CC BY-NC-ND 4.0" },
+  { slug: "alexnet", name: "AlexNet", author: "Joshua Tom", year: 2026, license: "CC BY-NC-ND 4.0" },
+  { slug: "vgg", name: "VGG", author: "Joshua Tom", year: 2026, license: "CC BY-NC-ND 4.0" },
+  { slug: "googlenet", name: "GoogLeNet", author: "Joshua Tom", year: 2026, license: "CC BY-NC-ND 4.0" },
+  { slug: "resnet", name: "ResNet", author: "Joshua Tom", year: 2026, license: "CC BY-NC-ND 4.0" },
+]
+
 /** Event sponsors, shown as a logo row under Membership. Logos live in public/sponsors (transparent PNG or SVG). */
 export const SPONSORS = [
   { name: "ReliaQuest", logo: "/sponsors/reliaquest.png", width: 291, height: 71, href: "https://www.reliaquest.com/" },
